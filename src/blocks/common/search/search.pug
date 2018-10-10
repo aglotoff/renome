@@ -1,0 +1,9 @@
+mixin search()
+    // start search 
+    form.search(action="#" method="post")&attributes(attributes)
+        .search__inner
+            input(type="text" placeholder="Search...").search__input
+            button(type="submit").search__submit
+                +icon('search')
+            button(type="button").search__close
+    // end search 

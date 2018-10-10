@@ -1,0 +1,24 @@
+.page {
+    font: {
+        family: $font-family-regular;
+        weight: $font-weight-regular;
+    }
+    line-height: $line-height-regular;
+    color: $color-primary;
+
+    background: $color-white;
+
+    &__header {
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 100;
+
+        margin-top: auto;
+
+        @include breakpoint-up(lg) {
+            position: absolute;
+        }
+    }
+}

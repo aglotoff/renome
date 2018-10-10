@@ -1,3 +1,52 @@
 {
-    
+    "siteTitle": "Renome",
+    "siteTagline": "HTML Restaurant Template",
+
+    "nav": [{
+        "text": "Home",
+        "link": "index.html"
+    }, {
+        "text": "About",
+        "link": "about.html"
+    }, {
+        "text": "Menu",
+        "link": "menu.html"
+    }, {
+        "text": "Reservation",
+        "link": "reservation.html"
+    }, {
+        "text": "Blog",
+        "link": "javascript:void(0);",
+        "submenu": [{
+            "text": "Blog left sidebar",
+            "link": "blog-left-sidebar.html"
+        }, {
+            "text": "Blog right sidebar",
+            "link": "blog-right-sidebar.html"
+        }]
+    }, {
+        "text": "Features",
+        "link": "javascript:void(0);",
+        "submenu": [{
+            "text": "Portfolio",
+            "link": "portfolio.html"
+        }, {
+            "text": "One page",
+            "link": "one-page.html"
+        }, {
+            "text": "404 page",
+            "link": "404.html"
+        }]
+    },{
+        "text": "Shop",
+        "link": "shop.html"
+    }, {
+        "text": "Contact",
+        "link": "contact.html"
+    }],
+
+    "cart": {
+        "quantity": 2,
+        "total": 44.50
+    }
 }

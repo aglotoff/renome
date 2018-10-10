@@ -1,0 +1,13 @@
+mixin mini-cart(data)
+    // start mini cart 
+    .mini-cart&attributes(attributes)
+        .mini-cart__inner
+            button(type="button").mini-cart__toggle
+                +icon('cart')
+                span.mini-cart__qty= data.quantity
+
+            .mini-cart__drop
+                span.mini-cart__total $#{data.total}
+                a(href="shop-cart.html").mini-cart__link View Cart
+                a(href="shop-checkout.html").mini-cart__link Checkout
+    // end mini cart 

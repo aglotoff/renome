@@ -1,0 +1,150 @@
+/**
+ * Header
+ */
+.header {
+    color: $color-black;
+
+    background: $color-white;
+    box-shadow: 0 2px 5px rgba($color-black, 0.1);
+
+    &__inner {
+        align-items: center;
+        display: flex;
+        height: 85px;
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            height: 100px;
+        }
+    }
+
+    &__logo {
+        margin-right: auto;
+        padding: 10px 0;
+    }
+
+    &__logo-img {
+        display: block;
+        max-width: 100%;
+
+        &_alt {
+            display: none;
+        }
+    }
+
+    &__logo-text {
+        display: none;
+    }
+
+    &__actions {
+        align-items: center;
+        display: flex;
+
+        @include breakpoint-up(lg) {
+            margin-left: 8px;
+        }
+
+        &:before {
+            @include breakpoint-up(lg) {
+                content: "";
+
+                display: block;
+                height: 9px;
+                margin-top: -2px;
+                width: 1px;
+
+                background-color: $color-black;
+            }
+        }
+
+        &:after {
+            content: "";
+
+            display: block;
+            height: 15px;
+            margin-left: 15px;
+            margin-top: -2px;
+            width: 1px;
+
+            background-color: $color-black;
+
+            @include breakpoint-up(lg) {
+                display: none;
+            }
+        }
+    }
+
+    &__search-toggle {
+        display: none;
+
+        @include breakpoint-up(lg) {
+            display: block;
+            margin-left: 15px;
+            padding: 5px;
+
+            color: inherit;
+            @include font-size(12px);
+
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+
+            transition: color 0.25s ease;
+        }
+
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+
+    &__mini-cart {
+        @include breakpoint-up(lg) {
+            margin-left: 14px;
+        }
+    }
+
+    &__nav {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 75px;
+
+        @include breakpoint-up(lg) {
+            position: static;
+        }
+    }
+
+    &__nav-toggle {
+        margin-left: 15px;
+        padding: 0;
+
+        @include font-size(15px);
+
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+        @include breakpoint-up(lg) {
+            display: none;
+        }
+    }
+
+    &__search {
+        display: none;
+
+        @include breakpoint-up(lg) {
+            left: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1;
+
+            display: block;
+        }
+    }
+}

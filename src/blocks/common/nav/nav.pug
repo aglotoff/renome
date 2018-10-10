@@ -1,0 +1,32 @@
+mixin nav__list(data, level = 0)
+    ul.nav__list&attributes(attributes)
+        each item in data
+            li.nav__item
+                a.nav__link(
+                    href=item.link
+                    class={
+                        nav__link_submenu: level > 0,
+                        nav__link_active: !!item.active,
+                    }
+                )= item.text
+
+                if item.submenu
+                    button(type="button").nav__arrow.nav__arrow_submenu Submenu
+
+                    .nav__submenu
+                        .nav__content
+                            .nav__back
+                                button(
+                                    type="button"
+                                ).nav__arrow.nav__arrow_back Back
+                                span.nav__back-text Back
+                            
+                            +nav__list(item.submenu, level + 1)
+
+mixin nav(data)
+    // start nav menu 
+    nav.nav&attributes(attributes)
+        .nav__content
+            +mobile-search().nav__search
+            +nav__list(data).nav__list_horizontal
+    // end nav menu 

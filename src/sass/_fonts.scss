@@ -1,1 +1,25 @@
-// insert @font-face rules here
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src: local('Montserrat Regular'),
+         local('Montserrat-Regular'),
+         url('../fonts/Montserrat-Regular.woff2') format('woff2'),
+         url('../fonts/Montserrat-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    src: local('Montserrat Bold'),
+         local('Montserrat-Bold'),
+         url('../fonts/Montserrat-Bold.woff2') format('woff2'),
+         url('../fonts/Montserrat-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Axis';
+    font-weight: 700;
+    src: local('Axis'),
+         url('../fonts/Axis.woff2') format('woff2'),
+         url('../fonts/Axis.woff') format('woff');
+}

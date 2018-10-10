@@ -1,0 +1,51 @@
+/**
+ * Mobile Menu Search Form
+ */
+.mobile-search {
+    align-items: center;
+    display: flex;
+    padding: 0 10px;
+
+    @include breakpoint-up(lg) {
+        display: none;
+    }
+
+    &__input {
+        display: block;
+        flex: 1;
+        padding: 22px 0;
+
+        color: $color-primary;
+        font-weight: $font-weight-bold;
+        letter-spacing: .2em;
+
+        background: transparent;
+        border: none;
+        outline: none;
+
+        &::placeholder {
+            color: $color-silver-sand;
+        }
+    }
+
+    &__submit {
+        display: block;
+        flex: 0;
+
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+        transition: all 0.25s ease;
+
+        &:hover {
+            color: $color-secondary;
+
+            @include breakpoint-up(lg) {
+                color: $color-white;
+                opacity: 1;
+            }
+        }
+    }
+}

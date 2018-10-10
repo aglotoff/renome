@@ -1,0 +1,81 @@
+/**
+ * Nav Menu Hamburger
+ */
+.hamburger {
+    padding: 0;
+
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    &__inner {
+        position: relative;
+
+        display: inline-block;
+        height: 14px;
+        width: 16px;
+    }
+
+    &__inner:before,
+    &__inner:after {
+        content: "";
+    }
+
+    &__inner:before,
+    &__inner:after,
+    &__title {
+        left: 0;
+        position: absolute;
+
+        display: inline-block;
+        height: 2px;
+        width: 100%;
+
+        text-indent: -9999px;
+
+        background: $color-black;
+
+        transition: all 0.25s linear;
+    }
+
+    &__inner:before {
+        top: 0;
+
+        transform-origin: 0 0;
+    }
+
+    &__inner:after {
+        bottom: 0;
+
+        transform-origin: 0 100%;
+    }
+
+    &__title {
+        top: 50%;
+
+        transform: translateY(-50%);
+    }
+
+    &:hover {
+        .hamburger__inner:before,
+        .hamburger__inner:after,
+        .hamburger__title {
+            background: $color-au-chico;
+        }
+    }
+
+    &_open {
+        .hamburger__inner:before {
+            transform: translateX(1px) scale(1.1) rotate(45deg);
+        }
+
+        .hamburger__inner:after {
+            transform: translateX(1px) scale(1.1) rotate(-45deg);
+        }
+
+        .hamburger__title {
+            opacity: 0;
+        }
+    }
+}

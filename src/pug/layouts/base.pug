@@ -1,0 +1,44 @@
+include ../../blocks/common/hamburger/hamburger
+include ../../blocks/common/header/header
+include ../../blocks/common/icon/icon
+include ../../blocks/common/mini-cart/mini-cart
+include ../../blocks/common/mobile-search/mobile-search
+include ../../blocks/common/nav/nav
+include ../../blocks/common/search/search
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{data.siteTitle} &#8211; #{data.siteTagline}
+
+        link(rel="stylesheet", href="css/style.css")
+    body.page
+        -
+            const navData = data.nav.map((item) => {
+                if (item.text == data.activeNavItem) {
+                    return {
+                        link: item.link,
+                        text: item.text,
+                        active: true,
+                        submenu: item.submenu 
+                            ? item.submenu.map((subItem) => ({
+                                link: subItem.link,
+                                text: subItem.text,
+                                active: subItem.text == data.activeNavSubItem,
+                            }))
+                            : null,
+                    } 
+                } else {
+                    return item;
+                }
+            }); 
+        +header({
+            nav: navData,
+            cart: data.cart,
+        }).page__header
+    
+        script(src="js/vendor.js")
+        script(src="js/main.js")

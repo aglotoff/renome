@@ -1,0 +1,24 @@
+mixin header(data, mods = {})
+    // start header 
+    header.header&attributes(attributes)
+        .header__inner
+            a(href="index.html").header__logo
+                img(src="img/logo.png", alt="Renome").header__logo-img
+                img(src="img/logo-alt.png", alt="Renome").header__logo-img_alt
+
+            +nav(data.nav).header__nav#nav
+
+            .header__actions
+                button(type="button").header__search-toggle
+                    +icon('search')
+
+                +mini-cart(data.cart).header__mini-cart
+
+            +hamburger('Toggle nav')(
+                type="button"
+                aria-controls="nav"
+                aria-expanded="false"
+            ).header__nav-toggle
+
+            +search().header__search
+    // end header 

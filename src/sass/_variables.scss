@@ -36,5 +36,29 @@ $container-xl: 1170px;
 $container-lg: 970px;
 $container-md: 750px;
 
+// Font Families
+$font-family-regular: 'Montserrat', sans-serif;
+$font-family-title: 'Axis', sans-serif;
+
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
 // Font sizes
-$font-size-default: 16px;
+$font-size-default: 12px;
+
+// Line Heights
+$line-height-regular: 1.2;
+
+// Color palette
+$color-black: #000;
+$color-ebony-clay: #1e2633;
+$color-au-chico: #985e5b;
+$color-silver-sand: #bbbdbf;
+$color-gallery: #eeeeee;
+$color-concrete: #f2f2f2;
+$color-white: #fff;
+
+// Semantic colors
+$color-primary: $color-ebony-clay;
+$color-secondary: $color-au-chico;

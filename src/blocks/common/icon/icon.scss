@@ -8,8 +8,9 @@
 	fill: currentColor;
 }
 
-{{#shapes}}
-.icon_{{base}} {
-	width: ({{width.inner}} / {{height.inner}}) * 1em;
+.icon_cart {
+	width: (15 / 12) * 1em;
 }
-{{/shapes}}
+.icon_search {
+	width: (16 / 16) * 1em;
+}

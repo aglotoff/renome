@@ -3,6 +3,29 @@
 @import "variables";
 @import "mixins";
 
-// include third-party styles
+/*
+ * ----------------------------------------
+ * Base Page Styles
+ * ----------------------------------------
+ */
 
-// include block-specific styles
+:root {
+    /* font-size: 12px; */
+    font-size: 0.75em;
+}
+
+@import "../blocks/common/page/page";
+
+/*
+ * ----------------------------------------
+ * Common Blocks
+ * ----------------------------------------
+ */
+
+@import "../blocks/common/hamburger/hamburger";
+@import "../blocks/common/header/header";
+@import "../blocks/common/icon/icon";
+@import "../blocks/common/mini-cart/mini-cart";
+@import "../blocks/common/mobile-search/mobile-search";
+@import "../blocks/common/nav/nav";
+@import "../blocks/common/search/search";
