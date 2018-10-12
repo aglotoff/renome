@@ -1,7 +1,10 @@
 extends ../layouts/base
 
 include ../../blocks/index/slider/slider
+include ../../blocks/index/specials/specials
+include ../../blocks/index/specials-carousel/specials-carousel
 
 block page
     +slider(data.content.slider)
     +section(data.content.about)
+    +specials(data.content.specials)

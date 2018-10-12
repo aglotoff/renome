@@ -1,0 +1,28 @@
+mixin specials-carousel(data)
+    .specials-carousel&attributes(attributes)
+        .specials-carousel__inner
+            .specials-carousel__container
+                each slide, i in data
+                    .specials-carousel__slide(
+                        class=(i == 0) ? 'specials-carousel__slide_active' : ''
+                    )
+                        img(
+                            src=slide.img
+                            alt=slide.title
+                        ).specials-carousel__slide-img
+
+                        .specials-carousel__slide-text
+                            h3.specials-carousel__slide-title= slide.title
+                            .specials-carousel__slide-weekday= slide.weekday
+
+                        .specials-carousel__slide-price= slide.price
+
+            .specials-carousel__arrows
+                button(
+                    type="button"
+                ).specials-carousel__arrow.specials-carousel__arrow_dir_prev
+                    | Previous
+                button(
+                    type="button"
+                ).specials-carousel__arrow.specials-carousel__arrow_dir_next
+                    | Next

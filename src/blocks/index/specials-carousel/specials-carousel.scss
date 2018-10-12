@@ -1,0 +1,206 @@
+/**
+ * Specials Carousel
+ */
+.specials-carousel {
+    padding-bottom: 80px;
+    overflow: hidden;
+
+    @include breakpoint-up(md) {
+        padding-left: 29px;
+        padding-bottom: 40px;
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 1;
+
+        @include breakpoint-up(md) {
+            padding-right: 20%;
+        }
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__slide {
+        left: 0;
+        position: absolute;
+        top: 0;
+
+        display: block;
+        width: 100%;
+
+        overflow: visible;
+        transform-origin: 100% 50%;
+        transition: all 0.3s linear;
+
+        &_active {
+            display: block;
+            position: relative;
+        }
+
+        &_hidden {
+            /* stylelint-disable-next-line declaration-no-important */
+            left: -100% !important;
+        }
+    }
+
+    &__arrows {
+        position: absolute;
+        left: -29px;
+        top: 50%;
+        z-index: 100;
+
+        display: block;
+        margin-top: -57px;
+    }
+
+    &__arrow {
+        display: none;
+
+        @include breakpoint-up(md) {
+            position: relative;
+
+            display: block;
+            height: 56px;
+            padding: 0;
+            width: 56px;
+
+            text-indent: -9999px;
+
+            background: $color-athens-gray;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: background-color .2s ease;
+        }
+
+        &:after {
+            @include breakpoint-up(md) {
+                content: "";
+
+                position: absolute;
+                top: 22px;
+
+                display: block;
+                width: 12px;
+                height: 12px;
+
+                border-top: 2px solid $color-primary;
+                border-right: 2px solid $color-primary;
+                transition: border-color .2s ease;
+            }
+        }
+
+        &:hover {
+            @include breakpoint-up(md) {
+                background: $color-secondary;
+            }
+
+            &:after {
+                @include breakpoint-up(md) {
+                    border-color: $color-white;
+                }
+            }
+        }
+
+        &_dir_prev {
+            &:after {
+                @include breakpoint-up(md) {
+                    right: 20px;
+
+                    transform: rotate(-135deg);
+                }
+            }
+        }
+
+        &_dir_next {
+            @include breakpoint-up(md) {
+                margin-top: 2px;
+            }
+
+            &:after {
+                @include breakpoint-up(md) {
+                    left: 20px;
+
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+
+    &__slide-img {
+        display: block;
+        width: 100%;
+    }
+
+    &__slide-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+
+        text-align: center;
+
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        @include breakpoint-up(md) {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .specials-carousel__slide_active & {
+            opacity: 1;
+        }
+    }
+
+    &__slide-title {
+        margin-top: 22px;
+
+        @include font-size(15px);
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.05em;
+    }
+
+    &__slide-weekday {
+        margin-top: 18px;
+
+        color: $color-iron;
+        font-family: $font-family-cursive;
+        @include font-size(20px);
+        letter-spacing: 0.1em;
+    }
+
+    &__slide-price {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+
+        height: 40px;
+        padding: 0 19px;
+
+        @include font-size(15px);
+        letter-spacing: 0.1em;
+        line-height: 40px;
+
+        background: $color-athens-gray;
+
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        @include breakpoint-up(md) {
+            height: 50px;
+            padding-left: 23px;
+            padding-right: 23px;
+
+            @include font-size(17px);
+            line-height: 50px;
+        }
+
+        .specials-carousel__slide_active & {
+            opacity: 1;
+        }
+    }
+}
