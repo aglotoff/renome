@@ -1,4 +1,6 @@
 .page {
+    padding-top: 85px;
+
     font: {
         family: $font-family-regular;
         weight: $font-weight-regular;
@@ -7,6 +9,10 @@
     color: $color-primary;
 
     background: $color-white;
+
+    @include breakpoint-up(lg) {
+        padding-top: 0;
+    }
 
     &__header {
         left: 0;
@@ -19,6 +25,29 @@
 
         @include breakpoint-up(lg) {
             position: absolute;
+        }
+
+        &_scroll {
+            @include breakpoint-up(lg) {
+                position: fixed;
+
+                margin-top: 0;
+
+                transition: margin-top 0.25s linear;
+            }
+        }
+
+        /* Don't show the header until scrolled to a certain position */
+        &_hidden {
+            @include breakpoint-up(lg) {
+                margin-top: -100px;
+            }
+        }
+    }
+
+    &_home {
+        @include breakpoint-up(lg) {
+            padding-top: 100px;
         }
     }
 }

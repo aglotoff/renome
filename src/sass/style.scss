@@ -3,6 +3,8 @@
 @import "variables";
 @import "mixins";
 
+@import "../../node_modules/slick-carousel/slick/slick.scss";
+
 /*
  * ----------------------------------------
  * Base Page Styles
@@ -29,3 +31,11 @@
 @import "../blocks/common/mobile-search/mobile-search";
 @import "../blocks/common/nav/nav";
 @import "../blocks/common/search/search";
+
+/*
+ * ----------------------------------------
+ * Home Blocks
+ * ----------------------------------------
+ */
+
+@import "../blocks/index/slider/slider";

@@ -15,7 +15,8 @@ html(lang="en")
         title #{data.siteTitle} &#8211; #{data.siteTagline}
 
         link(rel="stylesheet", href="css/style.css")
-    body.page
+
+    body.page(class=data.isHomepage ? 'page_home' : '')
         -
             const navData = data.nav.map((item) => {
                 if (item.text == data.activeNavItem) {
@@ -40,5 +41,10 @@ html(lang="en")
             cart: data.cart,
         }).page__header
     
+        // start content 
+        main
+            block page
+        // end content 
+
         script(src="js/vendor.js")
         script(src="js/main.js")

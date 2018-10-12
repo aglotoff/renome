@@ -2,6 +2,8 @@
     "siteTitle": "Renome",
     "siteTagline": "HTML Restaurant Template",
 
+    "isHomepage": false,
+
     "nav": [{
         "text": "Home",
         "link": "index.html"

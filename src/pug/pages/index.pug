@@ -1,1 +1,6 @@
 extends ../layouts/base
+
+include ../../blocks/index/slider/slider
+
+block page
+    +slider(data.content.slider)

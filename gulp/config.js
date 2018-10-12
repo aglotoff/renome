@@ -66,6 +66,7 @@ const config = {
             vendor: [
                 `${LIB_PREFIX}/svg4everybody/dist/svg4everybody.min.js`,
                 `${LIB_PREFIX}/jquery/dist/jquery.min.js`,
+                `${LIB_PREFIX}/slick-carousel/slick/slick.min.js`,
             ],
             src: [
                 `${SRC_PREFIX}/blocks/**/*.js`,
