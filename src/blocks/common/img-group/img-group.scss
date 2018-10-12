@@ -1,0 +1,104 @@
+.img-group {
+    display: flex;
+
+    &__img {
+        display: block;
+        max-width: 100%;
+    }
+
+    &_order_top-left,
+    &_order_top-right {
+        flex-direction: column-reverse;
+
+        &.img-group_size_sm {
+            .img-group__row {
+                &:first-child {
+                    margin-top: -20%;
+                }
+            }
+        }
+
+        &.img-group_size_lg {
+            .img-group__row {
+                &:first-child {
+                    margin-top: -10%;
+                }
+            }
+        }
+    }
+
+    &_order_bottom-left,
+    &_order_bottom-right {
+        flex-direction: column;
+
+        &.img-group_size_sm {
+            .img-group__row {
+                &:last-child {
+                    margin-top: -20%;
+                }
+            }
+        }
+
+        &.img-group_size_lg {
+            .img-group__row {
+                &:last-child {
+                    margin-top: -10%;
+                }
+            }
+        }
+    }
+
+    &_order_top-left,
+    &_order_bottom-left {
+        &.img-group_size_sm {
+            .img-group__row {
+                &:first-child {
+                    padding-left: 20%;
+                }
+
+                &:last-child {
+                    padding-right: 20%;
+                }
+            }
+        }
+
+        &.img-group_size_lg {
+            .img-group__row {
+                &:first-child {
+                    padding-left: 10%;
+                }
+
+                &:last-child {
+                    padding-right: 10%;
+                }
+            }
+        }
+    }
+
+    &_order_top-right,
+    &_order_bottom-right {
+        &.img-group_size_sm {
+            .img-group__row {
+                &:first-child {
+                    padding-right: 20%;
+                }
+
+                &:last-child {
+                    padding-left: 20%;
+                }
+            }
+        }
+
+        &.img-group_size_lg {
+            .img-group__row {
+                &:first-child {
+                    padding-right: 10%;
+                }
+
+                &:last-child {
+                    padding-left: 10%;
+                }
+            }
+        }
+    }
+}

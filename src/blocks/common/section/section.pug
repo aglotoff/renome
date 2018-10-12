@@ -1,0 +1,25 @@
+mixin section(data, mods = {})
+    <!-- start #{data.title.toLowerCase()} section -->
+    section.section(
+        class=!!mods.reverse ? 'section_reverse' : ''
+    )&attributes(attributes)
+        .section__inner
+            +img-group(
+                data.images,
+                data.imageOrder,
+                data.imageSize
+            ).section__images
+
+            .section__content
+                +heading-group({
+                    title: data.title, 
+                    subtitle: data.subtitle,
+                })
+
+                if data.text
+                    .text.section__text !{data.text}
+
+                if (data.link)
+                    .section__read-more
+                        a(href=data.link).section__link ...
+    <!-- end #{data.title.toLowerCase()} section -->

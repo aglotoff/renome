@@ -1,0 +1,42 @@
+/**
+ * Multi-level heading
+ */
+.heading-group {
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+
+    &__title {
+        color: $color-white;
+        font-family: $font-family-title;
+    }
+
+    &__subtitle {
+        color: $color-secondary;
+    }
+
+    &_lvl_section {
+        .heading-group__title {
+            color: $color-primary;
+            @include font-size(38px);
+            letter-spacing: 0.2em;
+
+            @include breakpoint-up(lg) {
+                @include font-size(50px);
+            }
+        }
+
+        .heading-group__subtitle {
+            margin-top: 1em;
+
+            @include font-size(11px);
+            text-transform: uppercase;
+
+            @include breakpoint-up(lg) {
+                margin-top: 0.7em;
+
+                @include font-size(12px);
+            }
+        }
+    }
+}

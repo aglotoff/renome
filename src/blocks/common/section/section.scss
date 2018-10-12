@@ -1,0 +1,87 @@
+/**
+ * Page Section
+ */
+.section {
+    padding: 70px 0;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 520px;
+        padding: 0 10px;
+
+        @include breakpoint-up(md) {
+            display: flex;
+            justify-content: space-between;
+            max-width: 920px;
+        }
+    }
+
+    &__images {
+        @include breakpoint-up(md) {
+            flex: 0 1 500px;
+        }
+    }
+
+    &__content {
+        margin-top: 65px;
+
+        @include breakpoint-up(md) {
+            flex: 1 1 310px;
+            margin-left: 60px;
+            margin-top: 0;
+        }
+
+        @include breakpoint-up(lg) {
+            margin-left: 80px;
+            margin-top: 35px;
+        }
+    }
+
+    &__text {
+        margin-top: 25px;
+    }
+
+    &__link {
+        color: $color-primary;
+        font-size: 2.5rem;
+        font-weight: $font-weight-bold;
+        letter-spacing: .1em;
+        text-decoration: none;
+
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+
+    &_reverse {
+        .section__inner {
+            @include breakpoint-up(md) {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .section__content {
+            text-align: right;
+
+            @include breakpoint-up(md) {
+                margin-left: 0;
+                margin-right: 60px;
+            }
+
+            @include breakpoint-up(lg) {
+                margin-right: 80px;
+            }
+        }
+    }
+
+    + .section {
+        border-top: 1px solid $color-gallery;
+    }
+}

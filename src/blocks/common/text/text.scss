@@ -1,0 +1,32 @@
+/**
+ * Formatted Text
+ */
+ .text {
+    color: $color-tundora;
+    line-height: 2.5;
+    letter-spacing: .15em;
+
+    h3 {
+        color: $color-black;
+        font-size: font-size(15px);
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    blockquote {
+        padding-left: 18px;
+
+        color: $color-black;
+        font-size: font-size(14px);
+
+        border-left: 3px solid $color-athens-gray;
+    }
+
+    * + * {
+        margin-top: 2em;
+    }
+
+    h3 + p {
+        margin-top: 1em;
+    }
+}
