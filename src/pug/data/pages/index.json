@@ -64,6 +64,27 @@
                 "weekday": "Monday",
                 "price": "$14.20"
             }]
+        },
+
+        "menu": {
+            "title": "Menu",
+            "subtitle": "Delicious and beautiful",
+
+            "images": {
+                "first": {
+                    "src": "img/content/menu/menu-1.jpg",
+                    "alt": "Menu"
+                },
+                "second": {
+                    "src": "img/content/menu/menu-2.jpg",
+                    "alt": "Menu"
+                }
+            },
+            "imageSize": "sm",
+            "imageOrder": "top-right",
+
+            "text": "<p>In our menu you will find a great variety of delicious food that will satisfy the needs and tastes of everyone. We strive to source the highest quality ingredients for all of our dishes thereby enhancing the quality of services.</p>",
+            "link": "menu.html"
         }
     }
 }
