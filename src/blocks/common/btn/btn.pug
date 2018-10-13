@@ -1,0 +1,11 @@
+mixin btn(data, type = 'button', mods = {})
+    if type == 'link'
+        a.btn(
+            href=data.link
+            class=!!mods.alt ? 'btn_alt' : ''
+        )&attributes(attributes)= data.title
+    else
+        button.btn(
+            type=type
+            class=!!mods.alt ? 'btn_alt' : ''
+        )&attributes(attributes)= data.title

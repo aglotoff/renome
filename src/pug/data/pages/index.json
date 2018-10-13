@@ -125,6 +125,11 @@
             ]
         },
 
+        "cta": {
+            "title": "Order now",
+            "link": "shop.html"
+        },
+
         "recentPosts": {
             "title": "Blog",
             "subtitle": "News, recipes and much more",

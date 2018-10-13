@@ -1,0 +1,31 @@
+/**
+ * Call To Action
+ */
+.cta {
+    padding: 100px 0;
+
+    background: {
+        color: $color-tundora;
+        image: url(../img/cta-bg.jpg);
+        position: center;
+        repeat: no-repeat;
+        size: cover;
+    }
+
+    @include breakpoint-up(md) {
+        padding-bottom: 75px;
+        padding-top: 75px;
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        text-align: center;
+    }
+
+    &__btn {
+        width: 170px;
+    }
+}

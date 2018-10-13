@@ -1,0 +1,42 @@
+/**
+ * Button
+ */
+.btn {
+    display: inline-block;
+    margin: 0;
+    padding: 18px 25px;
+
+    color: $color-white;
+    font-family: $font-family-regular;
+    @include font-size(11px);
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.15em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    background: $color-primary;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background: $color-secondary;
+    }
+
+    &_alt {
+        padding-bottom: 12px;
+        padding-top: 12px;
+
+        color: $color-primary;
+        @include font-size(12px);
+        background: $color-catskill-white;
+
+        &:hover {
+            color: $color-catskill-white;
+
+            background: $color-primary;
+        }
+    }
+}

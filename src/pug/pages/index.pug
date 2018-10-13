@@ -1,5 +1,6 @@
 extends ../layouts/base
 
+include ../../blocks/index/cta/cta
 include ../../blocks/index/recent-posts/recent-posts
 include ../../blocks/index/services/services
 include ../../blocks/index/slider/slider
@@ -15,4 +16,5 @@ block page
     +testimonial(data.content.testimonial)
     +section(data.content.reservation)
     +services(data.content.services)
+    +cta(data.content.cta)
     +recent-posts(data.content.recentPosts)

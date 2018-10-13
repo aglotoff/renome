@@ -1,0 +1,9 @@
+mixin cta(data)
+    // start call to action 
+    .cta&attributes(attributes)
+        .cta__inner
+            +btn({
+                title: data.title,
+                link: data.link,
+            }, 'link').cta__btn
+    // end call to action 
