@@ -1,0 +1,46 @@
+/**
+ * Services Section
+ */
+.services {
+    text-align: center;
+
+    &__list-wrapper {
+        background: $color-alabaster;
+        margin-top: 2.5em;
+
+        @include breakpoint-up(md) {
+            margin-top: 6em;
+        }
+    }
+
+    &__list {
+        @include breakpoint-up(md) {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+    }
+
+    &__item {
+        padding: 50px 10px;
+
+        @include font-size(20px);
+        line-height: 1.9;
+        letter-spacing: 0.1em;
+
+        @include breakpoint-up(md) {
+            flex: 0 1 354px;
+            padding: 120px 15px;
+        }
+
+        &:not(:first-child) {
+            border-top: 1px solid $color-alto;
+
+            @include breakpoint-up(md) {
+                border-left: 1px solid $color-alto;
+                border-top: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+mixin recent-posts(data)
+    -
+        const formattedDate = function(datestr) {
+            const date = new Date(datestr);
+            let month = date.getMonth() + 1;
+            if (month < 10)
+                month = '0' + month;
+            let day = date.getDate();
+            if (day < 10)
+                day = '0' + day;
+            return `${month}/${day}`;
+        };
+    // start recent posts section 
+    section.recent-posts
+        .recent-posts__inner
+            +heading-group({
+                title: data.title,
+                subtitle: data.subtitle
+            })
+
+            ul.recent-posts__list
+                each post in data.posts
+                    li.recent-posts__item
+                        a(
+                            href=post.link
+                            style=`background-image: url(${post.thumb})`
+                        ).recent-posts__post
+                            .recent-posts__post-inner
+                                .recent-posts__date
+                                    time(datetime=post.date)
+                                        = formattedDate(post.date)
+                                h3.recent-posts__title= post.title
+    // end recent posts section 

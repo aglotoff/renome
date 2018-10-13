@@ -1,0 +1,13 @@
+mixin services(data)
+    // start services section 
+    section.services&attributes(attributes)
+        +heading-group({
+            title: data.title,
+            subtitle: data.subtitle,
+        })
+
+        .services__list-wrapper
+            ul.services__list
+                each item in data.items
+                    li.services__item= item
+    // end services section 

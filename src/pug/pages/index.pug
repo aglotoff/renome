@@ -1,5 +1,7 @@
 extends ../layouts/base
 
+include ../../blocks/index/recent-posts/recent-posts
+include ../../blocks/index/services/services
 include ../../blocks/index/slider/slider
 include ../../blocks/index/specials/specials
 include ../../blocks/index/specials-carousel/specials-carousel
@@ -12,3 +14,5 @@ block page
     +section(data.content.menu, {reverse: true})
     +testimonial(data.content.testimonial)
     +section(data.content.reservation)
+    +services(data.content.services)
+    +recent-posts(data.content.recentPosts)

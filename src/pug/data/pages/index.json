@@ -112,6 +112,39 @@
 
             "text": "<p>Call you on the date of your reservation to confirm your table. If you do not receive an email, or do not hear from the restaurant, we would recommend calling to confirm your table and verify your reservation booking (+1 939 777 55 33).</p>",
             "link": "reservation.html"
+        },
+
+        "services": {
+            "title": "Our services",
+            "subtitle": "Advantages of our restaurant",
+
+            "items": [
+                "Pickup or Delivery",
+                "Serving With Love",
+                "Daily Lunch Specials"
+            ]
+        },
+
+        "recentPosts": {
+            "title": "Blog",
+            "subtitle": "News, recipes and much more",
+
+            "posts": [{
+                "title": "Grand opening!",
+                "date": "2015-10-03 19:00",
+                "thumb": "img/content/blog/posts/thumbs/326x326/grand-opening.jpg",
+                "link": "blog-single-left-sidebar.html"
+            }, {
+                "title": "Mini chilli pretzels",
+                "date": "2015-07-03 19:00",
+                "thumb": "img/content/blog/posts/thumbs/326x326/mini-chilli-pretzels.jpg",
+                "link": "blog-single-left-sidebar.html"
+            }, {
+                "title": "Summer specials",
+                "date": "2015-05-06 19:00",
+                "thumb": "img/content/blog/posts/thumbs/326x326/summer-specials.jpg",
+                "link": "blog-single-left-sidebar.html"
+            }]
         }
     }
 }
