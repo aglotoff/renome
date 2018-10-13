@@ -91,6 +91,27 @@
             "img": "img/content/index/testimonial.jpg",
             "text": "The most romantic and perfect place",
             "author": "John Doe"
+        },
+
+        "reservation": {
+            "title": "Reservation",
+            "subtitle": "Book your table at our restaurant now!",
+            
+            "images": {
+                "first": {
+                    "src": "img/content/reservation/reservation-1.jpg",
+                    "alt": "Reservation"
+                },
+                "second": {
+                    "src": "img/content/reservation/reservation-2.jpg",
+                    "alt": "Reservation"
+                }
+            },
+            "imageSize": "sm",
+            "imageOrder": "top-left",
+
+            "text": "<p>Call you on the date of your reservation to confirm your table. If you do not receive an email, or do not hear from the restaurant, we would recommend calling to confirm your table and verify your reservation booking (+1 939 777 55 33).</p>",
+            "link": "reservation.html"
         }
     }
 }
