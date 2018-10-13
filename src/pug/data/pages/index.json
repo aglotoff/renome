@@ -85,6 +85,12 @@
 
             "text": "<p>In our menu you will find a great variety of delicious food that will satisfy the needs and tastes of everyone. We strive to source the highest quality ingredients for all of our dishes thereby enhancing the quality of services.</p>",
             "link": "menu.html"
+        },
+
+        "testimonial": {
+            "img": "img/content/index/testimonial.jpg",
+            "text": "The most romantic and perfect place",
+            "author": "John Doe"
         }
     }
 }

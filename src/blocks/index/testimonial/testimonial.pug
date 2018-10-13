@@ -1,0 +1,15 @@
+mixin testimonial(data, mods = {})
+    // start testimonial section 
+    .testimonial(
+        class = !!mods.reverse ? 'testimonial_reverse' : ''
+    )&attributes(attributes)
+        .testimonial__content
+            .testimonial__inner
+                .testimonial__img-wrapper
+                    img(src=data.img, alt="Testimonial").testimonial__img
+
+                blockquote.testimonial__quote
+                    p.testimonial__quote-text= data.text
+                    footer.testimonial__quote-footer
+                        cite= data.author
+    // end testimonial section 

@@ -1,0 +1,107 @@
+/**
+ * Testimonial Section
+ */
+.testimonial {
+    padding-top: 70px;
+
+    @include breakpoint-up(lg) {
+        padding-top: 100px;
+    }
+
+    &__content {
+        background: $color-alabaster;
+
+        padding: 70px 0;
+
+        @include breakpoint-up(lg) {
+            padding-bottom: 100px;
+            padding-top: 100px;
+        }
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 990px;
+        padding: 0 10px;
+
+        @include breakpoint-up(md) {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__img-wrapper {
+        margin: -140px auto 0;
+
+        text-align: center;
+
+        @include breakpoint-up(md) {
+            flex: 0 1 auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        @include breakpoint-up(lg) {
+            margin-top: -200px;
+        }
+    }
+
+    &__img {
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    &__quote {
+        margin: 28px auto 0;
+        max-width: 420px;
+        padding: 0 10px;
+
+        letter-spacing: 0.2em;
+        text-align: center;
+
+        @include breakpoint-up(md) {
+            margin-left: 60px;
+            margin-right: 0;
+            margin-top: 0;
+        }
+    }
+
+    &__quote-text {
+        @include font-size(20px);
+        line-height: 1.6;
+
+        @include breakpoint-up(lg) {
+            @include font-size(25px);
+            line-height: 1.52;
+        }
+
+        &:before,
+        &:after {
+            content: "\"";
+        }
+    }
+
+    &__quote-footer {
+        margin-top: 1.5em;
+
+        font-family: $font-family-title;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    &_reverse {
+        .testimonial__inner {
+            @include breakpoint-up(md) {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .testimonial__quote {
+            @include breakpoint-up(md) {
+                margin-left: 0;
+                margin-right: 60px;
+            }
+        }
+    }
+}

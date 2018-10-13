@@ -3,9 +3,11 @@ extends ../layouts/base
 include ../../blocks/index/slider/slider
 include ../../blocks/index/specials/specials
 include ../../blocks/index/specials-carousel/specials-carousel
+include ../../blocks/index/testimonial/testimonial
 
 block page
     +slider(data.content.slider)
     +section(data.content.about)
     +specials(data.content.specials)
     +section(data.content.menu, {reverse: true})
+    +testimonial(data.content.testimonial)
