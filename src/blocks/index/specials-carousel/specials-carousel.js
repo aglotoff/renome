@@ -1,5 +1,5 @@
 /**
- * Specials Slider
+ * Specials Carousel Block
  */
 (function($) {
     const GUTTER_WIDTH = 25;
@@ -39,6 +39,10 @@
             isSliding = true;
 
             const $slides = $('.specials-carousel__slide', $carousel);
+            if ($slides.length < 2) {
+                return;
+            }
+
             const $first = $slides.first();
             const $last = $slides.last();
 
@@ -55,8 +59,8 @@
 
             updateStyles();
 
-            // The following code must be executed on the next tick to allow
-            // smooth animation of repositioned slides.
+            // The following code must be delayed in order to allow for smooth 
+            // animation of the repositioned slides.
             setTimeout(function() {
                 $ghost.addClass('specials-carousel__slide_hidden');
                 $last.removeClass('specials-carousel__slide_hidden');
@@ -78,6 +82,10 @@
             isSliding = true;
 
             const $slides = $('.specials-carousel__slide', $carousel);
+            if ($slides.length < 2) {
+                return;
+            }
+
             const $first = $slides.first();
             const $second = $slides.eq(1);
             const $last = $slides.last();
@@ -94,8 +102,8 @@
 
             updateStyles();
             
-            // The following code must be executed on the next tick to allow
-            // smooth animation of repositioned slides.
+            // The following code must be delayed in order to allow for smooth 
+            // animation of the repositioned slides.
             setTimeout(function() {
                 $ghost.addClass('specials-carousel__slide_hidden');
                 $first.removeClass('specials-carousel__slide_hidden');
