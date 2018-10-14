@@ -8,7 +8,7 @@
 
     h3 {
         color: $color-black;
-        font-size: font-size(15px);
+        @include font-size(15px);
         font-weight: $font-weight-bold;
         text-transform: uppercase;
     }
@@ -17,7 +17,7 @@
         padding-left: 18px;
 
         color: $color-black;
-        font-size: font-size(14px);
+        @include font-size(14px);
 
         border-left: 3px solid $color-athens-gray;
     }

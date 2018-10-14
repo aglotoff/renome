@@ -117,7 +117,7 @@
 
         color: $color-iron;
         font-weight: $font-weight-bold;
-        font-size: font-size(20px);
+        @include font-size(20px);
         letter-spacing: 0.3em;
     }
 
