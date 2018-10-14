@@ -1,0 +1,106 @@
+/**
+ * Site Footer
+ */
+.footer {
+    padding: 30px 0;
+
+    text-align: center;
+
+    background: $color-athens-gray;
+
+    &__inner {
+        padding: 0 10px;
+
+        @include breakpoint-up(md) {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @include breakpoint-up(xl) {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+    }
+
+    &__social {
+        @include breakpoint-up(md) {
+            align-items: center;
+            display: flex;
+            flex: 0 1 220px;
+
+            order: 3;
+        }
+    }
+
+    &__social-text {
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    &__social-list {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+
+        @include breakpoint-up(md) {
+            margin-left: 15px;
+            margin-top: 0;
+        }
+    }
+
+    &__social-item {
+        &:not(:first-child) {
+            margin-left: 10px;
+        }
+    }
+
+    &__social-link {
+        display: block;
+        height: 33px;
+        width: 33px;
+
+        color: $color-primary;
+        line-height: 33px;
+        text-decoration: none;
+
+        border: 2px solid $color-primary;
+        border-radius: 50%;
+        transition: all 0.25s ease;
+
+        &:hover {
+            color: $color-secondary;
+            border-color: $color-secondary;
+        }
+    }
+
+    &__logo {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 10px 0;
+
+        @include breakpoint-up(md) {
+            flex: 0 1 220px;
+            margin-top: 0;
+            order: 1;
+
+            text-align: left;
+        }
+    }
+
+    &__copyright {
+        margin-top: 25px;
+
+        color: $color-ebony-clay;
+        font-family: $font-family-title;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.05em;
+        line-height: 2;
+        text-transform: uppercase;
+
+        @include breakpoint-up(md) {
+            margin-top: 0;
+            order: 2;
+        }
+    }
+}

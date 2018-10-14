@@ -1,5 +1,5 @@
 mixin mobile-search()
-    form(action="#" method="post").mobile-search
+    form(action="#" method="post").mobile-search&attributes(attributes)
         input(type="text" placeholder="Search...").mobile-search__input
         button(type="submit").mobile-search__submit
             +icon('search')
