@@ -150,6 +150,27 @@
                 "thumb": "img/content/blog/posts/thumbs/326x326/summer-specials.jpg",
                 "link": "blog-single-left-sidebar.html"
             }]
+        },
+
+        "contact": {
+            "title": "Contact",
+            "subtitle": "We welcome you in our restaurant",
+
+            "images": {
+                "first": {
+                    "src": "img/content/contact/contact-1.jpg",
+                    "alt": "Contact"
+                },
+                "second": {
+                    "src": "img/content/contact/contact-2.jpg",
+                    "alt": "Contact"
+                }
+            },
+            "imageSize": "sm",
+            "imageOrder": "top-right",
+
+            "text": "<p>Please feel free to contact us with any questions or to make reservations. If no one is available to take your call, please leave a message. We will contact you as soon as possible.</p>",
+            "link": "contact.html"
         }
     }
 }
