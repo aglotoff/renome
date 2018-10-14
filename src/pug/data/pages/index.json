@@ -47,22 +47,22 @@
                 "title": "Homemade baguette",
                 "img": "img/content/specials/homemade-baguette.jpg",
                 "weekday": "Monday",
-                "price": "$8.95"
+                "price": 8.95
             }, {
                 "title": "Korean bibimbap",
                 "img": "img/content/specials/korean-bibimbap.jpg",
                 "weekday": "Tuesday",
-                "price": "$15.70"
+                "price": 15.70
             }, {
                 "title": "Apple pie",
                 "img": "img/content/specials/apple-pie.jpg",
                 "weekday": "Wednesday",
-                "price": "$8.75"
+                "price": 8.75
             }, {
                 "title": "Steak with vegetables",
                 "img": "img/content/specials/steak-with-vegetables.jpg",
                 "weekday": "Monday",
-                "price": "$14.20"
+                "price": 14.20
             }]
         },
 

@@ -15,7 +15,8 @@ mixin specials-carousel(data)
                             h3.specials-carousel__slide-title= slide.title
                             .specials-carousel__slide-weekday= slide.weekday
 
-                        .specials-carousel__slide-price= slide.price
+                        .specials-carousel__slide-price
+                            | $#{slide.price.toFixed(2)}
 
             .specials-carousel__arrows
                 button(
