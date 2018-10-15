@@ -1,0 +1,29 @@
+{
+    "activeNavItem": "Menu",
+
+    "pageTitle": "Menu",
+    "pageSubtitle": "Delicious and beautiful",
+    "pageHeaderBg": "img/content/menu/menu-header-bg.jpg",
+
+    "content": {
+        "discover": {
+            "title": "Discover",
+            "subtitle": "Our restaurant menu",
+
+            "images": {
+                "first": {
+                    "src": "img/content/menu/menu-1.jpg",
+                    "alt": "Menu"
+                },
+                "second": {
+                    "src": "img/content/menu/menu-2.jpg",
+                    "alt": "Menu"
+                }
+            },
+            "imageSize": "sm",
+            "imageOrder": "top-right",
+
+            "text": "<p>In our menu you will find a great variety of delicious food that will satisfy the needs and tastes of everyone. We strive to source the highest quality ingredients for all of our dishes thereby enhancing the quality of services.</p>"
+        }
+    }
+}

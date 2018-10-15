@@ -1,15 +1,10 @@
-extends ../layouts/base
+extends ../layouts/inner
 
 include ../../blocks/about/about-bottom/about-bottom
 include ../../blocks/about/about-gallery/about-gallery
 include ../../blocks/about/opening-hours/opening-hours
 
-block page
-    +page-header({
-        title: data.pageTitle,
-        subtitle: data.pageSubtitle,
-        bgImage: data.pageHeaderBg
-    })
+block append page
     +section(data.content.history)
     +section(data.content.goals, {reverse: true})
     +about-bottom({
