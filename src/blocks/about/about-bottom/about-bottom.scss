@@ -1,0 +1,43 @@
+/**
+ * About Page Bottom Section
+ */
+.about-bottom {
+    padding: 70px 0;
+    border-top: 1px solid $color-gallery;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            align-items: flex-start;
+            display: flex;
+        }
+    }
+
+    &__gallery {
+        flex: 1;
+    }
+
+    &__opening-hours {
+        margin: 70px auto 0;
+        max-width: 300px;
+
+        @include breakpoint-up(lg) {
+            flex: 0 0 auto;
+            margin: 0;
+            margin-left: 60px;
+        }
+
+        @include breakpoint-up(xl) {
+            flex-basis: 262px;
+            margin-left: 100px;
+        }
+    }
+}

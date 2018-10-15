@@ -1,0 +1,73 @@
+/**
+ * About Page Gallery
+ */
+.about-gallery {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    @include breakpoint-up(md) {
+        align-items: stretch;
+        flex-direction: row;
+    }
+
+    &__thumb {
+        position: relative;
+
+        flex: 0 1 auto;
+        max-height: 100px;
+
+        transition: all 0.25s ease;
+
+        @include breakpoint-up(md) {
+            flex: 0 1 auto;
+            min-width: 0;
+            max-height: none;
+        }
+
+        &:hover {
+            max-height: 400px;
+
+            @include breakpoint-up(md) {
+                flex-shrink: 0;
+                max-height: none;
+            }
+        }
+    }
+
+    &__thumb-img {
+        display: block;
+        max-width: 100%;
+
+        @include breakpoint-up(md) {
+            min-height: 100%;
+            max-width: none;
+        }
+    }
+
+    &__thumb-link {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        color: $color-white;
+        @include font-size(50px);
+        text-decoration: none;
+
+        background: rgba($color-primary, 0.2);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

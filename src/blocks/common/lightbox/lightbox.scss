@@ -1,0 +1,67 @@
+/**
+ * Lightbox - used purely for overriding default Magnific Popup styles
+ */
+.lightbox {
+    .mfp-container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .mfp-close {
+        overflow: hidden;
+
+        text-align: left;
+        text-indent: -9999px;
+
+        &:before,
+        &:after {
+            content: "";
+
+            right: 0;
+            top: 50%;
+            position: absolute;
+
+            display: block;
+            height: 2px;
+            width: 28px;
+
+            background: $color-white;
+        }
+
+        &:before {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        &:after {
+            transform: translateY(-50%) rotate(-45deg);
+        }
+    }
+
+    .mfp-arrow-left:before,
+    .mfp-arrow-right:before {
+        position: absolute;
+
+        display: block;
+        height: 28px;
+        margin-left: 31px;
+        margin-top: 41px;
+        width: 28px;
+
+        border: none;
+        border-left: 3px solid $color-white;
+        border-bottom: 3px solid $color-white;
+    }
+
+    .mfp-arrow-left:before {
+        transform: rotate(45deg);
+    }
+
+    .mfp-arrow-right:before {
+        transform: rotate(225deg);
+    }
+
+    .mfp-arrow-left:after,
+    .mfp-arrow-right:after {
+        content: none;
+    }
+}

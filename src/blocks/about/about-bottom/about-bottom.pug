@@ -1,0 +1,5 @@
+mixin about-bottom(data)
+    .about-bottom&attributes(attributes)
+        .about-bottom__inner
+            +about-gallery(data.gallery).about-bottom__gallery
+            +opening-hours(data.openingHours).about-bottom__opening-hours

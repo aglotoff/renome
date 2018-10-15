@@ -1,0 +1,11 @@
+mixin opening-hours(data)
+    // start opening hours 
+    .opening-hours&attributes(attributes)
+        h2.opening-hours__title Opening hours
+
+        ul.opening-hours__list
+            each item in data
+                li.opening-hours__item
+                    .opening-hours__weekdays= item.days
+                    .opening-hours__time= item.time
+    // end opening hours 

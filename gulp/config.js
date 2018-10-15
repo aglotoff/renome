@@ -67,6 +67,7 @@ const config = {
                 `${LIB_PREFIX}/svg4everybody/dist/svg4everybody.min.js`,
                 `${LIB_PREFIX}/jquery/dist/jquery.min.js`,
                 `${LIB_PREFIX}/slick-carousel/slick/slick.min.js`,
+                `${LIB_PREFIX}/magnific-popup/dist/jquery.magnific-popup.min.js`,
             ],
             src: [
                 `${SRC_PREFIX}/blocks/**/*.js`,
