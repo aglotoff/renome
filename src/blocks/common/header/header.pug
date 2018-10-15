@@ -1,6 +1,8 @@
 mixin header(data, mods = {})
     // start header 
-    header.header&attributes(attributes)
+    header.header(
+        class=!!mods.transparent ? 'header_transparent' : ''
+    )&attributes(attributes)
         .header__inner
             a(href="index.html").header__logo
                 img(src="img/logo.png", alt="Renome").header__logo-img

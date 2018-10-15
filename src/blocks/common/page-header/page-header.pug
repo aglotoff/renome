@@ -1,0 +1,11 @@
+mixin page-header(data)
+    // start page header 
+    .page-header(
+        style=`background-image: url(${data.bgImage})`
+    )&attributes(attributes)
+        .page-header__inner
+            +heading-group({
+                title: data.title,
+                subtitle: data.subtitle,
+            }, 'page').page-header__title
+    // end page header 

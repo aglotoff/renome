@@ -147,4 +147,30 @@
             display: block;
         }
     }
+
+    &_transparent {
+        box-shadow: none;
+
+        @include breakpoint-up(lg) {
+            color: $color-white;
+
+            background: transparent;
+        }
+
+        .header__logo-img {
+            @include breakpoint-up(lg) {
+                display: none;
+            }
+
+            &_alt {
+                @include breakpoint-up(lg) {
+                    display: block;
+                }
+            }
+        }
+
+        .header__actions:before {
+            background: $color-white;
+        }
+    }
 }

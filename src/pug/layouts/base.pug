@@ -8,6 +8,7 @@ include ../../blocks/common/img-group/img-group
 include ../../blocks/common/mini-cart/mini-cart
 include ../../blocks/common/mobile-search/mobile-search
 include ../../blocks/common/nav/nav
+include ../../blocks/common/page-header/page-header
 include ../../blocks/common/search/search
 include ../../blocks/common/section/section
 
@@ -17,7 +18,12 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title #{data.siteTitle} &#8211; #{data.siteTagline}
+
+        title
+            if data.pageTitle
+                | #{data.pageTitle} | #{data.siteTitle}
+            else
+                | #{data.siteTitle} &#8211; #{data.siteTagline}
 
         link(rel="stylesheet", href="css/style.css")
 
@@ -44,7 +50,7 @@ html(lang="en")
         +header({
             nav: navData,
             cart: data.cart,
-        }).page__header
+        }, {transparent: !data.isHomepage}).page__header
     
         // start content 
         main

@@ -1,0 +1,29 @@
+/**
+ * Page Header
+ */
+.page-header {
+    background: {
+        color: $color-tundora;
+        position: center;
+        repeat: no-repeat;
+        size: cover;
+    }
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        height: 660px;
+        justify-content: flex-end;
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px 85px;
+
+        @include breakpoint-up(lg) {
+            height: 700px;
+        }
+    }
+
+    &__title {
+        margin-top: auto;
+    }
+}

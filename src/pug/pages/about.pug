@@ -1,0 +1,10 @@
+extends ../layouts/base
+
+block page
+    +page-header({
+        title: data.pageTitle,
+        subtitle: data.pageSubtitle,
+        bgImage: data.pageHeaderBg
+    })
+    +section(data.content.history)
+    +section(data.content.goals, {reverse: true})
