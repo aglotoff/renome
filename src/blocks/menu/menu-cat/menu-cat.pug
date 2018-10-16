@@ -1,0 +1,7 @@
+mixin menu-cat(data)
+    <!-- start #{data.title.toLowerCase()} -->
+    .menu-cat&attributes(attributes)
+        .menu-cat__inner
+            each section in data.sections
+                +menu-section(section).menu-cat__section
+    <!-- end #{data.title.toLowerCase()} -->

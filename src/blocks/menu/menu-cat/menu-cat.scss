@@ -1,0 +1,25 @@
+/**
+ * Menu Category
+ */
+.menu-cat {
+    &__inner {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 70px 10px;
+
+        @include breakpoint-up(lg) {
+            padding-bottom: 100px;
+            padding-top: 100px;
+        }
+    }
+
+    &__section {
+        &:not(:first-child) {
+            margin-top: 60px;
+
+            @include breakpoint-up(lg) {
+                margin-top: 70px;
+            }
+        }
+    }
+}

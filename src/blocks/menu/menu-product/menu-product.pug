@@ -1,0 +1,19 @@
+mixin menu-product(data)
+    li.menu-product&attributes(attributes)
+        .menu-product__thumb
+            img(src=data.thumb, alt=data.title).menu-product__img
+            if data.new
+                .menu-product__label New
+            a(href=data.img).menu-product__link
+                +icon('zoom')
+        
+        .menu-product__price
+            -
+                const units = Math.floor(data.price);
+                const decimals = (data.price - units).toFixed(2).substring(1);
+            | $#{units}
+            span.menu-product__price-decimals= decimals
+
+        .menu-product__text
+            h3.menu-product__title= data.title
+            .menu-product__desc= data.desc

@@ -1,0 +1,17 @@
+mixin tabs(data)
+    .tabs&attributes(attributes)
+        .tabs__nav
+            .tabs__nav-inner
+                ul.tabs__list
+                    each item in data
+                        li.tabs__tab
+                            a.tabs__link(
+                                class = item.active ? 'tabs__link_active' : ''
+                                href = '#' + item.id
+                            )= item.title
+
+        each item in data
+            +#{item.block}(item.content).tabs__pane(
+                class = item.active ? 'tabs__pane_active' : ''
+                id = item.id
+            )

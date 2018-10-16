@@ -1,0 +1,136 @@
+/**
+ * Menu Product
+ */
+.menu-product {
+    @include clearfix();
+
+    &__thumb {
+        float: left;
+        position: relative;
+
+        height: 70px;
+        margin-right: 30px;
+        width: 70px;
+
+        @include breakpoint-up(lg) {
+            height: 85px;
+            margin-right: 52px;
+            width: 85px;
+        }
+    }
+
+    &__price {
+        clear: left;
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+
+        @include font-size(21px);
+
+        @include breakpoint-up(md) {
+            clear: none;
+            float: right;
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        @include breakpoint-up(lg) {
+            margin-left: 200px;
+
+            @include font-size(25px);
+        }
+    }
+
+    &__text {
+        overflow: hidden;
+
+        @include breakpoint-up(md) {
+            margin-top: 15px;
+        }
+    }
+
+    &__label {
+        left: 0;
+        position: absolute;
+        top: -20px;
+        z-index: 1;
+
+        display: block;
+        height: 40px;
+        width: 40px;
+
+        font-family: $font-family-title;
+        @include font-size(9px);
+        font-weight: $font-weight-bold;
+        color: $color-white;
+        line-height: 40px;
+        letter-spacing: 0.3em;
+        text-align: center;
+        text-transform: uppercase;
+
+        background: $color-secondary;
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        @include breakpoint-up(lg) {
+            top: -25px;
+
+            height: 50px;
+            width: 50px;
+
+            @include font-size(10px);
+            line-height: 50px;
+        }
+    }
+
+    &__img {
+        display: block;
+        max-width: 100%;
+
+        border-radius: 50%;
+    }
+
+    &__link {
+        left: 0;
+        position: absolute;
+        top: 0;
+
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+
+        color: $color-white;
+        @include font-size(30px);
+
+        background: rgba($color-secondary, 0.9);
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        @include font-size(14px);
+        font-weight: $font-weight-bold;
+        line-height: 1.7;
+        letter-spacing: 0.05em;
+    }
+
+    &__desc {
+        margin-top: 0.25em;
+
+        color: $color-tundora;
+        line-height: 2;
+        letter-spacing: 0.15em;
+    }
+
+    &__price-decimals {
+        color: $color-iron;
+    }
+}

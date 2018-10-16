@@ -1,0 +1,28 @@
+/**
+ * Menu Section
+ */
+.menu-section {
+    &__title {
+        font-family: $font-family-cursive;
+        @include font-size(22px);
+        text-align: center;
+
+        @include breakpoint-up(md) {
+            padding-left: 100px;
+
+            text-align: left;
+        }
+
+        @include breakpoint-up(lg) {
+            padding-left: 140px;
+        }
+    }
+
+    &__product {
+        margin-top: 45px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 50px;
+        }
+    }
+}

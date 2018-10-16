@@ -39,6 +39,7 @@
 @import "../blocks/common/page-header/page-header";
 @import "../blocks/common/search/search";
 @import "../blocks/common/section/section";
+@import "../blocks/common/tabs/tabs";
 @import "../blocks/common/text/text";
 
 /*
@@ -64,3 +65,13 @@
 @import "../blocks/about/about-bottom/about-bottom";
 @import "../blocks/about/about-gallery/about-gallery";
 @import "../blocks/about/opening-hours/opening-hours";
+
+/*
+ * ----------------------------------------
+ * Menu Blocks
+ * ----------------------------------------
+ */
+
+@import "../blocks/menu/menu-cat/menu-cat";
+@import "../blocks/menu/menu-section/menu-section";
+@import "../blocks/menu/menu-product/menu-product";

@@ -1,4 +1,10 @@
 extends ../layouts/inner
 
+include ../../blocks/menu/menu/menu
+include ../../blocks/menu/menu-cat/menu-cat
+include ../../blocks/menu/menu-product/menu-product
+include ../../blocks/menu/menu-section/menu-section
+
 block append page
     +section(data.content.discover, {reverse: true})
+    +menu(data.content.menu)

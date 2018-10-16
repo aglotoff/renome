@@ -1,0 +1,9 @@
+mixin menu-section(data)
+    <!-- start #{data.title.toLowerCase()} -->
+    section.menu-section&attributes(attributes)
+        h2.menu-section__title= data.title
+
+        ul.menu-section__products
+            each product in data.products
+                +menu-product(product).menu-section__product
+    <!-- end #{data.title.toLowerCase()} -->

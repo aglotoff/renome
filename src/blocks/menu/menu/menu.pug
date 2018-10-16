@@ -1,0 +1,16 @@
+mixin menu(data)
+    // start menu 
+    .menu&attributes(attributes)
+        -
+            const tabData = data.categories.map((cat, i) => ({
+                title: cat.title,
+                active: i == 0,
+                id: cat.id,
+                content: {
+                    title: cat.title,
+                    sections: data.sections,
+                },
+                block: 'menu-cat',
+            }))
+        +tabs(tabData)
+    // end menu 
