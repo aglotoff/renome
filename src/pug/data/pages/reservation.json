@@ -1,0 +1,29 @@
+{
+    "activeNavItem": "Reservation",
+
+    "pageTitle": "Reservation",
+    "pageSubtitle": "Book your table at our restaurant now!",
+    "pageHeaderBg": "img/content/reservation/reservation-header-bg.jpg",
+
+    "content": {
+        "online": {
+            "title": "Online",
+            "subtitle": "Booking, It's easy as an apple pie",
+
+            "images": {
+                "first": {
+                    "src": "img/content/reservation/reservation-1.jpg",
+                    "alt": "Reservation"
+                },
+                "second": {
+                    "src": "img/content/reservation/reservation-2.jpg",
+                    "alt": "Reservation"
+                }
+            },
+            "imageSize": "sm",
+            "imageOrder": "top-left",
+
+            "text": "<p>When you finalize a reservation with OpenTable they will send you a confirmation email immediately.  We will also call you on the date of your reservation to confirm your table.</p><p>If you do not receive an email, or do not hear from the restaurant, we would recommend calling to confirm your table and verify your reservation booking (+1 939 777 55 33).</p>"
+        }
+    }
+}
