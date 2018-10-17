@@ -1,0 +1,44 @@
+mixin reservation-form()
+    // start reservation form 
+    form.reservation-form(action="#" method="post")&attributes(attrributes)
+        .reservation-form__inner
+            h2.reservation-form__title Make a Reservation
+
+            .reservation-form__fields
+                label.reservation-form__input-group
+                    +icon('calendar')
+                    +input(
+                        name="date"
+                        aria-label="Reservation date"
+                        required
+                    ).reservation-form__input.reservation-form__date
+                    
+                label.reservation-form__input-group
+                    +icon('time')
+                    select(
+                        name="time"
+                        aria-label="Reservation time"
+                        required
+                    ).reservation-form__time
+                        option(value="")
+
+                label.reservation-form__input-group
+                    +icon('people')
+                    select(
+                        name="party"
+                        aria-label="Reservation party size"
+                        required
+                    ).reservation-form__people
+                        option(value="1") 1 Person
+                        option(value="2" selected) 2 People
+                        - let n = 3;
+                        while n <= 20
+                            option(value=n) #{n} People
+                            - n++;
+                        option(value="21") Larger party
+
+            .reservation-form__submit
+                +btn({
+                    title: 'Find a table'
+                }, 'submit').reservation-form__submit-btn
+    // end reservation form 

@@ -1,0 +1,10 @@
+/**
+ * Error Messages
+ */
+.error {
+    color: $color-error;
+    font-weight: $font-weight-bold;
+    @include font-size(11px);
+    letter-spacing: 0.1em;
+    text-align: left;
+}

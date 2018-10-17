@@ -1,4 +1,7 @@
 extends ../layouts/inner
 
+include ../../blocks/reservation/reservation-form/reservation-form
+
 block append page
     +section(data.content.online)
+    +reservation-form()

@@ -68,6 +68,10 @@ const config = {
                 `${LIB_PREFIX}/jquery/dist/jquery.min.js`,
                 `${LIB_PREFIX}/slick-carousel/slick/slick.min.js`,
                 `${LIB_PREFIX}/magnific-popup/dist/jquery.magnific-popup.min.js`,
+                `${LIB_PREFIX}/moment/min/moment.min.js`,
+                `${LIB_PREFIX}/pikaday/pikaday.js`,
+                `${LIB_PREFIX}/select2/dist/js/select2.min.js`,
+                `${LIB_PREFIX}/jquery-validation/dist/jquery.validate.min.js`,
             ],
             src: [
                 `${SRC_PREFIX}/blocks/**/*.js`,

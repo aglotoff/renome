@@ -5,6 +5,8 @@
 
 @import "../../node_modules/magnific-popup/src/css/main.scss";
 @import "../../node_modules/slick-carousel/slick/slick.scss";
+@import "../../node_modules/pikaday/scss/pikaday.scss";
+@import '../../node_modules/select2/src/scss/core.scss';
 
 /*
  * ----------------------------------------
@@ -26,12 +28,14 @@
  */
 
 @import "../blocks/common/btn/btn";
+@import "../blocks/common/error/error";
 @import "../blocks/common/footer/footer";
 @import "../blocks/common/hamburger/hamburger";
 @import "../blocks/common/header/header";
 @import "../blocks/common/heading-group/heading-group";
 @import "../blocks/common/icon/icon";
 @import "../blocks/common/img-group/img-group";
+@import "../blocks/common/input/input";
 @import "../blocks/common/lightbox/lightbox";
 @import "../blocks/common/mini-cart/mini-cart";
 @import "../blocks/common/mobile-search/mobile-search";
@@ -39,6 +43,7 @@
 @import "../blocks/common/page-header/page-header";
 @import "../blocks/common/search/search";
 @import "../blocks/common/section/section";
+@import "../blocks/common/select2/select2";
 @import "../blocks/common/tabs/tabs";
 @import "../blocks/common/text/text";
 
@@ -75,3 +80,12 @@
 @import "../blocks/menu/menu-cat/menu-cat";
 @import "../blocks/menu/menu-section/menu-section";
 @import "../blocks/menu/menu-product/menu-product";
+
+/*
+ * ----------------------------------------
+ * Reservation Blocks
+ * ----------------------------------------
+ */
+
+@import "../blocks/reservation/reservation-form/reservation-form";
+@import "../blocks/reservation/date-picker/date-picker";

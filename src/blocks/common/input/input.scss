@@ -1,0 +1,30 @@
+/**
+ * Text Input Field.
+ */
+.input {
+    display: block;
+    min-width: 0;
+    padding: 7px 0;
+    width: 100%;
+
+    color: $color-primary;
+    font-family: $font-family-regular;
+    @include font-size(15px);
+    font-weight: $font-weight-bold;
+    line-height: 25px;
+
+    background: $color-white;
+    border: none;
+    border-bottom: 3px solid $color-catskill-white;
+    outline: none;
+
+    &::placeholder {
+        color: $color-primary;
+        font-weight: $font-weight-regular;
+        opacity: 1;
+    }
+
+    &_invalid {
+        border-bottom-color: $color-error;
+    }
+}

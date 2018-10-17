@@ -1,0 +1,87 @@
+/**
+ * Reservation form
+ */
+.reservation-form {
+    padding: 90px 0 70px;
+
+    text-align: center;
+
+    border-top: 1px solid $color-gallery;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 110px;
+    }
+
+    &__inner {
+        position: relative;
+
+        margin: 0 auto;
+        max-width: 420px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            max-width: 705px;
+        }
+    }
+
+    &__title {
+        left: 10px;
+        position: absolute;
+        right: 10px;
+        top: -103px;
+
+        font-weight: $font-weight-bold;
+        @include font-size(20px);
+        letter-spacing: 0.085em;
+        text-transform: uppercase;
+
+        @include breakpoint-up(lg) {
+            top: -123px;
+        }
+    }
+
+    &__fields {
+        @include breakpoint-up(md) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &__input-group {
+        position: relative;
+
+        align-items: center;
+        display: flex;
+
+        @include font-size(21px);
+
+        @include breakpoint-up(md) {
+            width: 33.3333%;
+        }
+
+        &:not(:first-child) {
+            margin-top: 40px;
+
+            @include breakpoint-up(md) {
+                margin-left: 44px;
+                margin-top: 0;
+            }
+        }
+    }
+
+    &__input {
+        flex: 1 1 auto;
+        margin-left: 19px;
+    }
+
+    &__submit {
+        margin-top: 50px;
+
+        text-align: center;
+    }
+
+    &__submit-btn {
+        width: 180px;
+    }
+}
