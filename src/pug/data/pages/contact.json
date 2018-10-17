@@ -1,0 +1,31 @@
+{
+    "activeNavItem": "Contact",
+
+    "pageTitle": "Contact",
+    "pageSubtitle": "We welcome you in our restaurant",
+    "pageHeaderBg": "img/content/contact/contact-header-bg.jpg",
+
+    "content": {
+        "happy": {
+            "title": "Happy",
+            "subtitle": "To hear from you, contact us",
+
+            "images": {
+                "first": {
+                    "src": "img/content/contact/contact-1.jpg",
+                    "alt": "Contact"
+                },
+                "second": {
+                    "src": "img/content/contact/contact-2.jpg",
+                    "alt": "Contact"
+                },
+                "size": "sm",
+                "order": "top-right"
+            },
+            "imageSize": "sm",
+            "imageOrder": "top-right",
+
+            "text": "<p>Please feel free to contact us with any questions or to make reservations. If no one is available to take your call, please leave a message. We will contact you as soon as possible.</p>"
+        }
+    }
+}
