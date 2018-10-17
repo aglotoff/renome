@@ -46,6 +46,7 @@
 @import "../blocks/common/select2/select2";
 @import "../blocks/common/tabs/tabs";
 @import "../blocks/common/text/text";
+@import "../blocks/common/text-area/text-area";
 
 /*
  * ----------------------------------------
@@ -89,3 +90,14 @@
 
 @import "../blocks/reservation/reservation-form/reservation-form";
 @import "../blocks/reservation/date-picker/date-picker";
+
+/*
+ * ----------------------------------------
+ * Contact Blocks
+ * ----------------------------------------
+ */
+
+@import "../blocks/contact/contact-bottom/contact-bottom";
+@import "../blocks/contact/contact-details/contact-details";
+@import "../blocks/contact/contact-form/contact-form";
+@import "../blocks/contact/map/map";

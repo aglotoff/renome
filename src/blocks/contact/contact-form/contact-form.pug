@@ -1,0 +1,40 @@
+mixin contact-form()
+    // start contact form 
+    form.contact-form(action="#" method="post")&attributes(attributes)
+        h2.contact-form__title Write a message
+
+        .contact-form__fields
+            .contact-form__field
+                +input(
+                    name="first_name"
+                    placeholder="First Name *"
+                    required
+                ).contact-form__input
+            .contact-form__field
+                +input(
+                    name="last_name"
+                    placeholder="Last Name *"
+                    required
+                ).contact-form__input
+            .contact-form__field
+                +input(
+                    type="email"
+                    name="email"
+                    placeholder="Email *"
+                    required
+                ).contact-form__input
+            .contact-form__field
+                +input(
+                    name="subject"
+                    placeholder="Subject *"
+                    required
+                ).contact-form__input
+            .contact-form__field.contact-form__field_large
+                +text-area(
+                    name="message"
+                    placeholder="Message *"
+                    required
+                ).contact-form__input
+
+            +btn({title: 'Send'}, 'submit', {alt: true}).contact-form__submit
+    // end contact form 

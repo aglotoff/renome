@@ -13,6 +13,7 @@ include ../../blocks/common/page-header/page-header
 include ../../blocks/common/search/search
 include ../../blocks/common/section/section
 include ../../blocks/common/tabs/tabs
+include ../../blocks/common/text-area/text-area
 
 <!DOCTYPE html>
 html(lang="en")
@@ -61,5 +62,6 @@ html(lang="en")
 
         +footer()
 
-        script(src="js/vendor.js")
-        script(src="js/main.js")
+        block scripts
+            script(src="js/vendor.js")
+            script(src="js/main.js")

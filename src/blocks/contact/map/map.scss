@@ -1,0 +1,24 @@
+/**
+ * Map
+ */
+.map {
+    padding: 0 10px 70px;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+    }
+
+    &__container {
+        margin: 0 auto;
+        max-width: 1720px;
+        height: 200px;
+
+        @include breakpoint-up(md) {
+            height: 300px;
+        }
+
+        @include breakpoint-up(lg) {
+            height: 400px;
+        }
+    }
+}

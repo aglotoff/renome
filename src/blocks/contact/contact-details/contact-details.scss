@@ -1,0 +1,36 @@
+.contact-details {
+    @include breakpoint-up(lg) {
+        padding: 0 25px;
+    }
+
+    &__title {
+        color: $color-secondary;
+        @include font-size(20px);
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.085em;
+        text-transform: uppercase;
+    }
+
+    &__list {
+        @include breakpoint-up(lg) {
+            margin-top: 35px;
+        }
+    }
+
+    &__item {
+        margin-top: 25px;
+
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    &__label {
+        color: $color-secondary;
+        font-family: $font-family-title;
+        @include font-size(15px);
+    }
+
+    &__text {
+        margin-top: 10px;
+    }
+}

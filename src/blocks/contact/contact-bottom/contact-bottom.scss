@@ -1,0 +1,39 @@
+/**
+ * Contact Page Bottom Section
+ */
+.contact-bottom {
+    padding-bottom: 70px;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 30px;
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__form {
+        margin-top: 45px;
+
+        @include breakpoint-up(lg) {
+            flex: 0 1 830px;
+            margin-top: 0;
+        }
+    }
+
+    &__details {
+        @include breakpoint-up(lg) {
+            flex: 1 0 auto;
+            margin-left: 45px;
+            margin-right: 0;
+        }
+    }
+}

@@ -1,4 +1,14 @@
 extends ../layouts/inner
 
+include ../../blocks/contact/contact-bottom/contact-bottom
+include ../../blocks/contact/contact-details/contact-details
+include ../../blocks/contact/contact-form/contact-form
+include ../../blocks/contact/map/map
+
 block append page
     +section(data.content.happy, {reverse: true})
+    +contact-bottom({details: data.content.details})
+    +map()
+
+block prepend scripts
+    script(src=`https://maps.googleapis.com/maps/api/js?key=${data.mapApiKey}`)
