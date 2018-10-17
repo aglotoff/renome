@@ -20,13 +20,14 @@ mixin reservation-form()
                         aria-label="Reservation time"
                         required
                     ).reservation-form__time
-                        option(value="")
+                        option(value="") &nbsp;
 
                 label.reservation-form__input-group
                     +icon('people')
                     select(
                         name="party"
                         aria-label="Reservation party size"
+                        size=21
                         required
                     ).reservation-form__people
                         option(value="1") 1 Person
