@@ -1,0 +1,6 @@
+mixin video(link, mods={})
+    .video(
+        class='video_format_' + (mods.format || '19x6')
+    )&attributes(attributes)
+        .video__inner
+            iframe(src=link).video__container

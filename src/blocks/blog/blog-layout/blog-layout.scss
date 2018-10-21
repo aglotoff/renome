@@ -14,17 +14,26 @@
     }
 
     &__content {
-        height: 100px;
-        background-color: #f00;
+        padding: 65px 10px;
 
         @include breakpoint-up(lg) {
             flex: 9;
             max-width: 720px;
+            padding-bottom: 95px;
+            padding-top: 95px;
 
             @supports (display: grid) {
                 grid-column-end: span 9;
                 grid-row: 1 / 2;
             }
+        }
+    }
+
+    &__article + &__article {
+        margin-top: 65px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 95px;
         }
     }
 

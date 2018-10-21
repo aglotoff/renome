@@ -1,0 +1,123 @@
+/**
+ * Blog Article Gallery
+ */
+.blog-gallery {
+    &__inner {
+        position: relative;
+    }
+
+    &__container {
+        margin: 0 auto;
+        max-width: 1180px;
+    }
+
+    &__img {
+        display: block;
+        max-width: 100%;
+    }
+
+    &__arrows {
+        display: none;
+
+        @include breakpoint-up(lg) {
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 50%;
+
+            display: flex;
+            justify-content: space-between;
+            padding: 0 25px;
+
+            transform: translateY(-50%);
+        }
+    }
+
+    &__arrow {
+        position: relative;
+
+        height: 55px;
+        margin-top: -26px;
+        width: 55px;
+
+        text-indent: -9999px;
+
+        background: transparent;
+        border: 2px solid $color-white;
+        cursor: pointer;
+        opacity: 0.4;
+        outline: none;
+        transition: opacity 0.25s ease;
+
+        &:after {
+            content: "";
+
+            position: absolute;
+            top: 18px;
+
+            display: block;
+            height: 16px;
+            width: 16px;
+
+            border-left: 2px solid $color-white;
+            border-bottom: 2px solid $color-white;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &_dir_prev {
+            &:after {
+                right: 14px;
+                transform: rotate(45deg);
+            }
+        }
+
+        &_dir_next {
+            &:after {
+                left: 14px;
+                transform: rotate(225deg);
+            }
+        }
+    }
+
+    .slick-dots {
+        bottom: 25px;
+        left: 0;
+        position: absolute;
+        right: 0;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .slick-dots button {
+        display: block;
+        height: 15px;
+        margin: 0 7px;
+        padding: 0;
+        width: 15px;
+
+        text-indent: -9999px;
+
+        background: transparent;
+        border: 2px solid $color-white;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.25s ease;
+
+        &:not(:first-child) {
+            margin-left: 15px;
+        }
+
+        &:hover {
+            background: $color-white;
+        }
+    }
+
+    .slick-dots .slick-active button {
+        background: $color-white;
+    }
+}

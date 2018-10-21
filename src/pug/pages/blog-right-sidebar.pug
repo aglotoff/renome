@@ -1,6 +1,9 @@
 extends ../layouts/inner
 
+include ../../blocks/blog/article/article
+include ../../blocks/blog/blog-gallery/blog-gallery
 include ../../blocks/blog/blog-layout/blog-layout
+include ../../blocks/blog/video/video
 
 block append page
-    +blog-layout()
+    +blog-layout(data.content)

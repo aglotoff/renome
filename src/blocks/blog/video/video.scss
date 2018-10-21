@@ -1,0 +1,29 @@
+/**
+ * Video Container
+ */
+.video {
+    &__inner {
+        position: relative;
+    }
+
+    &__container {
+        left: 0;
+        position: absolute;
+        top: 0;
+
+        height: 100%;
+        width: 100%;
+    }
+
+    &_format_16x9 {
+        .video__inner {
+            padding-bottom: 56.25%;
+        }
+    }
+
+    &_format_4x3 {
+        .video__inner {
+            padding-bottom: 75%;
+        }
+    }
+}

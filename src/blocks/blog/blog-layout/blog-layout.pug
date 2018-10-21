@@ -2,6 +2,11 @@ mixin blog-layout(data, mods={})
     .blog-layout(
         class='blog-layout_sidebar_' + (mods.sidebar || 'right')
     )&attributes(attributes)
-        .blog-layout__content content
+        // start blog content 
+        .blog-layout__content
+            each article in data.articles
+                +article(article).blog-layout__article
+        // end blog content 
+
         .blog-layout__pagination pagination
         .blog-layout__sidebar sidebar

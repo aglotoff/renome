@@ -1,0 +1,44 @@
+mixin article(data)
+    -
+        const formattedDate = function(datestr) {
+            const date = new Date(datestr);
+            const month = date.toLocaleString('en-us', { month: 'long'});
+            const day = date.getDate();
+            const year = date.getFullYear();
+            return `${month} ${day}, ${year}`;
+        };
+    <!-- start #{data.title.toLowerCase()} -->
+    article.article&attributes(attributes)
+        header.article__header
+            ul.article__categories
+                each category in data.categories
+                    li.article__category
+                        a(href="javascript:void(0);").article__category-link
+                            | #{category}
+
+            h2.article__title
+                if data.link
+                    a(href=data.link).article__title-link= data.title
+                else
+                    | #{data.title}
+
+            .article__pubdate
+                time(datetime=data.date)= formattedDate(data.date)
+
+        .article__content
+            if data.image
+                if (data.link)
+                    a(href=data.link)
+                        img(src=data.image, alt=data.title).article__image
+                else
+                    img(src=data.image, alt=data.title).article__image
+            else if data.video
+                +video(data.video, {format: '16x9'}).article__video
+            else if data.gallery
+                +blog-gallery(data.gallery).article__gallery
+
+            .text.article__text !{data.content}
+
+            if data.link
+                a(href=data.link).article__link Continue Reading...
+    <!-- end #{data.title.toLowerCase()} -->
