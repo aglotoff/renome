@@ -1,1 +1,6 @@
 extends ../layouts/inner
+
+include ../../blocks/blog/blog-layout/blog-layout
+
+block append page
+    +blog-layout({}, {sidebar: 'left'})

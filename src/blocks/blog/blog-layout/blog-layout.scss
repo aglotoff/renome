@@ -1,0 +1,108 @@
+/**
+ * Blog Page Layout
+ */
+.blog-layout {
+    @include breakpoint-up(lg) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @supports (display: grid) {
+            display: grid;
+            grid-template-columns: 1fr repeat(15, [col] minmax(auto, 80px)) 1fr;
+        }
+    }
+
+    &__content {
+        height: 100px;
+        background-color: #f00;
+
+        @include breakpoint-up(lg) {
+            flex: 9;
+            max-width: 720px;
+
+            @supports (display: grid) {
+                grid-column-end: span 9;
+                grid-row: 1 / 2;
+            }
+        }
+    }
+
+    &__pagination {
+        height: 100px;
+        background-color: #ff0;
+
+        @include breakpoint-up(lg) {
+            flex: 100%;
+            order: 3;
+
+            @supports (display: grid) {
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+            }
+        }
+    }
+
+    &__sidebar {
+        height: 100px;
+        background-color: #00f;
+
+        @include breakpoint-up(lg) {
+            flex: 5;
+            max-width: 400px;
+
+            @supports (display: grid) {
+                grid-column-end: span 5;
+                grid-row: 1 / 2;
+            }
+        }
+    }
+
+    &_sidebar_left {
+        .blog-layout__content {
+            @include breakpoint-up(lg) {
+                margin-left: 80px;
+                order: 2;
+
+                @supports (display: grid) {
+                    grid-column-start: col 7;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .blog-layout__sidebar {
+            @include breakpoint-up(lg) {
+                order: 1;
+
+                @supports (display: grid) {
+                    grid-column-start: col 1;
+                }
+            }
+        }
+    }
+
+    &_sidebar_right {
+        .blog-layout__content {
+            @include breakpoint-up(lg) {
+                order: 1;
+
+                @supports (display: grid) {
+                    grid-column-start: col 1;
+                }
+            }
+        }
+
+        .blog-layout__sidebar {
+            @include breakpoint-up(lg) {
+                margin-left: 80px;
+                order: 2;
+
+                @supports (display: grid) {
+                    grid-column-start: col 11;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
