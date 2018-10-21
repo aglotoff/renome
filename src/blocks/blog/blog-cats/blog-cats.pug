@@ -1,0 +1,10 @@
+mixin blog-cats(data)
+    // start categories 
+    .blog-cats&attributes(attributes)
+        +title({sidebar: true}).blog-cats__title Categories
+
+        ul.blog-cats__list
+            each category in data
+                li.blog-cats__item
+                    a(href="javascript:void(0);").blog-cats__link= category
+    // end categories 

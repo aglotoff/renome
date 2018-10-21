@@ -1,0 +1,7 @@
+mixin blog-search()
+    // start search 
+    form.blog-search(action="#" method="post")&attributes(attributes)
+        input(type="text" placeholder="Search" required).blog-search__input
+        button(type="submit").blog-search__submit
+            +icon('search')
+    // end search 

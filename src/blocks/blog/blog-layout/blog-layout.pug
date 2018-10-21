@@ -11,4 +11,7 @@ mixin blog-layout(data, mods={})
         if data.pagination
             +pagination(data.pagination, {blog: true}).blog-layout__pagination
 
-        .blog-layout__sidebar sidebar
+        +blog-sidebar({
+            categories: data.categories,
+            popularPosts: data.popularPosts,
+        }).blog-layout__sidebar

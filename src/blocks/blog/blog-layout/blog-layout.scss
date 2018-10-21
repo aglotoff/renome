@@ -50,9 +50,6 @@
     }
 
     &__sidebar {
-        height: 100px;
-        background-color: #00f;
-
         @include breakpoint-up(lg) {
             flex: 5;
             max-width: 400px;

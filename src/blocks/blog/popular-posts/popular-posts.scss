@@ -1,0 +1,45 @@
+/**
+ * Popular Posts
+ */
+.popular-posts {
+    &__item {
+        align-items: center;
+        display: flex;
+        margin-top: 30px;
+    }
+
+    &__thumb {
+        flex: 0 0 auto;
+    }
+
+    &__item-img {
+        display: block;
+        max-width: 85px;
+    }
+
+    &__item-body {
+        flex: 1 1 auto;
+        margin-left: 20px;
+    }
+
+    &__item-link {
+        color: $color-primary;
+        @include font-size(13px);
+        letter-spacing: 0.05em;
+        text-decoration: none;
+
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+
+    &__item-pubdate {
+        margin-top: 10px;
+
+        color: $color-silver-sand;
+        @include font-size(11px);
+        letter-spacing: 0.1em;
+    }
+}

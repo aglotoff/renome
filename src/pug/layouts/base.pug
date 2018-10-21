@@ -15,9 +15,20 @@ include ../../blocks/common/search/search
 include ../../blocks/common/section/section
 include ../../blocks/common/tabs/tabs
 include ../../blocks/common/text-area/text-area
+include ../../blocks/common/title/title
 
 <!DOCTYPE html>
 html(lang="en")
+    block functions
+        -
+            const blogDate = function(datestr) {
+                const date = new Date(datestr);
+                const month = date.toLocaleString('en-us', { month: 'long'});
+                const day = date.getDate();
+                const year = date.getFullYear();
+                return `${month} ${day}, ${year}`;
+            };
+
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")

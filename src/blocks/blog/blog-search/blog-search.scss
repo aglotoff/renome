@@ -1,0 +1,42 @@
+/**
+ * Blog Sidebar Search
+ */
+ .blog-search {
+    display: flex;
+
+    border-bottom: 3px solid #f5f7fa;
+
+    &__input {
+        flex: 1 1;
+        padding: 10px 0;
+
+        color: $color-silver-sand;
+        font-family: $font-family-regular;
+        @include font-size(14px);
+
+        border: none;
+        outline: none;
+
+        &::placeholder {
+            color: $color-silver-sand;
+        }
+    }
+
+    &__submit {
+        flex: 0 0;
+        padding: 0;
+
+        @include font-size(13px);
+
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+}

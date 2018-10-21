@@ -1,0 +1,19 @@
+/**
+ * Blog Sidebar
+ */
+.blog-sidebar {
+    padding: 60px 10px 70px;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 90px;
+    }
+
+    &__cats {
+        margin-top: 65px;
+    }
+
+    &__posts {
+        margin-top: 65px;
+    }
+}

@@ -46,6 +46,35 @@
             "link": "blog-single-left-sidebar.html"
         }],
 
+        "categories": [
+            "Events",
+            "Press",
+            "Promotions",
+            "Recipes"
+        ],
+
+        "popularPosts": [{
+            "title": "Summer specials",
+            "date": "2015-06-05 19:00",
+            "thumb": "img/content/blog/thumbs/posts/85x55/summer-specials.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }, {
+            "title": "Our salad are award winning",
+            "date": "2015-04-25 19:00",
+            "thumb": "img/content/blog/thumbs/posts/85x55/our-salad-are-award-winning.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }, {
+            "title": "Homemade pizza",
+            "date": "2015-04-07 19:00",
+            "thumb": "img/content/blog/thumbs/posts/85x55/homemade-pizza.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }, {
+            "title": "Grand opening!",
+            "date": "2015-03-10 19:00",
+            "thumb": "img/content/blog/thumbs/posts/85x55/grand-opening.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }],
+
         "pagination": {
             "pages": 5,
             "activePage": 1

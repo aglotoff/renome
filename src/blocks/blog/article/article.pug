@@ -1,12 +1,4 @@
 mixin article(data)
-    -
-        const formattedDate = function(datestr) {
-            const date = new Date(datestr);
-            const month = date.toLocaleString('en-us', { month: 'long'});
-            const day = date.getDate();
-            const year = date.getFullYear();
-            return `${month} ${day}, ${year}`;
-        };
     <!-- start #{data.title.toLowerCase()} -->
     article.article&attributes(attributes)
         header.article__header
@@ -23,7 +15,7 @@ mixin article(data)
                     | #{data.title}
 
             .article__pubdate
-                time(datetime=data.date)= formattedDate(data.date)
+                time(datetime=data.date)= blogDate(data.date)
 
         .article__content
             if data.image

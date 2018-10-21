@@ -28,7 +28,7 @@
         padding: 16px;
 
         color: $color-primary;
-        font-size: font-size(15px);
+        @include font-size(15px);
         font-weight: $font-weight-bold;
         text-decoration: none;
 
