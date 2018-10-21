@@ -8,5 +8,7 @@ mixin blog-layout(data, mods={})
                 +article(article).blog-layout__article
         // end blog content 
 
-        .blog-layout__pagination pagination
+        if data.pagination
+            +pagination(data.pagination, {blog: true}).blog-layout__pagination
+
         .blog-layout__sidebar sidebar

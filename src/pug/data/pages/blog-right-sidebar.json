@@ -44,6 +44,11 @@
             }],
             "content": "<p>Curabitur pulvinar condimentum augue, id facilisis nunc dapibus vel. Praesent ut tortor non lorem iaculis imperdiet mollis at ex. Ut fringilla, sapien ac tempus mattis, massa tortor posuere neque  etiam vitae orci ut tellusbi ben.</p>",
             "link": "blog-single-left-sidebar.html"
-        }]
+        }],
+
+        "pagination": {
+            "pages": 5,
+            "activePage": 1
+        }
     }
 }

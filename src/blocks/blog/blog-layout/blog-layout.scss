@@ -38,9 +38,6 @@
     }
 
     &__pagination {
-        height: 100px;
-        background-color: #ff0;
-
         @include breakpoint-up(lg) {
             flex: 100%;
             order: 3;

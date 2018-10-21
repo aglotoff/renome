@@ -1,0 +1,94 @@
+/**
+ * Pagination
+ */
+.pagination {
+    &__list {
+        display: flex;
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+    }
+
+    &__item {
+        margin: 0 4px;
+
+        &:first-child {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        &:last-child {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    }
+
+    &__link {
+        display: block;
+        padding: 16px;
+
+        color: $color-primary;
+        font-size: font-size(15px);
+        font-weight: $font-weight-bold;
+        text-decoration: none;
+
+        transition: color 0.25s ease;
+
+        &_active,
+        &:hover {
+            color: $color-secondary;
+        }
+
+        &_prev,
+        &_next {
+            position: relative;
+            width: 46px;
+            text-indent: -9999px;
+
+            &:after {
+                content: "";
+
+                position: absolute;
+                top: 16px;
+
+                display: block;
+                height: 19px;
+                width: 19px;
+
+                border-right: 2px solid $color-primary;
+                border-bottom: 2px solid $color-primary;
+                transition: border-color 0.25s ease;
+            }
+
+            &:hover {
+                &:after {
+                    border-color: $color-secondary;
+                }
+            }
+        }
+
+        &_prev {
+            border-right: 1px solid $color-concrete;
+
+            &:after {
+                left: 13px;
+
+                transform: rotate(135deg);
+            }
+        }
+
+        &_next {
+            border-left: 1px solid $color-concrete;
+
+            &:after {
+                right: 13px;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &_blog {
+        border-bottom: 1px solid $color-concrete;
+        border-top: 1px solid $color-concrete;
+    }
+}
