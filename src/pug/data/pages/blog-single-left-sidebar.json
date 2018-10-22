@@ -22,7 +22,24 @@
                 "name": "Richard Miles",
                 "avatar": "img/content/avatars/100x100/richard-miles.jpg",
                 "bio": "Praesent pharetra risus velit, a pharetra purus dignissim in. Integer dictum finibus leo, ut vehicula massa cidunt neque pellentesque dictum."
-            }
+            },
+
+            "relatedPosts": [{
+                "title": "Our salad are award winning",
+                "date": "2015-04-25 19:00",
+                "thumb": "img/content/blog/posts/thumbs/300x200/our-salad-are-award-winning.jpg",
+                "link": "blog-single-left-sidebar.html"
+            }, {
+                "title": "Homemade pizza",
+                "date": "2015-04-07 19:00",
+                "thumb": "img/content/blog/posts/thumbs/300x200/homemade-pizza.jpg",
+                "link": "blog-single-left-sidebar.html"
+            }, {
+                "title": "Grand opening!",
+                "date": "2015-03-10 19:00",
+                "thumb": "img/content/blog/posts/thumbs/300x200/grand-opening.jpg",
+                "link": "blog-single-left-sidebar.html"
+            }]
         }],
 
         "categories": [

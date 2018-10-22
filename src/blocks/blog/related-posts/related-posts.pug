@@ -1,0 +1,17 @@
+mixin related-posts(data)
+    // start related posts 
+    section.related-posts&attributes(attributes)
+        +title().related-posts__title Read More
+
+        .related-posts__list
+            each post in data
+                .related-posts__item
+                    a(href=post.link).related-posts__item-thumb
+                        img(src=post.thumb, alt=post.title).related-posts__item-img
+                    
+                    .related-posts__item-body
+                        h3.related-posts__item-title
+                            a(href=post.link).related-posts__item-link= post.title
+                        .related-posts__item-date
+                            time(datetime=post.date)= blogDate(post.date)
+    // end related posts 

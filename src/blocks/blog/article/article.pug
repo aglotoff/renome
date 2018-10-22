@@ -38,7 +38,7 @@ mixin article(data)
                 a(href=data.link).article__link Continue Reading...
         // end article content 
 
-        if data.tags || data.author
+        if data.tags || data.author || data.relatedPosts
             // start article footer 
             footer.article__footer
                 .article__footer-top
@@ -57,5 +57,8 @@ mixin article(data)
                 
                 if data.author
                     +article-author(data.author).article__author
+                
+                if data.relatedPosts
+                    +related-posts(data.relatedPosts).article__related-posts
             // end article footer 
     <!-- end #{data.title.toLowerCase()} -->
