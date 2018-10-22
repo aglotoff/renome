@@ -1,0 +1,56 @@
+/**
+ * Share Menu
+ */
+.share {
+    &__toggle {
+        padding: 10px 0;
+
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+
+        cursor: pointer;
+    }
+
+    &__icon {
+        margin-left: 8px;
+
+        @include font-size(10px);
+    }
+
+    &__drop {
+        position: absolute;
+        right: 0;
+        top: 100%;
+
+        padding: 8px 0;
+
+        background: $color-catskill-white;
+        opacity: 0;
+
+        transition: opacity 0.25s ease,
+                    visibility 0.25s ease 0.25s;
+        visibility: hidden;
+
+        .share:hover & {
+            opacity: 1;
+
+            transition-delay: 0s;
+            visibility: visible;
+        }
+    }
+
+    &__link {
+        display: block;
+        padding: 8px 25px;
+
+        color: $color-primary;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+}

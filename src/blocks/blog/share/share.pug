@@ -1,0 +1,17 @@
+mixin share()
+    // start share 
+    .share&attributes(attributes)
+        .share__toggle
+            | Share
+            +icon('share').share__icon
+
+        ul.share__drop
+            li.share__item
+                a(href="javascript:void(0);").share__link Facebook
+            li.share__item
+                a(href="javascript:void(0);").share__link Twitter
+            li.share__item
+                a(href="javascript:void(0);").share__link Google+
+            li.share__item
+                a(href="javascript:void(0);").share__link Pinterest
+    // end share 

@@ -1,6 +1,7 @@
 mixin article(data)
     <!-- start #{data.title.toLowerCase()} -->
     article.article&attributes(attributes)
+        // start article header 
         header.article__header
             ul.article__categories
                 each category in data.categories
@@ -16,7 +17,9 @@ mixin article(data)
 
             .article__pubdate
                 time(datetime=data.date)= blogDate(data.date)
+        // end article header 
 
+        // start article content 
         .article__content
             if data.image
                 if (data.link)
@@ -33,4 +36,22 @@ mixin article(data)
 
             if data.link
                 a(href=data.link).article__link Continue Reading...
+        // end article content 
+
+        if data.tags
+            // start article footer 
+            footer.article__footer
+                .article__footer-top
+                    // start tags 
+                    .article__tags
+                        ul.article__tag-list
+                            each tag in data.tags
+                                li.article__tag
+                                    a(
+                                        href="javascript:void(0);"
+                                    ).article__tag-link= tag
+                    // end tags 
+
+                    +share().article__share
+            // end article footer 
     <!-- end #{data.title.toLowerCase()} -->

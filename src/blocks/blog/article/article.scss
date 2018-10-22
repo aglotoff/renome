@@ -86,4 +86,55 @@
             color: $color-primary;
         }
     }
+
+    &__footer {
+        margin-top: 20px;
+    }
+
+    &__footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @include breakpoint-up(md) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    &__tags {
+        margin-bottom: 10px;
+        margin-right: auto;
+        overflow: hidden;
+    }
+
+    &__tag-list {
+        display: flex;
+        flex-flow: row wrap;
+
+        margin: 0 -15px;
+    }
+
+    &__tag {
+        padding: 10px 15px;
+    }
+
+    &__tag-link {
+        color: $color-silver-sand;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: $color-black;
+        }
+    }
+
+    &__share {
+        position: relative;
+
+        margin-bottom: 10px;
+        margin-left: 15px;
+    }
 }
