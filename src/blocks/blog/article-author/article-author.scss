@@ -1,0 +1,65 @@
+/**
+ * Article Author
+ */
+.article-author {
+    padding: 0 10px;
+
+    text-align: center;
+
+    @include breakpoint-up(md) {
+        text-align: left;
+    }
+
+    &__avatar {
+        @include breakpoint-up(md) {
+            float: left;
+            margin-right: 25px;
+            margin-top: 7px;
+        }
+    }
+
+    &__text {
+        margin-top: 15px;
+
+        color: $color-black;
+        @include font-size(11px);
+        line-height: 2.5;
+        letter-spacing: 0.2em;
+
+        @include breakpoint-up(md) {
+            overflow: hidden;
+        }
+    }
+
+    &__name {
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    &__bio {
+        margin-top: 5px;
+    }
+
+    &__social {
+        display: flex;
+        justify-content: center;
+        margin: 10px -10px 0;
+
+        @include breakpoint-up(md) {
+            justify-content: start;
+        }
+    }
+
+    &__social-link {
+        padding: 10px;
+
+        color: $color-silver-sand;
+        text-decoration: none;
+
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}

@@ -4,6 +4,7 @@
 .article {
     &__header {
         margin-bottom: 26px;
+        padding: 0 10px;
 
         text-align: center;
     }
@@ -62,6 +63,10 @@
         text-transform: uppercase;
     }
 
+    &__content {
+        padding: 0 10px;
+    }
+
     &__image {
         display: block;
         max-width: 100%;
@@ -95,6 +100,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        padding: 0 10px;
 
         @include breakpoint-up(md) {
             flex-wrap: nowrap;
@@ -136,5 +142,9 @@
 
         margin-bottom: 10px;
         margin-left: 15px;
+    }
+
+    &__author {
+        margin-top: 45px;
     }
 }

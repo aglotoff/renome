@@ -1,0 +1,20 @@
+mixin article-author(data)
+    // start article author 
+    section.article-author&attributes(attributes)
+        img(src=data.avatar, alt=data.name).article-author__avatar
+
+        .article-author__text
+            h3.article-author__name= data.name
+            .article-author__bio= data.bio
+
+            ul.article-author__social
+                li.article-author__social-item
+                    a(href="javascript:void(0);").article-author__social-link
+                        +icon('fb')
+                li.article-author__social-item
+                    a(href="javascript:void(0);").article-author__social-link
+                        +icon('twitter')
+                li.article-author__social-item
+                    a(href="javascript:void(0);").article-author__social-link
+                        +icon('gplus')
+    // end article author 

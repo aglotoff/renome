@@ -16,7 +16,13 @@
 
             "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra felis lectus, eget malesuada lorem suscipit sed. Maecenas sapien lacus, placerat in nibh nec, maximus ornare magna. Ut vestibulum leo vel dignissim interdum.</p><p>Mauris sit amet mi volutpat, eleifend diam a, mattis dolor. Sed eget ullamcorper libero. Nulla molestie elementum libero, quis consectetur neque feugiat non. Aenean ipsum eros, pretium quis porttitor et, vestibulum vitae sapien. Fusce sit amet mi porttitor, porttitor arcu ut, convallis risus.</p><h3>details of promotion</h3><p>Nulla eu blandit ipsum, sit amet aliquet orci. Aenean commodo leo ut efficitur vehicula. Curabitur id odio quis ipsum lacinia semper eu in orci. Maecenas venenatis nisi ipsum, eleifend malesuada sapien mollis non. Cras vulputate fringilla purus, eu volutpat neque. Ut a magna lacus. Donec elementum id ex sed mattis.</p><blockquote>Nullam eros justo, condimentum in mauris et, aliquet consectetur dui.  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</blockquote><p>Aenean sagittis nisi et rhoncus blandit. Praesent fringilla auctor volutpat. Vivamus eget aliquet turpis. Nulla vehicula commodo lacus. Maecenas et nibh libero. Vestibulum tristique sagittis libero aliquet vehicula. Nam congue nulla in ex consectetur, eget sagittis ligula blandit. Sed semper cursus nisl in lacinia. Proin volutpat suscipit rhoncus. Pellentesque bibendum interdum mi id vestibulum.</p>",
 
-            "tags": ["Salad", "Caesar", "Promotion"]
+            "tags": ["Salad", "Caesar", "Promotion"],
+
+            "author": {
+                "name": "Richard Miles",
+                "avatar": "img/content/avatars/100x100/richard-miles.jpg",
+                "bio": "Praesent pharetra risus velit, a pharetra purus dignissim in. Integer dictum finibus leo, ut vehicula massa cidunt neque pellentesque dictum."
+            }
         }],
 
         "categories": [

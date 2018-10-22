@@ -38,20 +38,24 @@ mixin article(data)
                 a(href=data.link).article__link Continue Reading...
         // end article content 
 
-        if data.tags
+        if data.tags || data.author
             // start article footer 
             footer.article__footer
                 .article__footer-top
-                    // start tags 
-                    .article__tags
-                        ul.article__tag-list
-                            each tag in data.tags
-                                li.article__tag
-                                    a(
-                                        href="javascript:void(0);"
-                                    ).article__tag-link= tag
-                    // end tags 
+                    if data.tags
+                        // start tags 
+                        .article__tags
+                            ul.article__tag-list
+                                each tag in data.tags
+                                    li.article__tag
+                                        a(
+                                            href="javascript:void(0);"
+                                        ).article__tag-link= tag
+                        // end tags 
 
                     +share().article__share
+                
+                if data.author
+                    +article-author(data.author).article__author
             // end article footer 
     <!-- end #{data.title.toLowerCase()} -->
