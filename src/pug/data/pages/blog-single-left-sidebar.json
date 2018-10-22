@@ -1,0 +1,48 @@
+{
+    "activeNavItem": "Blog",
+    "activeNavSubItem": "Blog left sidebar",
+
+    "pageTitle": "Blog",
+    "pageSubtitle": "News, recipes and much more",
+    "pageHeaderBg": "img/content/blog/blog-header-bg.jpg",
+
+    "content": {
+        "articles": [{
+            "title": "Summer specials",
+            "categories": ["Promotions"],
+            "date": "June 5, 2015",
+            "datetime": "2015-06-05 19:00",
+            "image": "img/content/blog/posts/summer-specials.jpg",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra felis lectus, eget malesuada lorem suscipit sed. Maecenas sapien lacus, placerat in nibh nec, maximus ornare magna. Ut vestibulum leo vel dignissim interdum.</p><p>Mauris sit amet mi volutpat, eleifend diam a, mattis dolor. Sed eget ullamcorper libero. Nulla molestie elementum libero, quis consectetur neque feugiat non. Aenean ipsum eros, pretium quis porttitor et, vestibulum vitae sapien. Fusce sit amet mi porttitor, porttitor arcu ut, convallis risus.</p><h3>details of promotion</h3><p>Nulla eu blandit ipsum, sit amet aliquet orci. Aenean commodo leo ut efficitur vehicula. Curabitur id odio quis ipsum lacinia semper eu in orci. Maecenas venenatis nisi ipsum, eleifend malesuada sapien mollis non. Cras vulputate fringilla purus, eu volutpat neque. Ut a magna lacus. Donec elementum id ex sed mattis.</p><blockquote>Nullam eros justo, condimentum in mauris et, aliquet consectetur dui.  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</blockquote><p>Aenean sagittis nisi et rhoncus blandit. Praesent fringilla auctor volutpat. Vivamus eget aliquet turpis. Nulla vehicula commodo lacus. Maecenas et nibh libero. Vestibulum tristique sagittis libero aliquet vehicula. Nam congue nulla in ex consectetur, eget sagittis ligula blandit. Sed semper cursus nisl in lacinia. Proin volutpat suscipit rhoncus. Pellentesque bibendum interdum mi id vestibulum.</p>"
+        }],
+
+        "categories": [
+            "Events",
+            "Press",
+            "Promotions",
+            "Recipes"
+        ],
+
+        "popularPosts": [{
+            "title": "Summer specials",
+            "date": "2015-06-05 19:00",
+            "thumb": "img/content/blog/posts/thumbs/85x55/summer-specials.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }, {
+            "title": "Our salad are award winning",
+            "date": "2015-04-25 19:00",
+            "thumb": "img/content/blog/posts/thumbs/85x55/our-salad-are-award-winning.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }, {
+            "title": "Homemade pizza",
+            "date": "2015-04-07 19:00",
+            "thumb": "img/content/blog/posts/thumbs/85x55/homemade-pizza.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }, {
+            "title": "Grand opening!",
+            "date": "2015-03-10 19:00",
+            "thumb": "img/content/blog/posts/thumbs/85x55/grand-opening.jpg",
+            "link": "blog-single-left-sidebar.html"
+        }]
+    }
+}

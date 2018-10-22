@@ -13,21 +13,21 @@
             "date": "2015-06-05 19:00",
             "image": "img/content/blog/posts/summer-specials.jpg",
             "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra felis lectus, eget malesuada lorem suscipit sed. Maecenas sapien lacus, placerat in nibh nec, maximus ornare magna. Ut vestibulum leo vel dignissim interdum.</p>",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }, {
             "title": "Our salad are award winning",
             "categories": ["Press"],
             "date": "2015-04-25 19:00",
             "video": "https://www.youtube.com/embed/ScMzIvxBSi4",
             "content": "<p>Sed viverra bibendum sollicitudin. Praesent interdum porttitor elit molestie convallis. Integer sagittis vitae sem eget euismod. Etiam ut risus ac ligula hendrerit volutpat. Donec at consectetur leo, eu pretium estmauris.</p>",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }, {
             "title": "Homemade pizza",
             "categories": ["Recipes"],
             "date": "2015-04-07 19:00",
             "image": "img/content/blog/posts/homemade-pizza.jpg",
             "content": "<p>Curabitur pulvinar condimentum augue, id facilisis nunc dapibus vel. Praesent ut tortor non lorem iaculis imperdiet mollis at ex. Ut fringilla, sapien ac tempus mattis, massa tortor posuere neque  etiam vitae orci ut tellusbi ben.</p>",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }, {
             "title": "Grand opening!",
             "categories": ["Events"],
@@ -43,7 +43,7 @@
                 "alt": "Great Opening"
             }],
             "content": "<p>Curabitur pulvinar condimentum augue, id facilisis nunc dapibus vel. Praesent ut tortor non lorem iaculis imperdiet mollis at ex. Ut fringilla, sapien ac tempus mattis, massa tortor posuere neque  etiam vitae orci ut tellusbi ben.</p>",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }],
 
         "categories": [
@@ -57,22 +57,22 @@
             "title": "Summer specials",
             "date": "2015-06-05 19:00",
             "thumb": "img/content/blog/posts/thumbs/85x55/summer-specials.jpg",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }, {
             "title": "Our salad are award winning",
             "date": "2015-04-25 19:00",
             "thumb": "img/content/blog/posts/thumbs/85x55/our-salad-are-award-winning.jpg",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }, {
             "title": "Homemade pizza",
             "date": "2015-04-07 19:00",
             "thumb": "img/content/blog/posts/thumbs/85x55/homemade-pizza.jpg",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }, {
             "title": "Grand opening!",
             "date": "2015-03-10 19:00",
             "thumb": "img/content/blog/posts/thumbs/85x55/grand-opening.jpg",
-            "link": "blog-single-left-sidebar.html"
+            "link": "blog-single-right-sidebar.html"
         }],
 
         "pagination": {
