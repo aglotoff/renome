@@ -7,7 +7,7 @@ mixin mini-cart(data)
                 span.mini-cart__qty= data.quantity
 
             .mini-cart__drop
-                span.mini-cart__total $#{data.total}
+                span.mini-cart__total $#{data.total.toFixed(2)}
                 a(href="shop-cart.html").mini-cart__link View Cart
                 a(href="shop-checkout.html").mini-cart__link Checkout
     // end mini cart 
