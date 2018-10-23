@@ -26,6 +26,15 @@
         opacity: 1;
     }
 
+    &_alt {
+        @include font-size(11px);
+        letter-spacing: 0.2em;
+
+        &::placeholder {
+            text-transform: uppercase;
+        }
+    }
+
     &_invalid {
         border-bottom-color: $color-error;
     }

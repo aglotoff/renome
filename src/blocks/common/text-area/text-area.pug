@@ -1,4 +1,6 @@
-mixin text-area()
-    textarea.text-area&attributes(attributes)
+mixin text-area(mods = {})
+    textarea.text-area(
+        class=!!mods.alt ? 'text-area_alt' : ''
+    )&attributes(attributes)
         if block
             block

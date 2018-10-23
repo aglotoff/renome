@@ -62,6 +62,7 @@ mixin article(data)
                     +related-posts(data.relatedPosts).article__related-posts
 
                 if data.comments
-                    +comments(data.comments)
+                    +comments(data.comments).article__comments
+                    +comment-form().article__comment-form
             // end article footer 
     <!-- end #{data.title.toLowerCase()} -->

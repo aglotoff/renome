@@ -1,2 +1,2 @@
-mixin input(data, mods={})
-    input.input&attributes(attributes)
+mixin input(mods={})
+    input.input(class=!!mods.alt ? 'input_alt' : '')&attributes(attributes)

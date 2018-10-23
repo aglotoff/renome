@@ -148,7 +148,9 @@
         margin-top: 45px;
     }
 
-    &__related-posts {
+    &__related-posts,
+    &__comments,
+    &__comment-form {
         margin-top: 65px;
     }
 }

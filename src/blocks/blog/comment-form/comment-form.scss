@@ -1,0 +1,61 @@
+/**
+ * Comment Form
+ */
+.comment-form {
+    padding: 0 10px;
+
+    border-top: 1px solid $color-athens-gray;
+
+    overflow: hidden;
+
+    @include breakpoint-up(lg) {
+        padding: 0;
+    }
+
+    &__title {
+        margin-top: 22px;
+    }
+
+    &__fields {
+        margin-top: 65px;
+
+        @include breakpoint-up(md) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-left: -25px;
+            margin-right: -25px;
+        }
+    }
+
+    &__field {
+        display: block;
+        margin-bottom: 50px;
+        width: 100%;
+
+        @include breakpoint-up(md) {
+            width: 50%;
+            padding: 0 25px;
+        }
+
+        &_wide {
+            @include breakpoint-up(md) {
+                width: 100%;
+            }
+        }
+    }
+
+    &__input {
+        margin-top: 1px;
+        max-width: 420px;
+
+        @include breakpoint-up(md) {
+            max-width: none;
+        }
+    }
+
+    &__error {
+        display: block;
+        margin-top: 10px;
+    }
+}

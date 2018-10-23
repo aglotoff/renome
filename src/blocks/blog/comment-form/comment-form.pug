@@ -1,0 +1,29 @@
+mixin comment-form()
+    // start comment form 
+    form.comment-form(action="#" method="post")&attributes(attributes)
+        +title().comment-form__title Leave a reply
+
+        .comment-form__fields
+            input(type="hidden" name="reply-to")
+
+            .comment-form__field
+                +input({alt: true})(
+                    name="name"
+                    placeholder="Name"
+                    required
+                ).comment-form__input
+            .comment-form__field
+                +input({alt: true})(
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                ).comment-form__input
+            .comment-form__field.comment-form__field_wide
+                +text-area({alt: true})(
+                    name="message"
+                    placeholder="Message"
+                    required
+                ).comment-form__input
+            +btn({title: 'Post comment'}, 'submit').comment-form__submit
+    // end comment form 
