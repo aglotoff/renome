@@ -39,7 +39,25 @@
                 "date": "2015-03-10 19:00",
                 "thumb": "img/content/blog/posts/thumbs/300x200/grand-opening.jpg",
                 "link": "blog-single-right-sidebar.html"
-            }]
+            }],
+
+            "comments": {
+                "total": 2,
+                "comments": [{
+                    "id": 101,
+                    "author": "John Doe",
+                    "avatar": "img/content/avatars/70x70/john-doe.jpg",
+                    "date": "2015-04-25 12:45",
+                    "text": "Donec maximus at neque pharetra convallis. Fusce tellus odio, mattis nec nisl sit amet, efficitur congue elit. Mauris tincidunt ex id dignissim tincidunt.",
+                    "replies": [{
+                        "id": 102,
+                        "author": "Jane Doe",
+                        "avatar": "img/content/avatars/70x70/jane-doe.jpg",
+                        "date": "2015-04-25 12:45",
+                        "text": "Donec maximus at neque pharetra convallis. Fusce tellus odio, mattis nec nisl sit amet, efficitur congue elit. Mauris tincidunt ex id dignissim tincidunt."
+                    }]
+                }]
+            }
         }],
 
         "categories": [
