@@ -18,7 +18,7 @@
         margin-top: 30px;
         float: right;
 
-        font-size: font-size(11px);
+        @include font-size(11px);
         font-weight: $font-weight-bold;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -36,7 +36,7 @@
         margin-top: 8px;
 
         font-family: $font-family-title;
-        font-size: font-size(11px);
+        @include font-size(11px);
         font-weight: $font-weight-bold;
         letter-spacing: 0.2em;
         text-transform: uppercase;
@@ -54,7 +54,7 @@
         padding: 8px 18px 0 0;
 
         font-family: $font-family-title;
-        font-size: font-size(10px);
+        @include font-size(10px);
         font-weight: $font-weight-bold;
         color: $color-secondary;
         letter-spacing: 0.2em;
