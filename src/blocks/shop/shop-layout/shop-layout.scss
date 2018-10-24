@@ -1,0 +1,26 @@
+/**
+ * Shop Page Layout
+ */
+.shop-layout {
+    padding-top: 50px;
+
+    @include breakpoint-up(md) {
+        padding-top: 75px;
+    }
+
+    &__products {
+        margin-top: 40px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 100px;
+        }
+    }
+
+    &__pagination {
+        margin-top: 70px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 100px;
+        }
+    }
+}

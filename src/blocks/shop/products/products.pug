@@ -1,0 +1,9 @@
+mixin products(data)
+    // start products 
+    .products&attributes(attributes)
+        .products__inner
+            .products__list
+                each product in data
+                    .products__product
+                        +product(product)
+    // end products 

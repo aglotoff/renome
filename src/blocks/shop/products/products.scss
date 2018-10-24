@@ -1,0 +1,58 @@
+/**
+ * Products Grid
+ */
+.products {
+    &__inner {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        overflow: hidden;
+    }
+
+    &__list {
+        @include breakpoint-up(sm) {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -25px -18px;
+
+            @supports (display: grid) {
+                display: grid;
+                grid-gap: 65px 35px;
+                grid-template-columns: repeat(2, 1fr);
+                margin: 0;
+            }
+        }
+
+        @include breakpoint-up(md) {
+            margin-bottom: -35px;
+            margin-top: -35px;
+
+            @supports (display: grid) {
+                grid-template-columns: repeat(3, 1fr);
+                margin: 0;
+            }
+        }
+    }
+
+    &__product {
+        margin-bottom: 50px;
+
+        @include breakpoint-up(sm) {
+            flex: 0 0 50%;
+            margin-bottom: 0;
+            padding: 25px 18px;
+        }
+
+        @include breakpoint-up(md) {
+            flex: 0 0 33.33%;
+            padding-bottom: 35px;
+            padding-top: 35px;
+        }
+
+        @supports (display: grid) {
+            margin-bottom: 0;
+            padding: 0;
+        }
+    }
+}

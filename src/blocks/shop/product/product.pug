@@ -1,0 +1,13 @@
+mixin product(data)
+    .product(data-product-id=data.id)&attributes(attributes)
+        .product__inner
+            a(href=data.link).product__thumb
+                img(src=data.thumb, alt=data.title).product__img
+            
+            h2.product__title
+                a(href=data.link).product__link= data.title
+
+            .product__price $#{data.price.toFixed(2)}
+        
+            .product__add-wrapper
+                button(type="button").product__add-btn Add to cart

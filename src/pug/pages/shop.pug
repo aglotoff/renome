@@ -1,0 +1,9 @@
+extends ../layouts/inner
+
+include ../../blocks/shop/shop-layout/shop-layout
+include ../../blocks/shop/shop-cats/shop-cats
+include ../../blocks/shop/products/products
+include ../../blocks/shop/product/product
+
+block append page
+    +shop-layout(data.content)

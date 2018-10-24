@@ -1,0 +1,5 @@
+mixin shop-layout(data)
+    .shop-layout&attributes(attributes)
+        +shop-cats(data.categories).shop-layout__cats
+        +products(data.products).shop-layout__products
+        +pagination(data.pagination).shop-layout__pagination
