@@ -1,0 +1,37 @@
+{
+    "activeNavItem": "Features",
+    "activeNavSubItem": "Portfolio",
+
+    "pageTitle": "Portfolio",
+    "pageSubtitle": "Here my works",
+    "pageHeaderBg": "img/content/portfolio/portfolio-header-bg.jpg",
+
+    "content": {
+        "info": [{
+            "title": "Client",
+            "value": "Renome"
+        }, {
+            "title": "Role",
+            "value": "Culinary arts"
+        }, {
+            "title": "Agency",
+            "value": "VBN Themes"
+        }],
+
+        "images": [{
+            "src": "img/content/portfolio/projects/beef-with-pineapple.jpg",
+            "alt": "Beef with pineapple"
+        }, {
+            "src": "img/content/portfolio/projects/egg-baguette.jpg",
+            "alt": "Egg Baguette"
+        }, {
+            "src": "img/content/portfolio/projects/beef-steak.jpg",
+            "alt": "Beef Steak"
+        }],
+
+        "desc": {
+            "title": "Project description",
+            "text": "<p>Donec faucibus commodo tortor sit amet volutpat. Nunc ac mauris sodales leo porta accumsan quis sit amet purus. Ut in lorem at ipsum pharetra viverra nec ut est. Integer et ligula fermentum, convallis ipsum vitae, rhoncus urna. Maecenas nisi lorem, maximus sit amet libero eu, hendrerit fermentum nunc. Cras neque nibh, porta eget libero non, posuere ultricies massa.</p>"
+        }
+    }
+}

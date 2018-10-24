@@ -1,0 +1,27 @@
+/**
+ * Project Page Layout
+ */
+.project-layout {
+    padding: 70px 0;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
+
+    &__carousel {
+        margin-top: 50px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 100px;
+        }
+    }
+
+    &__desc {
+        margin-top: 65px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 100px;
+        }
+    }
+}

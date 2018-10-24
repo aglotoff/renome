@@ -1,0 +1,9 @@
+extends ../layouts/inner
+
+include ../../blocks/portfolio-single/project-layout/project-layout
+include ../../blocks/portfolio-single/project-info/project-info
+include ../../blocks/portfolio-single/project-carousel/project-carousel
+include ../../blocks/portfolio-single/project-desc/project-desc
+
+block append page
+    +project-layout(data.content)

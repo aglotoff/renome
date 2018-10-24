@@ -1,0 +1,56 @@
+/**
+ * Project Meta Information
+ */
+.project-info {
+    &__inner {
+        display: flex;
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        color: $color-black;
+        @include font-size(15px);
+
+        &:before {
+            content: "";
+
+            display: block;
+            max-width: 510px;
+            width: 50%;
+            background: $color-catskill-white;
+        }
+    }
+
+    &__list {
+        margin-left: -70px;
+        padding: 40px 0;
+
+        @include breakpoint-up(lg) {
+            margin-left: -85px;
+            padding-bottom: 80px;
+            padding-top: 80px;
+        }
+    }
+
+    &__item {
+        display: flex;
+        letter-spacing: 0.15em;
+
+        &:not(:first-child) {
+            margin-top: 15px;
+        }
+    }
+
+    &__label {
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    &__value {
+        margin-left: 0.5em;
+    }
+}

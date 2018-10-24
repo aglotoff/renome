@@ -1,0 +1,10 @@
+mixin project-info(data)
+    // start project info 
+    .project-info&attributes(attributes)
+        .project-info__inner
+            dl.project-info__list
+                each item in data
+                    .project-info__item
+                        dt.project-info__label= item.title
+                        dd.project-info__value= item.value
+    // end project info 

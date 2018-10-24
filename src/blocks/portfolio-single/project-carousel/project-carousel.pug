@@ -1,0 +1,17 @@
+mixin project-carousel(data)
+    // start project carousel 
+    .project-carousel&attributes(attributes)
+        .project-carousel__inner
+            .project-carousel__container
+                each image in data
+                    .project-carousel__slide
+                        img(src=image.src, alt=image.alt).project-carousel__img
+
+            .project-carousel__arrows
+                button(
+                    type="button"
+                ).project-carousel__arrow.project-carousel__arrow_dir_prev Prev
+                button(
+                    type="button"
+                ).project-carousel__arrow.project-carousel__arrow_dir_next Next
+    // end project carousel 

@@ -1,0 +1,21 @@
+/**
+ * Project Description
+ */
+.project-desc {
+    &__inner {
+        margin: 0 auto;
+        max-width: 1050px;
+        padding: 0 10px;
+    }
+
+    &__title {
+        color: $color-black;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        margin-top: 1.25em;
+    }
+}

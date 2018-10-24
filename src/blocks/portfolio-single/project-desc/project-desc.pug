@@ -1,0 +1,8 @@
+mixin project-desc(data)
+    // start project description 
+    .project-desc&attributes(attributes)
+        .project-desc__inner
+            h2.project-desc__title= data.title
+
+            .text.project-desc__text !{data.text}
+    // end project description 

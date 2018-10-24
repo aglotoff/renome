@@ -1,0 +1,5 @@
+mixin project-layout(data)
+    .project-layout&attributes(attributes)
+        +project-info(data.info).project-layout__info
+        +project-carousel(data.images).project-layout__carousel
+        +project-desc(data.desc).project-layout__desc
