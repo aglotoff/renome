@@ -1,0 +1,27 @@
+/**
+ * Portfolio Page Layout
+ */
+.portfolio-layout {
+    padding: 65px 0;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 85px;
+        padding-top: 85px;
+    }
+
+    &__container {
+        margin: 50px auto 0;
+        max-width: 350px;
+        padding: 0 10px;
+
+        text-align: center;
+
+        @include breakpoint-up(sm) {
+            max-width: 1200px;
+        }
+
+        @include breakpoint-up(lg) {
+            margin-top: 70px;
+        }
+    }
+}

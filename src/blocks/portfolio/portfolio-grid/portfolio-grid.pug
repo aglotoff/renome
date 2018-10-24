@@ -1,0 +1,33 @@
+mixin portfolio-grid__item(data)
+    .portfolio-grid__item(
+        data-groups=`["${data.categories.join(",")}"]`
+    )&attributes(attributes)
+        .portfolio-grid__item-inner
+            img(src=data.image alt=data.title).portfolio-grid__img
+
+            .portfolio-grid__text
+                h2.portfolio-grid__title
+                    a(href=data.link).portfolio-grid__link= data.title
+
+                ul.portfolio-grid__cats
+                    each cat in data.categories
+                        li.portfolio-grid__cat(
+                            data-filter=cat.toLowerCase()
+                        )= cat
+
+mixin portfolio-grid(data)
+    // start items 
+    .portfolio-grid&attributes(attributes)
+        .portfolio-grid__inner
+            each item in data
+                +portfolio-grid__item(item)
+            
+            .portfolio-grid__sizer
+
+        +portfolio-grid__item({
+            title: 'Title',
+            link: '',
+            image: 'none',
+            categories: [],
+        }).portfolio-grid__item_template
+    // end items 

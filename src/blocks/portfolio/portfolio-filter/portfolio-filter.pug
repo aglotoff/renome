@@ -1,0 +1,15 @@
+mixin portfolio-filter(data)
+    // start filter 
+    .portfolio-filter&attributes(attributes)
+        .portfolio-filter__inner
+            button(type="button").portfolio-filter__toggle Filter
+
+            ul.portfolio-filter__list
+                each filter, i in data
+                    li.portfolio-filter__item
+                        button.portfolio-filter__btn(
+                            type="button" 
+                            data-filter=filter.toLowerCase()
+                            class=(i==0) ? 'portfolio-filter__btn_active' : ''
+                        )= filter
+    // end filter 

@@ -72,6 +72,7 @@ const config = {
                 `${LIB_PREFIX}/pikaday/pikaday.js`,
                 `${LIB_PREFIX}/select2/dist/js/select2.min.js`,
                 `${LIB_PREFIX}/jquery-validation/dist/jquery.validate.min.js`,
+                `${LIB_PREFIX}/shufflejs/dist/shuffle.min.js`,
             ],
             src: [
                 `${SRC_PREFIX}/blocks/**/*.js`,

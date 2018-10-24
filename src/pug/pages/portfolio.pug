@@ -1,0 +1,9 @@
+extends ../layouts/inner
+
+include ../../blocks/portfolio/portfolio-filter/portfolio-filter
+include ../../blocks/portfolio/portfolio-layout/portfolio-layout
+include ../../blocks/portfolio/portfolio-grid/portfolio-grid
+include ../../blocks/portfolio/portfolio-more/portfolio-more
+
+block append page
+    +portfolio-layout(data.content)
