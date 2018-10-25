@@ -1,0 +1,53 @@
+/**
+ * Alert Box
+ */
+.alert {
+    display: none;
+    padding: 30px 10px;
+
+    letter-spacing: 0.15em;
+
+    background: $color-catskill-white;
+    opacity: 1;
+
+    transition: opacity 0.25s ease;
+
+    @include breakpoint-up(lg) {
+        justify-content: space-between;
+        padding: 25px;
+    }
+
+    &__cart-link {
+        display: inline-block;
+        margin-top: 20px;
+
+        color: $color-primary;
+        font-weight: $font-weight-bold;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        border-bottom: 2px solid $color-primary;
+
+        transition: all 0.25s ease;
+
+        @include breakpoint-up(lg) {
+            margin-top: 0;
+        }
+
+        &:hover {
+            color: $color-secondary;
+
+            border-color: $color-secondary;
+        }
+    }
+
+    &_visible {
+        display: block;
+
+        opacity: 1;
+
+        @include breakpoint-up(lg) {
+            display: flex;
+        }
+    }
+}

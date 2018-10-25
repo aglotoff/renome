@@ -1,0 +1,15 @@
+/**
+ * Product Add Form
+ */
+.product-add {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__qty {
+        width: 60px;
+    }
+
+    &__btn {
+        margin-left: 22px;
+    }
+}

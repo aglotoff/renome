@@ -1,2 +1,5 @@
 mixin input(mods={})
-    input.input(class=!!mods.alt ? 'input_alt' : '')&attributes(attributes)
+    input.input(class={
+        input_alt: !!mods.alt,
+        input_large: !!mods.large,
+    })&attributes(attributes)

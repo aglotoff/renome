@@ -1,0 +1,89 @@
+/**
+ * Product Images
+ */
+.product-images {
+    @include breakpoint-up(md) {
+        display: flex;
+    }
+
+    &__thumbs {
+        display: none;
+
+        @include breakpoint-up(md) {
+            display: block;
+        }
+    }
+
+    &__thumb {
+        cursor: pointer;
+        opacity: 0.15;
+
+        transition: opacity 0.25s ease;
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+
+        &:hover,
+        &_active {
+            opacity: 1;
+        }
+    }
+
+    &__thumb-img {
+        display: block;
+    }
+
+    &__slide-img {
+        max-width: 100%;
+    }
+
+    &__container {
+        overflow: hidden;
+
+        @include breakpoint-up(md) {
+            margin-left: 25px;
+            max-width: 450px;
+        }
+    }
+
+    /* Override default slick-carousel dot styles */
+    .slick-dots {
+        bottom: 25px;
+        left: 0;
+        position: absolute;
+        right: 0;
+
+        display: flex;
+        justify-content: center;
+
+        button {
+            display: block;
+            height: 15px;
+            margin: 0 7px;
+            padding: 0;
+            width: 15px;
+
+            text-indent: -9999px;
+
+            background: transparent;
+            border: 2px solid $color-white;
+            border-radius: 50%;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.25s ease;
+
+            &:not(:first-child) {
+                margin-left: 15px;
+            }
+
+            &:hover {
+                background: $color-white;
+            }
+        }
+
+        .slick-active button {
+            background: $color-white;
+        }
+    }
+}

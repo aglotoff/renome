@@ -1,0 +1,14 @@
+extends ../layouts/inner
+
+include ../../blocks/shop/product-page-top/product-page-top
+include ../../blocks/shop/alert/alert
+include ../../blocks/shop/product-images/product-images
+include ../../blocks/shop/product-info/product-info
+include ../../blocks/shop/rating/rating
+include ../../blocks/shop/product-add/product-add
+
+block append page
+    +product-page-top({
+        images: data.content.images,
+        info: data.content.info
+    })

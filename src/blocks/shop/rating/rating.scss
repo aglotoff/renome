@@ -1,0 +1,34 @@
+/**
+ * Star Rating
+ */
+.rating {
+    &__stars,
+    &__highlighted {
+        display: block;
+        height: 12px;
+
+        background: {
+            image: url('../img/rating-stars.png');
+            position: 0 0;
+            repeat: no-repeat;
+        }
+    }
+
+    &__stars {
+        position: relative;
+
+        width: 60px;
+    }
+
+    &__highlighted {
+        left: 0;
+        position: absolute;
+        top: 0;
+
+        background-position-y: -12px;
+    }
+
+    &__value {
+        display: none;
+    }
+}

@@ -1,0 +1,9 @@
+mixin product-add(data)
+    form(action="#" method="post").product-add&attributes(attributes)
+        input(type="hidden" name="id" value=data.id).product-add__id
+        +input({large: true})(
+            name="quantity"
+            value="1"
+            required
+        ).product-add__qty
+        +btn({title: 'Add to cart'}, 'submit').product-add__btn

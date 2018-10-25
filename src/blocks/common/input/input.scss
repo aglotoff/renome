@@ -35,6 +35,11 @@
         }
     }
 
+    &_large {
+        @include font-size(25px);
+        text-align: center;
+    }
+
     &_invalid {
         border-bottom-color: $color-error;
     }

@@ -1,0 +1,27 @@
+mixin product-info(data)
+    // start product info 
+    .product-info&attributes(attributes)
+        ol.product-info__breadcrumbs
+            li.product-info__breadcrumbs-item
+                a(href="javascript:void(0);").product-info__breadcrumbs-link
+                    | shop
+            li.product-info__breadcrumbs-item
+                a(href="javascript:void(0);").product-info__breadcrumbs-link
+                    | #{data.category}
+            li.product-info__breadcrumbs-item
+                span.product-info__breadcrumbs-current
+                    | #{data.title}
+
+        h2.product-info__title= data.title
+
+        .product-info__reviews
+            .product-info__reviews-total #{data.reviews} customer reviews
+            +rating(data.rating).product-info__rating
+
+        .product-info__price $#{data.price.toFixed(2)}
+
+        .text.product-info__desc
+            p= data.desc
+        
+        +product-add(data.id).product-info__add
+    // end product info

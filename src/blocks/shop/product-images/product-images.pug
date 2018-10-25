@@ -1,0 +1,16 @@
+mixin product-images(data)
+    // start product images 
+    .product-images&attributes(attributes)
+        ul.product-images__thumbs
+            each item, i in data
+                li.product-images__thumb(
+                    class=(i == 0) ? 'product-images__thumb_active' : ''
+                    data-slide=i
+                )
+                    img(src=item.thumb alt=item.alt).product-images__thumb-img
+
+        .product-images__container
+            each item in data
+                .product-images__slide
+                    img(src=item.image, alt=item.alt).product-images__slide-img
+    // end product images 
