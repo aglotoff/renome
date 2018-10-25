@@ -11,6 +11,8 @@ include ../../blocks/shop/reviews/reviews
 include ../../blocks/shop/review/review
 include ../../blocks/shop/review-form/review-form
 include ../../blocks/shop/rating-input/rating-input
+include ../../blocks/shop/related-products/related-products
+include ../../blocks/shop/product/product
 
 block append page
     +product-page-top({
@@ -35,3 +37,4 @@ block append page
             name: 'review-form',
         }],
     }])
+    +related-products(data.content.relatedProducts)

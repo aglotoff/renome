@@ -1,0 +1,40 @@
+/**
+ * Related Products
+ */
+.related-products {
+    padding: 25px 0 70px;
+
+    border-top: 1px solid $color-gallery;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 950px;
+        padding: 0 10px;
+
+        overflow: hidden;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+
+        @include breakpoint-up(md) {
+            justify-content: center;
+            margin-left: -18px;
+            margin-right: -18px;
+        }
+    }
+
+    &__item {
+        margin-top: 50px;
+
+        @include breakpoint-up(md) {
+            padding: 0 18px;
+        }
+    }
+}

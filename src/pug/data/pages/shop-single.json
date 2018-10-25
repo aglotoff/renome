@@ -40,6 +40,20 @@
             "date": "2015-04-25 12:45",
             "rating": 3,
             "text": "Morbi lobortis enim auctor pharetra auctor. Vestibulum quis lorem a ante aliquet fringilla."
+        }],
+
+        "relatedProducts": [{
+            "id": 1001,
+            "title": "Beef with pineapple",
+            "price": 18.20,
+            "thumb": "img/content/shop/products/thumbs/370x370/beef-with-pineapple.jpg",
+            "link": "shop-product-view.html"
+        }, {
+            "id": 1002,
+            "title": "Egg baguette",
+            "price": 8.10,
+            "thumb": "img/content/shop/products/thumbs/370x370/egg-baguette.jpg",
+            "link": "shop-product-view.html"
         }]
     }
 }
