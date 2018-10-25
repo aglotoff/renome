@@ -1,0 +1,16 @@
+mixin rating-input(data)
+    .rating-input&attributes(attributes)
+        - let i = 1;
+        while i <= 5
+            input(
+                type="radio"
+                id="rating-" + i
+                name=data.name
+                value=i
+                required=(i == 1) && !!data.required
+            ).rating-input__radio
+            label.rating-input__label(
+                class="rating-input__label_value_" + i
+                for="rating-" + i
+            )= i
+            - i++;

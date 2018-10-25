@@ -1,0 +1,78 @@
+/**
+ * Review Form
+ */
+.review-form {
+    padding: 25px 0 70px;
+
+    border-top: 1px solid $color-gallery;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+    }
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 950px;
+        padding: 0 10px;
+
+        overflow: hidden;
+    }
+
+    &__fields {
+        margin-top: 50px;
+
+        @include breakpoint-up(md) {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -26px;
+            margin-right: -26px;
+        }
+    }
+
+    &__field {
+        margin-top: 20px;
+
+        @include breakpoint-up(md) {
+            padding: 0 26px;
+            width: 50%;
+        }
+
+        &_wide {
+            @include breakpoint-up(md) {
+                width: 100%;
+            }
+        }
+
+        &_has-label {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__label {
+        margin-top: 50px;
+
+        @include font-size(11px);
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    &__rating {
+        margin-top: 20px;
+    }
+
+    &__submit {
+        margin-top: 50px;
+
+        text-align: center;
+    }
+
+    &__submit-btn {
+        width: 180px;
+    }
+
+    &__error {
+        display: block;
+        margin-top: 10px;
+    }
+}

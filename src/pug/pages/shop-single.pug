@@ -6,9 +6,32 @@ include ../../blocks/shop/product-images/product-images
 include ../../blocks/shop/product-info/product-info
 include ../../blocks/shop/rating/rating
 include ../../blocks/shop/product-add/product-add
+include ../../blocks/shop/product-desc/product-desc
+include ../../blocks/shop/reviews/reviews
+include ../../blocks/shop/review/review
+include ../../blocks/shop/review-form/review-form
+include ../../blocks/shop/rating-input/rating-input
 
 block append page
     +product-page-top({
         images: data.content.images,
         info: data.content.info
     })
+    +tabs([{
+        title: 'Description',
+        id: 'description',
+        blocks: [{
+            name: 'product-desc',
+            content: data.content.desc,
+        }],
+    }, {
+        title: 'Reviews(' + data.content.reviews.length + ')',
+        active: true,
+        id: 'reviews',
+        blocks: [{
+            name: 'reviews',
+            content: data.content.reviews,
+        }, {
+            name: 'review-form',
+        }],
+    }])

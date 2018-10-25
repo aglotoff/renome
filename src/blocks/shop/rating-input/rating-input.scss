@@ -1,0 +1,57 @@
+/**
+ * Rating Input Group
+ */
+.rating-input {
+    display: flex;
+
+    &__radio {
+        display: none;
+    }
+
+    &__label {
+        display: block;
+        height: 12px;
+        margin-left: 15px;
+
+        text-indent: -9999px;
+
+        background: {
+            image: url('../img/rating-stars.png');
+            position: 0 0;
+            repeat: no-repeat;
+        }
+        cursor: pointer;
+
+        &_value_1 {
+            width: 12px;
+        }
+
+        &_value_2 {
+            width: 24px;
+        }
+
+        &_value_3 {
+            width: 36px;
+        }
+
+        &_value_4 {
+            width: 48px;
+        }
+
+        &_value_5 {
+            width: 60px;
+        }
+
+        &:hover {
+            background-position-y: -12px;
+        }
+    }
+
+    &__radio:checked + .rating-input__label {
+        background-position-y: -12px;
+    }
+
+    &__radio:first-child + .rating-input__label {
+        margin-left: 0;
+    }
+}

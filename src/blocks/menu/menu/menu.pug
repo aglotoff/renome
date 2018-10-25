@@ -6,11 +6,13 @@ mixin menu(data)
                 title: cat.title,
                 active: i == 0,
                 id: cat.id,
-                content: {
-                    title: cat.title,
-                    sections: data.sections,
-                },
-                block: 'menu-cat',
+                blocks: [{
+                    name: 'menu-cat',
+                    content: {
+                        title: cat.title,
+                        sections: data.sections,
+                    },
+                }],
             }))
         +tabs(tabData)
     // end menu 

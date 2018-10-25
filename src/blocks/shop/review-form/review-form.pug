@@ -1,0 +1,36 @@
+mixin review-form()
+    // start review form 
+    form(action="#" method="post").review-form&attributes(attributes)
+        .review-form__inner
+            +title().review-form__title Add a review
+
+            .review-form__fields
+                .review-form__field
+                    +input({alt: true})(
+                        name="name"
+                        placeholder="Name"
+                        required
+                    ).review-form__input
+                .review-form__field
+                    +input({alt: true})(
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                    ).review-form__input
+                .review-form__field.review-form__field_has-label
+                    .review-form__label Your rating
+                    +rating-input({
+                        name: 'rating',
+                        required: true,
+                    }).review-form__rating
+                .review-form__field.review-form__field_wide
+                    +text-area({alt: true})(
+                        name="message"
+                        placeholder="Message"
+                        required
+                    ).review-form__input
+
+            .review-form__submit
+                +btn({title: 'Submit'}, 'submit').review-form__submit-btn
+    // end review form

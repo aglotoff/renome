@@ -1,0 +1,22 @@
+/**
+ * Product Reviews
+ */
+ .reviews {
+    padding: 70px 0 65px;
+
+    &__inner {
+        margin: 0 auto;
+        max-width: 950px;
+        padding: 0 10px;
+    }
+
+    &__review {
+        &:not(:first-child) {
+            margin-top: 40px;
+
+            @include breakpoint-up(lg) {
+                margin-top: 80px;
+            }
+        }
+    }
+}

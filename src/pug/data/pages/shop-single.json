@@ -24,6 +24,22 @@
             "thumb": "img/content/shop/products/thumbs/100x100/korean-bibimbap-2.jpg",
             "image": "img/content/shop/products/korean-bibimbap-2.jpg",
             "alt": "Korean bibimbap"
+        }],
+
+        "desc": "<p>Fusce pulvinar egestas ex id tincidunt. Curabitur faucibus tellus eu ligula rutrum, non varius est blandit. Pellentesque bibendum faucibus convallis. Sed placerat nulla sodales nunc scelerisque dignissim tincidunt quis est. Morbi porttitor et sapien at condimentum. Quisque mi ligula, porta at ante sit amet, aliquam bibendum risus. Integer id auctor nulla. Donec maximus orci non massa finibus facilisis.</p>",
+
+        "reviews": [{
+            "author": "John Doe",
+            "avatar": "img/content/avatars/70x70/john-doe.jpg",
+            "date": "2015-04-25 12:45",
+            "rating": 4,
+            "text": "Donec maximus at neque pharetra convallis. Fusce tellus odio, mattis nec nisl sit amet, efficitur congue elit. Mauris tincidunt ex id dignissim tincidunt."
+        }, {
+            "author": "Jane Doe",
+            "avatar": "img/content/avatars/70x70/jane-doe.jpg",
+            "date": "2015-04-25 12:45",
+            "rating": 3,
+            "text": "Morbi lobortis enim auctor pharetra auctor. Vestibulum quis lorem a ante aliquet fringilla."
         }]
     }
 }
