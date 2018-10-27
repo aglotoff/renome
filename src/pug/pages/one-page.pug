@@ -1,0 +1,31 @@
+extends ../layouts/base
+
+include ../../blocks/index/slider/slider
+include ../../blocks/index/gallery/gallery
+include ../../blocks/index/testimonial/testimonial
+include ../../blocks/index/specials/specials
+include ../../blocks/index/specials-carousel/specials-carousel
+
+include ../../blocks/menu/menu/menu
+include ../../blocks/menu/menu-cat/menu-cat
+include ../../blocks/menu/menu-product/menu-product
+include ../../blocks/menu/menu-section/menu-section
+
+include ../../blocks/reservation/reservation-form/reservation-form
+
+include ../../blocks/contact/contact-bottom/contact-bottom
+include ../../blocks/contact/contact-details/contact-details
+include ../../blocks/contact/contact-form/contact-form
+
+block page
+    +slider(data.content.slider)
+    +section(data.content.about)#about
+    +gallery(data.content.gallery)
+    +section(data.content.menuIntro, {reverse: true})#menu
+    +menu(data.content.menu)
+    +testimonial(data.content.testimonial, {reverse: true})
+    +section(data.content.reservation)#reservation
+    +reservation-form()
+    +specials(data.content.specials)
+    +section(data.content.contact, {reverse: true})#contact
+    +contact-bottom({details: data.content.contactDetails})

@@ -2,6 +2,8 @@
  * Nav Menu Block
  */
 (function($) {
+    const SCROLL_SPEED = 700;
+
     // Show mobile submenu
     $('.nav').on('click', '.nav__arrow_submenu', function() {
         $(this)
@@ -30,5 +32,18 @@
             .removeClass('nav_visible')
             .find('.nav__submenu')
             .removeClass('nav__submenu_visible');
+    });
+
+    // If the link target is an id attribute, scroll smoothly to the element
+    $('.nav').on('click', '.nav__link[href^="#"]', function() {
+        const $target = $($(this).attr('href'));
+        
+        if ($target.length != 0) {
+            $('html, body').animate({
+                scrollTop: $target.offset().top
+            }, SCROLL_SPEED);
+
+            return false;
+        }
     });
 })($);

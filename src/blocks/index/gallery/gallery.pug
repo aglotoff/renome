@@ -1,0 +1,21 @@
+mixin gallery(data)
+    // start gallery 
+    section.gallery&attributes(attributes)
+        .gallery__inner
+            +heading-group({
+                title: data.title,
+                subtitle: data.subtitle,
+            }).gallery__heading
+
+            .gallery__wrapper
+                .gallery__grid
+                    each thumb in data.thumbs
+                        .gallery__thumb
+                            .gallery__thumb-inner
+                                img(
+                                    src=thumb.image
+                                    alt=""
+                                ).gallery__thumb-img
+                                a(href=thumb.link).gallery__thumb-link
+                                    +icon('zoom')
+    // end gallery 
