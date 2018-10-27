@@ -27,11 +27,21 @@
     }
 
     &_alt {
+        padding: 12px 0;
+
         @include font-size(11px);
         letter-spacing: 0.2em;
 
         &::placeholder {
             text-transform: uppercase;
+        }
+    }
+
+    &_checkout {
+        padding: 12px 0;
+
+        &::placeholder {
+            color: $color-silver-sand;
         }
     }
 

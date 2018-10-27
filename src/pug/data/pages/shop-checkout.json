@@ -1,0 +1,20 @@
+{
+    "activeNavItem": "Shop",
+
+    "pageTitle": "Shop",
+    "pageSubtitle": "Order dishes online",
+    "pageHeaderBg": "img/content/shop/shop-header-bg.jpg",
+
+    "content": {
+        "items": [{
+            "title": "Beef with pineapple",
+            "quantity": 2,
+            "total": 36.40
+        }, {
+            "title": "Egg baguette",
+            "quantity": 1,
+            "total": 8.10
+        }],
+        "total": 44.50
+    }
+}

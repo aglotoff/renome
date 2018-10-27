@@ -6,16 +6,18 @@
         $('.cart-shipping__form').slideToggle();
     });
 
-    $('.cart-shipping__country')
-        .select2({
-            theme: 'renome-alt',
-            width: 'style',
-            minimumResultsForSearch: Infinity,
-            placeholder: 'Select a country',
-        })
-        .data('select2')
-        .$container
-        .addClass('cart-shipping__input');
+    $('.cart-shipping__country').each(function() {
+        $(this)
+            .select2({
+                theme: 'renome-alt',
+                width: 'style',
+                minimumResultsForSearch: Infinity,
+                placeholder: 'Select a country',
+            })
+            .data('select2')
+            .$container
+            .addClass('cart-shipping__input');
+    });
 
     $('.cart-shipping__form').validate({
         errorClass: 'error cart-shipping__error',

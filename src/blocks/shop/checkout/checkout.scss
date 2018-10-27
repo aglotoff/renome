@@ -1,0 +1,307 @@
+/**
+ * Checkout Page
+ */
+.checkout {
+    padding: 70px 0;
+
+    @include breakpoint-up(lg) {
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
+
+    &__section {
+        border-top: 1px solid $color-gallery;
+
+        & + & {
+            @include breakpoint-up(lg) {
+                margin-top: 30px;
+            }
+        }
+    }
+
+    &__section-inner {
+        padding: 20px 10px 50px;
+
+        @include breakpoint-up(lg) {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+    }
+
+    &__section-title {
+        @include breakpoint-up(md) {
+            align-items: center;
+            display: flex;
+        }
+    }
+
+    &__legend {
+        color: $color-black;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    &__fields {
+        margin-top: 30px;
+
+        @include breakpoint-up(md) {
+            margin: 50px auto 0;
+            max-width: 930px;
+
+            overflow: hidden;
+        }
+
+        &_hidden {
+            display: none;
+        }
+    }
+
+    &__fields-inner {
+        @include breakpoint-up(md) {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -25px;
+        }
+    }
+
+    &__group {
+        @include breakpoint-up(md) {
+            padding: 0 25px;
+            width: 100%;
+        }
+
+        &_small {
+            @include breakpoint-up(md) {
+                width: 50%;
+            }
+        }
+    }
+
+    &__label {
+        display: block;
+        margin-top: 20px;
+
+        @include font-size(11px);
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    &__select2 {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    &__toggle {
+        align-items: center;
+        display: flex;
+        margin-top: 20px;
+
+        &_inline {
+            @include breakpoint-up(md) {
+                margin-left: 18px;
+                margin-top: 0;
+                display: inline-flex;
+            }
+        }
+    }
+
+    &__toggle-input {
+        display: none;
+    }
+
+    &__toggle-mark {
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+
+        background-color: $color-white;
+        border: 5px solid $color-athens-gray;
+        outline: none;
+
+        .checkout__toggle-input:checked + & {
+            background-color: $color-primary;
+        }
+    }
+
+    &__toggle-label {
+        margin-left: 15px;
+
+        @include font-size(15px);
+    }
+
+    &__account {
+        margin: 0 auto;
+        max-width: 930px;
+    }
+
+    &__account-inner {
+        display: none;
+        margin-top: 20px;
+    }
+
+    &__table {
+        margin: 25px auto 0;
+        width: 100%;
+
+        @include breakpoint-up(lg) {
+            margin-top: 45px;
+            max-width: 930px;
+        }
+    }
+
+    &__table-header {
+        padding: 15px 0;
+
+        letter-spacing: 0.2em;
+        font-weight: $font-weight-bold;
+        text-align: left;
+        text-transform: uppercase;
+        vertical-align: middle;
+
+        border-bottom: 1px solid $color-gallery;
+    }
+
+    &__table-cell {
+        padding: 15px 0;
+
+        vertical-align: middle;
+
+        border-bottom: 1px solid $color-gallery;
+    }
+
+    &__table-product {
+        @include font-size(14px);
+        font-weight: $font-weight-bold;
+        line-height: 1.6;
+        letter-spacing: 0.05em;
+    }
+
+    &__table-total {
+        text-transform: uppercase;
+
+        &_grand {
+            @include font-size(20px);
+        }
+    }
+
+    &__payments {
+        margin: 0 auto;
+        max-width: 950px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 20px;
+        }
+    }
+
+    &__payment-item {
+        align-items: flex-start;
+        display: flex;
+        padding: 20px 0;
+
+        border-bottom: 1px solid $color-gallery;
+    }
+
+    &__payment-text {
+        flex: 1;
+        margin-left: 15px;
+    }
+
+    &__payment-radio {
+        display: none;
+    }
+
+    &__payment-radio-mark {
+        display: block;
+        height: 20px;
+        width: 20px;
+
+        background-color: $color-white;
+        border: 5px solid $color-athens-gray;
+        border-radius: 50%;
+        outline: none;
+
+        .checkout__payment-radio:checked + & {
+            background-color: $color-primary;
+        }
+    }
+
+    &__payment-desc {
+        display: none;
+        margin-top: 12px;
+    }
+
+    &__payment-title {
+        @include breakpoint-up(md) {
+            align-items: center;
+            display: flex;
+        }
+    }
+
+    &__payment-label {
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    &__payment-cards {
+        display: flex;
+        margin-top: 20px;
+
+        @include breakpoint-up(md) {
+            margin: -7px 0 -7px 50px;
+        }
+    }
+
+    &__payment-card {
+        margin-right: 20px;
+    }
+
+    &__payment-link {
+        display: block;
+        margin-top: 20px;
+
+        color: $color-primary;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+
+        transition: color 0.25s ease;
+
+        @include breakpoint-up(md) {
+            margin-top: 0;
+        }
+
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+
+    &__error {
+        display: block;
+        margin-top: 10px;
+
+        text-transform: none;
+    }
+
+    &__submit {
+        margin: 50px auto 0;
+        max-width: 950px;
+        padding: 0 10px;
+
+        @include breakpoint-up(md) {
+            text-align: right;
+        }
+    }
+
+    &__submit-btn {
+        display: block;
+        width: 100%;
+
+        @include breakpoint-up(md) {
+            display: inline;
+            max-width: 170px;
+        }
+    }
+}

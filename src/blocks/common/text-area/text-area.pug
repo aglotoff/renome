@@ -1,6 +1,7 @@
 mixin text-area(mods = {})
-    textarea.text-area(
-        class=!!mods.alt ? 'text-area_alt' : ''
-    )&attributes(attributes)
+    textarea.text-area(class={
+        'text-area_alt': !!mods.alt,
+        'text-area_checkout': !!mods.checkout
+    })&attributes(attributes)
         if block
             block

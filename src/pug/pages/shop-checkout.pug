@@ -1,0 +1,6 @@
+extends ../layouts/inner
+
+include ../../blocks/shop/checkout/checkout
+
+block append page
+    +checkout(data.content)
