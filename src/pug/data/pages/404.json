@@ -1,0 +1,12 @@
+{
+    "activeNavItem": "Features",
+    "activeNavSubItem": "404 page",
+
+    "pageTitle": "Page not found",
+
+    "content": {
+        "bgImage": "img/content/404/404-bg.jpg",
+        "code": 404,
+        "message": "Sorry, but... page not found"
+    }
+}

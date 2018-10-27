@@ -1,0 +1,13 @@
+mixin error-page(data)
+    .error-page(
+        style=`background-image: url(${data.bgImage}`
+    )&attributes(attributes)
+        .error-page__inner
+            .error-page__text
+                h1.error-page__code= data.code
+                p.error-page__msg= data.message
+
+            +btn({
+                title: 'On homepage',
+                link: 'index.html',
+            }, 'link').error-page__back

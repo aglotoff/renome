@@ -1,0 +1,6 @@
+extends ../layouts/base
+
+include ../../blocks/404/error-page/error-page
+
+block page
+    +error-page(data.content)

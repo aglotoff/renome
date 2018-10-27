@@ -1,0 +1,60 @@
+/**
+ * Error Page
+ */
+.error-page {
+    background: {
+        position: center;
+        repeat: no-repeat;
+        size: cover;
+    }
+
+    &__inner {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 1200px;
+        min-height: calc(100vh - 100px);
+        padding: 85px 10px 85px;
+
+        @include breakpoint-up(md) {
+            text-align: center;
+        }
+    }
+
+    &__text {
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.1em;
+        text-transform: lowercase;
+    }
+
+    &__code {
+        color: $color-white;
+        font-family: $font-family-title;
+        @include font-size(134px);
+
+        @include breakpoint-up(lg) {
+            @include font-size(300px);
+        }
+    }
+
+    &__msg {
+        color: $color-secondary;
+        @include font-size(24px);
+
+        @include breakpoint-up(lg) {
+            margin-top: -0.5em;
+            @include font-size(30px);
+        }
+    }
+
+    &__back {
+        margin-top: 50px;
+        width: 180px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 100px;
+        }
+    }
+}
