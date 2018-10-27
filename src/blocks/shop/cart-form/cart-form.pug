@@ -1,0 +1,64 @@
+mixin cart-form(data)
+    // start cart form 
+    form(action="#" method="post").cart-form&attributes(attributes)
+        .cart-form__alert
+            +alert()
+
+        .cart-form__inner
+            table.cart-form__table
+                colgroup
+                    col.cart-form__col.cart-form__col_name_product
+                    col.cart-form__col.cart-form__col_name_qty
+                    col.cart-form__col.cart-form__col_name_total
+                thead
+                    tr
+                        th.cart-form__header Product
+                        th.cart-form__header
+                            span.cart-form__header-abbr Qty
+                            span.cart-form__header-full Quantity
+                        th.cart-form__header Total
+                        th.cart-form__header
+                tbody
+                    each item in data
+                        tr.cart-form__item
+                            td.cart-form__cell
+                                .cart-form__product
+                                    a(href=item.link).cart-form__product-thumb
+                                        img(
+                                            src=item.image
+                                            alt=item.title
+                                        ).cart-form__product-img
+
+                                    .cart-form__product-body
+                                        a(
+                                            href=item.link
+                                        ).cart-form__product-title= item.title
+                                        .cart-form__product-price
+                                            | $#{item.price.toFixed(2)}
+                            td.cart-form__cell
+                                +input({large: true})(
+                                    value=item.quantity
+                                    name=`[${item.id}][qty]`
+                                ).cart-form__qty
+                            td.cart-form__cell
+                                span.cart-form__total
+                                    | $#{(item.quantity*item.price).toFixed(2)}
+                            td.cart-form__cell
+                                button(
+                                    type="button"
+                                    data-product-id=item.id
+                                ).cart-form__remove Remove
+
+            .cart-form__bottom
+                .cart-form__coupon
+                    +input({alt: true})(
+                        placeholder="Coupon code"
+                    ).cart-form__coupon-code
+                    +btn({
+                        title: 'Apply coupon'
+                    }, 'button').cart-form__coupon-apply
+                
+                +btn({
+                    title: 'Update Cart'
+                }, 'submit').cart-form__submit
+    // end cart form

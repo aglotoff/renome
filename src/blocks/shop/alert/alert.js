@@ -13,25 +13,44 @@
         }, SCROLL_SPEED);
     };
 
+    const showMessage = function(message) {
+        $alert
+            .html('')
+            .append($('<div></div>')
+                .addClass('alert__msg')
+                .text(message));
+        
+        showAlert();
+    };
+
+    const showMessageAndLink = function(message, link) {
+        $alert
+            .html('')
+            .append($('<div></div>')
+                .addClass('alert__msg')
+                .text(message))
+            .append($('<a></a>')
+                .addClass('alert__link')
+                .attr('href', 'shop-cart.html')
+                .text(link));
+        
+        showAlert();
+    };
+
     $('.page')
         .on('addProduct', function(event, title) {
-            $alert
-                .html('')
-                .append($('<div></div>')
-                    .addClass('alert__msg')
-                    .text(`"${title}" was successfully added to your cart.`))
-                .append($('<a></a>')
-                    .addClass('alert__cart-link')
-                    .attr('href', 'shop-cart.html')
-                    .text('View cart'));
-            showAlert();
+            showMessageAndLink(
+                `"${title}" was successfully added to your cart.`,
+                'View cart'
+            );
         })
         .on('error', function(event, message) {
-            $alert
-                .html('')
-                .append($('<div></div>')
-                    .addClass('alert__msg')
-                    .text(message));
-            showAlert();
+            showMessage(message);
+        })
+        .on('cartUpdated', function() {
+            showMessage('Cart updated.');
+        })
+        .on('productRemoved', function(event, title) {
+            showMessageAndLink(`"${title}" removed.`, 'Undo?');
         });
 })($);

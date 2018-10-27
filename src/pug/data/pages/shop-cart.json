@@ -1,0 +1,25 @@
+{
+    "activeNavItem": "Shop",
+
+    "pageTitle": "Shop",
+    "pageSubtitle": "Order dishes online",
+    "pageHeaderBg": "img/content/shop/shop-header-bg.jpg",
+
+    "content": {
+        "items": [{
+            "id": 10001,
+            "title": "Beef with pineapple",
+            "image": "img/content/shop/products/thumbs/80x80/beef-with-pineapple.jpg",
+            "price": 18.20,
+            "quantity": 2,
+            "link": "shop-single.html"
+        }, {
+            "id": 10002,
+            "title": "Egg baguette",
+            "image": "img/content/shop/products/thumbs/80x80/egg-baguette.jpg",
+            "price": 8.10,
+            "quantity": 1,
+            "link": "shop-single.html"
+        }]
+    }
+}
