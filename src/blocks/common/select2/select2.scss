@@ -1,8 +1,7 @@
 /**
  * Override default select2 styles
  */
-/* stylelint-disable-next-line selector-class-pattern */
-.select2-container--renome {
+.select2-container {
     .select2-selection {
         height: auto;
 
@@ -10,7 +9,6 @@
             padding: 7px 0;
 
             color: $color-primary;
-            @include font-size(15px);
             font-weight: $font-weight-bold;
             line-height: 25px;
             text-align: left;
@@ -60,6 +58,15 @@
 
         overflow-y: auto;
     }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.select2-container--renome {
+    .select2-selection {
+        .select2-selection__rendered {
+            @include font-size(15px);
+        }
+    }
 
     .select2-results__option {
         padding: 4px 0 4px 20px;
@@ -69,6 +76,40 @@
 
         &:hover {
             font-weight: $font-weight-bold;
+        }
+    }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.select2-container--renome-alt {
+    text-transform: uppercase;
+
+    .select2-selection {
+        .select2-selection__rendered {
+            padding: 12px 0;
+
+            @include font-size(11px);
+            letter-spacing: 0.2em;
+        }
+    }
+
+    .select2-results__option {
+        padding: 12px 10px;
+
+        @include font-size(11px);
+        letter-spacing: 0.2em;
+
+        &:hover {
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.select2-container--renome-error {
+    .select2-selection {
+        .select2-selection__rendered {
+            border-bottom-color: $color-error;
         }
     }
 }

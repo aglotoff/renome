@@ -10,6 +10,8 @@
             .addClass('loader loader_size_l cart-form__loader')
             .appendTo($formInner);
 
+        $('.page').trigger('updateTotals');
+
         setTimeout(function() {
             $formInner.removeClass('cart-form__inner_processing');
             $loader.remove();
@@ -32,12 +34,43 @@
         }
     };
 
+    const recalculate = function() {
+        let total = 0;
+
+        const $items = $('.cart-form__item');
+
+        $items.each(function() {
+            const $item = $(this);
+
+            const itemQty = Number($('.cart-form__qty', $item).val());
+
+            if (itemQty === 0) {
+                $item.remove();
+            } else {
+                const itemPrice = Number($item
+                    .find('.cart-form__product-price')
+                    .text()
+                    .substr(1));
+                const itemTotal = itemQty * itemPrice;
+                total += itemTotal;
+                $item
+                    .find('.cart-form__total')
+                    .text('$' + itemTotal.toFixed(2));
+            }
+        });
+
+        $('.page').trigger('updatedTotals', [total]);
+    };
+
     $formInner.on('click', '.cart-form__remove', function() {
         const $item = $(this).closest('.cart-form__item');
+
+        $('.page').trigger('updateTotals');
 
         mockAjax(function() {
             $item.remove();
 
+            recalculate();
             checkEmptyCart();
 
             const title = $('.cart-form__product-title', $item).text();
@@ -53,6 +86,7 @@
         }
 
         mockAjax(function() {
+            recalculate();
             $('.page').trigger('error', `Coupon "${code}" does not exist!`);
         });
 
@@ -63,30 +97,9 @@
         $('.page').trigger('error', ['Please, enter a valid number']);
     };
 
-    const onFormSubmit = function(form) {
+    const onFormSubmit = function() {
         mockAjax(function() {
-            const $form = $(form);
-
-            const $items = $('.cart-form__item', $form);
-
-            $items.each(function() {
-                const $item = $(this);
-
-                const itemQty = Number($('.cart-form__qty', $item).val());
-
-                if (itemQty === 0) {
-                    $item.remove();
-                } else {
-                    const itemPrice = Number($item
-                        .find('.cart-form__product-price')
-                        .text()
-                        .substr(1));
-                    const itemTotal = itemQty * itemPrice;
-                    $item
-                        .find('.cart-form__total')
-                        .text('$' + itemTotal.toFixed(2));
-                }
-            });
+            recalculate();
 
             checkEmptyCart();
 

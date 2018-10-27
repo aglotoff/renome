@@ -20,6 +20,11 @@
             "price": 8.10,
             "quantity": 1,
             "link": "shop-single.html"
-        }]
+        }],
+
+        "totals": {
+            "subtotal": 44.50,
+            "total": 44.50
+        }
     }
 }

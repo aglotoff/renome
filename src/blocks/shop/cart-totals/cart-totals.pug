@@ -1,0 +1,29 @@
+mixin cart-totals(data)
+    // start cart totals 
+    .cart-totals&attributes(attributes)
+        .cart-totals__inner
+            table.cart-totals__table
+                tbody
+                    tr
+                        th.cart-totals__header Subtotal
+                        td.cart-totals__value
+                            span.cart-totals__subtotal
+                                | $#{data.subtotal.toFixed(2)}
+                    tr
+                        th.cart-totals__header Shipping
+                        td.cart-totals__value
+                            +cart-shipping().cart-totals__shipping
+                    tr
+                        th.cart-totals__header Total
+                        td.cart-totals__value
+                            span.cart-totals__total
+                                | $#{data.total.toFixed(2)}
+
+            .cart-totals__checkout
+                +btn({
+                    title: 'Proceed to checkout',
+                    link: 'shop-checkout.html',
+                }, 'link').cart-totals__checkout-btn
+
+
+    // end cart totals 
