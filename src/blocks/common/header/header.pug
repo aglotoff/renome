@@ -4,9 +4,20 @@ mixin header(data, mods = {})
         class=!!mods.transparent ? 'header_transparent' : ''
     )&attributes(attributes)
         .header__inner
-            a(href="index.html").header__logo
-                img(src="img/logo.png", alt="Renome").header__logo-img
-                img(src="img/logo-alt.png", alt="Renome").header__logo-img_alt
+            if !!data.isHomepage
+                h1.header__logo
+                    img(src="img/logo.png", alt="Renome").header__logo-img
+                    span.header__logo-text Renome
+            else
+                a(href="index.html").header__logo
+                    img(
+                        src="img/logo.png"
+                        alt="Renome"
+                    ).header__logo-img
+                    img(
+                        src="img/logo-alt.png"
+                        alt="Renome"
+                    ).header__logo-img_alt
 
             +nav(data.nav).header__nav#nav
 
