@@ -1,19 +1,18 @@
 mixin checkout(data)
     // start checkout 
     form(action="#" method="post").checkout&attributes(attributes)
-        fieldset.checkout__section
+        .checkout__section
             .checkout__section-inner
                 .checkout__section-title
-                    legend.checkout__legend Billing address
+                    h2.checkout__legend Billing address
 
                 .checkout__fields
                     .checkout__fields-inner
                         .checkout__group
-                            label(for="billing-contry").checkout__label Country*
+                            label(for="billing-country").checkout__label Country*
                             select(
                                 id="billing-country"
                                 name="billing_country"
-                                required
                             ).checkout__select
                                 option(value="uk") United Kingdom (UK)
                         .checkout__group.checkout__group_small
@@ -108,10 +107,10 @@ mixin checkout(data)
                                     placeholder="Password"
                                 ).checkout__input
 
-        fieldset.checkout__section
+        .checkout__section
             .checkout__section-inner
                 .checkout__section-title
-                    legend.checkout__legend Shipping address
+                    h2.checkout__legend Shipping address
                     label.checkout__toggle.checkout__toggle_inline
                         input(
                             type="checkbox"
@@ -123,11 +122,10 @@ mixin checkout(data)
                 .checkout__fields.checkout__fields_hidden#shipping
                     .checkout__fields-inner
                         .checkout__group
-                            label(for="shipping-contry").checkout__label Country*
+                            label(for="shipping-country").checkout__label Country*
                             select(
                                 id="shipping-country"
                                 name="shipping_country"
-                                required
                             ).checkout__select
                                 option(value="uk") United Kingdom (UK)
                         .checkout__group.checkout__group_small
