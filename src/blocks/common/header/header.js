@@ -3,6 +3,7 @@
  */
 (function($) {
     const DESKTOP_BREAKPOINT = 992; // Min desktop screen width
+    const RESIZE_INTERVAL = 200;    // Resize throttling interval
 
     // Use a custom event to show the site search form
     $('.header__search-toggle').click(function() {
@@ -44,7 +45,7 @@
     let mobile = window.outerWidth < DESKTOP_BREAKPOINT;
 
     // Automatically hide the mobile nav menu when switched to desktop screens
-    $(window).resize(function() {
+    const handleResize = function() {
         if (mobile && ($(window).width() >= DESKTOP_BREAKPOINT)) {
             if (navVisible) {
                 hideNav();
@@ -54,5 +55,12 @@
         } else if (!mobile && (window.innerWidth < DESKTOP_BREAKPOINT)) {
             mobile = true;
         }
+    };
+
+    let resizeTimer = null;
+
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
     });
 })($);

@@ -4,6 +4,7 @@
 (function($) {
     const STICKY_OFFSET = 100;
     const VISIBLE_OFFSET = 400;
+    const SCROLL_INTERVAL = 200;    // Scroll throttling interval
     
     const headerIsTransparent = $('.header').hasClass('header_transparent');
 
@@ -26,8 +27,13 @@
             );
     }
     
-    $(window).on('scroll', handleScroll);
-    
+    let scrollTimer = null;
+
+    $(window).on('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(handleScroll, SCROLL_INTERVAL);
+    });
+
     // Handle initial scroll position
     handleScroll();
 })($);
