@@ -12,101 +12,105 @@ const {env} = minimist(process.argv.slice(2), {
     }
 });
 
-const LIB_PREFIX = './node_modules';
-const SRC_PREFIX  = './src';
-const DEST_PREFIX = './dist';
+/**
+ * Path prefixes
+ */
+const SRC  = './src';
+const DIST = './dist';
 
 const config = {
     /*
      * Path information
      */
     paths: {
-        src:  SRC_PREFIX,
-        dest: DEST_PREFIX,
+        src:  SRC,
+        dest: DIST,
         css: {
             src: [
-                `${SRC_PREFIX}/sass/*.scss`,
-                `!${SRC_PREFIX}/sass/_*.scss`,
+                `${SRC}/sass/*.scss`,
+                `!${SRC}/sass/_*.scss`,
             ],
-            dest:   `${DEST_PREFIX}/css`,
-            lint:   `${SRC_PREFIX}/**/*.scss`,
-            watch:  `${SRC_PREFIX}/**/*.scss`,
-            clean:  `${DEST_PREFIX}/css/**/*.css`
+            dest:   `${DIST}/css`,
+            lint:   `${SRC}/**/*.scss`,
+            watch:  `${SRC}/**/*.scss`,
+            clean:  `${DIST}/css/**/*.css`
+        },
+        deploy: {
+            src: [
+                `${DIST}/**`,
+                `!${DIST}/**/*.map`,
+            ],
+            dest:   `/htdocs/test`,
         },
         fonts: {
-            src:   `${SRC_PREFIX}/fonts/*.{ttf,woff,woff2}`,
-            dest:  `${DEST_PREFIX}/fonts`,
-            watch: `${SRC_PREFIX}/fonts/*.{ttf,woff,woff2}`,
-            clean: `${DEST_PREFIX}/fonts/*.{ttf,woff,woff2}`
+            src:   `${SRC}/fonts/*.{ttf,woff,woff2}`,
+            dest:  `${DIST}/fonts`,
+            watch: `${SRC}/fonts/*.{ttf,woff,woff2}`,
+            clean: `${DIST}/fonts/*.{ttf,woff,woff2}`
         },
         html: {
-            src: `${SRC_PREFIX}/pug/pages/*.pug`,
-            globalData: `${SRC_PREFIX}/pug/data/globals.json`,
-            pageData: `${SRC_PREFIX}/pug/data/pages`,
-            dest: `${DEST_PREFIX}`,
+            src: `${SRC}/pug/pages/*.pug`,
+            globalData: `${SRC}/pug/data/globals.json`,
+            pageData: `${SRC}/pug/data/pages`,
+            dest: `${DIST}`,
             watch: [
-                `${SRC_PREFIX}/**/*.pug`,
-                `${SRC_PREFIX}/pug/data/**/*.json`,
+                `${SRC}/**/*.pug`,
+                `${SRC}/pug/data/**/*.json`,
             ],
-            clean: `${DEST_PREFIX}/**/*.html`
+            clean: `${DIST}/**/*.html`
         },
         icons: {
-            src:   `${SRC_PREFIX}/icons/*.svg`,
-            dest:  `${SRC_PREFIX}`,
-            watch: `${SRC_PREFIX}/icons/*.svg`,
-            clean: `${SRC_PREFIX}/{img/icons.svg,blocks/icon/icon.scss}`
+            src:   `${SRC}/icons/*.svg`,
+            dest:  `${SRC}`,
+            watch: `${SRC}/icons/*.svg`,
+            clean: [
+                `${SRC}/img/icons.svg`,
+                `${SRC}/blocks/icon/icon.scss`,
+            ]
         },
         img: {
-            src:   `${SRC_PREFIX}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            dest:  `${DEST_PREFIX}/img`,
-            watch: `${SRC_PREFIX}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
-            clean: `${DEST_PREFIX}/img/*.{gif,jpg,jpeg,ico,png,svg}`
+            src:   `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+            dest:  `${DIST}/img`,
+            watch: `${SRC}/img/**/*.{gif,jpg,jpeg,ico,png,svg}`,
+            clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg}`
         },
         js: {
-            vendor: [
-                `${LIB_PREFIX}/svg4everybody/dist/svg4everybody.min.js`,
-                `${LIB_PREFIX}/jquery/dist/jquery.min.js`,
-                `${LIB_PREFIX}/slick-carousel/slick/slick.min.js`,
-                `${LIB_PREFIX}/magnific-popup/dist/jquery.magnific-popup.min.js`,
-                `${LIB_PREFIX}/moment/min/moment.min.js`,
-                `${LIB_PREFIX}/pikaday/pikaday.js`,
-                `${LIB_PREFIX}/select2/dist/js/select2.min.js`,
-                `${LIB_PREFIX}/jquery-validation/dist/jquery.validate.min.js`,
-                `${LIB_PREFIX}/shufflejs/dist/shuffle.min.js`,
-            ],
             src: [
-                `${SRC_PREFIX}/blocks/**/*.js`,
-                `${SRC_PREFIX}/js/main.js`,
+                `${SRC}/js/vendor.js`,
+                `${SRC}/js/main.js`,
             ],
-            dest: `${DEST_PREFIX}/js`,
-            lint: `${SRC_PREFIX}/**/*.js`,
-            watch: `${SRC_PREFIX}/**/*.js`,
-            clean: `${DEST_PREFIX}/js/**/*.js{,.map}`,
+            dest: `${DIST}/js`,
+            lint: `${SRC}/**/*.js`,
+            watch: `${SRC}/**/*.js`,
+            clean: `${DIST}/js/**/*.js{,.map}`,
         },
     },
 
     /*
-     * Toggle plugins on or off depending on environment build
+     * Toggle plugins on or off
      */
     run: {
-        cssnano: env === 'production',
-        uglify: env === 'production',
+        css: {
+            cssnano: env === 'production',
+        },
     },
 
     /*
      * Plugin options
      */
     plugins: {
-        babel: {
-            compact: false,
-            presets: ['@babel/preset-env'],
-        },
         browserSync: {
-            server: DEST_PREFIX
+            server: DIST
         },
         eslint: (env === 'production') ?
             JSON.parse(readFileSync('./.eslintrc.json')) :
             JSON.parse(readFileSync('./.eslintrc.dev.json')),
+        ftp: {
+            host:     'host',
+            user:     'user',
+            password: 'password',
+            parallel: 10,
+        },
         htmlBeautify: {
             unformatted: [
                 'abbr', 'b', 'bdi', 'bdo', 'br', 'cite', 'code', 'data', 'del',
@@ -133,8 +137,8 @@ const config = {
 					sprite: '../img/icons.svg',
 					render: {
 						scss: {
-							dest:'../blocks/common/icon/icon.scss',
-							template: `${SRC_PREFIX}/templates/icon.mustache`
+							dest:'../common/blocks/icon/icon.scss',
+							template: `${SRC}/templates/icon.mustache`
 						}
 					}
 				}
@@ -148,7 +152,27 @@ const config = {
                 console: true
             }]
         },
-    }
+        webpack: {
+            output: {
+                filename: '[name].js',
+            },
+            module: {
+                rules: [{
+                    test: /\.js$/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                }],
+            },
+            mode: (env === 'production')
+                ? 'production'
+                : 'development',
+            devtool: 'source-map',
+        },
+    },
 };
 
 module.exports = config;

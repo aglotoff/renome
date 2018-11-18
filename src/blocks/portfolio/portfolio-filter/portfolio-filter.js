@@ -1,6 +1,3 @@
-/**
- * Portfolio Filter Block
- */
 $('.portfolio-filter')
     .on('click', '.portfolio-filter__btn', function() {
         $('.portfolio-layout').trigger('filter', $(this).data('filter'));

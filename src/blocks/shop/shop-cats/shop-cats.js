@@ -1,6 +1,3 @@
-/**
- * Product Categories Block
- */
 $('.shop-cats__toggle').click(function() {
     const $list = $(this).next('.shop-cats__list');
     

@@ -1,6 +1,3 @@
-/**
- * Comment Block
- */
 $('.comment__reply-btn').click(function() {
     const id = $(this).closest('.comment').data('id');
 

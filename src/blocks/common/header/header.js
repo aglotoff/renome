@@ -1,66 +1,61 @@
-/**
- * Header Block
- */
-(function($) {
-    const DESKTOP_BREAKPOINT = 992; // Min desktop screen width
-    const RESIZE_INTERVAL = 200;    // Resize throttling interval
+const DESKTOP_BREAKPOINT = 992; // Min desktop screen width
+const RESIZE_INTERVAL = 200;    // Resize throttling interval
 
-    // Use a custom event to show the site search form
-    $('.header__search-toggle').click(function() {
-        $('.page').trigger('search');
-    });
-    
-    let navVisible = false;
+// Use a custom event to show the site search form
+$('.header__search-toggle').click(function() {
+    $('.page').trigger('search');
+});
 
-    // Hide the mobile nav menu
-    function hideNav() {
-        $('.page').trigger('hideNav');
+let navVisible = false;
 
-        $('.header__nav-toggle')
-            .removeClass('hamburger_open')
-            .attr('aria-expanded', false);
+// Hide the mobile nav menu
+function hideNav() {
+    $('.page').trigger('hideNav');
 
-        navVisible = false;
+    $('.header__nav-toggle')
+        .removeClass('hamburger_open')
+        .attr('aria-expanded', false);
+
+    navVisible = false;
+}
+
+// Show the mobile nav menu
+function showNav() {
+    $('.page').trigger('showNav');
+
+    $('.header__nav-toggle')
+        .addClass('hamburger_open')
+        .attr('aria-expanded', true);
+
+    navVisible = true;
+}
+
+$('.header__nav-toggle').click(function() {
+    if (navVisible) {
+        hideNav();
+    } else {
+        showNav();
     }
-    
-    // Show the mobile nav menu
-    function showNav() {
-        $('.page').trigger('showNav');
+});
 
-        $('.header__nav-toggle')
-            .addClass('hamburger_open')
-            .attr('aria-expanded', true);
+let mobile = window.outerWidth < DESKTOP_BREAKPOINT;
 
-        navVisible = true;
-    }
-
-    $('.header__nav-toggle').click(function() {
+// Automatically hide the mobile nav menu when switched to desktop screens
+const handleResize = function() {
+    if (mobile && ($(window).width() >= DESKTOP_BREAKPOINT)) {
         if (navVisible) {
             hideNav();
-        } else {
-            showNav();
         }
-    });
 
-    let mobile = window.outerWidth < DESKTOP_BREAKPOINT;
+        mobile = false;
+    } else if (!mobile && (window.innerWidth < DESKTOP_BREAKPOINT)) {
+        mobile = true;
+    }
+};
 
-    // Automatically hide the mobile nav menu when switched to desktop screens
-    const handleResize = function() {
-        if (mobile && ($(window).width() >= DESKTOP_BREAKPOINT)) {
-            if (navVisible) {
-                hideNav();
-            }
+let resizeTimer = null;
 
-            mobile = false;
-        } else if (!mobile && (window.innerWidth < DESKTOP_BREAKPOINT)) {
-            mobile = true;
-        }
-    };
-
-    let resizeTimer = null;
-
-    $(window).resize(function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
-    });
-})($);
+$(window).resize(function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
+});

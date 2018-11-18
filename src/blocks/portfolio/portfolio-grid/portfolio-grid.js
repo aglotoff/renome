@@ -1,6 +1,3 @@
-/**
- * Portfolio Grid Block
- */
 /* global Shuffle */
 $('.portfolio-grid').each(function() {
     const $container = $('.portfolio-grid__inner', this);

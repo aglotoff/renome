@@ -1,6 +1,3 @@
-/**
- * Product Images Block
- */
 $('.product-images').each(function() {
     const $gallery = $(this);
     const $slider = $('.product-images__container', $gallery);

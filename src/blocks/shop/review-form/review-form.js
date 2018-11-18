@@ -1,6 +1,3 @@
-/**
- * Review Form Block
- */
 $('.review-form').validate({
     errorClass: 'error review-form__error',
 

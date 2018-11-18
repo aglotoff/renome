@@ -1,6 +1,3 @@
-/**
- * Contact Form Block
- */
 $('.contact-form').validate({
     errorClass: 'error contact-form__error',
 

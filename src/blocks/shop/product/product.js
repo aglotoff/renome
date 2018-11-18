@@ -1,6 +1,3 @@
-/**
- * Product Block
- */
 $('.product__add-btn').click(function() {
     const $loader = $('<span></span>')
         .addClass('loader loader_size_s product__add-loader')

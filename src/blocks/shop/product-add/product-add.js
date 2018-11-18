@@ -1,6 +1,3 @@
-/**
- * Product Add Form Block
- */
 $('.product-add').submit(function() {
     const $qty = $('.product-add__qty', $(this));
     // const $id = $('.product-add__id', $(this));
