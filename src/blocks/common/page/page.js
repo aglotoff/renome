@@ -1,34 +1,63 @@
-const STICKY_OFFSET = 100;
-const VISIBLE_OFFSET = 400;
-const SCROLL_INTERVAL = 200;    // Scroll throttling interval
+/**
+ * @file Implementation of the Page block
+ * @author Andrey Glotov
+ */
 
-const headerIsTransparent = $('.header').hasClass('header_transparent');
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
+const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
 
-// Animate sticky header
-function handleScroll() {
+const HeaderStates = {NORMAL: 0, STICKY: 1, VISIBLE: 2};
+
+const $header = $('.header');
+
+const isHeaderTransparent = $header.hasClass('header_transparent');
+let headerState = HeaderStates.NORMAL;
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// ---------------------------- BEGIN DOM METHODS -----------------------------
+/**
+ * Add or remove header classes basd on the current scroll offset to create an
+ * animated sticky header effect.
+ */
+const updateHeaderStyles = function() {
     const offset = $(window).scrollTop();
+    const newState = offset < STICKY_HEADER_OFFSET
+        ? HeaderStates.NORMAL
+        : (offset < VISIBLE_HEADER_OFFSET
+            ? HeaderStates.STICKY
+            : HeaderStates.VISIBLE);
 
-    $('.page__header')
-        .toggleClass(
-            'page__header_scroll',
-            offset >= STICKY_OFFSET
-        )
-        .toggleClass(
-            'header_transparent',
-            headerIsTransparent && (offset < STICKY_OFFSET)
-        )
-        .toggleClass(
-            'page__header_hidden',
-            (offset > STICKY_OFFSET) && (offset < VISIBLE_OFFSET)
-        );
-}
+    if (newState !== headerState) {
+        if (newState === HeaderStates.NORMAL) {
+            $header
+                .removeClass('page__header_scroll')
+                .removeClass('page__header_hidden')
+                .toggleClass('header_transparent', isHeaderTransparent);
+        } else {
+            $header
+                .addClass('page__header_scroll')
+                .toggleClass(
+                    'page__header_hidden',
+                    newState === HeaderStates.STICKY
+                )
+                .removeClass('header_transparent');
+        }
 
-let scrollTimer = null;
+        headerState = newState;
+    }
+};
+// ----------------------------- END DOM METHODS ------------------------------
 
-$(window).on('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(handleScroll, SCROLL_INTERVAL);
-});
+// --------------------------- BEGIN EVENT HANDLERS ---------------------------
+const handleScroll = function() {
+    updateHeaderStyles();
+};
+// ---------------------------- END EVENT HANDLERS ----------------------------
 
-// Handle initial scroll position
-handleScroll();
+// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+export const initModule = function() {
+    $(window).on('scroll', handleScroll);
+    updateHeaderStyles();
+};
+// ---------------------------- END PUBLIC METHODS ----------------------------
