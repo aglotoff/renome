@@ -1,61 +1,69 @@
+/**
+ * @file Implementation of the Header block
+ * @author Andrey Glotov
+ */
+
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT = 992; // Min desktop screen width
-const RESIZE_INTERVAL = 200;    // Resize throttling interval
 
-// Use a custom event to show the site search form
-$('.header__search-toggle').click(function() {
-    $('.page').trigger('search');
-});
+const $page = $('.page');
+const $navToggle = $('.header__nav-toggle');
+const $searchToggle = $('.header__search-toggle');
 
-let navVisible = false;
+let isNavVisible = false;
+let isMobile = false;
+// --------------------------- END MODULE VARIABLES ---------------------------
 
-// Hide the mobile nav menu
-function hideNav() {
-    $('.page').trigger('hideNav');
+// ---------------------------- BEGIN DOM METHODS -----------------------------
+/**
+ * Show or hide the nav menu.
+ * @param {boolean} show A value to determine whether the nav menu should be
+ *     shown or hidden.
+ */
+const toggleNav = function(show) {
+    $page.trigger(show ? 'showNav' : 'hideNav');
 
-    $('.header__nav-toggle')
-        .removeClass('hamburger_open')
-        .attr('aria-expanded', false);
+    $navToggle
+        .toggleClass('hamburger_open', show)
+        .attr('aria-expanded', show);
 
-    navVisible = false;
-}
+    isNavVisible = show;
+};
+// ----------------------------- END DOM METHODS ------------------------------
 
-// Show the mobile nav menu
-function showNav() {
-    $('.page').trigger('showNav');
+// --------------------------- BEGIN EVENT HANDLERS ---------------------------
+const onSearchToggle = function() {
+    $page.trigger('search');
+};
 
-    $('.header__nav-toggle')
-        .addClass('hamburger_open')
-        .attr('aria-expanded', true);
+const onNavToggle = function() {
+    toggleNav(!isNavVisible);
+};
+// ---------------------------- END EVENT HANDLERS ----------------------------
 
-    navVisible = true;
-}
-
-$('.header__nav-toggle').click(function() {
-    if (navVisible) {
-        hideNav();
-    } else {
-        showNav();
-    }
-});
-
-let mobile = window.outerWidth < DESKTOP_BREAKPOINT;
-
-// Automatically hide the mobile nav menu when switched to desktop screens
-const handleResize = function() {
-    if (mobile && ($(window).width() >= DESKTOP_BREAKPOINT)) {
-        if (navVisible) {
-            hideNav();
+// ---------------------------- BEGIN PUBLIC METHODS --------------------------
+/**
+ * Automatically hide the mobile nav menu when switched to desktop screens
+ */
+export const handleResize = function() {
+    if (isMobile && ($(window).width() >= DESKTOP_BREAKPOINT)) {
+        if (isNavVisible) {
+            toggleNav(false);
         }
 
-        mobile = false;
-    } else if (!mobile && (window.innerWidth < DESKTOP_BREAKPOINT)) {
-        mobile = true;
+        isMobile = false;
+    } else if (!isMobile && ($(window).width() < DESKTOP_BREAKPOINT)) {
+        isMobile = true;
     }
 };
 
-let resizeTimer = null;
+/**
+ * Initialize the header block.
+ */
+export const initModule = function() {
+    isMobile = window.outerWidth < DESKTOP_BREAKPOINT;
 
-$(window).resize(function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
-});
+    $searchToggle.click(onSearchToggle);
+    $navToggle.click(onNavToggle);
+};
+// ----------------------------- END PUBLIC METHODS ---------------------------

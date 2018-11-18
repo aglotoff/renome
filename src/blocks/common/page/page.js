@@ -3,9 +3,12 @@
  * @author Andrey Glotov
  */
 
+import * as Header from '../header/header';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
+const RESIZE_INTERVAL       = 200;  // Resize throttling interval
 
 const HeaderStates = {NORMAL: 0, STICKY: 1, VISIBLE: 2};
 
@@ -13,6 +16,8 @@ const $header = $('.header');
 
 const isHeaderTransparent = $header.hasClass('header_transparent');
 let headerState = HeaderStates.NORMAL;
+
+let resizeTimer = null;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // ---------------------------- BEGIN DOM METHODS -----------------------------
@@ -53,11 +58,24 @@ const updateHeaderStyles = function() {
 const handleScroll = function() {
     updateHeaderStyles();
 };
+
+const handleResize = function() {
+    Header.handleResize();
+};
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 export const initModule = function() {
-    $(window).on('scroll', handleScroll);
+    $(window)
+        .on('scroll', function() {
+            handleScroll();
+        })
+        .on('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
+        });
+
     updateHeaderStyles();
+    Header.initModule();
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

@@ -1,4 +1,3 @@
-import '../blocks/common/header/header';
 import '../blocks/common/nav/nav';
 import '../blocks/common/search/search';
 import '../blocks/common/tabs/tabs';
