@@ -2,7 +2,9 @@ mixin mini-cart(data)
     // start mini cart 
     .mini-cart&attributes(attributes)
         .mini-cart__inner
-            button(type="button").mini-cart__toggle
+            button(
+                type="button"
+            ).mini-cart__toggle
                 +icon('cart')
                 span.mini-cart__qty= data.quantity
 

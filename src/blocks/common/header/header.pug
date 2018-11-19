@@ -22,15 +22,16 @@ mixin header(data, mods = {})
             +nav(data.nav).header__nav#nav
 
             .header__actions
-                button(type="button").header__search-toggle
+                button(type="button" aria-label="Show navigation").header__search-toggle
                     +icon('search')
 
                 +mini-cart(data.cart).header__mini-cart
 
             +hamburger('Toggle nav')(
                 type="button"
-                aria-controls="nav"
+                aria-haspopup="true"
                 aria-expanded="false"
+                aria-label="Show nav menu"
             ).header__nav-toggle
 
             +search().header__search

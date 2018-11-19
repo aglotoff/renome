@@ -4,6 +4,7 @@
  */
 
 import * as Header from '../header/header';
+import * as Nav from '../nav/nav';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -66,16 +67,27 @@ const handleResize = function() {
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 export const initModule = function() {
-    $(window)
-        .on('scroll', function() {
-            handleScroll();
+    // Initialize handlers for custom global events
+    $('.page')
+        .on('showNav', function() {
+            Nav.toggleMenu(true);
         })
+        .on('hideNav', function() {
+            Nav.toggleMenu(false);
+        });
+
+    // Initialize handlers for window scroll & resize events
+    $(window)
+        .on('scroll', handleScroll)
         .on('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
         });
 
-    updateHeaderStyles();
+    // Initialize all blocks
     Header.initModule();
+    Nav.initModule();
+
+    updateHeaderStyles();
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

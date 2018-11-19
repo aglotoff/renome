@@ -4,14 +4,14 @@
  */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-const DESKTOP_BREAKPOINT = 992; // Min desktop screen width
+const DESKTOP_BREAKPOINT  = 992;    // Min desktop screen width
 
 const $page = $('.page');
 const $navToggle = $('.header__nav-toggle');
 const $searchToggle = $('.header__search-toggle');
 
 let isNavVisible = false;
-let isMobile = false;
+let isMobile = true;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // ---------------------------- BEGIN DOM METHODS -----------------------------
@@ -46,13 +46,13 @@ const onNavToggle = function() {
  * Automatically hide the mobile nav menu when switched to desktop screens
  */
 export const handleResize = function() {
-    if (isMobile && ($(window).width() >= DESKTOP_BREAKPOINT)) {
-        if (isNavVisible) {
+    if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
+        if (!isMobile && isNavVisible) {
             toggleNav(false);
         }
 
         isMobile = false;
-    } else if (!isMobile && ($(window).width() < DESKTOP_BREAKPOINT)) {
+    } else if (!isMobile && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
         isMobile = true;
     }
 };
@@ -61,7 +61,7 @@ export const handleResize = function() {
  * Initialize the header block.
  */
 export const initModule = function() {
-    isMobile = window.outerWidth < DESKTOP_BREAKPOINT;
+    isMobile = $(window).outerWidth() < DESKTOP_BREAKPOINT;
 
     $searchToggle.click(onSearchToggle);
     $navToggle.click(onNavToggle);

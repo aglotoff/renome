@@ -80,17 +80,15 @@
         display: none;
 
         @include breakpoint-up(lg) {
-            display: block;
+            display: inline-block;
             margin-left: 15px;
             padding: 5px;
 
-            color: inherit;
             @include font-size(12px);
 
             background: transparent;
             border: none;
             cursor: pointer;
-            outline: none;
 
             transition: color 0.25s ease;
         }
@@ -127,7 +125,6 @@
         background: transparent;
         border: none;
         cursor: pointer;
-        outline: none;
 
         @include breakpoint-up(lg) {
             display: none;

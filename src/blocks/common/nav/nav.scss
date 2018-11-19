@@ -63,8 +63,6 @@
         text-transform: uppercase;
         white-space: nowrap;
 
-        outline: none;
-
         @include breakpoint-up(lg) {
             padding-left: 15px;
             padding-right: 15px;
