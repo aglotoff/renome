@@ -5,6 +5,7 @@
 
 import * as Header from '../header/header';
 import * as Nav from '../nav/nav';
+import * as Search from '../search/search';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -12,11 +13,10 @@ const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
 const RESIZE_INTERVAL       = 200;  // Resize throttling interval
 
 const HeaderStates = {NORMAL: 0, STICKY: 1, VISIBLE: 2};
+let headerState = HeaderStates.NORMAL;
 
 const $header = $('.header');
-
 const isHeaderTransparent = $header.hasClass('header_transparent');
-let headerState = HeaderStates.NORMAL;
 
 let resizeTimer = null;
 // --------------------------- END MODULE VARIABLES ---------------------------
@@ -55,39 +55,45 @@ const updateHeaderStyles = function() {
 };
 // ----------------------------- END DOM METHODS ------------------------------
 
-// --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const handleScroll = function() {
-    updateHeaderStyles();
-};
-
-const handleResize = function() {
-    Header.handleResize();
-};
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+/**
+ * Initialize the page module.
+ * @return true
+ */
 export const initModule = function() {
     // Initialize handlers for custom global events
-    $('.page')
-        .on('showNav', function() {
+    $('.page').on({
+        showNav: function() {
             Nav.toggleMenu(true);
-        })
-        .on('hideNav', function() {
+        },
+        hideNav: function() {
             Nav.toggleMenu(false);
-        });
+        },
+        search: function() {
+            Search.toggle(true);
+        },
+    });
 
     // Initialize handlers for window scroll & resize events
-    $(window)
-        .on('scroll', handleScroll)
-        .on('resize', function() {
+    $(window).on({
+        scroll: function() {
+            updateHeaderStyles();
+        },
+        resize: function() {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(handleResize, RESIZE_INTERVAL);
-        });
+            resizeTimer = setTimeout(function() {
+                Header.handleResize();
+            }, RESIZE_INTERVAL);
+        },
+    });
 
     // Initialize all blocks
     Header.initModule();
     Nav.initModule();
+    Search.initModule();
 
     updateHeaderStyles();
+
+    return true;
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

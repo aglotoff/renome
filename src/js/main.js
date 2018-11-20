@@ -1,4 +1,3 @@
-import '../blocks/common/search/search';
 import '../blocks/common/tabs/tabs';
 
 import '../blocks/index/gallery/gallery';
