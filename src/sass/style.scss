@@ -1,24 +1,12 @@
-@import "fonts";
-@import "reset";
 @import "variables";
 @import "mixins";
+@import "fonts";
+@import "base";
 
 @import "../../node_modules/magnific-popup/src/css/main.scss";
 @import "../../node_modules/slick-carousel/slick/slick.scss";
 @import "../../node_modules/pikaday/scss/pikaday.scss";
 @import '../../node_modules/select2/src/scss/core.scss';
-
-/*
- * ----------------------------------------
- * Base Page Styles
- * ----------------------------------------
- */
-
-:root {
-    /* font-size: 12px; */
-    font-size: 0.75em;
-}
-
 
 @import "../blocks/common/page/page";
 
