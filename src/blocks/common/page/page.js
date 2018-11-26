@@ -10,7 +10,8 @@ import * as Search from '../search/search';
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
-const RESIZE_INTERVAL       = 200;  // Resize throttling interval
+const RESIZE_INTERVAL       = 200;  // Resize debouncing interval
+const SCROLL_INTERVAL       = 200;  // Scroll throttling interval
 
 const HeaderStates = {NORMAL: 0, STICKY: 1, VISIBLE: 2};
 let headerState = HeaderStates.NORMAL;
@@ -19,6 +20,8 @@ const $header = $('.header');
 const isHeaderTransparent = $header.hasClass('header_transparent');
 
 let resizeTimer = null;
+let scrollTimer = null;
+let wasScrolled = false;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // ---------------------------- BEGIN DOM METHODS -----------------------------
@@ -55,6 +58,16 @@ const updateHeaderStyles = function() {
 };
 // ----------------------------- END DOM METHODS ------------------------------
 
+// --------------------------- BEGIN EVENT HANDLERS ---------------------------
+const onWindowScroll = function() {
+    updateHeaderStyles();
+};
+
+const onWindowResize = function() {
+    Header.handleResize();
+};
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the page module.
@@ -77,13 +90,25 @@ export const initModule = function() {
     // Initialize handlers for window scroll & resize events
     $(window).on({
         scroll: function() {
-            updateHeaderStyles();
+            if (scrollTimer) {
+                // ensure that we catch and execute that last invocation
+                wasScrolled = true;
+                return;
+            }
+
+            onWindowScroll();
+
+            scrollTimer = this.setTimeout(function() {
+                scrollTimer = null;
+                if (wasScrolled) {
+                    onWindowScroll();
+                    wasScrolled = false;
+                }
+            }, SCROLL_INTERVAL);
         },
         resize: function() {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                Header.handleResize();
-            }, RESIZE_INTERVAL);
+            resizeTimer = setTimeout(onWindowResize, RESIZE_INTERVAL);
         },
     });
 

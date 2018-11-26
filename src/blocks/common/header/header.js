@@ -47,7 +47,7 @@ const onNavToggle = function() {
  */
 export const handleResize = function() {
     if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
-        if (!isMobile && isNavVisible) {
+        if (isNavVisible) {
             toggleNav(false);
         }
 
