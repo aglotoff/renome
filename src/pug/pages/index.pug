@@ -1,12 +1,12 @@
-extends ../layouts/base
+extends ../layouts/base.pug
 
-include ../../blocks/index/cta/cta
-include ../../blocks/index/recent-posts/recent-posts
-include ../../blocks/index/services/services
-include ../../blocks/index/slider/slider
-include ../../blocks/index/specials/specials
-include ../../blocks/index/specials-carousel/specials-carousel
-include ../../blocks/index/testimonial/testimonial
+include ../../blocks/index/cta/cta.pug
+include ../../blocks/index/recent-posts/recent-posts.pug
+include ../../blocks/index/services/services.pug
+include ../../blocks/index/slider/slider.pug
+include ../../blocks/index/specials/specials.pug
+include ../../blocks/index/specials-carousel/specials-carousel.pug
+include ../../blocks/index/testimonial/testimonial.pug
 
 block page
     +slider(data.content.slider)

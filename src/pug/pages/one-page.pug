@@ -1,21 +1,21 @@
-extends ../layouts/base
+extends ../layouts/base.pug
 
-include ../../blocks/index/slider/slider
-include ../../blocks/index/gallery/gallery
-include ../../blocks/index/testimonial/testimonial
-include ../../blocks/index/specials/specials
-include ../../blocks/index/specials-carousel/specials-carousel
+include ../../blocks/index/slider/slider.pug
+include ../../blocks/index/gallery/gallery.pug
+include ../../blocks/index/testimonial/testimonial.pug
+include ../../blocks/index/specials/specials.pug
+include ../../blocks/index/specials-carousel/specials-carousel.pug
 
-include ../../blocks/menu/menu/menu
-include ../../blocks/menu/menu-cat/menu-cat
-include ../../blocks/menu/menu-product/menu-product
-include ../../blocks/menu/menu-section/menu-section
+include ../../blocks/menu/menu/menu.pug
+include ../../blocks/menu/menu-cat/menu-cat.pug
+include ../../blocks/menu/menu-product/menu-product.pug
+include ../../blocks/menu/menu-section/menu-section.pug
 
-include ../../blocks/reservation/reservation-form/reservation-form
+include ../../blocks/reservation/reservation-form/reservation-form.pug
 
-include ../../blocks/contact/contact-bottom/contact-bottom
-include ../../blocks/contact/contact-details/contact-details
-include ../../blocks/contact/contact-form/contact-form
+include ../../blocks/contact/contact-bottom/contact-bottom.pug
+include ../../blocks/contact/contact-details/contact-details.pug
+include ../../blocks/contact/contact-form/contact-form.pug
 
 block page
     +slider(data.content.slider)

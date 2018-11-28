@@ -1,9 +1,9 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/portfolio-single/project-layout/project-layout
-include ../../blocks/portfolio-single/project-info/project-info
-include ../../blocks/portfolio-single/project-carousel/project-carousel
-include ../../blocks/portfolio-single/project-desc/project-desc
+include ../../blocks/portfolio-single/project-layout/project-layout.pug
+include ../../blocks/portfolio-single/project-info/project-info.pug
+include ../../blocks/portfolio-single/project-carousel/project-carousel.pug
+include ../../blocks/portfolio-single/project-desc/project-desc.pug
 
 block append page
     +project-layout(data.content)

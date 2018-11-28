@@ -1,35 +1,23 @@
 const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
-const eslint = require('gulp-eslint');
-const plumber = require('gulp-plumber');
-const watch = require('gulp-watch');
 const named = require('vinyl-named');
 const webpack = require('webpack-stream');
 
 const config = require('../config');
 
 // ----------------------------------------
-//   Task: Lint: JavaScript
-// ----------------------------------------
-
-gulp.task('lint:js', () => {
-    return gulp.src(config.paths.js.lint)
-        .pipe(eslint(config.plugins.eslint))
-        .pipe(eslint.format());
-});
-
-// ----------------------------------------
 //   Task: Build: JavaScript
 // ----------------------------------------
 
-gulp.task('build:js', ['lint:js'], () => {
+gulp.task('build:js', () => {
     return gulp.src(config.paths.js.src)
-        .pipe(plumber())
         .pipe(named())
         .pipe(webpack(config.plugins.webpack))
-        .pipe(gulp.dest(config.paths.js.dest))
-        .pipe(browserSync.reload({stream: true}));
+        .on('error', function() {
+            this.emit('end');
+        })
+        .pipe(gulp.dest(config.paths.js.dest));
 });
 
 // ----------------------------------------
@@ -37,9 +25,18 @@ gulp.task('build:js', ['lint:js'], () => {
 // ----------------------------------------
 
 gulp.task('watch:js', () => {
-    return watch(config.paths.js.watch, () => {
-        gulp.start('build:js');
-    });
+    watching = true;
+    return gulp.src(config.paths.js.src)
+        .pipe(named())
+        .pipe(webpack({
+            ...config.plugins.webpack,
+            watch: true,
+        }))
+        .on('error', function() {
+            this.emit('end');
+        })
+        .pipe(gulp.dest(config.paths.js.dest))
+        .pipe(browserSync.reload({stream: true}));
 });
 
 // ----------------------------------------

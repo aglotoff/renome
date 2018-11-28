@@ -1,9 +1,9 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/menu/menu/menu
-include ../../blocks/menu/menu-cat/menu-cat
-include ../../blocks/menu/menu-product/menu-product
-include ../../blocks/menu/menu-section/menu-section
+include ../../blocks/menu/menu/menu.pug
+include ../../blocks/menu/menu-cat/menu-cat.pug
+include ../../blocks/menu/menu-product/menu-product.pug
+include ../../blocks/menu/menu-section/menu-section.pug
 
 block append page
     +section(data.content.discover, {reverse: true})

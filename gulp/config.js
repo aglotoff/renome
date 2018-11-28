@@ -15,14 +15,16 @@ const {env} = minimist(process.argv.slice(2), {
 /**
  * Path prefixes
  */
-const SRC  = './src';
-const DIST = './dist';
+const TOP  = '.';
+const SRC  = `${TOP}/src`
+const DIST = `${TOP}/dist`;
 
 const config = {
     /*
      * Path information
      */
     paths: {
+        top:  TOP,
         src:  SRC,
         dest: DIST,
         css: {
@@ -52,6 +54,7 @@ const config = {
             src: `${SRC}/pug/pages/*.pug`,
             globalData: `${SRC}/pug/data/globals.json`,
             pageData: `${SRC}/pug/data/pages`,
+            pages: `${SRC}/pug/pages/`,
             dest: `${DIST}`,
             watch: [
                 `${SRC}/**/*.pug`,
@@ -102,9 +105,6 @@ const config = {
         browserSync: {
             server: DIST
         },
-        eslint: (env === 'production') ?
-            JSON.parse(readFileSync('./.eslintrc.json')) :
-            JSON.parse(readFileSync('./.eslintrc.dev.json')),
         ftp: {
             host:     'host',
             user:     'user',
@@ -127,6 +127,10 @@ const config = {
                     {removeAttrs:{attrs:'(fill|stroke|style)'}}
                 ]
             },
+        },
+        pugInheritance: {
+            basedir: `${SRC}/pug`,
+            skip: 'node_modules',
         },
         sass: {
             outputStyle: 'expanded',
@@ -158,7 +162,18 @@ const config = {
             },
             module: {
                 rules: [{
+                    enforce: 'pre',
                     test: /\.js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'eslint-loader',
+                        options: (env === 'production') ?
+                            JSON.parse(readFileSync('./.eslintrc.json')) :
+                            JSON.parse(readFileSync('./.eslintrc.dev.json'))
+                    }
+                }, {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
                         options: {

@@ -1,13 +1,13 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/blog/article/article
-include ../../blocks/blog/blog-cats/blog-cats
-include ../../blocks/blog/blog-gallery/blog-gallery
-include ../../blocks/blog/blog-layout/blog-layout
-include ../../blocks/blog/blog-search/blog-search
-include ../../blocks/blog/blog-sidebar/blog-sidebar
-include ../../blocks/blog/popular-posts/popular-posts
-include ../../blocks/blog/video/video
+include ../../blocks/blog/article/article.pug
+include ../../blocks/blog/blog-cats/blog-cats.pug
+include ../../blocks/blog/blog-gallery/blog-gallery.pug
+include ../../blocks/blog/blog-layout/blog-layout.pug
+include ../../blocks/blog/blog-search/blog-search.pug
+include ../../blocks/blog/blog-sidebar/blog-sidebar.pug
+include ../../blocks/blog/popular-posts/popular-posts.pug
+include ../../blocks/blog/video/video.pug
 
 block append page
     +blog-layout(data.content, {sidebar: 'left'})

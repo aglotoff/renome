@@ -1,9 +1,9 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/shop/alert/alert
-include ../../blocks/shop/cart-form/cart-form
-include ../../blocks/shop/cart-totals/cart-totals
-include ../../blocks/shop/cart-shipping/cart-shipping
+include ../../blocks/shop/alert/alert.pug
+include ../../blocks/shop/cart-form/cart-form.pug
+include ../../blocks/shop/cart-totals/cart-totals.pug
+include ../../blocks/shop/cart-shipping/cart-shipping.pug
 
 block append page
     +cart-form(data.content.items)

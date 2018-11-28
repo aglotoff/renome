@@ -1,8 +1,8 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/about/about-bottom/about-bottom
-include ../../blocks/about/about-gallery/about-gallery
-include ../../blocks/about/opening-hours/opening-hours
+include ../../blocks/about/about-bottom/about-bottom.pug
+include ../../blocks/about/about-gallery/about-gallery.pug
+include ../../blocks/about/opening-hours/opening-hours.pug
 
 block append page
     +section(data.content.history)

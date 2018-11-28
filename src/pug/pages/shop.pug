@@ -1,9 +1,9 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/shop/shop-layout/shop-layout
-include ../../blocks/shop/shop-cats/shop-cats
-include ../../blocks/shop/products/products
-include ../../blocks/shop/product/product
+include ../../blocks/shop/shop-layout/shop-layout.pug
+include ../../blocks/shop/shop-cats/shop-cats.pug
+include ../../blocks/shop/products/products.pug
+include ../../blocks/shop/product/product.pug
 
 block append page
     +shop-layout(data.content)

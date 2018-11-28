@@ -1,9 +1,9 @@
-extends ../layouts/inner
+extends ../layouts/inner.pug
 
-include ../../blocks/contact/contact-bottom/contact-bottom
-include ../../blocks/contact/contact-details/contact-details
-include ../../blocks/contact/contact-form/contact-form
-include ../../blocks/contact/map/map
+include ../../blocks/contact/contact-bottom/contact-bottom.pug
+include ../../blocks/contact/contact-details/contact-details.pug
+include ../../blocks/contact/contact-form/contact-form.pug
+include ../../blocks/contact/map/map.pug
 
 block append page
     +section(data.content.happy, {reverse: true})
