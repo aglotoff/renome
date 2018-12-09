@@ -68,7 +68,8 @@
         border-radius: 50%;
         transition: all 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
             border-color: $color-secondary;
         }
