@@ -10,7 +10,7 @@ mixin recent-posts(data)
                 day = '0' + day;
             return `${month}/${day}`;
         };
-    // start recent posts section 
+    // Begin recent posts section 
     section.recent-posts
         .recent-posts__inner
             +heading-group({
@@ -30,4 +30,4 @@ mixin recent-posts(data)
                                     time(datetime=post.date)
                                         = formattedDate(post.date)
                                 h3.recent-posts__title= post.title
-    // end recent posts section 
+    // End recent posts section 

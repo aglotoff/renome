@@ -1,5 +1,5 @@
 /**
- * Recent Posts
+ * Styles for the recent posts block
  */
 .recent-posts {
     padding: 70px 0;
@@ -106,7 +106,8 @@
 
             transition: color 0.2s ease;
 
-            .recent-posts__post:hover & {
+            .recent-posts__post:hover &,
+            .recent-posts__post:focus &, {
                 color: $color-secondary;
             }
         }

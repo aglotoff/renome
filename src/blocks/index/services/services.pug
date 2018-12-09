@@ -1,5 +1,5 @@
 mixin services(data)
-    // start services section 
+    // Begin services section 
     section.services&attributes(attributes)
         +heading-group({
             title: data.title,
@@ -10,4 +10,4 @@ mixin services(data)
             ul.services__list
                 each item in data.items
                     li.services__item= item
-    // end services section 
+    // End services section 

@@ -1,5 +1,5 @@
 mixin section(data, mods = {})
-    <!-- start #{data.title.toLowerCase()} section -->
+    <!-- Begin #{data.title} section -->
     section.section(
         class=!!mods.reverse ? 'section_reverse' : ''
     )&attributes(attributes)
@@ -22,4 +22,4 @@ mixin section(data, mods = {})
                 if (data.link)
                     .section__read-more
                         a(href=data.link).section__link ...
-    <!-- end #{data.title.toLowerCase()} section -->
+    <!-- End #{data.title} section -->

@@ -8,6 +8,7 @@ import * as Search from '../search/search';
 import * as Minicart from '../mini-cart/mini-cart';
 
 import * as Slider from '../../index/slider/slider';
+import * as SpecialsCarousel from '../../index/specials-carousel/specials-carousel';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
@@ -119,6 +120,7 @@ export const initModule = function() {
     Search.initModule();
     Minicart.initModule();
     Slider.initModule();
+    SpecialsCarousel.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

@@ -1,5 +1,5 @@
 /**
- * Button
+ * Styles for the button block
  */
 .btn {
     display: inline-block;
@@ -21,7 +21,8 @@
     outline: none;
     transition: background-color 0.2s ease;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background: $color-secondary;
     }
 
@@ -33,7 +34,8 @@
         @include font-size(12px);
         background: $color-catskill-white;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-catskill-white;
 
             background: $color-primary;

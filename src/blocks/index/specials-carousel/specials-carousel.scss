@@ -1,5 +1,5 @@
 /**
- * Specials Carousel
+ * Styles for the specials carousel block
  */
 .specials-carousel {
     padding-bottom: 80px;
@@ -93,7 +93,8 @@
             }
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             @include breakpoint-up(md) {
                 background: $color-secondary;
             }

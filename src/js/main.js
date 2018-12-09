@@ -1,8 +1,6 @@
 import '../blocks/common/tabs/tabs';
 
 import '../blocks/index/gallery/gallery';
-import '../blocks/index/slider/slider';
-import '../blocks/index/specials-carousel/specials-carousel';
 
 import '../blocks/about/about-gallery/about-gallery';
 
