@@ -1,7 +1,9 @@
 /**
- * Homepage Slider
+ * Styles for the slider block
  */
 .slider {
+    position: relative;
+
     &__slide {
         background: {
             position: center;
@@ -139,7 +141,8 @@
             border-bottom: 2px solid $color-white;
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 1;
         }
 

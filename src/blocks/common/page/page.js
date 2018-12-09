@@ -7,6 +7,8 @@ import * as Nav from '../nav/nav';
 import * as Search from '../search/search';
 import * as Minicart from '../mini-cart/mini-cart';
 
+import * as Slider from '../../index/slider/slider';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -95,7 +97,7 @@ export const initModule = function() {
         // Throttle the window scroll event
         scroll: function() {
             if (scrollTimer) {
-                // ensure that we catch and execute that last invocation
+                // Ensure that we catch and execute that last invocation
                 wasScrolled = true;
                 return;
             }
@@ -116,8 +118,9 @@ export const initModule = function() {
     Nav.initModule();
     Search.initModule();
     Minicart.initModule();
+    Slider.initModule();
 
-    // Process the initial window size and scroll position.
+    // Process the initial window size and scroll position
     onWindowResize();
     onWindowScroll();
 
