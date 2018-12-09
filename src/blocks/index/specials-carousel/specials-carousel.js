@@ -1,5 +1,5 @@
 /**
- * @file Implementation of specials carousel block
+ * @file Implementation of the specials carousel block
  * @author Andrey Glotov
  */
 
@@ -135,5 +135,7 @@ export const initModule = function() {
     $('.specials-carousel').each(function() {
         new SpecialsCarousel($(this));
     });
+
+    return true;
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

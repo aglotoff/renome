@@ -10,6 +10,8 @@ import * as Minicart from '../mini-cart/mini-cart';
 import * as Slider from '../../index/slider/slider';
 import * as SpecialsCarousel from '../../index/specials-carousel/specials-carousel';
 
+import * as AboutGallery from '../../about/about-gallery/about-gallery';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -121,6 +123,7 @@ export const initModule = function() {
     Minicart.initModule();
     Slider.initModule();
     SpecialsCarousel.initModule();
+    AboutGallery.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

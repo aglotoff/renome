@@ -1,16 +1,19 @@
 mixin about-gallery(data)
-    // start gallery 
+    // Begin gallery 
     .about-gallery&attributes(attributes)
         each thumb in data
-            .about-gallery__thumb
+            a.about-gallery__thumb(
+                href=thumb.link
+                class={
+                    'mfp-image': thumb.type == 'image',
+                    'mfp-iframe': thumb.type == 'video',
+                }
+            )
                 img(src=thumb.src, alt=thumb.alt).about-gallery__thumb-img
 
-                a.about-gallery__thumb-link(
-                    href=thumb.link
-                    class={
-                        'mfp-image': thumb.type == 'image',
-                        'mfp-iframe': thumb.type == 'video',
-                    }
-                )
-                    +icon(thumb.type == 'video' ? 'play' : 'zoom')
-    // end gallery 
+                .about-gallery__thumb-overlay
+                    +icon(
+                        thumb.type == 'video' ? 'play' : 'zoom',
+                        thumb.type == 'video' ? 'Play video' : 'Zoom image'
+                    )
+    // End gallery 
