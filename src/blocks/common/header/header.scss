@@ -1,5 +1,5 @@
 /**
- * Header
+ * Styles for the header block
  */
 .header {
     color: $color-black;
@@ -76,25 +76,12 @@
         }
     }
 
-    &__search-toggle {
+    &__search {
         display: none;
 
         @include breakpoint-up(lg) {
-            display: inline-block;
+            display: block;
             margin-left: 15px;
-            padding: 5px;
-
-            @include font-size(12px);
-
-            background: transparent;
-            border: none;
-            cursor: pointer;
-
-            transition: color 0.25s ease;
-        }
-
-        &:hover {
-            color: $color-secondary;
         }
     }
 
@@ -104,45 +91,8 @@
         }
     }
 
-    &__nav {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        top: 75px;
-
-        @include breakpoint-up(lg) {
-            position: static;
-        }
-    }
-
     &__nav-toggle {
         margin-left: 15px;
-        padding: 0;
-
-        @include font-size(15px);
-
-        background: transparent;
-        border: none;
-        cursor: pointer;
-
-        @include breakpoint-up(lg) {
-            display: none;
-        }
-    }
-
-    &__search {
-        display: none;
-
-        @include breakpoint-up(lg) {
-            left: 0;
-            position: fixed;
-            right: 0;
-            top: 0;
-            z-index: 1;
-
-            display: block;
-        }
     }
 
     &_transparent {

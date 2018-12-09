@@ -1,5 +1,5 @@
 mixin header(data, mods = {})
-    // start header 
+    // Begin header 
     header.header(
         class=!!mods.transparent ? 'header_transparent' : ''
     )&attributes(attributes)
@@ -19,20 +19,11 @@ mixin header(data, mods = {})
                         alt="Renome"
                     ).header__logo-img_alt
 
-            +nav(data.nav).header__nav#nav
+            +nav__menu(data.nav).header__nav
 
             .header__actions
-                button(type="button" aria-label="Show navigation").header__search-toggle
-                    +icon('search')
-
+                +search().header__search
                 +mini-cart(data.cart).header__mini-cart
 
-            +hamburger('Toggle nav')(
-                type="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-label="Show nav menu"
-            ).header__nav-toggle
-
-            +search().header__search
-    // end header 
+            +nav__toggle().header__nav-toggle
+    // End header 

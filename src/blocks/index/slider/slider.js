@@ -3,13 +3,16 @@ const PLAY_SPEED = 5000;
 
 $('.slider').each(function() {
     const $slider = $(this);
+    const $container = $('.slider__container', $slider);
+    const $arrowPrev = $('.slider__arrow_dir_prev', $slider);
+    const $arrowNext = $('.slider__arrow_dir_prev', $slider);
 
-    $slider.slick({
+    $container.slick({
         autoplay: true,
         autoplaySpeed: PLAY_SPEED,
         rows: 0,
-        prevArrow: '.slider__arrow_dir_prev',
-        nextArrow: '.slider__arrow_dir_next',
+        prevArrow: $arrowPrev,
+        nextArrow: $arrowNext,
         cssEase: 'linear',
         fade: true,
         pauseOnFocus: false,
@@ -20,7 +23,7 @@ $('.slider').each(function() {
     });
 
     // Add a modifier to the active slide
-    $slider.on('beforeChange', function(e, slick, current, next) {
+    $container.on('beforeChange', function(e, slick, current, next) {
         slick.$slides.eq(current).removeClass('slider__slide_active');
         slick.$slides.eq(next).addClass('slider__slide_active');
     });

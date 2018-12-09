@@ -1,5 +1,5 @@
 /**
- * Mobile Menu Search Form
+ * Styles for the mobile search block
  */
 .mobile-search {
     align-items: center;
@@ -39,13 +39,9 @@
 
         transition: all 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
-
-            @include breakpoint-up(lg) {
-                color: $color-white;
-                opacity: 1;
-            }
         }
     }
 }

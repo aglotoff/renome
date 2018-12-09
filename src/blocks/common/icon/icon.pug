@@ -1,3 +1,5 @@
-mixin icon(type)
+mixin icon(type, title='')
     svg(class=`icon icon_${type}`)&attributes(attributes)
+        if title
+            title= title
         use(xlink:href=`img/icons.svg#${type}`)

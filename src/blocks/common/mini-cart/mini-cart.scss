@@ -1,25 +1,27 @@
 /**
- * Mini Cart
+ * Styles for the mini cart block
  */
 .mini-cart {
-    &__inner {
-        position: relative;
-    }
+    position: relative;
 
     &__toggle {
-        padding: 25px 0;
+        display: block;
+        padding: 25px 5px;
 
         color: inherit;
         @include font-size(12px);
-
-        background: transparent;
-        border: none;
-        cursor: pointer;
+        white-space: nowrap;
 
         transition: color 0.25s ease;
+
+        &:hover,
+        &:focus,
+        .mini-cart_open & {
+            color: $color-secondary;
+        }
     }
 
-    &__qty {
+    &__item-count {
         display: inline-block;
         margin-left: 10px;
 
@@ -45,10 +47,22 @@
         transition: opacity 0.25s ease,
                     visibility 0.25s ease 0.25s;
         visibility: hidden;
+
+        @include breakpoint-up(lg) {
+            left: auto;
+            top: auto;
+        }
+
+        .mini-cart_open & {
+            opacity: 1;
+
+            transition-delay: 0s;
+            visibility: visible;
+        }
     }
 
     &__total,
-    &__link {
+    &__action {
         display: block;
         padding: 13px 22px;
 
@@ -56,24 +70,12 @@
         white-space: nowrap;
     }
 
-    &__link {
+    &__action {
         text-decoration: none;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
-        }
-    }
-
-    &:hover {
-        .mini-cart__toggle {
-            color: $color-secondary;
-        }
-
-        .mini-cart__drop {
-            opacity: 1;
-
-            transition-delay: 0s;
-            visibility: visible;
         }
     }
 }

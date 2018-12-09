@@ -2,31 +2,50 @@ mixin nav__list(data, level = 0)
     ul.nav__list&attributes(attributes)
         each item in data
             li.nav__item
-                a.nav__link(
-                    href=item.link
-                    class={
-                        nav__link_submenu: level > 0,
-                        nav__link_active: !!item.active,
-                    }
-                )= item.text
-
                 if item.submenu
-                    button(type="button").nav__arrow.nav__arrow_submenu Submenu
+                    a.nav__link(
+                        href=item.link
+                        class={
+                            nav__link_submenu: level > 0,
+                            nav__link_active: !!item.active,
+                        }
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    )= item.text
+                        button(
+                            type="button"
+                        ).nav__arrow.nav__arrow_open Open Submenu
 
                     .nav__submenu
-                        .nav__content
-                            .nav__back
+                        .nav__menu-inner
+                            .nav__submenu-top
                                 button(
                                     type="button"
-                                ).nav__arrow.nav__arrow_back Back
-                                span.nav__back-text Back
-                            
-                            +nav__list(item.submenu, level + 1)
+                                ).nav__arrow.nav__arrow_close Close submenu
+                                .nav__submenu-top-text Back
 
-mixin nav(data)
-    // start nav menu 
-    nav.nav&attributes(attributes)
-        .nav__content
-            +mobile-search().nav__search
-            +nav__list(data).nav__list_horizontal
-    // end nav menu 
+                            +nav__list(item.submenu, level + 1)
+                else
+                    a.nav__link(
+                        href=item.link
+                        class={
+                            nav__link_submenu: level > 0,
+                            nav__link_active: !!item.active,
+                        }
+                    )= item.text
+
+                
+
+mixin nav__menu(data)
+    // Begin nav menu
+    nav.nav.nav__menu&attributes(attributes)
+        .nav__menu-inner
+                +mobile-search().nav__search
+                +nav__list(data).nav__list_horizontal
+    // End nav menu
+
+mixin nav__toggle()
+    +hamburger('Toggle nav')(
+        aria-haspopup="true"
+        aria-expanded="false"
+    ).nav.nav__toggle&attributes(attributes)

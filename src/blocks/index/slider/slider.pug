@@ -1,15 +1,16 @@
 mixin slider(data)
     // start slider 
     .slider&attributes(attributes)
-        each slide, i in data
-            .slider__slide(
-                class=(i == 0) ? 'slider__slide_active': ''
-                style=`background-image: url(${slide.image})`
-            )
-                .slider__slide-content
-                    .slider__slide-heading
-                        h2.slider__slide-title= slide.title
-                        .slider__slide-subtitle= slide.subtitle
+        .slider__container
+            each slide, i in data
+                .slider__slide(
+                    class=(i == 0) ? 'slider__slide_active': ''
+                    style=`background-image: url(${slide.image})`
+                )
+                    .slider__slide-content
+                        .slider__slide-heading
+                            h2.slider__slide-title= slide.title
+                            .slider__slide-subtitle= slide.subtitle
 
         .slider__arrows
             button(type="button").slider__arrow.slider__arrow_dir_prev Previous

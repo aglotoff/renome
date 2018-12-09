@@ -1,13 +1,14 @@
 /**
- * @file Implementation of the Page block
+ * @file Implementation of the page block
  * @author Andrey Glotov
  */
 
-import * as Header from '../header/header';
 import * as Nav from '../nav/nav';
 import * as Search from '../search/search';
+import * as Minicart from '../mini-cart/mini-cart';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
 const RESIZE_INTERVAL       = 200;  // Resize debouncing interval
@@ -19,6 +20,7 @@ let headerState = HeaderStates.NORMAL;
 const $header = $('.header');
 const isHeaderTransparent = $header.hasClass('header_transparent');
 
+let isMobile    = true;
 let resizeTimer = null;
 let scrollTimer = null;
 let wasScrolled = false;
@@ -64,7 +66,15 @@ const onWindowScroll = function() {
 };
 
 const onWindowResize = function() {
-    Header.handleResize();
+    if (!isMobile && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
+        isMobile = true;
+
+        Nav.handleResize(true);
+    } else if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
+        isMobile = false;
+
+        Nav.handleResize(false);
+    }
 };
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
@@ -74,21 +84,15 @@ const onWindowResize = function() {
  * @return true
  */
 export const initModule = function() {
-    // Initialize handlers for custom global events
-    $('.page').on({
-        showNav: function() {
-            Nav.toggleMenu(true);
-        },
-        hideNav: function() {
-            Nav.toggleMenu(false);
-        },
-        search: function() {
-            Search.toggle(true);
-        },
-    });
-
     // Initialize handlers for window scroll & resize events
     $(window).on({
+        // Debounce the window resize event 
+        resize: function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(onWindowResize, RESIZE_INTERVAL);
+        },
+
+        // Throttle the window scroll event
         scroll: function() {
             if (scrollTimer) {
                 // ensure that we catch and execute that last invocation
@@ -106,18 +110,16 @@ export const initModule = function() {
                 }
             }, SCROLL_INTERVAL);
         },
-        resize: function() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(onWindowResize, RESIZE_INTERVAL);
-        },
     });
 
     // Initialize all blocks
-    Header.initModule();
     Nav.initModule();
     Search.initModule();
+    Minicart.initModule();
 
-    updateHeaderStyles();
+    // Process the initial window size and scroll position.
+    onWindowResize();
+    onWindowScroll();
 
     return true;
 };

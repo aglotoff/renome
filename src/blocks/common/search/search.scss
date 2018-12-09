@@ -1,17 +1,50 @@
 /**
- * Site Search
+ * Styles for search block
  */
 .search {
-    height: 100px;
+    &__toggle {
+        padding: 25px 5px;
 
-    background: $color-primary;
-    opacity: 0;
+        color: inherit;
+        @include font-size(12px);
 
-    transition: opacity 0.25s ease,
-                visibility 0.25s ease 0.25s;
-    visibility: hidden;
+        background: transparent;
+        border: none;
+        cursor: pointer;
 
-    &__inner {
+        transition: color 0.25s ease;
+
+        &:hover,
+        &:focus {
+            color: $color-secondary;
+        }
+    }
+
+    &__popup {
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        
+        height: 100px;
+
+        background: $color-primary;
+        opacity: 0;
+
+        transition: opacity 0.25s ease,
+                    visibility 0.25s ease 0.25s;
+        visibility: hidden;
+
+        &_visible {
+            opacity: 1;
+    
+            transition-delay: 0s;
+            visibility: visible;
+        }
+    }
+
+    &__form {
         align-items: center;
         display: flex;
         height: 100%;
@@ -50,7 +83,8 @@
 
         transition: opacity 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 1;
         }
     }
@@ -98,15 +132,9 @@
             transform: rotate(-45deg);
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 1;
         }
-    }
-
-    &_visible {
-        opacity: 1;
-
-        transition-delay: 0s;
-        visibility: visible;
     }
 }

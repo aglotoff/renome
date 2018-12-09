@@ -1,13 +1,10 @@
 /**
- * Nav Menu Hamburger
+ * Styles for the hamburger block
  */
 .hamburger {
-    padding: 0;
+    display: inline-block;
 
-    background: transparent;
-    cursor: pointer;
-    border: none;
-    outline: none;
+    color: $color-black;
 
     &__inner {
         position: relative;
@@ -36,6 +33,7 @@
 
         background: $color-black;
 
+        overflow: hidden;
         transition: all 0.25s linear;
     }
 
@@ -57,11 +55,14 @@
         transform: translateY(-50%);
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
+        color: $color-secondary;
+
         .hamburger__inner:before,
         .hamburger__inner:after,
         .hamburger__title {
-            background: $color-au-chico;
+            background: $color-secondary;
         }
     }
 

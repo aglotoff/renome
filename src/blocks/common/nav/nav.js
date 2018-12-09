@@ -1,88 +1,132 @@
 /**
- * @file Implementation of the navigation menu block
+ * @file Implementation of the navigation block
  * @author Andrey Glotov
  */
 
-// -------------------------- BEGIN MODULE VARIABLES --------------------------
-const SCROLL_SPEED = 700;   // ID href scroll speed
+import {Toggleable} from '../../../js/utils';
 
-const $nav = $('.nav');
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+let $toggle, $menu, $menuInner, $submenus;
+let menuToggleable;
+const submenus = [];
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // ---------------------------- BEGIN DOM METHODS -----------------------------
-const showSubmenu = function($submenu) {
-    $submenu
-        .addClass('nav__submenu_visible')
-        .scrollTop(0);  // Reset the submenu's scrolling position
-};
-
-const hideSubmenu = function($submenu) {
-    $submenu.removeClass('nav__submenu_visible');
-};
-
 const showMenu = function() {
-    $nav
-        .addClass('nav_visible')
-        .scrollTop(0);  // Reset the menu's scrolling position
+    $toggle
+        .addClass('hamburger_open')
+        .attr('aria-expanded', 'true');
+    
+    $menu.addClass('nav__menu_visible');
+
+    $menuInner.scrollTop(0);
 };
 
 const hideMenu = function() {
-    $nav
-        .removeClass('nav_visible')
-        .find('.nav__submenu')
-        .removeClass('nav__submenu_visible');
+    $toggle
+        .removeClass('hamburger_open')
+        .attr('aria-expanded', 'false');
+
+    $menu.removeClass('nav__menu_visible');
+};
+
+const toggleSubmenu = function($submenu, open) {
+    $submenu
+        .toggleClass('nav__submenu_visible', open)
+        .prev('.nav__link')
+        .attr('aria-expanded', String(open));
 };
 // ----------------------------- END DOM METHODS ------------------------------
-
-// --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const onSubmenuArrowClick = function() {
-    showSubmenu($(this).next('.nav__submenu'));
-    return true;
-};
-
-const onBackArrowClick = function() {
-    hideSubmenu($(this).closest('.nav__submenu'));
-    return true;
-};
-
-const onLocalHrefClick = function() {
-    // If the link target is an id attribute, scroll smoothly to the element
-    const $target = $($(this).attr('href'));
-
-    if ($target.length !== 0) {
-        $('html, body').animate({
-            scrollTop: $target.offset().top
-        }, SCROLL_SPEED);
-
-        hideMenu();
-
-        return false;
-    }
-    return true;
-};
-// ---------------------------- END EVENT HANDLERS ----------------------------
 
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
 /**
  * Initialize the navigation menu block.
+ * @return true
  */
 export const initModule = function() {
-    $nav
-        .on('click', '.nav__arrow_submenu', onSubmenuArrowClick)
-        .on('click', '.nav__arrow_back', onBackArrowClick)
-        .on('click', '.nav__link[href^="#"]', onLocalHrefClick);
+    $toggle    = $('.nav__toggle');
+    $menu      = $('.nav__menu');
+    $menuInner = $('.nav__menu-inner', $menu);
+    $submenus  = $('.nav__submenu', $menuInner);
+
+    menuToggleable = new Toggleable(null, $toggle, $menu, {
+        hoverToggles  : false,
+        trapFocus     : true,
+        onToggle      : function(open) {
+            if (open) {
+                showMenu();
+            } else {
+                hideMenu();
+            }
+        }
+    });
+
+    // For each submenu, define two different toggle behaviors - one for
+    // mobile screens and another for desktop screens.
+    $submenus.each(function() {
+        const $submenu    = $(this);
+        const $parentItem = $submenu.closest('.nav__item');
+        const $parentLink = $parentItem.find('.nav__link').first();
+        const $arrowClose = $submenu.find('.nav__arrow_close').first();
+
+        const mobileToggleable = new Toggleable(
+            null,
+            $parentLink,
+            $submenu,
+            {
+                hoverToggles : false,
+                trapFocus    : true,
+                initialFocus : $submenu.get(0),
+                onToggle     : toggleSubmenu.bind(null, $submenu),
+            }
+        );
+
+        $arrowClose.click(function() {
+            mobileToggleable.hide();
+        });
+
+        const desktopToggleable = new Toggleable(
+            $parentItem,
+            $parentLink,
+            $submenu,
+            {onToggle: toggleSubmenu.bind(null, $submenu)}
+        );
+        desktopToggleable.pause();
+
+        submenus.push({
+            $elem: $submenu,
+            mobileToggleable,
+            desktopToggleable,
+        });
+    });
 };
 
 /**
- * Show/hide the menu.
- * @param {*} {boolean} show A value to determine whether the menu should be
- *     shown or hidden.
+ * Respond to window resize event.
+ *
+ * @param {boolean} isMobile - If true, switch to mobile layout. If false,
+ * switch to desktop layout
  */
-export const toggleMenu = function(show) {
-    if (show) {
-        showMenu();
+export const handleResize = function(isMobile) {
+    if (!isMobile) {
+        // Hide the nav menu.
+        menuToggleable.hide();
+
+        // Switch the submenu behavior for desktop screens.
+        $.each(submenus, function() {
+            toggleSubmenu(this.$elem, false);
+
+            this.mobileToggleable.pause();
+            this.desktopToggleable.unpause();
+        });
     } else {
-        hideMenu();
+        // Switch the submenu behavior for mobile screens.
+        $.each(submenus, function() {
+            toggleSubmenu(this.$elem, false);
+
+            this.mobileToggleable.unpause();
+            this.desktopToggleable.pause();
+        });
     }
 };
 // ----------------------------- END PUBLIC METHODS ---------------------------
