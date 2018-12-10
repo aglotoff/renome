@@ -34,18 +34,15 @@ mixin nav__list(data, level = 0)
                         }
                     )= item.text
 
-                
-
-mixin nav__menu(data)
+mixin nav(data)
     // Begin nav menu
-    nav.nav.nav__menu&attributes(attributes)
-        .nav__menu-inner
+    nav.nav&attributes(attributes)
+        +hamburger('Toggle nav')(
+            aria-haspopup="true"
+            aria-expanded="false"
+        ).nav__toggle
+        .nav__menu
+            .nav__menu-inner
                 +mobile-search().nav__search
                 +nav__list(data).nav__list_horizontal
     // End nav menu
-
-mixin nav__toggle()
-    +hamburger('Toggle nav')(
-        aria-haspopup="true"
-        aria-expanded="false"
-    ).nav.nav__toggle&attributes(attributes)

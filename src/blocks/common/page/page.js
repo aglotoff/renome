@@ -3,6 +3,7 @@
  * @author Andrey Glotov
  */
 
+import * as Header from '../header/header';
 import * as Nav from '../nav/nav';
 import * as Search from '../search/search';
 import * as Minicart from '../mini-cart/mini-cart';
@@ -77,10 +78,12 @@ const onWindowResize = function() {
     if (!isMobile && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
         isMobile = true;
 
+        Header.handleResize(true);
         Nav.handleResize(true);
     } else if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
         isMobile = false;
 
+        Header.handleResize(false);
         Nav.handleResize(false);
     }
 };
@@ -121,6 +124,7 @@ export const initModule = function() {
     });
 
     // Initialize common blocks
+    Header.initModule();
     Nav.initModule();
     Search.initModule();
     Minicart.initModule();

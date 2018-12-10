@@ -9,7 +9,7 @@ mixin header(data, mods = {})
                     img(src="img/logo.png", alt="Renome").header__logo-img
                     span.header__logo-text Renome
             else
-                a(href="index.html").header__logo
+                a(href="index.html" tab-index="1").header__logo
                     img(
                         src="img/logo.png"
                         alt="Renome"
@@ -19,11 +19,9 @@ mixin header(data, mods = {})
                         alt="Renome"
                     ).header__logo-img_alt
 
-            +nav__menu(data.nav).header__nav
-
             .header__actions
                 +search().header__search
                 +mini-cart(data.cart).header__mini-cart
 
-            +nav__toggle().header__nav-toggle
+            +nav(data.nav).header__nav
     // End header 
