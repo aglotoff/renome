@@ -1,8 +1,4 @@
-import '../blocks/common/tabs/tabs';
-
 import '../blocks/index/gallery/gallery';
-
-import '../blocks/menu/menu-product/menu-product';
 
 import '../blocks/reservation/reservation-form/reservation-form';
 

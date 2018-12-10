@@ -1,34 +1,70 @@
+/**
+ * @file Implementation of the tabs block
+ * @author Andrey Glotov
+ */
+
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 const TRANSITION_DURATION = 250;
 
-$('.tabs').each(function() {
-    const $tabs = $(this);
+class Tabs {
+    constructor($elem) {
+        this.$elem        = $elem;
+        this.$activeLink  = $('.tabs__link_active',  $elem);
+        this.$activePanel = $('.tabs__panel_active', $elem);
+        this.isSwitching  = false;
 
-    let isSwitching = false;
+        $elem.on('click', '.tabs__link', this.onLinkClick.bind(this));
+    }
 
-    $tabs.on('click', '.tabs__link', function(event) {
-        event.preventDefault();
-
-        if (isSwitching || $(this).hasClass('tabs__link_active')) {
+    activateTab($link) {
+        const panelId = $link.attr('href');
+        const $panel  = $(panelId, this.$elem);
+        if ($panel.length === 0) {
             return;
         }
 
-        isSwitching = true;
+        this.isSwitching = true;
 
-        const $targetPane = $($(this).attr('href'));
+        this.$activeLink
+            .removeClass('tabs__link_active')
+            .attr('aria-selected', 'false');
+        this.$activeLink = $link
+            .addClass('tabs__link_active')
+            .attr('aria-selected', 'true');
 
-        const $activeLink = $('.tabs__link_active', $tabs);
-        $activeLink.removeClass('tabs__link_active');
-        $(this).addClass('tabs__link_active');
+        this.$activePanel.fadeOut(TRANSITION_DURATION, () => {
+            this.$activePanel.removeClass('tabs__panel_active');
+            this.$activePanel = $panel
+                .fadeIn(TRANSITION_DURATION)
+                .addClass('tabs__panel_active');
 
-        const $activePane = $('.tabs__pane_active', $tabs);
-        $activePane.addClass('tabs__pane_hidden');
+            this.isSwitching = false;
+        });
+    }
 
-        setTimeout(() => {
-            $activePane.removeClass('tabs__pane_active');
-            $targetPane.removeClass('tabs__pane_hidden');
-            $targetPane.addClass('tabs__pane_active');
+    onLinkClick(event) {
+        event.preventDefault();
 
-            isSwitching = false;
-        }, TRANSITION_DURATION);
+        const $link = $(event.target);
+        if (this.isSwitching || ($link.is(this.$activeLink))) {
+            return;
+        }
+
+        this.activateTab($link);
+    }
+}
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+/**
+ * Initialize the tabs module.
+ * @return true
+ */
+export const initModule = function() {
+    $('.tabs').each(function() {
+        new Tabs($(this));
     });
-});
+
+    return true;
+};
+// ---------------------------- END PUBLIC METHODS ----------------------------

@@ -6,11 +6,14 @@
 import * as Nav from '../nav/nav';
 import * as Search from '../search/search';
 import * as Minicart from '../mini-cart/mini-cart';
+import * as Tabs from '../tabs/tabs';
 
 import * as Slider from '../../index/slider/slider';
 import * as SpecialsCarousel from '../../index/specials-carousel/specials-carousel';
 
 import * as AboutGallery from '../../about/about-gallery/about-gallery';
+
+import * as Menu from '../../menu/menu/menu';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
@@ -117,13 +120,21 @@ export const initModule = function() {
         },
     });
 
-    // Initialize all blocks
+    // Initialize common blocks
     Nav.initModule();
     Search.initModule();
     Minicart.initModule();
+    Tabs.initModule();
+
+    // Initialize homepage blocks
     Slider.initModule();
     SpecialsCarousel.initModule();
+
+    // Initialize about page blocks
     AboutGallery.initModule();
+
+    // Initialize menu page blocks
+    Menu.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

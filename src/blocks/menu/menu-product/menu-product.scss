@@ -110,7 +110,8 @@
         opacity: 0;
         transition: opacity 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 1;
         }
     }

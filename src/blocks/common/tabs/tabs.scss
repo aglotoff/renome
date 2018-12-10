@@ -1,14 +1,12 @@
 /**
- * Tabs
+ * Styles for the tabs block
  */
 .tabs {
-    &__nav {
-        @include breakpoint-up(md) {
-            border-bottom: 1px solid $color-gallery;
-        }
+    @include breakpoint-up(md) {
+        border-bottom: 1px solid $color-gallery;
     }
 
-    &__nav-inner {
+    &__inner {
         padding: 0 10px;
 
         @include breakpoint-up(md) {
@@ -25,7 +23,7 @@
         }
     }
 
-    &__tab {
+    &__item {
         text-align: center;
 
         border-bottom: 1px solid $color-gallery;
@@ -57,8 +55,6 @@
         text-decoration: none;
         text-transform: uppercase;
 
-        outline: none;
-
         @include breakpoint-up(md) {
            display: block;
         }
@@ -78,27 +74,23 @@
         }
 
         &:hover,
+        &:focus,
         &_active {
-            color: $color-secondary;
-
             &:after {
                 background: $color-secondary;
             }
         }
+
+        &_active {
+            color: $color-secondary;
+        }
     }
 
-    &__pane {
+    &__panel {
         display: none;
-
-        opacity: 1;
-        transition: opacity .25s ease;
 
         &_active {
             display: block;
-        }
-
-        &_hidden {
-            opacity: 0;
         }
     }
 }

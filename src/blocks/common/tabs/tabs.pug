@@ -1,19 +1,24 @@
 mixin tabs(data)
     .tabs&attributes(attributes)
         .tabs__nav
-            .tabs__nav-inner
-                ul.tabs__list
-                    each item in data
-                        li.tabs__tab
-                            a.tabs__link(
-                                class = item.active ? 'tabs__link_active' : ''
-                                href = '#' + item.id
-                            )= item.title
+            ul.tabs__list(role="tablist")
+                each item in data
+                    li.tabs__item
+                        a.tabs__link(
+                            class         = item.active && 'tabs__link_active'
+                            id            = item.id + '-tab'
+                            href          = '#' + item.id
+                            role          = 'tab'
+                            aria-controls = item.id
+                            aria-selected = String(item.active)
+                        )= item.title
 
         each item in data
-            .tabs__pane(
-                class = item.active ? 'tabs__pane_active' : ''
-                id = item.id
+            .tabs__panel(
+                class           = item.active && 'tabs__panel_active'
+                id              = item.id
+                role            = 'tabpanel'
+                aria-labelledby = item.id + '-tab'
             )
                 each block in item.blocks
                     +#{block.name}(block.content)
