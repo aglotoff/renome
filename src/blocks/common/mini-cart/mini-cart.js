@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import {Toggleable} from '../../../js/utils';
+import {makeDropdown} from '../../../js/utils';
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
@@ -13,13 +13,12 @@ import {Toggleable} from '../../../js/utils';
 export const initModule = function() {
     const $minicart = $('.mini-cart');
     const $toggle   = $('.mini-cart__toggle', $minicart);
-    const $drop     = $('.mini-cart__drop', $minicart);
 
-    new Toggleable($minicart, $toggle, $drop, {
-        onToggle: function(open) {
-            $toggle.attr('aria-expanded', String(open));
+    makeDropdown($minicart, $toggle, {
+        hoverToggles : true,
+        onToggle     : function(open) {
             $minicart.toggleClass('mini-cart_open', open);
-        },
+        }
     });
 
     return true;

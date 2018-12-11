@@ -5,206 +5,206 @@
 
 /* global focusTrap */
 
-// -------------------------- BEGIN MODULE VARIABLES --------------------------
 const ESC_KEYCODE = 27;
 
 const $document = $(document);
 
-const focusTrapChain = [];
-let currentFocusTrap = null;
-// --------------------------- END MODULE VARIABLES ---------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-const isOutside = function($elem, $container) {
-    return (
-        !$document.is($elem)
-        && !$container.is($elem)
-        && ($container.has($elem).length === 0)
-    );
-};
-
-/**
- * Class implementing generic toggleable functionality for dropdowns and popups
- */
-export class Toggleable {
-    constructor($container, $switcher, $drawer, options = {}) {
-        this._$container = $container;
-        this._$switcher  = $switcher;
-        this._$drawer    = $drawer;
-        this._expanded   = false;
-
-        this._options      = $.extend(
-            true,
-            {},
-            Toggleable.defaultOptions,
-            options
-        );
-
-        this._onDocumentClick = this._onDocumentClick.bind(this);
-        this._onSwitcherClick = this._onSwitcherClick.bind(this);
-    
-        if (this._options.hoverToggles && this._$container) {
-            this._hoverTimeout = null;
-            this._onMouseenter = this._onMouseenter.bind(this);
-            this._onMouseleave = this._onMouseleave.bind(this);
-        }
-
-        if (this._options.escapeHides) {
-            this._onDocumentKeydown = this._onDocumentKeydown.bind(this);
-        }
-
-        if (this._options.trapFocus) {
-            this._focusTrap = focusTrap(this._$drawer.get(0), {
-                clickOutsideDeactivates : true,
-                initialFocus            : this._options.initialFocus,
-            });
-        } else if (this._options.focusoutHides && this._$container) {
-            this._onDocumentFocusin = this._onDocumentFocusin.bind(this);
-        }
-
-        this.unpause();
-    }
-
-    _onMouseenter() {
-        if (this._hoverTimeout) {
-            clearTimeout(this._hoverTimeout);
-            this._hoverTimeout = null;
-        }
-
-        this.show();
-    }
-
-    _onMouseleave() {
-        this._hoverTimeout = setTimeout(() => {
-            this.hide();
-        }, this._options.hoverHideDelay);
-    }
-
-    _onDocumentClick(event) {
-        if (isOutside($(event.target), this._$drawer)) {
+const dropdownProto = {
+    _onOutsideClick(event) {
+        if (!$.contains(this._$container.get(0), event.target)) {
             this.hide();
         }
-    }
-
-    _onDocumentFocusin(event) {
-        if (isOutside($(event.target), this._$container)) {
-            this.hide();
-        }
-    }
-
-    _onDocumentKeydown(event) {
-        if (event.which === ESC_KEYCODE) {
-            this.hide();
-        }
-    }
+    },
 
     _onSwitcherClick() {
-        if (!this._expanded) {
+        if (!this._isExpanded) {
             this.show();
+        } else {
+            this.hide();
         }
-    }
+    },
 
-    pause() {
-        this._$switcher.off('click', this._onSwitcherClick);
-        
-        if (this._options.hoverToggles && this._$container) {
-            this._$container.off({
-                mouseenter: this._onMouseenter,
-                mouseleave: this._onMouseleave,
-            });
+    _onKeydown(event) {
+        if (event.which === ESC_KEYCODE) {
+            this.hide();
+            this._$switcher.focus();
         }
-
-        return this;
-    }
-
-    unpause() {
-        this._$switcher.on('click', this._onSwitcherClick);
-        
-        if (this._options.hoverToggles && this._$container) {
-            this._$container.on({
-                mouseenter: this._onMouseenter,
-                mouseleave: this._onMouseleave,
-            });
-        }
-
-        return this;
-    }
+    },
 
     show() {
-        const {escapeHides, focusoutHides, onToggle, trapFocus} = this._options;
+        this._isExpanded = true;
 
-        this._expanded = true;
+        this._$switcher.attr('aria-expanded', 'true');
+
+        $document.on({
+            click   : this._onOutsideClick,
+            focusin : this._onOutsideClick,
+        });
+        this._$container.on('keydown', this._onKeydown);
+
+        if (this._onToggle) {
+            this._onToggle(true);
+        }
+    },
+
+    hide() {
+        this._isExpanded = false;
+
+        this._$switcher.attr('aria-expanded', 'false');
+
+        $document.off({
+            click   : this._onOutsideClick,
+            focusin : this._onOutsideClick,
+        });
+        this._$container.off('keydown', this._onKeydown);
+
+        if (this._onToggle) {
+            this._onToggle(false);
+        }
+    },
+
+    pause() {
+        this._$switcher
+            .off('click', this._onSwitcherClick)
+            .attr({
+                'aria-expanded': '',
+                'aria-haspopup': '',
+            });
+
+        if (this._isExpanded) {
+            $document.off({
+                click   : this._onOutsideClick,
+                focusin : this._onOutsideClick,
+            });
+        }
+
+        if (this._hoverToggles) {
+            this._$container.off({
+                mouseenter : this._onMouseenter,
+                mouseleave : this._onMouseleave,
+            });
+        }
+    },
+
+    unpause() {
+        this._$switcher
+            .click(this._onSwitcherClick)
+            .attr({
+                'aria-expanded': String(this._isExpanded),
+                'aria-haspopup': 'true'
+            });
+
+        if (this._isExpanded) {
+            $document.on({
+                click   : this._onOutsideClick,
+                focusin : this._onOutsideClick,
+            });
+        }
+
+        if (this._hoverToggles) {
+            this._$container.hover(this._onMouseenter, this._onMouseleave);
+        }
+    },
+};
+
+export const makeDropdown = function($container, $switcher, options) {
+    const dropdown = Object.create(dropdownProto);
+
+    dropdown._$container   = $container;
+    dropdown._$switcher    = $switcher;
+    dropdown._onToggle     = options.onToggle;
+    dropdown._hoverToggles = !!options.hoverToggles;
+    dropdown._isExpanded   = false;
+
+    // Bind the event handlers
+    dropdown._onOutsideClick  = dropdown._onOutsideClick.bind(dropdown);
+    dropdown._onSwitcherClick = dropdown._onSwitcherClick.bind(dropdown);
+    dropdown._onKeydown       = dropdown._onKeydown.bind(dropdown);
+
+    if (options.hoverToggles) {
+        dropdown._onMouseenter = dropdown.show.bind(dropdown);
+        dropdown._onMouseleave = dropdown.hide.bind(dropdown);
+    }
+
+    dropdown.unpause();
+
+    return dropdown;
+};
+
+let activeModal = null;
+
+const modalProto = {
+    _onDocumentClick(event) {
+        if (!$.contains(this._$container.get(0), event.target)) {
+            this.deactivate();
+        }
+    },
+
+    _onTrapDeactivate() {
+        $document.off('click', this._onDocumentClick);
+
+        if (activeModal === this) {
+            activeModal = this._prev;
+        }
+
+        if (this._prev) {
+            this._prev._next = this._next;
+            this._prev._trap.unpause();
+            this._prev = null;
+        }
+        if (this._next) {
+            this._next._prev = this._prev;
+            this._next = null;
+        }
+
+        if (this._onToggle) {
+            this._onToggle(false);
+        }
+    },
+
+    show() {
+        if (activeModal) {
+            activeModal._trap.pause();
+        }
+
+        this._prev = activeModal;
+        this._next = null;
+
+        activeModal = this;
+
+        if (this._onToggle) {
+            this._onToggle(true);
+        }
 
         setTimeout(() => {
             $document.click(this._onDocumentClick);
-        }, 0);
 
-        if (escapeHides) {
-            $document.keydown(this._onDocumentKeydown);
-        }
-
-        if (trapFocus) {
-            setTimeout(() => {
-                if (currentFocusTrap) {
-                    currentFocusTrap.pause();
-                    focusTrapChain.push(currentFocusTrap);
-                }
-
-                currentFocusTrap = this._focusTrap;
-                currentFocusTrap.activate();
-            }, this._options.trapFocusDelay);
-        } else if (focusoutHides && this._$container) {
-            $document.focusin(this._onDocumentFocusin);
-        }
-
-        if (onToggle) {
-            onToggle(true);
-        }
-
-        return this;
-    }
+            this._trap.activate();
+        }, this._focusDelay || 0);
+    },
 
     hide() {
-        const {escapeHides, focusoutHides, onToggle, trapFocus} = this._options;
-
-        this._expanded = false;
-
-        $document.off('click', this._onDocumentClick);
-        if (escapeHides) {
-            $document.off('keydown', this._onDocumentKeydown);
-        }
-
-        if (trapFocus) {
-            this._focusTrap.deactivate();
-
-            if (focusTrapChain.length > 0) {
-                currentFocusTrap = focusTrapChain.pop();
-                currentFocusTrap.unpause();
-            } else {
-                currentFocusTrap = null;
-            }
-        } else  if (focusoutHides && this._$container) {
-            $document.off('focusin', this._onDocumentFocusin);
-        }
-
-        if (onToggle) {
-            onToggle(false);
-        }
-
-        return this;
-    }
-}
-
-Toggleable.defaultOptions = {
-    onToggle      : null,
-
-    clickOutsideHides : true,
-    focusoutHides     : true,
-    hoverToggles      : true,
-    escapeHides       : true,
-    trapFocus         : false,
-
-    trapFocusDelay    : 100,
-    hoverHideDelay    : 100,
+        this._trap.deactivate();
+    },
 };
-// ---------------------------- END PUBLIC METHODS ----------------------------
+
+export const makeModal = function($container, options) {
+    const trap = Object.create(modalProto);
+
+    trap._$container = $container;
+    trap._onToggle   = options.onToggle;
+    trap._focusDelay = options.focusDelay;
+    trap._prev       = null;
+    trap._next       = null;
+
+    trap._trap = new focusTrap($container.get(0), {
+        initialFocus            : options.initialFocus,
+        clickOutsideDeactivates : true,
+        escapeDeactivates       : true,
+        onDeactivate            : trap._onTrapDeactivate.bind(trap),
+    });
+
+    trap._onDocumentClick = trap._onDocumentClick.bind(trap);
+
+    return trap;
+};

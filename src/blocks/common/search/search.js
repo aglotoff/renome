@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import {Toggleable} from '../../../js/utils';
+import {makeModal} from '../../../js/utils';
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
@@ -13,22 +13,23 @@ import {Toggleable} from '../../../js/utils';
 export const initModule = function() {
     const $search = $('.search');
     const $toggle = $('.search__toggle', $search);
-    const $popup  = $('.search__popup', $search);
-    const $close  = $('.search__close', $popup);
+    const $popup  = $('.search__popup',  $search);
+    const $close  = $('.search__close',  $popup);
 
-    const popupToggleable = new Toggleable(null, $toggle, $popup, {
-        hoverToggles : false,
-        trapFocus    : true,
-        escapeHides  : true,
-        onToggle     : function(open) {
+    const popupModal = makeModal($popup, {
+        focusDelay: 100,
+        onToggle(open) {
             $popup
                 .toggleClass('search__popup_visible', open)
                 .attr('aria-hidden', String(!open));
         },
     });
 
+    $toggle.click(function() {
+        popupModal.show();
+    });
     $close.click(function() {
-        popupToggleable.hide();
+        popupModal.hide();
     });
 
     return true;

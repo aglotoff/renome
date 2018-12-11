@@ -3,102 +3,85 @@
  * @author Andrey Glotov
  */
 
-import {Toggleable} from '../../../js/utils';
+import {makeModal, makeDropdown} from '../../../js/utils';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-let $toggle, $menu, $menuInner, $submenus;
-let menuToggleable;
+let menuModal = null;
 const submenus = [];
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// ---------------------------- BEGIN DOM METHODS -----------------------------
-const showMenu = function() {
-    $toggle
-        .addClass('hamburger_open')
-        .attr('aria-expanded', 'true');
-    
-    $menu.addClass('nav__menu_visible');
-
-    $menuInner.scrollTop(0);
-};
-
-const hideMenu = function() {
-    $toggle
-        .removeClass('hamburger_open')
-        .attr('aria-expanded', 'false');
-
-    $menu.removeClass('nav__menu_visible');
-};
-
-const toggleSubmenu = function($submenu, open) {
-    $submenu
-        .toggleClass('nav__submenu_visible', open)
-        .prev('.nav__link')
-        .attr('aria-expanded', String(open));
-};
-// ----------------------------- END DOM METHODS ------------------------------
-
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
 /**
- * Initialize the navigation menu block.
+ * Initialize the navigation block.
  * @return true
  */
 export const initModule = function() {
-    $toggle    = $('.nav__toggle');
-    $menu      = $('.nav__menu');
-    $menuInner = $('.nav__menu-inner', $menu);
-    $submenus  = $('.nav__submenu', $menuInner);
+    const $nav       = $('.nav');
+    const $toggle    = $('.nav__toggle',     $nav);
+    const $menu      = $('.nav__menu',       $nav);
+    const $menuInner = $('.nav__menu-inner', $menu);
+    const $submenus  = $('.nav__submenu',    $menuInner);
 
-    menuToggleable = new Toggleable(null, $toggle, $menu, {
-        hoverToggles  : false,
-        trapFocus     : true,
-        onToggle      : function(open) {
-            if (open) {
-                showMenu();
-            } else {
-                hideMenu();
-            }
+    let isExpanded = false;
+
+    menuModal = makeModal($nav, {
+        onToggle(open) {
+            $toggle
+                .toggleClass('hamburger_open', open)
+                .attr('aria-expanded', String(open));
+    
+            $menu.toggleClass('nav__menu_visible', open);
+
+            isExpanded = open;
         }
     });
 
-    // For each submenu, define two different toggle behaviors - one for
-    // mobile screens and another for desktop screens.
+    $toggle.click(function() {
+        if (isExpanded) {
+            menuModal.hide();
+        } else {
+            menuModal.show();
+        }
+    });
+
+    // Begin init submenus
     $submenus.each(function() {
-        const $submenu    = $(this);
+        const $submenu = $(this);
         const $parentItem = $submenu.closest('.nav__item');
         const $parentLink = $parentItem.find('.nav__link').first();
+        const $arrowOpen  = $parentLink.find('.nav__arrow_open').first();
         const $arrowClose = $submenu.find('.nav__arrow_close').first();
 
-        const mobileToggleable = new Toggleable(
-            null,
-            $parentLink,
-            $submenu,
-            {
-                hoverToggles : false,
-                trapFocus    : true,
-                initialFocus : $submenu.get(0),
-                onToggle     : toggleSubmenu.bind(null, $submenu),
-            }
-        );
-
+        // On mobile screens, submenus behave like modals
+        const submenuModal = makeModal($submenu, {
+            initialFocus : $submenu.find('.nav__link').first().get(0),
+            onToggle(open) {
+                $submenu.toggleClass('nav__submenu_visible', open);
+                $arrowOpen.attr('aria-expanded', String(open));
+            },
+        });
         $arrowClose.click(function() {
-            mobileToggleable.hide();
+            submenuModal.hide();
+        });
+        $arrowOpen.click(function() {
+            submenuModal.show();
         });
 
-        const desktopToggleable = new Toggleable(
-            $parentItem,
-            $parentLink,
-            $submenu,
-            {onToggle: toggleSubmenu.bind(null, $submenu)}
-        );
-        desktopToggleable.pause();
+        // On desktop screens, submenus behave like dropdowns
+        const submenuDropdown = makeDropdown($parentItem, $parentLink, {
+            hoverToggles: true,
+            onToggle(open) {
+                $submenu.toggleClass('nav__submenu_visible', open);
+            },
+        });
+        submenuDropdown.pause();
 
         submenus.push({
-            $elem: $submenu,
-            mobileToggleable,
-            desktopToggleable,
+            dropdown : submenuDropdown,
+            modal    : submenuModal
         });
     });
+    // End init submenus
 };
 
 /**
@@ -109,23 +92,20 @@ export const initModule = function() {
  */
 export const handleResize = function(isMobile) {
     if (!isMobile) {
-        // Hide the nav menu.
-        menuToggleable.hide();
-
-        // Switch the submenu behavior for desktop screens.
-        $.each(submenus, function() {
-            toggleSubmenu(this.$elem, false);
-
-            this.mobileToggleable.pause();
-            this.desktopToggleable.unpause();
+        // On desktop screens, disable the modal behavior of submenus and enable
+        // the dropdown behavior
+        submenus.forEach(function(submenu) {
+            submenu.modal.hide();
+            submenu.dropdown.unpause();
         });
-    } else {
-        // Switch the submenu behavior for mobile screens.
-        $.each(submenus, function() {
-            toggleSubmenu(this.$elem, false);
 
-            this.mobileToggleable.unpause();
-            this.desktopToggleable.pause();
+        menuModal.hide();
+    } else if (isMobile) {
+        // On mobile screens, disable the dropdown behavior of submenus and
+        // enable the modal behavior
+        submenus.forEach(function(submenu) {
+            submenu.dropdown.hide();
+            submenu.dropdown.pause();
         });
     }
 };
