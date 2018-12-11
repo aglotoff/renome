@@ -43,6 +43,8 @@ html(lang="en")
         link(rel="stylesheet", href="css/style.css")
 
     body.page(class=data.isHomepage ? 'page_home' : '')
+        a(href="#main-content").page__skip-link Skip to content
+
         -
             const navData = data.nav.map((item) => {
                 if (item.text == data.activeNavItem) {
@@ -69,7 +71,7 @@ html(lang="en")
         }, {transparent: !data.isHomepage}).page__header
     
         // start content 
-        main
+        main.page__main#main-content
             block page
         // end content 
 

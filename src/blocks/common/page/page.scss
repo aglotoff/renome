@@ -17,6 +17,30 @@
         padding-top: 0;
     }
 
+    &__skip-link {
+        left: 0;
+        position: fixed;
+        top: -100px;
+        z-index: 200;
+
+        display: block;
+        padding: 15px 20px;
+
+        color: $color-white;
+        @include font-size(14px);
+        text-decoration: none;
+
+        background: $color-primary;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:focus {
+            top: 0;
+        }
+    }
+
     &__header {
         left: 0;
         position: fixed;
