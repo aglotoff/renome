@@ -23,6 +23,10 @@
         .mini-cart_open & {
             color: $color-secondary;
         }
+
+        &:focus {
+            outline: 1px dotted $color-secondary;
+        }
     }
 
     &__item-count {

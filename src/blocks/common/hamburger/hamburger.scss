@@ -3,8 +3,13 @@
  */
 .hamburger {
     display: inline-block;
+    padding: 10px 0;
 
     color: $color-black;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
 
     &__inner {
         position: relative;
@@ -78,5 +83,9 @@
         .hamburger__title {
             opacity: 0;
         }
+    }
+
+    &:focus {
+        outline: 1px dotted $color-secondary;
     }
 }
