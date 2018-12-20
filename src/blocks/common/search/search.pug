@@ -1,13 +1,12 @@
 mixin search()
-    // Begin search
     .search&attributes(attributes)
-        a(href="javascript:void(0);").search__toggle
+        button.search__toggle
             +icon('search', 'Show search form')
     
-        .search__popup(role="dialog" aria-hidden="true")
+        .search__popup(role="dialog" aria-modal="true" aria-label="Search")
             form.search__form(action="#" method="post")
                 input(type="text" placeholder="Search...").search__input
                 button(type="submit").search__submit
                     +icon('search', 'Search')
                 button(type="button" aria-label="Close").search__close
-    // End search
+    // /.search

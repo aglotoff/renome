@@ -34,8 +34,6 @@ const dropdownProto = {
     show() {
         this._isExpanded = true;
 
-        this._$switcher.attr('aria-expanded', 'true');
-
         $document.on({
             click   : this._onOutsideClick,
             focusin : this._onOutsideClick,
@@ -45,12 +43,12 @@ const dropdownProto = {
         if (this._onToggle) {
             this._onToggle(true);
         }
+
+        return this;
     },
 
     hide() {
         this._isExpanded = false;
-
-        this._$switcher.attr('aria-expanded', 'false');
 
         $document.off({
             click   : this._onOutsideClick,
@@ -61,22 +59,12 @@ const dropdownProto = {
         if (this._onToggle) {
             this._onToggle(false);
         }
+
+        return this;
     },
 
     pause() {
-        this._$switcher
-            .off('click', this._onSwitcherClick)
-            .attr({
-                'aria-expanded': '',
-                'aria-haspopup': '',
-            });
-
-        if (this._isExpanded) {
-            $document.off({
-                click   : this._onOutsideClick,
-                focusin : this._onOutsideClick,
-            });
-        }
+        this._$switcher.off('click', this._onSwitcherClick);
 
         if (this._hoverToggles) {
             this._$container.off({
@@ -84,26 +72,18 @@ const dropdownProto = {
                 mouseleave : this._onMouseleave,
             });
         }
+
+        return this;
     },
 
     unpause() {
-        this._$switcher
-            .click(this._onSwitcherClick)
-            .attr({
-                'aria-expanded': String(this._isExpanded),
-                'aria-haspopup': 'true'
-            });
-
-        if (this._isExpanded) {
-            $document.on({
-                click   : this._onOutsideClick,
-                focusin : this._onOutsideClick,
-            });
-        }
+        this._$switcher.click(this._onSwitcherClick);
 
         if (this._hoverToggles) {
             this._$container.hover(this._onMouseenter, this._onMouseleave);
         }
+
+        return this;
     },
 };
 
@@ -131,31 +111,40 @@ export const makeDropdown = function($container, $switcher, options) {
     return dropdown;
 };
 
-let activeModal = null;
 
-const modalProto = {
+const drilldownChain = [];
+let activeDrilldown  = null;
+
+const drilldownProto = {
     _onDocumentClick(event) {
         if (!$.contains(this._$container.get(0), event.target)) {
-            this.deactivate();
+            this.hide();
+        }
+    },
+
+    _onToggleClick() {
+        if (this._isExpanded) {
+            this.hide();
+        } else {
+            this.show();
         }
     },
 
     _onTrapDeactivate() {
         $document.off('click', this._onDocumentClick);
 
-        if (activeModal === this) {
-            activeModal = this._prev;
+        if (drilldownChain.length !== 0) {
+            const prevDrilldown = drilldownChain.pop();
+
+            if (prevDrilldown._isExpanded) {
+                activeDrilldown = prevDrilldown;
+                activeDrilldown._trap.unpause();
+            }
+        } else {
+            activeDrilldown = null;
         }
 
-        if (this._prev) {
-            this._prev._next = this._next;
-            this._prev._trap.unpause();
-            this._prev = null;
-        }
-        if (this._next) {
-            this._next._prev = this._prev;
-            this._next = null;
-        }
+        this._isExpanded = false;
 
         if (this._onToggle) {
             this._onToggle(false);
@@ -163,48 +152,63 @@ const modalProto = {
     },
 
     show() {
-        if (activeModal) {
-            activeModal._trap.pause();
+        this._isExpanded = true;
+
+        if (activeDrilldown) {
+            activeDrilldown._trap.pause();
+            drilldownChain.push(activeDrilldown);
         }
 
-        this._prev = activeModal;
-        this._next = null;
-
-        activeModal = this;
+        activeDrilldown = this;
 
         if (this._onToggle) {
             this._onToggle(true);
         }
 
+        this._trap.activate();
+
         setTimeout(() => {
             $document.click(this._onDocumentClick);
+        }, 0);
 
-            this._trap.activate();
-        }, this._focusDelay || 0);
+        return this;
     },
 
     hide() {
         this._trap.deactivate();
+        return this;
+    },
+
+    pause() {
+        this._$toggle.off('click', this._onToggleClick);
+        return this;
+    },
+
+    unpause() {
+        this._$toggle.click(this._onToggleClick);
+        return this;
     },
 };
 
-export const makeModal = function($container, options) {
-    const trap = Object.create(modalProto);
+export const makeDrilldown = function($container, $toggle, options) {
+    const drilldown = Object.create(drilldownProto);
 
-    trap._$container = $container;
-    trap._onToggle   = options.onToggle;
-    trap._focusDelay = options.focusDelay;
-    trap._prev       = null;
-    trap._next       = null;
+    drilldown._$container = $container;
+    drilldown._$toggle    = $toggle;
+    drilldown._onToggle   = options.onToggle;
 
-    trap._trap = new focusTrap($container.get(0), {
-        initialFocus            : options.initialFocus,
+    drilldown._trap = new focusTrap($container.get(0), {
         clickOutsideDeactivates : true,
         escapeDeactivates       : true,
-        onDeactivate            : trap._onTrapDeactivate.bind(trap),
+
+        initialFocus            : options.initialFocus,
+        onDeactivate            : drilldown._onTrapDeactivate.bind(drilldown),
     });
 
-    trap._onDocumentClick = trap._onDocumentClick.bind(trap);
+    drilldown._onToggleClick   = drilldown._onToggleClick.bind(drilldown);
+    drilldown._onDocumentClick = drilldown._onDocumentClick.bind(drilldown);
 
-    return trap;
+    drilldown.unpause();
+
+    return drilldown;
 };

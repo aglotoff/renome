@@ -4,24 +4,25 @@ mixin nav__list(data, level = 0)
             li.nav__item
                 if item.submenu
                     a.nav__link(
-                        href=item.link
-                        class={
-                            nav__link_submenu: level > 0,
-                            nav__link_active: !!item.active,
+                        href          = item.link
+                        class         = {
+                            nav__link_submenu : level > 0,
+                            nav__link_active  : !!item.active,
                         }
-                        aria-haspopup="true"
-                        aria-expanded="false"
+                        role          = "button"
+                        aria-haspopup = "true"
+                        aria-controls = "submenu-" + item.text.toLowerCase()
                     )= item.text
                         button(
-                            type="button"
-                        ).nav__arrow.nav__arrow_open Open Submenu
+                            type        = "button"
+                            aria-hidden = "true"
+                            tabindex    = "-1"
+                        ).nav__arrow.nav__arrow_open
 
-                    .nav__submenu
+                    .nav__submenu(id = "submenu-" + item.text.toLowerCase())
                         .nav__menu-inner
                             .nav__submenu-top
-                                button(
-                                    type="button"
-                                ).nav__arrow.nav__arrow_close Close submenu
+                                button.nav__arrow.nav__arrow_close Close submenu
                                 .nav__submenu-top-text Back
 
                             +nav__list(item.submenu, level + 1)
@@ -35,14 +36,14 @@ mixin nav__list(data, level = 0)
                     )= item.text
 
 mixin nav(data)
-    // Begin nav menu
     nav.nav&attributes(attributes)
         +hamburger('Toggle nav')(
-            aria-haspopup="true"
-            aria-expanded="false"
+            aria-haspopup = "true"
+            aria-controls = "#main-menu"
         ).nav__toggle
-        .nav__menu
+
+        .nav__menu#main-menu
             .nav__menu-inner
                 +mobile-search().nav__search
                 +nav__list(data).nav__list_horizontal
-    // End nav menu
+    // /.nav

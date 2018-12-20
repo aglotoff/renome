@@ -1,16 +1,14 @@
 mixin mini-cart(data)
-    // Begin mini cart 
     .mini-cart&attributes(attributes)
-        a(
-            href="javascript:void(0);"
+        button(
             aria-haspopup="true"
-            aria-expanded="false"
+            aria-controls="minicart"
         ).mini-cart__toggle
             +icon('cart', 'Toggle minicart')
             span.mini-cart__item-count= data.quantity
 
-        .mini-cart__drop
+        .mini-cart__drop#minicart
             span.mini-cart__total $#{data.total.toFixed(2)}
             a(href="shop-cart.html").mini-cart__action View Cart
             a(href="shop-checkout.html").mini-cart__action Checkout
-    // End mini cart 
+    // /.mini-cart 

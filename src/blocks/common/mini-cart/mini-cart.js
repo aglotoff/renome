@@ -12,13 +12,20 @@ import {makeDropdown} from '../../../js/utils';
  */
 export const initModule = function() {
     const $minicart = $('.mini-cart');
-    const $toggle   = $('.mini-cart__toggle', $minicart);
+    const $toggle   = $minicart.find('.mini-cart__toggle');
 
     makeDropdown($minicart, $toggle, {
         hoverToggles : true,
-        onToggle     : function(open) {
+
+        onToggle     : function onMinicartToggle(open) {
             $minicart.toggleClass('mini-cart_open', open);
-        }
+
+            if (open) {
+                $toggle.attr('aria-expanded', 'true');
+            } else {
+                $toggle.removeAttr('aria-expanded');
+            }
+        },
     });
 
     return true;

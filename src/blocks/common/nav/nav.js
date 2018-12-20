@@ -3,12 +3,35 @@
  * @author Andrey Glotov
  */
 
-import {makeModal, makeDropdown} from '../../../js/utils';
+import {makeDropdown, makeDrilldown} from '../../../js/utils';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-let menuModal = null;
-const submenus = [];
+let $nav, $menuToggle, $menu, $menuInner, $submenus;
+let menuDrilldown;
 // --------------------------- END MODULE VARIABLES ---------------------------
+
+// ----------------------------- BEGIN DOM METHODS ----------------------------
+const toggleMenu = function(open) {
+    $menu.toggleClass('nav__menu_visible', open);
+    $menuInner.scrollTop(0);
+
+    if (open) {
+        $menuToggle.attr('aria-expanded', 'true');
+    } else {
+        $menuToggle.removeAttr('aria-expanded');
+    }
+};
+
+const toggleSubmenu = function toggleSubmenu($submenu, $toggle, open) {
+    $submenu.toggleClass('nav__submenu_visible', open);
+
+    if (open) {
+        $toggle.attr('aria-expanded', 'true');
+    } else {
+        $toggle.removeAttr('aria-expanded');
+    }
+};
+// ------------------------------ END DOM METHODS -----------------------------
 
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
 /**
@@ -16,72 +39,47 @@ const submenus = [];
  * @return true
  */
 export const initModule = function() {
-    const $nav       = $('.nav');
-    const $toggle    = $('.nav__toggle',     $nav);
-    const $menu      = $('.nav__menu',       $nav);
-    const $menuInner = $('.nav__menu-inner', $menu);
-    const $submenus  = $('.nav__submenu',    $menuInner);
+    $nav        = $('.nav');
+    $menuToggle = $nav.find('.nav__toggle');
+    $menu       = $nav.find('.nav__menu');
+    $menuInner  = $menu.find('.nav__menu-inner');
+    $submenus   = $nav.find('.nav__submenu');
 
-    let isExpanded = false;
-
-    menuModal = makeModal($nav, {
-        onToggle(open) {
-            $toggle
-                .toggleClass('hamburger_open', open)
-                .attr('aria-expanded', String(open));
-    
-            $menu.toggleClass('nav__menu_visible', open);
-
-            isExpanded = open;
-        }
+    menuDrilldown = makeDrilldown($nav, $menuToggle, {
+        onToggle: toggleMenu,
     });
 
-    $toggle.click(function() {
-        if (isExpanded) {
-            menuModal.hide();
-        } else {
-            menuModal.show();
-        }
-    });
-
-    // Begin init submenus
+    // begin initialize submenus
     $submenus.each(function() {
-        const $submenu = $(this);
-        const $parentItem = $submenu.closest('.nav__item');
-        const $parentLink = $parentItem.find('.nav__link').first();
-        const $arrowOpen  = $parentLink.find('.nav__arrow_open').first();
-        const $arrowClose = $submenu.find('.nav__arrow_close').first();
+        const $submenu       = $(this);
+        const $submenuToggle = $submenu.prev('.nav__link');
+        const $parentItem    = $submenu.closest('.nav__item');
+        const $submenuClose  = $submenu.find('.nav__arrow_close').first();
 
-        // On mobile screens, submenus behave like modals
-        const submenuModal = makeModal($submenu, {
-            initialFocus : $submenu.find('.nav__link').first().get(0),
-            onToggle(open) {
-                $submenu.toggleClass('nav__submenu_visible', open);
-                $arrowOpen.attr('aria-expanded', String(open));
-            },
+        const onSubmenuToggle = toggleSubmenu.bind(
+            null,
+            $submenu,
+            $submenuToggle
+        );
+
+        const dropdownLogic  = makeDropdown($parentItem, $submenuToggle, {
+            hoverToggles : true,
+            onToggle     : onSubmenuToggle,
         });
-        $arrowClose.click(function() {
-            submenuModal.hide();
-        });
-        $arrowOpen.click(function() {
-            submenuModal.show();
+        dropdownLogic.pause();
+
+        const drilldownLogic = makeDrilldown($submenu, $submenuToggle, {
+            onToggle     : onSubmenuToggle,
         });
 
-        // On desktop screens, submenus behave like dropdowns
-        const submenuDropdown = makeDropdown($parentItem, $parentLink, {
-            hoverToggles: true,
-            onToggle(open) {
-                $submenu.toggleClass('nav__submenu_visible', open);
-            },
+        $submenuClose.click(function onSubmenuClose() {
+            drilldownLogic.hide();
         });
-        submenuDropdown.pause();
 
-        submenus.push({
-            dropdown : submenuDropdown,
-            modal    : submenuModal
-        });
+        $submenu.data('dropdown',  dropdownLogic);
+        $submenu.data('drilldown', drilldownLogic);
     });
-    // End init submenus
+    // end initialize submenus
 };
 
 /**
@@ -91,22 +89,18 @@ export const initModule = function() {
  * switch to desktop layout
  */
 export const handleResize = function(isMobile) {
-    if (!isMobile) {
-        // On desktop screens, disable the modal behavior of submenus and enable
-        // the dropdown behavior
-        submenus.forEach(function(submenu) {
-            submenu.modal.hide();
-            submenu.dropdown.unpause();
+    if (isMobile) {
+        $submenus.each(function() {
+            $(this).data('dropdown').hide().pause();
+            $(this).data('drilldown').unpause();
+        });
+    } else {
+        $submenus.each(function() {
+            $(this).data('drilldown').hide().pause();
+            $(this).data('dropdown').unpause();
         });
 
-        menuModal.hide();
-    } else if (isMobile) {
-        // On mobile screens, disable the dropdown behavior of submenus and
-        // enable the modal behavior
-        submenus.forEach(function(submenu) {
-            submenu.dropdown.hide();
-            submenu.dropdown.pause();
-        });
+        menuDrilldown.hide();
     }
 };
 // ----------------------------- END PUBLIC METHODS ---------------------------
