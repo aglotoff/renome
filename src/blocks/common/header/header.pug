@@ -1,5 +1,4 @@
 mixin header(data, mods = {})
-    // Begin header 
     header.header(
         class=!!mods.transparent ? 'header_transparent' : ''
     )&attributes(attributes)
@@ -19,9 +18,9 @@ mixin header(data, mods = {})
                         alt="Renome"
                     ).header__logo-img_alt
 
+            +nav(data.nav).header__nav
+
             .header__actions
                 +search().header__search
                 +mini-cart(data.cart).header__mini-cart
-
-            +nav(data.nav).header__nav
-    // End header 
+    // /.header 

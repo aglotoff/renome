@@ -41,9 +41,11 @@
     &__actions {
         align-items: center;
         display: flex;
+        order: 1;
 
         @include breakpoint-up(lg) {
             margin-left: 8px;
+            order: initial;
         }
 
         &:before {
@@ -93,6 +95,12 @@
 
     &__nav {
         margin-left: 15px;
+        order: 2;
+
+        @include breakpoint-up(lg) {
+            margin-left: 0;
+            order: initial;
+        }
     }
 
     &_transparent {
