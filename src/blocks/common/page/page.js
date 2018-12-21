@@ -3,18 +3,18 @@
  * @author Andrey Glotov
  */
 
-import * as Header           from '../header/header';
-import * as Nav              from '../nav/nav';
-import * as Search           from '../search/search';
-import * as Minicart         from '../mini-cart/mini-cart';
-import * as Tabs             from '../tabs/tabs';
+import * as Header         from '../header/header';
+import * as Nav            from '../nav/nav';
+import * as Search         from '../search/search';
+import * as Minicart       from '../mini-cart/mini-cart';
+import * as Tabs           from '../tabs/tabs';
 
-import * as Slider           from '../../index/slider/slider';
-import * as SpecialsCarousel from '../../index/specials-carousel/specials-carousel';
+import * as Slider         from '../../index/slider/slider';
+import * as SpecialsSlider from '../../index/specials-slider/specials-slider';
 
-import * as AboutGallery     from '../../about/about-gallery/about-gallery';
+import * as AboutGallery   from '../../about/about-gallery/about-gallery';
 
-import * as Menu             from '../../menu/menu/menu';
+import * as Menu           from '../../menu/menu/menu';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
@@ -130,7 +130,7 @@ export const initModule = function() {
 
     // Initialize homepage blocks
     Slider.initModule();
-    SpecialsCarousel.initModule();
+    SpecialsSlider.initModule();
 
     // Initialize about page blocks
     AboutGallery.initModule();

@@ -1,13 +1,13 @@
 /**
- * Styles for the specials carousel block
+ * Styles for the specials slider block
  */
-.specials-carousel {
+.specials-slider {
     padding-bottom: 80px;
     overflow: hidden;
 
     @include breakpoint-up(md) {
         padding-left: 29px;
-        padding-bottom: 40px;
+        padding-bottom: 50px;
     }
 
     &__inner {
@@ -33,14 +33,16 @@
 
         overflow: visible;
         transform-origin: 100% 50%;
-        transition: all 0.3s linear;
+        transition: left 0.3s linear,
+                    opacity 0.3s linear,
+                    transform 0.3s linear;
 
         &_active {
             display: block;
             position: relative;
         }
 
-        &_hidden {
+        &_moving {
             /* stylelint-disable-next-line declaration-no-important */
             left: -100% !important;
         }
@@ -152,7 +154,7 @@
             justify-content: space-between;
         }
 
-        .specials-carousel__slide_active & {
+        .specials-slider__slide_active & {
             opacity: 1;
         }
     }
@@ -200,7 +202,7 @@
             line-height: 50px;
         }
 
-        .specials-carousel__slide_active & {
+        .specials-slider__slide_active & {
             opacity: 1;
         }
     }
