@@ -1,19 +1,22 @@
 mixin about-gallery(data)
-    // Begin gallery 
     .about-gallery&attributes(attributes)
         each thumb in data
             a.about-gallery__thumb(
-                href=thumb.link
-                class={
+                href  = thumb.link
+                class = {
                     'mfp-image': thumb.type == 'image',
                     'mfp-iframe': thumb.type == 'video',
                 }
+                role  = "button"
             )
-                img(src=thumb.src, alt=thumb.alt).about-gallery__thumb-img
+                img(
+                    src         = thumb.src
+                    alt         = thumb.alt
+                ).about-gallery__thumb-img
 
                 .about-gallery__thumb-overlay
                     +icon(
                         thumb.type == 'video' ? 'play' : 'zoom',
                         thumb.type == 'video' ? 'Play video' : 'Zoom image'
                     )
-    // End gallery 
+    // /.about-gallery 

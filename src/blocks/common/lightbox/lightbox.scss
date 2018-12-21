@@ -9,10 +9,14 @@
     }
 
     .mfp-close {
-        overflow: hidden;
+        right: 0;
+
+        width: 28px;
 
         text-align: left;
-        text-indent: -9999px;
+        text-indent: -999px;
+
+        overflow: hidden;
 
         &:before,
         &:after {
@@ -24,7 +28,7 @@
 
             display: block;
             height: 2px;
-            width: 28px;
+            width: 100%;
 
             background: $color-white;
         }
@@ -35,6 +39,17 @@
 
         &:after {
             transform: translateY(-50%) rotate(-45deg);
+        }
+
+        &:-moz-focusring {
+            outline: 1px dotted $color-white;
+        }
+    }
+
+    .mfp-arrow-left,
+    .mfp-arrow-right {
+        &:-moz-focusring {
+            outline: 1px dotted $color-white;
         }
     }
 
@@ -51,6 +66,8 @@
         border: none;
         border-left: 3px solid $color-white;
         border-bottom: 3px solid $color-white;
+
+        
     }
 
     .mfp-arrow-left:before {
