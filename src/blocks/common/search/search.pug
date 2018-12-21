@@ -1,12 +1,12 @@
 mixin search()
-    .search&attributes(attributes)
-        button.search__toggle
-            +icon('search', 'Show search form')
-    
-        .search__popup(role="dialog" aria-modal="true" aria-label="Search")
-            form.search__form(action="#" method="post")
-                input(type="text" placeholder="Search...").search__input
-                button(type="submit").search__submit
-                    +icon('search', 'Search')
-                button(type="button" aria-label="Close").search__close
-    // /.search
+    .search(role="dialog" aria-label="Search")&attributes(attributes)
+        form.search__form(action="#" method="post")
+            input(
+                type        = "text"
+                name        = "q"
+                placeholder = "Search..."
+            ).search__input
+            button(type="submit").search__submit
+                +icon('search', 'Search')
+            button(type="button" aria-label="Close").search__close
+    // /.search 

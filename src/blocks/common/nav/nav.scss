@@ -45,7 +45,7 @@
         }
     }
 
-    &__menu-inner {
+    &__scrollpane {
         height: 100%;
 
         overflow: auto;
@@ -106,26 +106,46 @@
             }
         }
 
+        &::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+        }
+
         &:hover,
-        &:focus,
+        &:active,
         &_active {
             color: $color-secondary;
+        }
+
+        &:focus {
+            outline: 1px dotted;
+        }
+
+        &_back {
+            text-align: right;
+            text-transform: uppercase;
+
+            @include breakpoint-up(lg) {
+                display: none;
+            }
         }
     }
 
     &__arrow {
-        position: relative;
+        position: absolute;
+        top: 50%;
 
         display: block;
         width: 42px;
         height: 42px;
 
-        text-indent: -999px;
-
         border: 1px solid $color-gallery;
-        cursor: pointer;
 
-        overflow: hidden;
+        transform: translateY(-50%);
+
+        @include breakpoint-up(lg) {
+            display: none;
+        }
 
         &:after {
             content: "";
@@ -141,8 +161,8 @@
             border-top: 2px solid $color-primary;
         }
 
-        &:hover,
-        &:focus {
+        .nav__link:hover &,
+        .nav__link:focus & {
             background: $color-primary;
             border-color: $color-primary;
 
@@ -152,15 +172,7 @@
         }
 
         &_open {
-            position: absolute;
             right: 10px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            @include breakpoint-up(lg) {
-                display: none;
-            }
 
             &:after {
                 left: 14px;
@@ -170,6 +182,8 @@
         }
 
         &_close {
+            left: 10px;
+
             &:after {
                 right: 14px;
 
@@ -225,16 +239,6 @@
                 transition-delay: 0s;
                 visibility: visible;
             }
-        }
-    }
-
-    &__submenu-top {
-        align-items: center;
-        display: flex;
-        padding: 0 10px;
-
-        @include breakpoint-up(lg) {
-            display: none;
         }
     }
 

@@ -3,6 +3,7 @@
  * @author Andrey Glotov
  */
 
+import * as Header           from '../header/header';
 import * as Nav              from '../nav/nav';
 import * as Search           from '../search/search';
 import * as Minicart         from '../mini-cart/mini-cart';
@@ -121,6 +122,7 @@ export const initModule = function() {
     });
 
     // Initialize common blocks
+    Header.initModule();
     Nav.initModule();
     Search.initModule();
     Minicart.initModule();

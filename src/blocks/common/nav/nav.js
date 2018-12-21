@@ -6,14 +6,14 @@
 import {makeDropdown, makeDrilldown} from '../../../js/utils';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-let $nav, $menuToggle, $menu, $menuInner, $submenus;
+let $nav, $menuToggle, $menu, $scrollpanes, $submenus;
 let menuDrilldown;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // ----------------------------- BEGIN DOM METHODS ----------------------------
 const toggleMenu = function(open) {
     $menu.toggleClass('nav__menu_visible', open);
-    $menuInner.scrollTop(0);
+    $scrollpanes.scrollTop(0);
 
     if (open) {
         $menuToggle.attr('aria-expanded', 'true');
@@ -39,11 +39,11 @@ const toggleSubmenu = function toggleSubmenu($submenu, $toggle, open) {
  * @return true
  */
 export const initModule = function() {
-    $nav        = $('.nav');
-    $menuToggle = $nav.find('.nav__toggle');
-    $menu       = $nav.find('.nav__menu');
-    $menuInner  = $menu.find('.nav__menu-inner');
-    $submenus   = $nav.find('.nav__submenu');
+    $nav         = $('.nav');
+    $menuToggle  = $nav.find('.nav__toggle');
+    $menu        = $nav.find('.nav__menu');
+    $scrollpanes = $menu.find('.nav__scrollpane');
+    $submenus    = $nav.find('.nav__submenu');
 
     menuDrilldown = makeDrilldown($nav, $menuToggle, {
         onToggle: toggleMenu,
@@ -54,7 +54,11 @@ export const initModule = function() {
         const $submenu       = $(this);
         const $submenuToggle = $submenu.prev('.nav__link');
         const $parentItem    = $submenu.closest('.nav__item');
-        const $submenuClose  = $submenu.find('.nav__arrow_close').first();
+        const $submenuClose  = $submenu.find('.nav__link_back').first();
+        const $firstLink     = $submenu
+            .find('.nav__link')
+            .not('.nav__link_back')
+            .first();
 
         const onSubmenuToggle = toggleSubmenu.bind(
             null,
@@ -62,13 +66,17 @@ export const initModule = function() {
             $submenuToggle
         );
 
+        // Each submenu has two behavior patterns: drilldown menu for mobile
+        // and dropdown menu for larger screens.
         const dropdownLogic  = makeDropdown($parentItem, $submenuToggle, {
             hoverToggles : true,
             onToggle     : onSubmenuToggle,
         });
+        // By default, turn off the dropdown logic (mobile-first approach)
         dropdownLogic.pause();
 
         const drilldownLogic = makeDrilldown($submenu, $submenuToggle, {
+            initialFocus : $firstLink,
             onToggle     : onSubmenuToggle,
         });
 
@@ -89,6 +97,8 @@ export const initModule = function() {
  * switch to desktop layout
  */
 export const handleResize = function(isMobile) {
+    // Switch between drilldown submenus on mobile and dropdown submenus on
+    // desktop
     if (isMobile) {
         $submenus.each(function() {
             $(this).data('dropdown').hide().pause();

@@ -18,14 +18,12 @@
 
         transition: color 0.25s ease;
 
-        &:hover,
-        &:focus,
-        .mini-cart_open & {
+        &:hover {
             color: $color-secondary;
         }
 
         &:focus {
-            outline: 1px dotted $color-secondary;
+            outline: 1px dotted;
         }
     }
 

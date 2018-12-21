@@ -13,19 +13,21 @@ mixin nav__list(data, level = 0)
                         aria-haspopup = "true"
                         aria-controls = "submenu-" + item.text.toLowerCase()
                     )= item.text
-                        button(
-                            type        = "button"
-                            aria-hidden = "true"
-                            tabindex    = "-1"
-                        ).nav__arrow.nav__arrow_open
+                        span.nav__arrow.nav__arrow_open(aria-hidden="true")
 
                     .nav__submenu(id = "submenu-" + item.text.toLowerCase())
-                        .nav__menu-inner
-                            .nav__submenu-top
-                                button.nav__arrow.nav__arrow_close Close submenu
-                                .nav__submenu-top-text Back
+                        .nav__scrollpane
+                            a(
+                                href = "javascript:void(0)"
+                                role = "button"
+                            ).nav__link.nav__link_back Back
+                                span.nav__arrow.nav__arrow_close(
+                                    aria-hidden="true"
+                                )
 
                             +nav__list(item.submenu, level + 1)
+                        // /.nav__scrollpane 
+                    // /.nav__submenu 
                 else
                     a.nav__link(
                         href=item.link
@@ -43,7 +45,8 @@ mixin nav(data)
         ).nav__toggle
 
         .nav__menu#main-menu
-            .nav__menu-inner
+            .nav__scrollpane
                 +mobile-search().nav__search
                 +nav__list(data).nav__list_horizontal
-    // /.nav
+            // /.nav__scrollpane 
+        // /.nav__menu 

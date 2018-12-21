@@ -21,6 +21,11 @@ mixin header(data, mods = {})
             +nav(data.nav).header__nav
 
             .header__actions
-                +search().header__search
+                button.header__search-toggle
+                    +icon('search', 'Show search form')
+
                 +mini-cart(data.cart).header__mini-cart
-    // /.header 
+            // /.header__actions 
+        // /.header__inner 
+
+        +search().header__search
