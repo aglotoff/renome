@@ -1,5 +1,4 @@
 mixin testimonial(data, mods = {})
-    // Begin testimonial section 
     .testimonial(
         class = !!mods.reverse ? 'testimonial_reverse' : ''
     )&attributes(attributes)
@@ -11,5 +10,5 @@ mixin testimonial(data, mods = {})
                 blockquote.testimonial__quote
                     p.testimonial__quote-text= data.text
                     footer.testimonial__quote-footer
-                        cite= data.author
-    // End testimonial section 
+                        cite= data.author 
+    // /.testimonial 

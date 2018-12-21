@@ -10,7 +10,7 @@ mixin recent-posts(data)
                 day = '0' + day;
             return `${month}/${day}`;
         };
-    // Begin recent posts section 
+
     section.recent-posts
         .recent-posts__inner
             +heading-group({
@@ -18,9 +18,9 @@ mixin recent-posts(data)
                 subtitle: data.subtitle
             })
 
-            ul.recent-posts__list
+            .recent-posts__list
                 each post in data.posts
-                    li.recent-posts__item
+                    article.recent-posts__item
                         a(
                             href=post.link
                             style=`background-image: url(${post.thumb})`
@@ -30,4 +30,6 @@ mixin recent-posts(data)
                                     time(datetime=post.date)
                                         = formattedDate(post.date)
                                 h3.recent-posts__title= post.title
-    // End recent posts section 
+            // /.recent-posts__list 
+        // /.recent-posts__inner 
+    // /.recent-posts 

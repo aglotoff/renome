@@ -1,9 +1,8 @@
 mixin cta(data)
-    // Begin call to action 
     .cta&attributes(attributes)
         .cta__inner
             +btn({
                 title: data.title,
                 link: data.link,
             }, 'link').cta__btn
-    // End call to action 
+    // /.cta 

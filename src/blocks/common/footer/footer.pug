@@ -1,5 +1,4 @@
 mixin footer()
-    // Begin footer 
     footer.footer&attributes(attributes)
         .footer__inner
             .footer__social
@@ -14,12 +13,15 @@ mixin footer()
                     li.footer__social-item
                         a(href="javascript:void(0);").footer__social-link
                             +icon('gplus', 'Follow us on Google Plus')
+            // /.footer__social 
 
             a(href="index.html").footer__logo
                 img(src="img/logo.png", alt="Renome")
+            // /.footer__logo 
 
             .footer__copyright
                 | Copyright 2015 Renome by Estetiq
                 br
                 | HTML template by polarfawx
-    // End footer 
+            // /.footer__copyright 
+        // /.footer__inner 
