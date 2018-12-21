@@ -106,18 +106,13 @@
             }
         }
 
-        &::-moz-focus-inner {
-            padding: 0;
-            border: 0;
-        }
-
         &:hover,
         &:active,
         &_active {
             color: $color-secondary;
         }
 
-        &:focus {
+        &:-moz-focusring {
             outline: 1px dotted;
         }
 

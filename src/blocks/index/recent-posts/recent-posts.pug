@@ -20,9 +20,8 @@ mixin recent-posts(data)
 
             .recent-posts__list
                 each post in data.posts
-                    article.recent-posts__item
-                        a(
-                            href=post.link
+                    .recent-posts__item
+                        article(
                             style=`background-image: url(${post.thumb})`
                         ).recent-posts__post
                             .recent-posts__post-inner
@@ -30,6 +29,8 @@ mixin recent-posts(data)
                                     time(datetime=post.date)
                                         = formattedDate(post.date)
                                 h3.recent-posts__title= post.title
+                                a(href=post.link).recent-posts__link ...
+                    // /.recent-posts__item 
             // /.recent-posts__list 
         // /.recent-posts__inner 
     // /.recent-posts 

@@ -43,7 +43,7 @@
             color: $color-secondary;
         }
 
-        &:focus {
+        &:-moz-focusring {
             outline: 1px dotted;
         }
     }
