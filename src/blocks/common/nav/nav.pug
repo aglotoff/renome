@@ -41,7 +41,7 @@ mixin nav(data)
     nav.nav&attributes(attributes)
         +hamburger('Toggle nav')(
             aria-haspopup = "true"
-            aria-controls = "#main-menu"
+            aria-controls = "main-menu"
         ).nav__toggle
 
         .nav__menu#main-menu
