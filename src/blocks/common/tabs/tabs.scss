@@ -89,8 +89,16 @@
     &__panel {
         display: none;
 
+        opacity: 1;
+
+        transition: opacity 0.25s ease;
+
         &_active {
             display: block;
+        }
+
+        &_fade {
+            opacity: 0;
         }
     }
 }

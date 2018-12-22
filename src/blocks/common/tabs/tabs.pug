@@ -1,17 +1,19 @@
 mixin tabs(data)
     .tabs&attributes(attributes)
         .tabs__nav
-            ul.tabs__list(role="tablist")
+            ul.tabs__list(role="tablist" aria-orientation="vertical")
                 each item in data
                     li.tabs__item
                         a.tabs__link(
                             class         = item.active && 'tabs__link_active'
                             id            = item.id + '-tab'
+                            tabindex      = item.active ? "0" : "-1"
                             href          = '#' + item.id
                             role          = 'tab'
                             aria-controls = item.id
                             aria-selected = String(item.active)
                         )= item.title
+        // /.tabs__nav 
 
         each item in data
             .tabs__panel(
@@ -22,3 +24,5 @@ mixin tabs(data)
             )
                 each block in item.blocks
                     +#{block.name}(block.content)
+            // /.tabs__panel 
+    // /.tabs 

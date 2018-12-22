@@ -74,6 +74,7 @@ const onWindowScroll = function() {
 
 const onWindowResize = function() {
     Nav.handleResize();
+    Tabs.handleResize();
 };
 // ---------------------------- END EVENT HANDLERS ----------------------------
 

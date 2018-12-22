@@ -1,14 +1,13 @@
 mixin menu-cat(data)
-    <!-- Begin #{data.title} -->
     .menu-cat&attributes(attributes)
         .menu-cat__inner
             each section in data.sections
-                <!-- Begin #{section.title} -->
                 section.menu-cat__section&attributes(attributes)
                     h2.menu-cat__section-title= section.title
 
                     ul.menu-cat__product-list
                         each product in section.products
                             +menu-product(product).menu-cat__product
-                <!-- End #{section.title} -->
-    <!-- End #{data.title} -->
+                // /.menu-cat__section 
+        // /.menu-cat__inner 
+    // /.menu-cat 

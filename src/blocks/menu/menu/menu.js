@@ -14,6 +14,18 @@ export const initModule = function() {
             delegate  : '.menu-product__link',
             mainClass : 'lightbox',
             type      : 'image',
+
+            closeMarkup : '<button aria-label="Close" type="button" '
+                + 'class="mfp-close">&#215;</button>',
+
+            callbacks   : {
+                beforeOpen() {
+                    this.wrap.attr({
+                        'role'       : 'dialog',
+                        'aria-label' : 'View image',
+                    });
+                },
+            },
         });
     });
     

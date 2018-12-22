@@ -1,5 +1,4 @@
 mixin menu(data)
-    // Begin menu 
     .menu&attributes(attributes)
         -
             const tabData = data.categories.map((cat, i) => ({
@@ -15,4 +14,4 @@ mixin menu(data)
                 }],
             }))
         +tabs(tabData)
-    // End menu 
+    // /.menu 
