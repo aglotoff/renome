@@ -1,5 +1,5 @@
 /**
- * Contact Form
+ * Styles for the contact form block
  */
 .contact-form {
     overflow: hidden;
@@ -12,7 +12,7 @@
         text-transform: uppercase;
     }
 
-    &__fields {
+    &__inner {
         text-align: center;
 
         @include breakpoint-up(md) {
@@ -39,6 +39,10 @@
         max-width: 420px;
 
         @include breakpoint-up(md) {
+            max-width: none;
+        }
+
+        &_large {
             max-width: none;
         }
     }

@@ -21,9 +21,6 @@ import '../blocks/shop/product-images/product-images';
 import '../blocks/shop/review-form/review-form';
 import '../blocks/shop/shop-cats/shop-cats';
 
-import '../blocks/contact/contact-form/contact-form';
-import '../blocks/contact/map/map';
-
 import * as Page from '../blocks/common/page/page';
 
 Page.initModule();

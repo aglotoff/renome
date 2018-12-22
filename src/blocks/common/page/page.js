@@ -18,6 +18,9 @@ import * as Menu            from '../../menu/menu/menu';
 
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 
+import * as ContactForm     from '../../contact/contact-form/contact-form';
+import * as ContactMap      from '../../contact/map/map';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
@@ -114,25 +117,19 @@ export const initModule = function() {
         },
     });
 
-    // Initialize common blocks
+    // Initialize blocks
     Header.initModule();
     Nav.initModule();
     Search.initModule();
     Minicart.initModule();
     Tabs.initModule();
-
-    // Initialize homepage blocks
     Slider.initModule();
     SpecialsSlider.initModule();
-
-    // Initialize about page blocks
     AboutGallery.initModule();
-
-    // Initialize menu page blocks
     Menu.initModule();
-
-    // Initialize reservation blocks
     ReservationForm.initModule();
+    ContactForm.initModule();
+    ContactMap.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();
