@@ -3,18 +3,20 @@
  * @author Andrey Glotov
  */
 
-import * as Header         from '../header/header';
-import * as Nav            from '../nav/nav';
-import * as Search         from '../search/search';
-import * as Minicart       from '../mini-cart/mini-cart';
-import * as Tabs           from '../tabs/tabs';
+import * as Header          from '../header/header';
+import * as Nav             from '../nav/nav';
+import * as Search          from '../search/search';
+import * as Minicart        from '../mini-cart/mini-cart';
+import * as Tabs            from '../tabs/tabs';
 
-import * as Slider         from '../../index/slider/slider';
-import * as SpecialsSlider from '../../index/specials-slider/specials-slider';
+import * as Slider          from '../../index/slider/slider';
+import * as SpecialsSlider  from '../../index/specials-slider/specials-slider';
 
-import * as AboutGallery   from '../../about/about-gallery/about-gallery';
+import * as AboutGallery    from '../../about/about-gallery/about-gallery';
 
-import * as Menu           from '../../menu/menu/menu';
+import * as Menu            from '../../menu/menu/menu';
+
+import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -128,6 +130,9 @@ export const initModule = function() {
 
     // Initialize menu page blocks
     Menu.initModule();
+
+    // Initialize reservation blocks
+    ReservationForm.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

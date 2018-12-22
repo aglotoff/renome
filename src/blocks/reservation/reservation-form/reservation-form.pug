@@ -1,32 +1,27 @@
 mixin reservation-form()
-    // start reservation form 
     form.reservation-form(action="#" method="post")&attributes(attrributes)
         .reservation-form__inner
             h2.reservation-form__title Make a Reservation
 
             .reservation-form__fields
                 label.reservation-form__input-group
-                    +icon('calendar')
+                    +icon('calendar', 'Reservation date')
                     +input(
-                        name="date"
-                        aria-label="Reservation date"
+                        name       = "date"
                         required
                     ).reservation-form__input.reservation-form__date
                     
                 label.reservation-form__input-group
-                    +icon('time')
+                    +icon('time', 'Reservation time')
                     select(
-                        name="time"
-                        aria-label="Reservation time"
-                        required
+                        name       = "time"
                     ).reservation-form__time
                         option(value="") &nbsp;
 
                 label.reservation-form__input-group
-                    +icon('people')
+                    +icon('people', 'Reservation party size')
                     select(
-                        name="party"
-                        aria-label="Reservation party size"
+                        name       = "party"
                     ).reservation-form__people
                         option(value="1") 1 Person
                         option(value="2" selected) 2 People
@@ -35,9 +30,12 @@ mixin reservation-form()
                             option(value=n) #{n} People
                             - n++;
                         option(value="21") Larger party
+            // /.reservation-form__fields 
 
-            .reservation-form__submit
+            .reservation-form__bottom
                 +btn({
                     title: 'Find a table'
-                }, 'submit').reservation-form__submit-btn
-    // end reservation form 
+                }, 'submit').reservation-form__submit
+            // /.reservation-form__bottom 
+        // /.reservation-form__inner 
+    // /.reservation-form 

@@ -1,7 +1,5 @@
 import '../blocks/index/gallery/gallery';
 
-import '../blocks/reservation/reservation-form/reservation-form';
-
 import '../blocks/blog/blog-gallery/blog-gallery';
 import '../blocks/blog/comment/comment';
 import '../blocks/blog/comment-form/comment-form';

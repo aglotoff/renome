@@ -1,6 +1,12 @@
+/**
+ * @file Implementation of the reservation form block
+ * @author Andrey Glotov
+ */
+
 /* global Pikaday, moment */
 
-const OpeningHours = [
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+const openingHours = [
     {start: 10, end: 21}, // Sun
     {start: 9,  end: 22}, // Mon
     {start: 9,  end: 22}, // Tue
@@ -9,85 +15,138 @@ const OpeningHours = [
     {start: 9,  end: 22}, // Fri
     {start: 10, end: 21}, // Sat
 ];
+// --------------------------- END MODULE VARIABLES ---------------------------
 
-let today = moment();
-today.add(30 - (today.minutes() % 30), 'minutes');
-if (today.hours() >= OpeningHours[today.day()].end) {
-    today = moment({
-        year: today.year(),
-        month: today.month(),
-        date: today.date() + 1,
-    });
-}
+// -------------------------- BEGIN UTILITY FUNCTIONS -------------------------
+const getStartMoment = function() {
+    const currentMoment = moment();
 
-$('.reservation-form').each(function() {
-    const $form = $(this);
+    // Reservation must be done at least 30 minutes ahead 
+    currentMoment.add(30, 'minutes');
 
-    const updateDate = (thisMoment) => {
-        const hours = OpeningHours[thisMoment.day()];
+    // Round up to nearest half hour
+    if ((currentMoment.minutes() % 30) !== 0) {
+        currentMoment.add(30 - (currentMoment.minutes() % 30), 'minutes');
+    }
 
-        const m = moment.max(
-            moment(today),
-            moment(thisMoment).hours(hours.start)
-        );
+    // If it's too late, allow reservation from only the next day
+    if (currentMoment.hours() >= openingHours[currentMoment.day()].end) {
+        return moment({
+            year  : currentMoment.year(),
+            month : currentMoment.month(),
+            date  : currentMoment.date() + 1,
+        });
+    }
 
-        const timeArray = [];
+    return currentMoment;
+};
 
-        while (m.hour() < hours.end) {
-            timeArray.push(m.format('h:mm A'));
-            m.add(30, 'minutes');
-        }
+const getAvailableTimes = function(startMoment) {
+    const hours = openingHours[startMoment.day()];
 
-        const $time = $('.reservation-form__time', $form);
-        const currentValue = $time.val();
+    const m = moment.max(
+        moment(startMoment),
+        moment(startMoment).hours(hours.start)
+    );
 
-        $time
-            .empty()
-            .append(timeArray.map((time) => {
-                return $('<option></option>')
-                    .val(time)
-                    .text(time)
-                    .prop('selected', time == currentValue);
-            }))
-            .trigger('change');
-    };
+    const timeArray = [];
 
-    new Pikaday({
-        field: $('.reservation-form__date', $(this))[0],
+    while (m.hour() < hours.end) {
+        timeArray.push(m.format('h:mm A'));
+        m.add(30, 'minutes');
+    }
 
-        defaultDate: today.toDate(),
-        setDefaultDate: true,
+    return timeArray;
+};
+// --------------------------- END UTILITY FUNCTIONS --------------------------
 
-        minDate: today.toDate(),
-        maxDate: moment(today).add(1, 'years').toDate(),
+// ----------------------------- BEGIN DOM METHODS ----------------------------
+const updateTimeSelect = function($time, startMoment) {
+    const timeArray    = getAvailableTimes(startMoment);
+    const selectedTime = $time.val();
 
-        format: 'DD/MM/YYYY',
-        theme: 'date-picker',
-
-        onSelect() {
-            updateDate(this.getMoment());
-        },
+    const $options  = timeArray.map(function(time) {
+        return $('<option></option>')
+            .val(time)
+            .text(time)
+            .prop('selected', time == selectedTime);
     });
 
-    $('.reservation-form__time', $form)
+    $time
+        .empty()
+        .append($options)
+        .trigger('change');
+};
+
+const initSelect = function($select) {
+    $select
         .select2({
-            theme: 'renome',
-            width: 'style',
-            minimumResultsForSearch: Infinity,
+            theme                   : 'renome',
+            width                   : 'style',
+            minimumResultsForSearch : Infinity,
         })
         .data('select2')
         .$container
         .addClass('reservation-form__input');
+};
+// ------------------------------ END DOM METHODS -----------------------------
 
-    $('.reservation-form__people', $form)
-        .select2({
-            theme: 'renome',
-            width: 'style',
-            minimumResultsForSearch: Infinity,
-        })
-        .data('select2')
-        .$container
-        .addClass('reservation-form__input');
+// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+/**
+ * Initialize the reservation form module.
+ * @return true;
+ */
+export const initModule = function() {
+    const startMoment = getStartMoment();
 
-    updateDate(today);
-});
+    $('.reservation-form').each(function() {
+        const $form   = $(this);
+        const $date   = $form.find('.reservation-form__date');
+        const $time   = $form.find('.reservation-form__time');
+        const $people = $form.find('.reservation-form__people');
+    
+        new Pikaday({
+            field          : $date.get(0),
+    
+            defaultDate    : startMoment.toDate(),
+            setDefaultDate : true,
+    
+            // Reservations can be made up to 6 months in advance
+            minDate        : startMoment.toDate(),
+            maxDate        : moment(startMoment).add(6, 'months').toDate(),
+    
+            format         : 'DD/MM/YYYY',
+            theme          : 'date-picker',
+    
+            onSelect       : function onSelectDate() {
+                updateTimeSelect($time, this.getMoment());
+            },
+        });
+
+        initSelect($time);
+        initSelect($people);
+
+        updateTimeSelect($time, startMoment);
+
+        $form.validate({
+            rules: {
+                date: {
+                    required  : true,
+                    validDate : true,
+                }
+            },
+            
+            errorClass  : 'error reservation-form__error',
+
+            highlight   : function(element) {
+                $(element).addClass('input_invalid');
+            },
+            unhighlight : function(element) {
+                $(element).removeClass('input_invalid');
+            },
+        });
+    });
+
+    return true;
+};
+// ---------------------------- END PUBLIC METHODS ----------------------------

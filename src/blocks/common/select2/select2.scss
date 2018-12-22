@@ -74,7 +74,7 @@
         @include font-size(14px);
         letter-spacing: 0.1em;
 
-        &:hover {
+        &--highlighted {
             font-weight: $font-weight-bold;
         }
     }
@@ -99,7 +99,7 @@
         @include font-size(11px);
         letter-spacing: 0.2em;
 
-        &:hover {
+        &--highlighted {
             font-weight: $font-weight-bold;
         }
     }

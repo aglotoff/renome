@@ -1,5 +1,5 @@
 /**
- * Reservation form
+ * Styles for the reservation form block
  */
 .reservation-form {
     padding: 90px 0 70px;
@@ -20,7 +20,7 @@
         max-width: 420px;
         padding: 0 10px;
 
-        @include breakpoint-up(lg) {
+        @include breakpoint-up(md) {
             max-width: 705px;
         }
     }
@@ -75,13 +75,23 @@
         margin-left: 19px;
     }
 
-    &__submit {
+    &__bottom {
         margin-top: 50px;
 
         text-align: center;
     }
 
-    &__submit-btn {
+    &__submit {
         width: 180px;
+    }
+
+    &__error {
+        position: absolute;
+        right: 0;
+        top: 100%;
+
+        margin-top: 10px;
+
+        text-align: right;
     }
 }
