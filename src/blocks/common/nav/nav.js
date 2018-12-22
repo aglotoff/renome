@@ -6,8 +6,12 @@
 import {makeDropdown, makeDrilldown} from '../../../js/utils';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+const DESKTOP_BREAKPOINT = 992;  // Minimum desktop screen width
+
 let $nav, $menuToggle, $menu, $scrollpanes, $submenus;
 let menuDrilldown;
+
+let isMobile = true;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // ----------------------------- BEGIN DOM METHODS ----------------------------
@@ -92,19 +96,20 @@ export const initModule = function() {
 
 /**
  * Respond to window resize event.
- *
- * @param {boolean} isMobile - If true, switch to mobile layout. If false,
- * switch to desktop layout
  */
-export const handleResize = function(isMobile) {
+export const handleResize = function() {
     // Switch between drilldown submenus on mobile and dropdown submenus on
     // desktop
-    if (isMobile) {
+    if (!isMobile && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
+        isMobile = true;
+
         $submenus.each(function() {
             $(this).data('dropdown').hide().pause();
             $(this).data('drilldown').unpause();
         });
-    } else {
+    } else if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
+        isMobile = false;
+
         $submenus.each(function() {
             $(this).data('drilldown').hide().pause();
             $(this).data('dropdown').unpause();

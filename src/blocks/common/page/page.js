@@ -17,7 +17,6 @@ import * as AboutGallery   from '../../about/about-gallery/about-gallery';
 import * as Menu           from '../../menu/menu/menu';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-const DESKTOP_BREAKPOINT    = 992;  // Minimum desktop screen width
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
 const RESIZE_INTERVAL       = 200;  // Resize debouncing interval
@@ -29,7 +28,6 @@ let headerState = HeaderStates.NORMAL;
 const $header = $('.header');
 const isHeaderTransparent = $header.hasClass('header_transparent');
 
-let isMobile    = true;
 let resizeTimer = null;
 let scrollTimer = null;
 let wasScrolled = false;
@@ -75,15 +73,7 @@ const onWindowScroll = function() {
 };
 
 const onWindowResize = function() {
-    if (!isMobile && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
-        isMobile = true;
-
-        Nav.handleResize(true);
-    } else if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
-        isMobile = false;
-
-        Nav.handleResize(false);
-    }
+    Nav.handleResize();
 };
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
