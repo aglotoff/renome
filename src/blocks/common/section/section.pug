@@ -11,9 +11,12 @@ mixin section(data, mods = {})
 
             .section__content
                 +heading-group({
-                    title: data.title, 
-                    subtitle: data.subtitle,
-                })
+                    title    : data.title, 
+                    subtitle : data.subtitle,
+                })(
+                    id       = data.id
+                    tabindex = data.id && "-1"
+                )
 
                 if data.text
                     .text.section__text !{data.text}

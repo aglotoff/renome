@@ -18,13 +18,13 @@ include ../../blocks/contact/contact-form/contact-form.pug
 
 block page
     +slider(data.content.slider)
-    +section(data.content.about)#about
+    +section(data.content.about)
     +gallery(data.content.gallery)
-    +section(data.content.menuIntro, {reverse: true})#menu
+    +section(data.content.menuIntro, {reverse: true})
     +menu(data.content.menu)
     +testimonial(data.content.testimonial, {reverse: true})
-    +section(data.content.reservation)#reservation
+    +section(data.content.reservation)
     +reservation-form()
     +specials(data.content.specials)
-    +section(data.content.contact, {reverse: true})#contact
+    +section(data.content.contact, {reverse: true})
     +contact-bottom({details: data.content.contactDetails})

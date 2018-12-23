@@ -65,6 +65,7 @@
         "about": {
             "title": "About",
             "subtitle": "We create delicious memories",
+            "id": "about",
 
             "images": {
                 "first": {
@@ -110,6 +111,7 @@
         "menuIntro": {
             "title": "Menu",
             "subtitle": "Delicious and beautiful",
+            "id": "menu",
 
             "images": {
                 "first": {
@@ -257,6 +259,7 @@
         "reservation": {
             "title": "Reservation",
             "subtitle": "Book your table at our restaurant now!",
+            "id": "reservation",
             
             "images": {
                 "first": {
@@ -304,6 +307,7 @@
         "contact": {
             "title": "Contact",
             "subtitle": "We welcome you in our restaurant",
+            "id": "contact",
 
             "images": {
                 "first": {

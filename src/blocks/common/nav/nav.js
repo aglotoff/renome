@@ -91,6 +91,30 @@ export const initModule = function() {
         $submenu.data('dropdown',  dropdownLogic);
         $submenu.data('drilldown', drilldownLogic);
     });
+
+    // Scroll smoothly to internal links
+    $nav.on('click', '.nav__link[href^="#"]', function onInternalLink(event) {
+        event.preventDefault();
+
+        const targetId = $(this).attr('href');
+        const $target  = $(targetId);
+        if ($target.length === 0) {
+            return;
+        }
+
+        if (isMobile) {
+            $submenus.each(function() {
+                $(this).data('drilldown').hide();
+            });
+            menuDrilldown.hide();
+        }
+
+        $('html, body').animate({
+            scrollTop: Math.max(0, $target.offset().top - 100),
+        }, 1000, 'swing', function() {
+            $target.focus();
+        });
+    });
     // end initialize submenus
 };
 
