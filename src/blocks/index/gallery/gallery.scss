@@ -24,6 +24,7 @@
     }
 
     &__heading {
+        flex: 0;
         text-align: center;
 
         @include breakpoint-up(lg) {
@@ -32,6 +33,7 @@
     }
 
     &__wrapper {
+        flex: 1;
         margin: 35px auto 0;
         max-width: 500px;
 
@@ -39,32 +41,21 @@
 
         @include breakpoint-up(lg) {
             margin: 0;
-            margin-left: 60px;
+            margin-left: 20px;
         }
     }
 
     &__grid {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        margin: -5px;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
 
         @include breakpoint-up(md) {
-            margin: -8px;
+            grid-gap: 15px;
         }
     }
 
     &__thumb {
-        flex: 0 1 auto;
-        min-width: 145px;
-        padding: 5px;
-
-        @include breakpoint-up(md) {
-            padding: 8px;
-        }
-    }
-
-    &__thumb-inner {
         position: relative;
     }
 
@@ -88,7 +79,8 @@
 
         transition: opacity 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 1;
         }
     }

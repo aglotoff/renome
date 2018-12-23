@@ -9,15 +9,12 @@ import * as Search          from '../search/search';
 import * as Minicart        from '../mini-cart/mini-cart';
 import * as Tabs            from '../tabs/tabs';
 
+import * as Gallery         from '../../index/gallery/gallery';
 import * as Slider          from '../../index/slider/slider';
 import * as SpecialsSlider  from '../../index/specials-slider/specials-slider';
-
 import * as AboutGallery    from '../../about/about-gallery/about-gallery';
-
 import * as Menu            from '../../menu/menu/menu';
-
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
-
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
 
@@ -123,6 +120,7 @@ export const initModule = function() {
     Search.initModule();
     Minicart.initModule();
     Tabs.initModule();
+    Gallery.initModule();
     Slider.initModule();
     SpecialsSlider.initModule();
     AboutGallery.initModule();
