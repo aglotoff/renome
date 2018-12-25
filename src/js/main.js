@@ -4,8 +4,6 @@ import '../blocks/blog/comment-form/comment-form';
 
 import '../blocks/portfolio/portfolio-more/portfolio-more';
 
-import '../blocks/portfolio-single/project-carousel/project-carousel';
-
 import '../blocks/shop/alert/alert';
 import '../blocks/shop/cart-form/cart-form';
 import '../blocks/shop/cart-shipping/cart-shipping';

@@ -1,0 +1,21 @@
+mixin project-slider(data)
+    .project-slider&attributes(attributes)
+        .project-slider__inner
+            .project-slider__container
+                each image in data
+                    .project-slider__slide
+                        img(src=image.src, alt=image.alt).project-slider__img
+            // /.project-slider__container 
+
+            .project-slider__arrows
+                button(
+                    type="button"
+                ).project-slider__arrow.project-slider__arrow_dir_prev
+                    | Previous slide
+                button(
+                    type="button"
+                ).project-slider__arrow.project-slider__arrow_dir_next
+                    | Next slide
+            // /.project-slider__arrows 
+        // /.project-slider__inner 
+    // /.project-slider 

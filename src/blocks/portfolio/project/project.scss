@@ -1,7 +1,7 @@
 /**
- * Project Page Layout
+ * Styles for the project block
  */
-.project-layout {
+.project {
     padding: 70px 0;
 
     @include breakpoint-up(lg) {
@@ -9,7 +9,7 @@
         padding-top: 100px;
     }
 
-    &__carousel {
+    &__slider {
         margin-top: 50px;
 
         @include breakpoint-up(lg) {

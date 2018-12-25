@@ -116,17 +116,10 @@
 @import "../blocks/portfolio/portfolio-filter/portfolio-filter";
 @import "../blocks/portfolio/portfolio-grid/portfolio-grid";
 @import "../blocks/portfolio/portfolio-more/portfolio-more";
-
-/*
- * ----------------------------------------
- * Portfolio Single Blocks
- * ----------------------------------------
- */
-
-@import "../blocks/portfolio-single/project-layout/project-layout";
-@import "../blocks/portfolio-single/project-info/project-info";
-@import "../blocks/portfolio-single/project-carousel/project-carousel";
-@import "../blocks/portfolio-single/project-desc/project-desc";
+@import "../blocks/portfolio/project/project";
+@import "../blocks/portfolio/project-info/project-info";
+@import "../blocks/portfolio/project-slider/project-slider";
+@import "../blocks/portfolio/project-desc/project-desc";
 
 /*
  * ----------------------------------------
