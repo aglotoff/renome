@@ -3,79 +3,24 @@
  * @author Andrey Glotov
  */
 
+import {makeListbox} from '../../../js/utils';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const TRANSITION_DURATION = 250;
 const MEDIUM_BREAKPOINT   = 768;
 
-const KEY_END   = 35;
-const KEY_HOME  = 36;
-const KEY_LEFT  = 37;
-const KEY_UP    = 38;
-const KEY_RIGHT = 39;
-const KEY_DOWN  = 40;
+let verticalLayout = true;
 
-let verticalLayout = false;
-
-let $tabs, $tabLists;
+const allTabs = [];
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 const tabsProto = {
-    _onKeydown(event) {
-        const key = event.which;
-
-        const keyActions = verticalLayout
-            ? verticalKeyActions
-            : horizontalKeyActions;
-        
-        if (keyActions[key]) {
-            keyActions[key].call(this);
-            return false;
-        }
-    },
-
-    firstTab() {
-        this.showTab(0);
-    },
-
-    lastTab() {
-        this.showTab(this._$links.length - 1);
-    },
-
-    prevTab() {
-        let nextIndex = this._activeIndex - 1;
-        if (nextIndex < 0) {
-            nextIndex = this._$links.length - 1;
-        }
-
-        this.showTab(nextIndex);
-    },
-
-    nextTab() {
-        let nextIndex = this._activeIndex + 1;
-        if (nextIndex >= this._$links.length) {
-            nextIndex = 0;
-        }
-
-        this.showTab(nextIndex);
-    },
-
-    showTab(nextIndex) {
-        if (this._activeIndex === nextIndex) {
-            return;
-        }
-
-        if (this._inProgress) {
-            return;
-        }
-        this._inProgress = true;
-
-        const $prevLink  = this._$links.eq(this._activeIndex);
-        const $prevPanel = this._$panels.eq(this._activeIndex);
-        const $nextLink  = this._$links.eq(nextIndex);
-        const $nextPanel = this._$panels.eq(nextIndex);
-
-        this._activeIndex = nextIndex;
+    _onTabSelect(next, prev) {
+        const $prevLink  = this._$links.eq(prev);
+        const $prevPanel = this._$panels.eq(prev);
+        const $nextLink  = this._$links.eq(next);
+        const $nextPanel = this._$panels.eq(next);
 
         $prevLink
             .removeClass('tabs__link_active')
@@ -95,30 +40,20 @@ const tabsProto = {
         $prevPanel.addClass('tabs__panel_fade');
         $nextPanel.addClass('tabs__panel_fade');
 
-        this._switchTimer = setTimeout(() => {
+        setTimeout(() => {
             $prevPanel
                 .removeClass('tabs__panel_fade')
                 .removeClass('tabs__panel_active');
             $nextPanel
                 .removeClass('tabs__panel_fade')
                 .addClass('tabs__panel_active');
-
-            this._inProgress = false;
         }, TRANSITION_DURATION);
-    }
-};
+    },
 
-const verticalKeyActions   = {
-    [KEY_END]   : tabsProto.lastTab,
-    [KEY_HOME]  : tabsProto.firstTab,
-    [KEY_UP]    : tabsProto.prevTab,
-    [KEY_DOWN]  : tabsProto.nextTab,
-};
-const horizontalKeyActions = {
-    [KEY_END]   : tabsProto.lastTab,
-    [KEY_HOME]  : tabsProto.firstTab,
-    [KEY_LEFT]  : tabsProto.prevTab,
-    [KEY_RIGHT] : tabsProto.nextTab,
+    setOrientation(orientation) {
+        this._$list.attr('aria-orientation', orientation);
+        this._logic.setOrientation(orientation);
+    },
 };
 
 /**
@@ -126,31 +61,21 @@ const horizontalKeyActions = {
  * @return true
  */
 export const initModule = function() {
-    $tabs     = $('.tabs');
-    $tabLists = $tabs.find('.tabs__list');
-
-    $tabs.each(function() {
+    $('.tabs').each(function() {
         const $container = $(this);
-        const $list      = $container.find('.tabs__list');
-        const $links     = $list.find('.tabs__link');
-        const $panels    = $container.find('.tabs__panel');
 
         const tabs = Object.create(tabsProto);
 
-        tabs._$links      = $links;
-        tabs._$panels     = $panels;
-        tabs._activeIndex = 0;
-        tabs._inProgress  = false;
-        tabs._isVertical  = true;
+        tabs._$list    = $container.find('.tabs__list');
+        tabs._$links   = tabs._$list.find('.tabs__link');
+        tabs._$panels  = $container.find('.tabs__panel');
 
-        $list.keydown(tabs._onKeydown.bind(tabs));
-        $links.each(function(i) {
-            $(this).click(function onTabClick(event) {
-                event.preventDefault();
-
-                tabs.showTab(i);
-            });
+        tabs._logic    = makeListbox(tabs._$list, tabs._$links, {
+            orientation : 'vertical',
+            onSelect    : tabs._onTabSelect.bind(tabs),
         });
+
+        allTabs.push(tabs);
     });
 
     return true;
@@ -167,11 +92,15 @@ export const handleResize = function() {
     if (!verticalLayout && (screenWidth < MEDIUM_BREAKPOINT)) {
         verticalLayout = true;
 
-        $tabLists.attr('aria-orientation', 'vertical');
+        allTabs.forEach(function(tab) {
+            tab.setOrientation('vertical');
+        });
     } else if (verticalLayout && (screenWidth >= MEDIUM_BREAKPOINT)) {
         verticalLayout = false;
 
-        $tabLists.attr('aria-orientation', 'horizontal');
+        allTabs.forEach(function(tab) {
+            tab.setOrientation('horizontal');
+        });
     }
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

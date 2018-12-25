@@ -5,7 +5,13 @@
 
 /* global focusTrap */
 
-const ESC_KEYCODE = 27;
+const KEY_ESC   = 27;
+const KEY_END   = 35;
+const KEY_HOME  = 36;
+const KEY_LEFT  = 37;
+const KEY_UP    = 38;
+const KEY_RIGHT = 39;
+const KEY_DOWN  = 40;
 
 const $document = $(document);
 
@@ -25,7 +31,7 @@ const dropdownProto = {
     },
 
     _onKeydown(event) {
-        if (event.which === ESC_KEYCODE) {
+        if (event.which === KEY_ESC) {
             this.hide();
             this._$switcher.focus();
         }
@@ -211,4 +217,99 @@ export const makeDrilldown = function($container, $toggle, options) {
     drilldown.unpause();
 
     return drilldown;
+};
+
+
+const listboxProto = {
+    _onKeydown(event) {
+        const key = event.which;
+
+        const keyActions = (this._orientation === 'vertical')
+            ? verticalKeyActions
+            : horizontalKeyActions;
+        
+        if (keyActions[key]) {
+            keyActions[key].call(this);
+            return false;
+        }
+    },
+
+    firstTab() {
+        this.selectItem(0);
+    },
+
+    lastTab() {
+        this.selectItem(this._$items.length - 1);
+    },
+
+    prevTab() {
+        let nextIndex = this._activeIndex - 1;
+        if (nextIndex < 0) {
+            nextIndex = this._$items.length - 1;
+        }
+
+        this.selectItem(nextIndex);
+    },
+
+    nextTab() {
+        let nextIndex = this._activeIndex + 1;
+        if (nextIndex >= this._$items.length) {
+            nextIndex = 0;
+        }
+
+        this.selectItem(nextIndex);
+    },
+
+    selectItem(nextIndex) {
+        if (this._activeIndex === nextIndex) {
+            return;
+        }
+
+        if (this._onSelect) {
+            this._onSelect(nextIndex, this._activeIndex);
+        }
+
+        this._activeIndex = nextIndex;
+    },
+
+    setOrientation(orientation) {
+        this._orientation = orientation;
+    }
+};
+
+const verticalKeyActions   = {
+    [KEY_END]   : listboxProto.lastTab,
+    [KEY_HOME]  : listboxProto.firstTab,
+    [KEY_UP]    : listboxProto.prevTab,
+    [KEY_DOWN]  : listboxProto.nextTab,
+};
+const horizontalKeyActions = {
+    [KEY_END]   : listboxProto.lastTab,
+    [KEY_HOME]  : listboxProto.firstTab,
+    [KEY_LEFT]  : listboxProto.prevTab,
+    [KEY_RIGHT] : listboxProto.nextTab,
+};
+
+export const makeListbox = function($container, $items, options) {
+    const listbox = Object.create(listboxProto);
+
+    listbox._$container  = $container;
+    listbox._$items      = $items;
+    listbox._activeIndex = 0;
+    listbox._onSelect    = options.onSelect,
+    listbox._onKeydown   = listbox._onKeydown.bind(listbox);
+
+    $container.keydown(listbox._onKeydown);
+    
+    $items.each(function(i) {
+        $(this).click(function(event) {
+            event.preventDefault();
+
+            listbox.selectItem(i);
+        });
+    });
+
+    listbox.setOrientation(options.orientation || 'horizontal');
+
+    return listbox;
 };
