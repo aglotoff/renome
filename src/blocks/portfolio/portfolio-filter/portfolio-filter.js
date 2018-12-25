@@ -100,9 +100,13 @@ const onDropdownToggle = function(open) {
  * @return true;
  */
 export const initModule = function() {
+    $portfolio = $('.portfolio');
+    if ($portfolio.length === 0) {
+        return false;
+    }
+
     $filter    = $('.portfolio-filter');
     $inner     = $filter.find('.portfolio-filter__inner');
-    $portfolio = $filter.closest('.portfolio');
     $toggle    = $inner.find('.portfolio-filter__toggle');
     $list      = $inner.find('.portfolio-filter__list');
     $btns      = $list.find('.portfolio-filter__btn');
@@ -128,6 +132,10 @@ export const initModule = function() {
  * Respond to window resize event.
  */
 export const handleResize = function() {
+    if ($portfolio.length === 0) {
+        return false;
+    }
+
     const screenWidth = $(window).outerWidth();
     
     // Switch listbox orientation to vertical on mobile and to horizontal on

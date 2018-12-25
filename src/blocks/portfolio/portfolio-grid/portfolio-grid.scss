@@ -32,10 +32,6 @@
         @include breakpoint-up(md) {
             width: 33.3333%;
         }
-
-        &_template {
-            display: none;
-        }
     }
 
     &__item-inner {
@@ -69,7 +65,9 @@
 
         transition: opacity 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus-within,
+        &_has-focus {
             opacity: 1;
         }
     }
@@ -80,7 +78,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-athens-gray;
         }
     }
@@ -89,19 +88,25 @@
         margin-top: 7px;
     }
 
-    &__cat {
+    &__cat-item {
         display: inline-block;
+    }
+
+    &__cat-link {
+        display: block;
         padding: 0 10px;
 
         color: $color-white;
         @include font-size(10px);
         font-weight: $font-weight-bold;
+        text-decoration: none;
 
         cursor: pointer;
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
         }
     }

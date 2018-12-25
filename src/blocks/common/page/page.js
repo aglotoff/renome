@@ -18,6 +18,7 @@ import * as ReservationForm from '../../reservation/reservation-form/reservation
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
 import * as PortfolioFilter from '../../portfolio/portfolio-filter/portfolio-filter';
+import * as PortfolioGrid   from '../../portfolio/portfolio-grid/portfolio-grid';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -131,6 +132,7 @@ export const initModule = function() {
     ContactForm.initModule();
     ContactMap.initModule();
     PortfolioFilter.initModule();
+    PortfolioGrid.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

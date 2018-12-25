@@ -11,23 +11,19 @@ mixin portfolio-grid__item(data)
 
                 ul.portfolio-grid__cats
                     each cat in data.categories
-                        li.portfolio-grid__cat(
-                            data-filter=cat.toLowerCase()
-                        )= cat
+                        li.portfolio-grid__cat-item
+                            a(
+                                href        = "javascript:void(0);"
+                                role        = "button"
+                                data-filter = cat.toLowerCase()
+                            ).portfolio-grid__cat-link= cat
 
 mixin portfolio-grid(data)
-    // start items 
     .portfolio-grid&attributes(attributes)
         .portfolio-grid__inner
             each item in data
                 +portfolio-grid__item(item)
             
             .portfolio-grid__sizer
-
-        +portfolio-grid__item({
-            title: 'Title',
-            link: '',
-            image: 'none',
-            categories: [],
-        }).portfolio-grid__item_template
-    // end items 
+        // /.portfolio-grid__inner 
+    // /.portfolio-grid 
