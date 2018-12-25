@@ -1,8 +1,0 @@
-mixin portfolio-layout(data)
-    // start portfolio 
-    .portfolio-layout&attributes(attributes)
-        +portfolio-filter(data.filters).portfolio-layout__filter
-        .portfolio-layout__container
-            +portfolio-grid(data.items).portfolio-layout__grid
-            +portfolio-more().portfolio-layout__more
-    // end portfolio 

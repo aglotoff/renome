@@ -2,7 +2,6 @@ import '../blocks/blog/blog-gallery/blog-gallery';
 import '../blocks/blog/comment/comment';
 import '../blocks/blog/comment-form/comment-form';
 
-import '../blocks/portfolio/portfolio-filter/portfolio-filter';
 import '../blocks/portfolio/portfolio-grid/portfolio-grid';
 import '../blocks/portfolio/portfolio-more/portfolio-more';
 

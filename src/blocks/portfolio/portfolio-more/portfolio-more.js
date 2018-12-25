@@ -57,7 +57,7 @@ $('.portfolio-more__btn').click(function() {
                 $(this).removeClass('portfolio-more__btn_hidden');
             }
 
-            $('.portfolio-layout').trigger('itemsLoaded', [response.items]);
+            $('.portfolio').trigger('itemsLoaded', [response.items]);
         };
 
         response.items.forEach((item) => {

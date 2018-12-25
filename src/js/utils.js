@@ -17,7 +17,12 @@ const $document = $(document);
 
 const dropdownProto = {
     _onOutsideClick(event) {
-        if (!$.contains(this._$container.get(0), event.target)) {
+        const target = event.target;
+        if (!(
+            target === document
+            || this._$container.is($(target))
+            || $.contains(this._$container.get(0), target)
+        )) {
             this.hide();
         }
     },
@@ -40,15 +45,17 @@ const dropdownProto = {
     show() {
         this._isExpanded = true;
 
-        $document.on({
-            click   : this._onOutsideClick,
-            focusin : this._onOutsideClick,
-        });
-        this._$container.on('keydown', this._onKeydown);
+        setTimeout(() => {
+            $document.on({
+                click   : this._onOutsideClick,
+                focusin : this._onOutsideClick,
+            });
+            this._$container.on('keydown', this._onKeydown);
 
-        if (this._onToggle) {
-            this._onToggle(true);
-        }
+            if (this._onToggle) {
+                this._onToggle(true);
+            }
+        }, 0);
 
         return this;
     },

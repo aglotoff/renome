@@ -1,9 +1,9 @@
 extends ../layouts/inner.pug
 
+include ../../blocks/portfolio/portfolio/portfolio.pug
 include ../../blocks/portfolio/portfolio-filter/portfolio-filter.pug
-include ../../blocks/portfolio/portfolio-layout/portfolio-layout.pug
 include ../../blocks/portfolio/portfolio-grid/portfolio-grid.pug
 include ../../blocks/portfolio/portfolio-more/portfolio-more.pug
 
 block append page
-    +portfolio-layout(data.content)
+    +portfolio(data.content)

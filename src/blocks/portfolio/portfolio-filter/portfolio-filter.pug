@@ -1,15 +1,28 @@
 mixin portfolio-filter(data)
-    // start filter 
     .portfolio-filter&attributes(attributes)
         .portfolio-filter__inner
-            button(type="button").portfolio-filter__toggle Filter
+            button(
+                type          = "button"
+                aria-expanded = "false"
+            ).portfolio-filter__toggle Filter
 
-            ul.portfolio-filter__list
+            ul.portfolio-filter__list(
+                role                  = "listbox"
+                aria-label            = "Portfolio Filter"
+                aria-orientation      = "vertical"
+                tabindex              = "0"
+                aria-activedescendant = "filter-" + data[0].toLowerCase()
+            )
                 each filter, i in data
-                    li.portfolio-filter__item
+                    li.portfolio-filter__item(role="presentation")
                         button.portfolio-filter__btn(
-                            type="button" 
-                            data-filter=filter.toLowerCase()
-                            class=(i==0) ? 'portfolio-filter__btn_active' : ''
+                            type          = "button"
+                            class         = !i && 'portfolio-filter__btn_active'
+                            role          = "option"
+                            tabindex      = "-1"
+                            aria-selected = String(!i)
+                            data-filter   = filter.toLowerCase()
+                            id            = "filter-" + filter.toLowerCase()
                         )= filter
-    // end filter 
+        // /.portfolio-filter__inner 
+    // /.portfolio-filter 

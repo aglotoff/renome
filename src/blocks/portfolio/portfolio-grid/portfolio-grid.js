@@ -12,11 +12,11 @@ $('.portfolio-grid').each(function() {
         sizer: $sizer.get(0),
     });
 
-    $('.portfolio-layout').on('filter', function(event, filter) {
+    $('.portfolio').on('filter', function(event, filter) {
         shuffleInstance.filter(filter);
     });
 
-    $('.portfolio-layout').on('itemsLoaded', function(event, items) {
+    $('.portfolio').on('itemsLoaded', function(event, items) {
         shuffleInstance.add(items.map((item) => {
             const $newItem = $template
                 .clone()
@@ -44,6 +44,6 @@ $('.portfolio-grid').each(function() {
     });
 
     $(this).on('click', '.portfolio-grid__cat', function() {
-        $('.portfolio-layout').trigger('filter', $(this).data('filter'));
+        $('.portfolio').trigger('filter', $(this).data('filter'));
     });
 });

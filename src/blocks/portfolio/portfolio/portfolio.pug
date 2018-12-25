@@ -1,0 +1,8 @@
+mixin portfolio(data)
+    .portfolio&attributes(attributes)
+        +portfolio-filter(data.filters).portfolio__filter
+        .portfolio__container
+            +portfolio-grid(data.items).portfolio__grid
+            +portfolio-more().portfolio__more
+        // /.portfolio__container 
+    // /.portfolio 

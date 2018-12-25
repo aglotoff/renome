@@ -35,7 +35,10 @@
         border: none;
         border-bottom: 1px solid $color-concrete;
         cursor: pointer;
-        outline: none;
+
+        &:-moz-focusring {
+            outline: 1px dotted;
+        }
 
         @include breakpoint-up(md) {
             display: none;
@@ -56,7 +59,7 @@
 
         transform: translate(-50%, 0);
         transition: opacity 0.25s ease,
-                    visibility 0.25s ease 0.25s;
+                    visibility 0s step-start 0.25s;
         visibility: hidden;
 
         @include breakpoint-up(md) {
@@ -101,7 +104,6 @@
         background: transparent;
         border: none;
         cursor: pointer;
-        outline: none;
 
         transition: color 0.25s ease;
 
