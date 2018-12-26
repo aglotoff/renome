@@ -2,7 +2,8 @@
     "activeNavItem": "Blog",
     "activeNavSubItem": "Blog left sidebar",
 
-    "pageTitle": "Blog",
+    "pageTitle": "Summer Specials",
+    "pageCategory": "Blog",
     "pageSubtitle": "News, recipes and much more",
     "pageHeaderBg": "img/content/blog/blog-header-bg.jpg",
 

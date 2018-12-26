@@ -35,7 +35,9 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
 
         title
-            if data.pageTitle
+            if data.pageCategory
+                | #{data.pageTitle} &#8211; #{data.pageCategory} | #{data.siteTitle}
+            else if data.pageTitle
                 | #{data.pageTitle} | #{data.siteTitle}
             else
                 | #{data.siteTitle} &#8211; #{data.siteTagline}

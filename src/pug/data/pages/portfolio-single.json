@@ -2,7 +2,8 @@
     "activeNavItem": "Features",
     "activeNavSubItem": "Portfolio",
 
-    "pageTitle": "Portfolio",
+    "pageTitle": "Single Project",
+    "pageCategory": "Portfolio",
     "pageSubtitle": "Here my works",
     "pageHeaderBg": "img/content/portfolio/portfolio-header-bg.jpg",
 

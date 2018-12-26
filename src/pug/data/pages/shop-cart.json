@@ -1,7 +1,8 @@
 {
     "activeNavItem": "Shop",
 
-    "pageTitle": "Shop",
+    "pageTitle": "Shopping Cart",
+    "pageCategory": "Shop",
     "pageSubtitle": "Order dishes online",
     "pageHeaderBg": "img/content/shop/shop-header-bg.jpg",
 
