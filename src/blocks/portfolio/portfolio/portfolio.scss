@@ -11,7 +11,6 @@
 
     &__container {
         margin: 50px auto 0;
-        max-width: 350px;
         padding: 0 10px;
 
         text-align: center;
@@ -23,5 +22,58 @@
         @include breakpoint-up(lg) {
             margin-top: 70px;
         }
+    }
+
+    &__more {
+        text-align: center;
+    }
+
+    &__more-btn {
+        display: inline-block;
+        margin-top: 30px;
+
+        font-family: $font-family-regular;
+        @include font-size(12px);
+        font-weight: $font-weight-bold;
+        color: $color-primary;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+        transition: color 0.25s ease;
+
+        @include breakpoint-up(lg) {
+            margin-top: 36px;
+        }
+
+        &:after {
+            content: "...";
+
+            display: block;
+            margin-top: -10px;
+
+            @include font-size(30px);
+        }
+
+        &:hover {
+            color: $color-secondary;
+        }
+
+        &_hidden {
+            display: none;
+        }
+    }
+
+    &__loader {
+        display: inline-block;
+        margin-top: 30px;
+    }
+
+    &__error {
+        margin-top: 20px;
     }
 }

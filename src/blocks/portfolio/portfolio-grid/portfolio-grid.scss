@@ -66,7 +66,6 @@
         transition: opacity 0.25s ease;
 
         &:hover,
-        &:focus-within,
         &_has-focus {
             opacity: 1;
         }

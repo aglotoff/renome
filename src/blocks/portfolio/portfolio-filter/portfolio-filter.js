@@ -6,13 +6,9 @@
 import {makeListbox, makeDropdown} from '../../../js/utils';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-const MEDIUM_BREAKPOINT   = 768;
 const KEY_ENTER           = 13;
 
 let $portfolio, $filter, $inner, $toggle, $list, $btns;
-
-let verticalLayout = true;
-let activeFilter   = null;
 
 let dropdownLogic, listboxLogic;
 // --------------------------- END MODULE VARIABLES ---------------------------
@@ -56,18 +52,11 @@ const onFilterSelect = function(next, prev) {
         .addClass('portfolio-filter__btn_active')
         .attr('aria-selected', 'true');
 
-    activeFilter = $nextBtn.data('filter');
+    const activeFilter = $nextBtn.data('filter');
 
     $list.attr('aria-activedescendant', $nextBtn.attr('id'));
 
     $portfolio.trigger('filter', activeFilter);
-};
-
-const onChangeFilter = function(event, newFilter) {
-    if (activeFilter !== newFilter) {
-        const sel = `.portfolio-filter__btn[data-filter="${newFilter}"]`;
-        listboxLogic.selectItem($btns.index($(sel)));
-    }
 };
 
 const onListClick = function() {
@@ -101,18 +90,12 @@ const onDropdownToggle = function(open) {
  */
 export const initModule = function() {
     $portfolio = $('.portfolio');
-    if ($portfolio.length === 0) {
-        return false;
-    }
 
     $filter    = $('.portfolio-filter');
     $inner     = $filter.find('.portfolio-filter__inner');
     $toggle    = $inner.find('.portfolio-filter__toggle');
     $list      = $inner.find('.portfolio-filter__list');
     $btns      = $list.find('.portfolio-filter__btn');
-        
-    const $activeBtn = $btns.filter('.portfolio-filter__btn_active');
-    activeFilter     = $activeBtn.data('filter');
 
     listboxLogic = makeListbox($list, $btns, {
         orientation : 'vertical',
@@ -123,35 +106,30 @@ export const initModule = function() {
         onToggle: onDropdownToggle,
     });
 
-    $portfolio.on('filter', onChangeFilter);
-
     return true;
 };
 
 /**
- * Respond to window resize event.
+ * Set filter orientation.
+ * @param {string} orientation - 'horizontal' or 'vertical'
  */
-export const handleResize = function() {
-    if ($portfolio.length === 0) {
-        return false;
-    }
+export const setOrientation = function(orientation) {
+    $list.attr('aria-orientation', orientation);
+    listboxLogic.setOrientation(orientation);
 
-    const screenWidth = $(window).outerWidth();
-    
-    // Switch listbox orientation to vertical on mobile and to horizontal on
-    // larger screens.
-    if (!verticalLayout && (screenWidth < MEDIUM_BREAKPOINT)) {
-        verticalLayout = true;
-
-        $list.attr('aria-orientation', 'vertical');
-        listboxLogic.setOrientation('vertical');
-        dropdownLogic.unpause();
-    } else if (verticalLayout && (screenWidth >= MEDIUM_BREAKPOINT)) {
-        verticalLayout = false;
-
-        $list.attr('aria-orientation', 'horizontal');
-        listboxLogic.setOrientation('horizontal');
+    if (orientation === 'horizontal') {
         dropdownLogic.hide().pause();
+    } else {
+        dropdownLogic.unpause();
     }
+};
+
+/**
+ * Apply a filter.
+ * @param {string} filter - The filter to be applied
+ */
+export const setFilter = function(filter) {
+    const sel = `.portfolio-filter__btn[data-filter="${filter}"]`;
+    listboxLogic.selectItem($btns.index($(sel)));
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

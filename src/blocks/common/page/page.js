@@ -17,8 +17,7 @@ import * as Menu            from '../../menu/menu/menu';
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
-import * as PortfolioFilter from '../../portfolio/portfolio-filter/portfolio-filter';
-import * as PortfolioGrid   from '../../portfolio/portfolio-grid/portfolio-grid';
+import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
@@ -80,7 +79,7 @@ const onWindowScroll = function() {
 const onWindowResize = function() {
     Nav.handleResize();
     Tabs.handleResize();
-    PortfolioFilter.handleResize();
+    Portfolio.handleResize();
 };
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
@@ -132,8 +131,7 @@ export const initModule = function() {
     ReservationForm.initModule();
     ContactForm.initModule();
     ContactMap.initModule();
-    PortfolioFilter.initModule();
-    PortfolioGrid.initModule();
+    Portfolio.initModule();
     ProjectSlider.initModule();
 
     // Process the initial window size and scroll position

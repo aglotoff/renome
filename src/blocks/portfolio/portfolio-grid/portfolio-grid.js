@@ -20,6 +20,10 @@ const itemHtml = `
     </div>
 </div>
 `;
+
+let shuffleInstance = null;
+
+let $portfolio, $grid, $container, $sizer;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // -------------------------- BEGIN UTILITY FUNCTIONS -------------------------
@@ -64,45 +68,51 @@ const createPortfolioItem = function(data) {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the portfolio grid module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
-    const $portfolio = $('.portfolio');
-    if ($portfolio.length === 0) {
-        return false;
-    }
+    $portfolio = $('.portfolio');
 
-    const $grid      = $('.portfolio-grid');
-    const $container = $grid.find('.portfolio-grid__inner');
-    const $sizer     = $container.find('.portfolio-grid__sizer');
+    $grid      = $('.portfolio-grid');
+    $container = $grid.find('.portfolio-grid__inner');
+    $sizer     = $container.find('.portfolio-grid__sizer');
 
-    const shuffleInstance = new Shuffle($container.get(0), {
+    shuffleInstance = new Shuffle($container.get(0), {
         itemSelector : '.portfolio-grid__item',
         sizer        : $sizer.get(0),
     });
 
-    $portfolio.on({
-        itemsLoaded : function onPortfolioItemsLoaded(event, items) {
-            const newItems = $.map(items, createPortfolioItem);
-            
-            newItems.forEach(($item) => $item.insertBefore($sizer));
-            shuffleInstance.add(newItems.map(($item) => $item.get(0)));
-        },
-
-        filter      : function onPortfolioFilter(event, filter) {
-            shuffleInstance.filter(filter);
-        }
-    });
-
     $container
-        .on('click', '.portfolio-grid__cat-link', function onCatClick() {
+        .on('click', '.portfolio-grid__cat-link', function onCatLinkClick() {
             $portfolio.trigger('filter', $(this).data('filter'));
         })
+        // Until all major browsers support the :focus-within CSS pseudo-class
+        // apply a class using JavaScript
         .on('focusin', '.portfolio-grid__text', function onItemFocusin() {
             $(this).addClass('.portfolio-grid__text_has-focus');
         })
         .on('focusout', '.portfolio-grid__text', function onItemFocusout() {
             $(this).removeClass('.portfolio-grid__text_has-focus');
         });
+};
+
+/**
+ * Apply a filter.
+ * @param {string} filter - The filter to be applied
+ */
+export const setFilter = function(filter) {
+    shuffleInstance.filter(filter);
+};
+
+/**
+ * Add new items
+ * @param {Array} items - the items to be added
+ */
+export const addItems = function(items) {
+    const newItems = $.map(items, createPortfolioItem);
+    
+    newItems.forEach(($item) => $item.insertBefore($sizer));
+
+    shuffleInstance.add(newItems.map(($item) => $item.get(0)));
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------
