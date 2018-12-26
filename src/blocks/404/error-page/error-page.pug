@@ -6,8 +6,11 @@ mixin error-page(data)
             .error-page__text
                 h1.error-page__code= data.code
                 p.error-page__msg= data.message
+            // /.error-page__text 
 
             +btn({
                 title: 'On homepage',
                 link: 'index.html',
             }, 'link').error-page__back
+        // /.error-page__inner 
+    // /.error__page 
