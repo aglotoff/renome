@@ -4,48 +4,68 @@ mixin contact-form()
 
         .contact-form__inner
             .contact-form__field
-                label(for="contact-first-name").contact-form__label First Name
+                label(
+                    for = "contact-first-name"
+                    id  = "label-first-name"
+                ).contact-form__label First Name
                 +input(
-                    id          = "contact-first-name"
-                    name        = "first_name"
-                    placeholder = "First Name *"
+                    id              = "contact-first-name"
+                    name            = "first_name"
+                    placeholder     = "First Name *"
+                    aria-labelledby = "label-first-name"
                     required
                 ).contact-form__input
 
             .contact-form__field
-                label(for="contact-last-name").contact-form__label Last Name
+                label(
+                    for = "contact-last-name"
+                    id  = "label-last-name"
+                ).contact-form__label Last Name
                 +input(
-                    id          = "contact-last-name"
-                    name        = "last_name"
-                    placeholder = "Last Name *"
+                    id              = "contact-last-name"
+                    name            = "last_name"
+                    placeholder     = "Last Name *"
+                    aria-labelledby = "label-last-name"
                     required
                 ).contact-form__input
 
             .contact-form__field
-                label(for="contact-email").contact-form__label Email
+                label(
+                    for = "contact-email"
+                    id  = "label-email"
+                ).contact-form__label Email
                 +input(
-                    id          = "contact-email"
-                    type        = "email"
-                    name        = "email"
-                    placeholder = "Email *"
+                    id              = "contact-email"
+                    type            = "email"
+                    name            = "email"
+                    placeholder     = "Email *"
+                    aria-labelledby = "label-email"
                     required
                 ).contact-form__input
 
             .contact-form__field
-                label(for="contact-subject").contact-form__label Subject
+                label(
+                    for = "contact-subject"
+                    id  = "label-subject"
+                ).contact-form__label Subject
                 +input(
-                    id          = "contact-subject"
-                    name        = "subject"
-                    placeholder = "Subject *"
+                    id              = "contact-subject"
+                    name            = "subject"
+                    placeholder     = "Subject *"
+                    aria-labelledby = "label-subject"
                     required
                 ).contact-form__input
 
             .contact-form__field.contact-form__field_large
-                label(for="contact-message").contact-form__label Message
+                label(
+                    for = "contact-message"
+                    id  = "label-message"
+                ).contact-form__label Message
                 +text-area(
-                    id          = "contact-message"
-                    name        = "message"
-                    placeholder = "Message *"
+                    id              = "contact-message"
+                    name            = "message"
+                    placeholder     = "Message *"
+                    aria-labelledby = "label-message"
                     required
                 ).contact-form__input.contact-form__input_large
 

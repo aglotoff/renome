@@ -79,15 +79,15 @@ const updateTimeSelect = function($time, startMoment) {
 };
 
 const initSelect = function($select) {
-    $select
-        .select2({
-            theme                   : 'renome',
-            width                   : 'style',
-            minimumResultsForSearch : Infinity,
-        })
-        .data('select2')
-        .$container
-        .addClass('reservation-form__input');
+    $select.select2({
+        theme                   : 'renome',
+        width                   : 'style',
+        minimumResultsForSearch : Infinity,
+    });
+
+    const data = $select.data('select2');
+    data.$container.addClass('reservation-form__input');
+    data.$selection.attr('aria-labelledby', $select.attr('aria-labelledby'));
 };
 // ------------------------------ END DOM METHODS -----------------------------
 

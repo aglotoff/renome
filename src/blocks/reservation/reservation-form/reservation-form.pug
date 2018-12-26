@@ -4,24 +4,42 @@ mixin reservation-form()
             h2.reservation-form__title Make a Reservation
 
             .reservation-form__fields
-                label.reservation-form__input-group
-                    +icon('calendar', 'Reservation date')
+                .reservation-form__input-group
+                    label.reservation-form__label(
+                        for = "reservation-date"
+                        id  = "label-date"
+                    )
+                        +icon('calendar', 'Reservation date')
                     +input(
-                        name       = "date"
+                        id              = "reservation-date"
+                        name            = "date"
+                        aria-labelledby = "label-date"
                         required
                     ).reservation-form__input.reservation-form__date
                     
-                label.reservation-form__input-group
-                    +icon('time', 'Reservation time')
+                .reservation-form__input-group
+                    label.reservation-form__label(
+                        for = "reservation-time"
+                        id  = "label-time"
+                    )
+                        +icon('time', 'Reservation time')
                     select(
-                        name       = "time"
+                        id              = "reservation-time"
+                        name            = "time"
+                        aria-labelledby = "label-time"
                     ).reservation-form__time
                         option(value="") &nbsp;
 
-                label.reservation-form__input-group
-                    +icon('people', 'Reservation party size')
+                .reservation-form__input-group
+                    label.reservation-form__label(
+                        for = "reservation-party"
+                        id  = "label-party"
+                    )
+                        +icon('people', 'Party size')
                     select(
-                        name       = "party"
+                        id              = "reservation-party"
+                        name            = "party"
+                        aria-labelledby = "label-party"
                     ).reservation-form__people
                         option(value="1") 1 Person
                         option(value="2" selected) 2 People
