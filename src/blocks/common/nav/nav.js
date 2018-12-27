@@ -19,6 +19,7 @@ const toggleMenu = function(open) {
     $menu.toggleClass('nav__menu_visible', open);
     $scrollpanes.scrollTop(0);
 
+    $menuToggle.toggleClass('hamburger_open', open);
     if (open) {
         $menuToggle.attr('aria-expanded', 'true');
     } else {

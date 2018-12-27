@@ -1,11 +1,8 @@
 mixin popular-posts(data)
-    // start popular posts 
     .popular-posts&attributes(attributes)
-        +title({sidebar: true}).popular-posts__title Popular posts
-
-        ul.popular-posts__list
+        .popular-posts__list
             each post in data
-                li.popular-posts__item
+                article.popular-posts__item
                     a(href=post.link).popular-posts__item-thumb
                         img(
                             src=post.thumb
@@ -18,4 +15,4 @@ mixin popular-posts(data)
                                 | #{post.title}
                         .popular-posts__item-pubdate
                             time(datetime=post.date)= blogDate(post.date)
-    // end popular posts 
+    // /.popular-posts 

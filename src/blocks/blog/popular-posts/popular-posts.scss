@@ -1,5 +1,5 @@
 /**
- * Popular Posts
+ * Styles for the popular posts block
  */
 .popular-posts {
     &__item {
@@ -30,7 +30,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
         }
     }

@@ -1,7 +1,5 @@
 mixin article(data)
-    <!-- start #{data.title.toLowerCase()} -->
     article.article&attributes(attributes)
-        // start article header 
         header.article__header
             ul.article__categories
                 each category in data.categories
@@ -17,9 +15,8 @@ mixin article(data)
 
             .article__pubdate
                 time(datetime=data.date)= blogDate(data.date)
-        // end article header 
+        // /.article__header 
 
-        // start article content 
         .article__content
             if data.image
                 if (data.link)
@@ -36,24 +33,22 @@ mixin article(data)
 
             if data.link
                 a(href=data.link).article__link Continue Reading...
-        // end article content 
+        // /.article__content 
 
         if data.tags || data.author || data.relatedPosts || data.comments
-            // start article footer 
             footer.article__footer
                 .article__footer-top
                     if data.tags
-                        // start tags 
                         .article__tags
                             ul.article__tag-list
                                 each tag in data.tags
                                     li.article__tag
                                         a(
                                             href="javascript:void(0);"
-                                        ).article__tag-link= tag
-                        // end tags 
+                                        ).article__tag-link= tag 
 
                     +share().article__share
+                // /.article__footer-top 
                 
                 if data.author
                     +article-author(data.author).article__author
@@ -64,5 +59,5 @@ mixin article(data)
                 if data.comments
                     +comments(data.comments).article__comments
                     +comment-form().article__comment-form
-            // end article footer 
-    <!-- end #{data.title.toLowerCase()} -->
+            // /.article__footer 
+    // /.article 

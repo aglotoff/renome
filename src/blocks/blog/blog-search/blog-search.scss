@@ -1,5 +1,5 @@
 /**
- * Blog Sidebar Search
+ * Styles for the blog search block
  */
  .blog-search {
     display: flex;
@@ -35,8 +35,13 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
+        }
+
+        &:-moz-focusring {
+            border: 1px dotted;
         }
     }
 }

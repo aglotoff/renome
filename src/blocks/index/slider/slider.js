@@ -13,8 +13,6 @@ const onSlickBeforeChange = function(event, slick, current, next) {
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
-
-// ----------------------------- END PUBLIC METHODS ---------------------------
 /**
  * Initialize the slider module.
  * @return true
@@ -47,3 +45,4 @@ export const initModule = function() {
         $container.on('beforeChange', onSlickBeforeChange);
     });
 };
+// ----------------------------- END PUBLIC METHODS ---------------------------

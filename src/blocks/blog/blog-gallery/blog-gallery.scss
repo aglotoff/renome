@@ -1,5 +1,5 @@
 /**
- * Blog Article Gallery
+ * Styles for the blog gallery block
  */
 .blog-gallery {
     &__inner {
@@ -63,7 +63,8 @@
             border-bottom: 2px solid $color-white;
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             opacity: 1;
         }
 
@@ -112,7 +113,8 @@
             margin-left: 15px;
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             background: $color-white;
         }
     }

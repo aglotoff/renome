@@ -7,7 +7,8 @@
     "start": "./node_modules/.bin/gulp",
     "build": "./node_modules/.bin/gulp build --env=production",
     "deploy": "./node_modules/.bin/gulp deploy --env=production",
-    "gulp": "./node_modules/.bin/gulp"
+    "gulp": "./node_modules/.bin/gulp",
+    "make-block": "node utils/make-block"
   },
   "repository": {
     "type": "git",

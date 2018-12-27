@@ -5,6 +5,7 @@ mixin blog-gallery(data)
                 each image in data
                     .blog-gallery__slide
                         img(src=image.src, alt=image.alt).blog-gallery__img
+            // /.blog-gallery__container 
 
             .blog-gallery__arrows
                 button(
@@ -13,3 +14,6 @@ mixin blog-gallery(data)
                 button(
                     type="button"
                 ).blog-gallery__arrow.blog-gallery__arrow_dir_next Next
+            // /.blog-gallery__arrows 
+        // /.blog-gallery__inner 
+    // /.blog-gallery 

@@ -1,26 +1,30 @@
 mixin pagination(data, mods={})
-    // start pagination 
-    .pagination(class=mods.blog ? 'pagination_blog' : '')&attributes(attributes)
-        ul.pagination__list
-            li.pagination__item
-                a(
-                    href="javascript:void(0);"
-                ).pagination__link.pagination__link_prev Previous
-            
-            - let i = 1;
-            while i <= data.pages
-                li.pagination__item
-                    a(
-                        href="javascript:void(0);"
-                        class={
-                            pagination__link: true,
-                            pagination__link_active: i == data.activePage
-                        }
-                    )= i
-                - i++;              
+    nav.pagination(
+        class      = mods.blog && 'pagination_blog'
+        aria-label = 'Pagination Navigation'
+    )&attributes(attributes)
+        .pagination__inner
+            a(
+                href="javascript:void(0);"
+            ).pagination__link.pagination__link_prev Go to Previous Page
 
-            li.pagination__item
-                a(
-                    href="javascript:void(0);"
-                ).pagination__link.pagination__link_next Next
-    // end pagination 
+            ul.pagination__list               
+                - let i = 1;
+                while i <= data.pages
+                    li.pagination__item
+                        a(
+                            href         = "javascript:void(0);"
+                            class        = {
+                                pagination__link        : true,
+                                pagination__link_active : i == data.activePage
+                            }
+                            aria-label   = "Go to Page " + i
+                            aria-current = (i == data.activePage) && "page"
+                        )= i
+                    - i++;
+
+            a(
+                href="javascript:void(0);"
+            ).pagination__link.pagination__link_next Go to Next Page
+        // /.pagination__inner 
+    // /.pagination 

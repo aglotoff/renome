@@ -1,7 +1,0 @@
-mixin blog-sidebar(data)
-    // start sidebar 
-    .blog-sidebar&attributes(attributes)
-        +blog-search().blog-sidebar__search
-        +blog-cats(data.categories).blog-sidebar__cats
-        +popular-posts(data.popularPosts).blog-sidebar__posts
-    // end sidebar 

@@ -1,5 +1,5 @@
 /**
- * Blog Sidebar Categories
+ * Style for the sidebar categories block
  */
 .blog-cats {
     overflow: hidden;
@@ -24,7 +24,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
         }
     }

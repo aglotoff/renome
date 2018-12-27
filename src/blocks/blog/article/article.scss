@@ -1,5 +1,5 @@
 /**
- * Blog Article
+ * Styles for the article block
  */
 .article {
     &__header {
@@ -30,7 +30,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-primary;
         }
     }
@@ -49,7 +50,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-secondary;
         }
     }
@@ -87,7 +89,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-primary;
         }
     }
@@ -132,7 +135,8 @@
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-black;
         }
     }

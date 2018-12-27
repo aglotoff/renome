@@ -2,16 +2,21 @@ mixin blog-layout(data, mods={})
     .blog-layout(
         class='blog-layout_sidebar_' + (mods.sidebar || 'right')
     )&attributes(attributes)
-        // start blog content 
-        .blog-layout__content
+        .blog-layout__articles
             each article in data.articles
                 +article(article).blog-layout__article
-        // end blog content 
+        // /.blog-layout__articles 
 
         if data.pagination
             +pagination(data.pagination, {blog: true}).blog-layout__pagination
 
-        +blog-sidebar({
-            categories: data.categories,
-            popularPosts: data.popularPosts,
-        }).blog-layout__sidebar
+        .blog-layout__sidebar
+            +blog-search().blog-layout__search
+
+            +blog-widget({title: 'Categories'}).blog-layout__widget
+                +blog-cats(data.categories)
+
+            +blog-widget({title: 'Popular posts'}).blog-layout__widget
+                +popular-posts(data.popularPosts)
+        // /.blog-layout__sidebar 
+    // /.blog-layout 
