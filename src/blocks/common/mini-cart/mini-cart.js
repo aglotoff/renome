@@ -8,7 +8,7 @@ import {makeDropdown} from '../../../js/utils';
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the mini cart module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     const $minicart = $('.mini-cart');

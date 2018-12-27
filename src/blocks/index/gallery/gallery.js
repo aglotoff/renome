@@ -6,7 +6,7 @@
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the gallery module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     $('.gallery').each(function() {

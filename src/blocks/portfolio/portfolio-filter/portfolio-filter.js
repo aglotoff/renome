@@ -86,7 +86,7 @@ const onDropdownToggle = function(open) {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the portfolio filter module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     $portfolio = $('.portfolio');

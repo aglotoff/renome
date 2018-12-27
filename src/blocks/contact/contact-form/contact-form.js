@@ -6,7 +6,7 @@
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the contact form module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     $('.contact-form').validate({

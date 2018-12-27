@@ -6,7 +6,7 @@
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the header module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     const $page         = $('.page');

@@ -129,7 +129,7 @@ const onMoreBtnClick = function() {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the portfolio module.
- * @return true if the portfolio block is present, false otherwise;
+ * @return true if the portfolio block is present, false otherwise
  */
 export const initModule = function() {
     $portfolio = $('.portfolio');

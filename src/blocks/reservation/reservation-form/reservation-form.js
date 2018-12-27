@@ -94,7 +94,7 @@ const initSelect = function($select) {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the reservation form module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     const startMoment = getStartMoment();

@@ -6,7 +6,7 @@
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the project slider module.
- * @return true;
+ * @return true
  */
 export const initModule = function() {
     $('.project-slider__container').slick({
