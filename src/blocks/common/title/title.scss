@@ -1,13 +1,9 @@
 /**
- * Title
+ * Styles for the title block
  */
 .title {
     color: $color-black;
     font-weight: $font-weight-bold;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-
-    &_sidebar {
-        color: $color-primary;
-    }
 }

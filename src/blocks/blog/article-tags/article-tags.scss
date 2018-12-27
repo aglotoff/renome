@@ -1,0 +1,27 @@
+/**
+ * Styles for the article tags block.
+ */
+.article-tags {
+    display: flex;
+    flex-flow: row wrap;
+    flex-wrap: wrap;
+
+    &__item {
+        margin-right: 30px;
+        margin-top: 15px;
+    }
+
+    &__link {
+        color: $color-silver-sand;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        transition: color 0.25s ease;
+
+        &:hover,
+        &:focus {
+            color: $color-black;
+        }
+    }
+}

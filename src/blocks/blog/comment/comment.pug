@@ -5,23 +5,28 @@ mixin comment(data)
             const month = date.toLocaleString('en-us', {month: 'short'});
             const day = date.getDate();
             const time = date.toLocaleString('en-US', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
+                hour   : 'numeric',
+                minute : 'numeric',
+                hour12 : true,
             });
             return `${month} ${day}, ${time}`;
         };
+
     li.comment(data-id=data.id)&attributes(attributes)
         .comment__header
             img(src=data.avatar, alt=data.author).comment__avatar
-            .comment__date
-                time(datetime=data.date)= formattedDate(data.date)
+            time.comment__date(datetime=data.date)= formattedDate(data.date)
             .comment__author= data.author
             button(type="button").comment__reply-btn Reply
+        // /.comment__header 
 
         .text.comment__body= data.text
+        // /.comment__body 
 
-        if data.replies
-            ul.comment__replies
-                each reply in data.replies
-                    +comment(reply).comment__reply
+        .comment__replies
+            if data.replies
+                ul.comment__reply-list
+                    each reply in data.replies
+                        +comment(reply).comment__reply
+        // /.comment__replies 
+    // /.comment 

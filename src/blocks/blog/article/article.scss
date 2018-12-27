@@ -7,20 +7,22 @@
         padding: 0 10px;
 
         text-align: center;
+
+        @include breakpoint-up(lg) {
+            padding: 0;
+        }
     }
 
-    &__categories {
-        margin: -5px -10px;
-
-        overflow: hidden;
+    &__cats {
+        display: flex;
+        justify-content: center;
     }
 
-    &__category {
-        display: inline-block;
-        padding: 5px 10px;
+    &__cat-item {
+        margin: 0 10px 10px;
     }
 
-    &__category-link {
+    &__cat-link {
         color: $color-secondary;
         font-family: $font-family-title;
         font-weight: $font-weight-bold;
@@ -37,7 +39,7 @@
     }
 
     &__title {
-        margin-top: 20px;
+        margin-top: 15px;
 
         @include font-size(30px);
         letter-spacing: 0.1em;
@@ -57,6 +59,7 @@
     }
 
     &__pubdate {
+        display: block;
         margin-top: 20px;
 
         color: $color-silver-sand;
@@ -67,6 +70,10 @@
 
     &__content {
         padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            padding: 0;
+        }
     }
 
     &__image {
@@ -108,53 +115,43 @@
         @include breakpoint-up(md) {
             flex-wrap: nowrap;
         }
+
+        @include breakpoint-up(lg) {
+            padding: 0;
+        }
     }
 
     &__tags {
         margin-bottom: 10px;
         margin-right: auto;
-        overflow: hidden;
-    }
-
-    &__tag-list {
-        display: flex;
-        flex-flow: row wrap;
-
-        margin: 0 -15px;
-    }
-
-    &__tag {
-        padding: 10px 15px;
-    }
-
-    &__tag-link {
-        color: $color-silver-sand;
-        letter-spacing: 0.15em;
-        text-decoration: none;
-        text-transform: uppercase;
-
-        transition: color 0.25s ease;
-
-        &:hover,
-        &:focus {
-            color: $color-black;
-        }
     }
 
     &__share {
-        position: relative;
-
         margin-bottom: 10px;
         margin-left: 15px;
     }
 
     &__author {
         margin-top: 45px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            padding: 0;
+        }
     }
 
-    &__related-posts,
-    &__comments,
-    &__comment-form {
+    &__footer-section {
         margin-top: 65px;
+        padding: 0 10px;
+
+        border-top: 1px solid $color-athens-gray;
+
+        @include breakpoint-up(lg) {
+            padding: 0;
+        }
+    }
+
+    &__footer-section-title {
+        margin: 22px 0 65px;
     }
 }

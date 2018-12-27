@@ -1,7 +1,4 @@
-mixin title(mods = {})
-    - const tag = !!data.sidebar ? 'h2' : 'h3';
-    #{tag}.title(
-        class=!!data.sidebar ? 'title_sidebar' : ''
-    )&attributes(attributes)
+mixin title()
+    h3.title&attributes(attributes)
         if block
             block

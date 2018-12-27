@@ -28,17 +28,17 @@
             "relatedPosts": [{
                 "title": "Our salad are award winning",
                 "date": "2015-04-25 19:00",
-                "thumb": "img/content/blog/posts/thumbs/300x200/our-salad-are-award-winning.jpg",
+                "thumb": "img/content/blog/posts/thumbs/480x320/our-salad-are-award-winning.jpg",
                 "link": "blog-single-right-sidebar.html"
             }, {
                 "title": "Homemade pizza",
                 "date": "2015-04-07 19:00",
-                "thumb": "img/content/blog/posts/thumbs/300x200/homemade-pizza.jpg",
+                "thumb": "img/content/blog/posts/thumbs/480x320/homemade-pizza.jpg",
                 "link": "blog-single-right-sidebar.html"
             }, {
                 "title": "Grand opening!",
                 "date": "2015-03-10 19:00",
-                "thumb": "img/content/blog/posts/thumbs/300x200/grand-opening.jpg",
+                "thumb": "img/content/blog/posts/thumbs/480x320/grand-opening.jpg",
                 "link": "blog-single-right-sidebar.html"
             }],
 

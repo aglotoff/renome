@@ -1,23 +1,7 @@
 /**
- * Article Comments
+ * Styles for the comments block
  */
 .comments {
-    padding: 0 10px;
-
-    border-top: 1px solid $color-athens-gray;
-
-    @include breakpoint-up(lg) {
-        padding: 0;
-    }
-
-    &__title {
-        margin-top: 22px;
-    }
-
-    &__list {
-        margin-top: 65px;
-    }
-
     &__comment {
         margin-top: 60px;
 

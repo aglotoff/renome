@@ -1,14 +1,14 @@
 /**
- * Article Comment
+ * Styles for the comment block
  */
 .comment {
     overflow: hidden;
 
     &__avatar {
-        @include breakpoint-up(md) {
+        @include breakpoint-up(sm) {
             float: left;
 
-            @include breakpoint-up(md) {
+            @include breakpoint-up(sm) {
                 margin-right: 24px;
             }
         }
@@ -23,7 +23,7 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
 
-        @include breakpoint-up(md) {
+        @include breakpoint-up(sm) {
             margin-top: 0;
 
             color: $color-silver-sand;
@@ -41,7 +41,7 @@
         letter-spacing: 0.2em;
         text-transform: uppercase;
 
-        @include breakpoint-up(md) {
+        @include breakpoint-up(sm) {
             margin-left: 0;
             margin-top: 0;
         }
@@ -65,24 +65,28 @@
         border: none;
         border-top: 2px solid $color-iron;
         cursor: pointer;
-        outline: none;
 
         transition: color 0.25s ease;
 
-        @include breakpoint-up(md) {
+        @include breakpoint-up(sm) {
             clear: left;
             float: left;
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-primary;
+        }
+
+        &:-moz-focusring {
+            outline: 1px dotted;
         }
     }
 
     &__body {
         margin-top: 35px;
 
-        @include breakpoint-up(md) {
+        @include breakpoint-up(sm) {
             margin-top: 10px;
             overflow: hidden;
         }
@@ -95,14 +99,25 @@
         @include breakpoint-up(lg) {
             margin-left: 60px;
         }
-    }
 
-    &__reply-form {
-        margin-left: 50px;
-        margin-top: 60px;
+        & & {
+            margin-left: 0;
 
-        @include breakpoint-up(lg) {
-            margin-left: 60px;
+            @include breakpoint-up(sm) {
+                margin-left: 50px;
+            }
+
+            @include breakpoint-up(lg) {
+                margin-left: 60px;
+            }
+        }
+
+        & & & {
+            margin-left: 0;
+
+            @include breakpoint-up(lg) {
+                margin-left: 60px;
+            }
         }
     }
 

@@ -20,6 +20,9 @@ import * as ContactMap      from '../../contact/map/map';
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
 import * as BlogGallery     from '../../blog/blog-gallery/blog-gallery';
+import * as Share           from '../../blog/share/share';
+import * as Comment         from '../../blog/comment/comment';
+import * as CommentForm     from '../../blog/comment-form/comment-form';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -135,6 +138,9 @@ export const initModule = function() {
     Portfolio.initModule();
     ProjectSlider.initModule();
     BlogGallery.initModule();
+    Share.initModule();
+    Comment.initModule();
+    CommentForm.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

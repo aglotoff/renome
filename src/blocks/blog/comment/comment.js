@@ -1,12 +1,29 @@
-$('.comment__reply-btn').click(function() {
-    const id = $(this).closest('.comment').data('id');
+/**
+ * @file Implementation of the comment block
+ * @author Andrey Glotov
+ */
 
-    $('.comment-form')
-        .removeClass('article__comment-form')
-        .addClass('comment__reply-form')
-        .insertAfter($(this)
-            .closest('.comment')
-            .find('.comment__body:first'));
+// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+/**
+ * Initialize the comment module.
+ * @return true
+ */
+export const initModule = function() {
+    const $commentForm = $('#comment-form');
+    const $page        = $('.page');
 
-    $('.page').trigger('commentReply', [id]);
-});
+    $('.comment__reply-btn').click(function() {
+        const id = $(this).closest('.comment').data('id');
+    
+        $commentForm
+            .prependTo($(this)
+                .closest('.comment')
+                .find('.comment__replies')
+                .first());
+    
+        $page.trigger('comment-reply', id);
+    });
+
+    return true;
+};
+// ---------------------------- END PUBLIC METHODS ----------------------------

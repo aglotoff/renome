@@ -1,9 +1,4 @@
 mixin comments(data)
-    // start comments 
-    section.comments&attributes(attributes)
-        +title().comments__title #{data.total} comments
-
-        ol.comments__list
-            each comment in data.comments
-                +comment(comment).comments__comment
-    // end comments 
+    ol.comments&attributes(attributes)
+        each comment in data.comments
+            +comment(comment).comments__comment

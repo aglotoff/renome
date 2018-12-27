@@ -1,9 +1,7 @@
 /**
- * Article Author
+ * Styles for the article author block
  */
 .article-author {
-    padding: 0 10px;
-
     text-align: center;
 
     @include breakpoint-up(md) {
@@ -43,22 +41,25 @@
     &__social {
         display: flex;
         justify-content: center;
-        margin: 10px -10px 0;
+        margin-top: 10px;
 
         @include breakpoint-up(md) {
             justify-content: start;
         }
     }
 
-    &__social-link {
-        padding: 10px;
+    &__social-item:not(:first-child) {
+        margin-left: 20px;
+    }
 
+    &__social-link {
         color: $color-silver-sand;
         text-decoration: none;
 
         transition: color 0.25s ease;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $color-primary;
         }
     }

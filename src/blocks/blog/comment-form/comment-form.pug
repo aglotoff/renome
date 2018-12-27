@@ -1,29 +1,48 @@
 mixin comment-form()
-    // start comment form 
     form.comment-form(action="#" method="post")&attributes(attributes)
-        +title().comment-form__title Leave a reply
-
         .comment-form__fields
             input(type="hidden" name="reply-to")
 
-            .comment-form__field
+            .comment-form__input-group
+                label(
+                    for = "comment-name"
+                    id  = "label-name"
+                ).comment-form__label
                 +input({alt: true})(
-                    name="name"
-                    placeholder="Name"
+                    name            = "name"
+                    id              = "comment-name"
+                    aria-labelledby = "label-name"
+                    placeholder     = "Name"
+                    required
+                ).comment-form__input Name
+
+            .comment-form__input-group
+                label(
+                    for = "comment-email"
+                    id  = "label-email"
+                ).comment-form__label Email
+                +input({alt: true})(
+                    type            = "email"
+                    name            = "email"
+                    id              = "comment-email"
+                    aria-labelledby = "label-email"
+                    placeholder     = "Email"
                     required
                 ).comment-form__input
-            .comment-form__field
-                +input({alt: true})(
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                ).comment-form__input
-            .comment-form__field.comment-form__field_wide
+
+            .comment-form__input-group.comment-form__input-group_wide
+                label(
+                    for = "comment-message"
+                    id  = "label-message"
+                ).comment-form__label Message
                 +text-area({alt: true})(
-                    name="message"
-                    placeholder="Message"
+                    name            = "message"
+                    placeholder     = "Message"
+                    id              = "comment-message"
+                    aria-labelledby = "label-message"
                     required
                 ).comment-form__input
-            +btn({title: 'Post comment'}, 'submit').comment-form__submit
-    // end comment form 
+        // /.comment-form__fields 
+
+        +btn({title: 'Post comment'}, 'submit').comment-form__submit
+    // /.comment-form 

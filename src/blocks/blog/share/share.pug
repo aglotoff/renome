@@ -1,11 +1,13 @@
 mixin share()
-    // start share 
     .share&attributes(attributes)
-        .share__toggle
+        button(
+            aria-expanded = "false"
+            aria-controls = "share"
+        ).share__toggle
             | Share
             +icon('share').share__icon
 
-        ul.share__drop
+        ul.share__drop#share
             li.share__item
                 a(href="javascript:void(0);").share__link Facebook
             li.share__item
@@ -14,4 +16,4 @@ mixin share()
                 a(href="javascript:void(0);").share__link Google+
             li.share__item
                 a(href="javascript:void(0);").share__link Pinterest
-    // end share 
+    // /.share 

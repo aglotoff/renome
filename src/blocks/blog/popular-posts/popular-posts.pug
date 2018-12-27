@@ -13,6 +13,5 @@ mixin popular-posts(data)
                         h3.popular-posts__item-title
                             a(href=post.link).popular-posts__item-link
                                 | #{post.title}
-                        .popular-posts__item-pubdate
-                            time(datetime=post.date)= blogDate(post.date)
+                        time.popular-posts__item-pubdate(datetime=post.date)= blogDate(post.date)
     // /.popular-posts 

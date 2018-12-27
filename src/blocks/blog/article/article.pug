@@ -1,10 +1,10 @@
 mixin article(data)
     article.article&attributes(attributes)
         header.article__header
-            ul.article__categories
+            ul.article__cats
                 each category in data.categories
-                    li.article__category
-                        a(href="javascript:void(0);").article__category-link
+                    li.article__cat-item
+                        a(href="javascript:void(0);").article__cat-link
                             | #{category}
 
             h2.article__title
@@ -13,8 +13,7 @@ mixin article(data)
                 else
                     | #{data.title}
 
-            .article__pubdate
-                time(datetime=data.date)= blogDate(data.date)
+            time(datetime=data.date).article__pubdate= blogDate(data.date)
         // /.article__header 
 
         .article__content
@@ -30,6 +29,7 @@ mixin article(data)
                 +blog-gallery(data.gallery).article__gallery
 
             .text.article__text !{data.content}
+            // /.article__text 
 
             if data.link
                 a(href=data.link).article__link Continue Reading...
@@ -39,25 +39,31 @@ mixin article(data)
             footer.article__footer
                 .article__footer-top
                     if data.tags
-                        .article__tags
-                            ul.article__tag-list
-                                each tag in data.tags
-                                    li.article__tag
-                                        a(
-                                            href="javascript:void(0);"
-                                        ).article__tag-link= tag 
+                        +article-tags(data.tags).article__tags
 
                     +share().article__share
                 // /.article__footer-top 
                 
                 if data.author
-                    +article-author(data.author).article__author
+                    .article__author
+                        +article-author(data.author)
                 
                 if data.relatedPosts
-                    +related-posts(data.relatedPosts).article__related-posts
+                    section.article__footer-section
+                        +title().article__footer-section-title Read more
+                        +related-posts(data.relatedPosts).article__related-posts
+                    // /.article__footer-section 
 
                 if data.comments
-                    +comments(data.comments).article__comments
-                    +comment-form().article__comment-form
+                    section.article__footer-section
+                        +title().article__footer-section-title
+                            | #{data.comments.total} comments
+                        +comments(data.comments).article__comments
+                    // /.article__footer-section 
+
+                    section.article__footer-section#comment-form
+                        +title().article__footer-section-title Leave a reply
+                        +comment-form().article__comment-form
+                    // /.article__footer-section 
             // /.article__footer 
     // /.article 

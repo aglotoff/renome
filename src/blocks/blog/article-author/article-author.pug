@@ -1,5 +1,4 @@
 mixin article-author(data)
-    // start article author 
     section.article-author&attributes(attributes)
         img(src=data.avatar, alt=data.name).article-author__avatar
 
@@ -10,11 +9,12 @@ mixin article-author(data)
             ul.article-author__social
                 li.article-author__social-item
                     a(href="javascript:void(0);").article-author__social-link
-                        +icon('fb')
+                        +icon('fb', 'Facebook')
                 li.article-author__social-item
                     a(href="javascript:void(0);").article-author__social-link
-                        +icon('twitter')
+                        +icon('twitter', 'Twitter')
                 li.article-author__social-item
                     a(href="javascript:void(0);").article-author__social-link
-                        +icon('gplus')
-    // end article author
+                        +icon('gplus', 'Google Plus')
+        // /.article-author__text 
+    // /.article-author 
