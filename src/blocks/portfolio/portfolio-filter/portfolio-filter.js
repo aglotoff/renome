@@ -6,7 +6,8 @@
 import {makeListbox, makeDropdown} from '../../../js/utils';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-const KEY_ENTER           = 13;
+const KEY_ENTER = 13;
+const KEY_SPACE = 32;
 
 let $portfolio, $filter, $inner, $toggle, $list, $btns;
 
@@ -64,7 +65,9 @@ const onListClick = function() {
 };
 
 const onListKeydown = function(event) {
-    if (event.which === KEY_ENTER) {
+    if (event.which === KEY_ENTER || event.which === KEY_SPACE) {
+        event.preventDefault();
+
         $toggle.focus();
         return false;
     }

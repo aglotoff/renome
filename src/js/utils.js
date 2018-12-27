@@ -6,6 +6,7 @@
 /* global focusTrap */
 
 const KEY_ESC   = 27;
+const KEY_SPACE = 32;
 const KEY_END   = 35;
 const KEY_HOME  = 36;
 const KEY_LEFT  = 37;
@@ -32,6 +33,24 @@ const dropdownProto = {
             this.show();
         } else {
             this.hide();
+        }
+    },
+
+    _onSwitcherKeydown(event) {
+        if (event.which === KEY_SPACE) {
+            event.preventDefault();
+            
+            if (!this._isExpanded) {
+                this.show();
+            } else {
+                this.hide();
+            }
+        }
+    },
+
+    _onSwitcherKeyup(event) {
+        if (event.which === KEY_SPACE) {
+            event.preventDefault();
         }
     },
 
@@ -77,7 +96,12 @@ const dropdownProto = {
     },
 
     pause() {
-        this._$switcher.off('click', this._onSwitcherClick);
+        this._$switcher
+            .off({
+                click   : this._onSwitcherClick,
+                keydown : this._onSwitcherKeydown,
+                keyup   : this._onSwitcherKeyup,
+            });
 
         if (this._hoverToggles) {
             this._$container.off({
@@ -90,7 +114,10 @@ const dropdownProto = {
     },
 
     unpause() {
-        this._$switcher.click(this._onSwitcherClick);
+        this._$switcher
+            .click(this._onSwitcherClick)
+            .keydown(this._onSwitcherKeydown)
+            .keyup(this._onSwitcherKeyup);
 
         if (this._hoverToggles) {
             this._$container.hover(this._onMouseenter, this._onMouseleave);
@@ -110,9 +137,11 @@ export const makeDropdown = function($container, $switcher, options) {
     dropdown._isExpanded   = false;
 
     // Bind the event handlers
-    dropdown._onOutsideClick  = dropdown._onOutsideClick.bind(dropdown);
-    dropdown._onSwitcherClick = dropdown._onSwitcherClick.bind(dropdown);
-    dropdown._onKeydown       = dropdown._onKeydown.bind(dropdown);
+    dropdown._onOutsideClick    = dropdown._onOutsideClick.bind(dropdown);
+    dropdown._onSwitcherClick   = dropdown._onSwitcherClick.bind(dropdown);
+    dropdown._onSwitcherKeydown = dropdown._onSwitcherKeydown.bind(dropdown);
+    dropdown._onSwitcherKeyup   = dropdown._onSwitcherKeyup.bind(dropdown);
+    dropdown._onKeydown         = dropdown._onKeydown.bind(dropdown);
 
     if (options.hoverToggles) {
         dropdown._onMouseenter = dropdown.show.bind(dropdown);
