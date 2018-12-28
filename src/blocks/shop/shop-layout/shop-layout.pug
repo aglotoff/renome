@@ -1,5 +1,6 @@
 mixin shop-layout(data)
     .shop-layout&attributes(attributes)
-        +shop-cats(data.categories).shop-layout__cats
+        +shop-filter(data.categories).shop-layout__filter
         +products(data.products).shop-layout__products
         +pagination(data.pagination).shop-layout__pagination
+    // /.shop-layout 

@@ -11,37 +11,37 @@
         "products": [{
             "id": 1001,
             "title": "Chicken livers",
-            "thumb": "img/content/shop/products/thumbs/370x370/chicken-livers.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/chicken-livers.jpg",
             "link": "shop-single.html",
             "price": 9.55
         }, {
             "id": 1002,
             "title": "Steak with vegetables",
-            "thumb": "img/content/shop/products/thumbs/370x370/steak-with-vegetables.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/steak-with-vegetables.jpg",
             "link": "shop-single.html",
             "price": 14.20
         }, {
             "id": 1003,
             "title": "Beef with pineapple",
-            "thumb": "img/content/shop/products/thumbs/370x370/beef-with-pineapple.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/beef-with-pineapple.jpg",
             "link": "shop-single.html",
             "price": 18.20
         }, {
             "id": 1004,
             "title": "Waffles with coffee",
-            "thumb": "img/content/shop/products/thumbs/370x370/waffles-with-coffee.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/waffles-with-coffee.jpg",
             "link": "shop-single.html",
             "price": 7.90
         }, {
             "id": 1005,
             "title": "Apple pie",
-            "thumb": "img/content/shop/products/thumbs/370x370/apple-pie.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/apple-pie.jpg",
             "link": "shop-single.html",
             "price": 15.70
         }, {
             "id": 1006,
             "title": "Egg baguette",
-            "thumb": "img/content/shop/products/thumbs/370x370/chicken-livers.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/egg-baguette.jpg",
             "link": "shop-single.html",
             "price": 8.10
         }],

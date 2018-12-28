@@ -1,10 +1,10 @@
 /**
- * Spinning Loader
+ * Styles for the loader block
  */
 .loader {
     overflow: hidden;
 
-    text-indent: -9999px;
+    text-indent: -999px;
 
     border-color: $color-gallery;
     border-radius: 50%;

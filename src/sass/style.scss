@@ -128,16 +128,9 @@
  */
 
 @import "../blocks/shop/shop-layout/shop-layout";
-@import "../blocks/shop/shop-cats/shop-cats";
+@import "../blocks/shop/shop-filter/shop-filter";
 @import "../blocks/shop/products/products";
 @import "../blocks/shop/product/product";
-
-/*
- * ----------------------------------------
- * Shop Single Blocks
- * ----------------------------------------
- */
-
 @import "../blocks/shop/product-page-top/product-page-top";
 @import "../blocks/shop/alert/alert";
 @import "../blocks/shop/product-images/product-images";
@@ -150,23 +143,9 @@
 @import "../blocks/shop/review-form/review-form";
 @import "../blocks/shop/rating-input/rating-input";
 @import "../blocks/shop/related-products/related-products";
-
-/*
- * ----------------------------------------
- * Shopping Cart Blocks
- * ----------------------------------------
- */
-
 @import "../blocks/shop/cart-form/cart-form";
 @import "../blocks/shop/cart-totals/cart-totals";
 @import "../blocks/shop/cart-shipping/cart-shipping";
-
-/*
- * ----------------------------------------
- * Checkout Blocks
- * ----------------------------------------
- */
-
 @import "../blocks/shop/checkout/checkout";
 
 /*

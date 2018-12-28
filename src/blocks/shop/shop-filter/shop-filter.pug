@@ -1,0 +1,19 @@
+mixin shop-filter(data)
+    .shop-filter&attributes(attributes)
+        .shop-filter__inner
+            button(
+                type          = "button"
+                aria-haspopup = "true"
+                aria-expanded = "false"
+                aria-controls = "shop-filter"
+            ).shop-filter__toggle Filter
+
+            ul.shop-filter__list#shop-filter
+                each cat, i in data
+                    li.shop-filter__item
+                        a.shop-filter__link(
+                            href  = "shop.html"
+                            class = (i == 0) && 'shop-filter__link_active'
+                        )= cat
+        // /.shop-filter__inner 
+    // /.shop-filter 

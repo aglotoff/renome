@@ -1,9 +1,9 @@
 mixin products(data)
-    // start products 
     .products&attributes(attributes)
         .products__inner
-            .products__list
+            ul.products__list
                 each product in data
-                    .products__product
+                    li.products__product
                         +product(product)
-    // end products 
+        // /.products__inner 
+    // /.products 

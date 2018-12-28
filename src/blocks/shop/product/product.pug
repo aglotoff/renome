@@ -1,13 +1,19 @@
 mixin product(data)
     .product(data-product-id=data.id)&attributes(attributes)
-        .product__inner
-            a(href=data.link).product__thumb
-                img(src=data.thumb, alt=data.title).product__img
-            
-            h2.product__title
-                a(href=data.link).product__link= data.title
-
-            .product__price $#{data.price.toFixed(2)}
+        a(href=data.link).product__thumb
+            img(src=data.thumb, alt=data.title).product__img
         
-            .product__add-wrapper
-                button(type="button").product__add-btn Add to cart
+        h2.product__title
+            a(href=data.link).product__link= data.title
+
+        .product__price $#{data.price.toFixed(2)}
+    
+        .product__add-wrapper
+            a(
+                role            = "button"
+                data-quantity   = "1"
+                data-product-id = data.id
+                href            = "javascript:void(0);"
+                rel             = "nofollow"
+            ).product__add-btn Add to cart
+    // /.product 
