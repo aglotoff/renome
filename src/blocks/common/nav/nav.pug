@@ -11,6 +11,7 @@ mixin nav__list(data, level = 0)
                         }
                         role          = "button"
                         aria-haspopup = "true"
+                        aria-expanded = "false"
                         aria-controls = "submenu-" + item.text.toLowerCase()
                     )= item.text
                         span.nav__arrow.nav__arrow_open(aria-hidden="true")
@@ -41,6 +42,7 @@ mixin nav(data)
     nav.nav&attributes(attributes)
         +hamburger('Toggle nav')(
             aria-haspopup = "true"
+            aria-expanded = "false"
             aria-controls = "main-menu"
         ).nav__toggle
 

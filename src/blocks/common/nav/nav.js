@@ -19,22 +19,14 @@ const toggleMenu = function(open) {
     $menu.toggleClass('nav__menu_visible', open);
     $scrollpanes.scrollTop(0);
 
-    $menuToggle.toggleClass('hamburger_open', open);
-    if (open) {
-        $menuToggle.attr('aria-expanded', 'true');
-    } else {
-        $menuToggle.removeAttr('aria-expanded');
-    }
+    $menuToggle
+        .toggleClass('hamburger_open', open)
+        .attr('aria-expanded', String(open));
 };
 
 const toggleSubmenu = function toggleSubmenu($submenu, $toggle, open) {
     $submenu.toggleClass('nav__submenu_visible', open);
-
-    if (open) {
-        $toggle.attr('aria-expanded', 'true');
-    } else {
-        $toggle.removeAttr('aria-expanded');
-    }
+    $toggle.attr('aria-expanded', String(open));
 };
 // ------------------------------ END DOM METHODS -----------------------------
 

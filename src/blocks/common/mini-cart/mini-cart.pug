@@ -1,8 +1,9 @@
 mixin mini-cart(data)
     .mini-cart&attributes(attributes)
         button(
-            aria-haspopup="true"
-            aria-controls="minicart"
+            aria-haspopup = "true"
+            aria-controls = "minicart"
+            aria-expanded = "false"
         ).mini-cart__toggle
             +icon('cart', 'Toggle minicart')
             span.mini-cart__item-count= data.quantity

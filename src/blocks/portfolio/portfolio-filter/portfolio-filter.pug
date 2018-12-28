@@ -4,6 +4,7 @@ mixin portfolio-filter(data)
             button(
                 type          = "button"
                 aria-expanded = "false"
+                aria-controls = "portfolio-filter"
             ).portfolio-filter__toggle Filter
 
             ul.portfolio-filter__list(
@@ -12,7 +13,7 @@ mixin portfolio-filter(data)
                 aria-orientation      = "vertical"
                 tabindex              = "0"
                 aria-activedescendant = "filter-" + data[0].toLowerCase()
-            )
+            )#portfolio-filter
                 each filter, i in data
                     li.portfolio-filter__item(role="presentation")
                         button.portfolio-filter__btn(

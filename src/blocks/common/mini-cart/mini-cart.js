@@ -19,12 +19,7 @@ export const initModule = function() {
 
         onToggle     : function onMinicartToggle(open) {
             $minicart.toggleClass('mini-cart_open', open);
-
-            if (open) {
-                $toggle.attr('aria-expanded', 'true');
-            } else {
-                $toggle.removeAttr('aria-expanded');
-            }
+            $toggle.attr('aria-expanded', String(open));
         },
     });
 
