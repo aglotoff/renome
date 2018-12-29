@@ -1,11 +1,11 @@
 /**
- * Rating Input Group
+ * Styles for the star rating block
  */
-.rating-input {
+.star-rating {
     display: flex;
 
     &__radio {
-        display: none;
+        @include visually-hidden();
     }
 
     &__label {
@@ -47,11 +47,12 @@
         }
     }
 
-    &__radio:checked + .rating-input__label {
+    &__radio:checked + .star-rating__label,
+    &__radio:focus + .star-rating__label {
         background-position-y: -12px;
     }
 
-    &__radio:first-child + .rating-input__label {
+    &__radio:first-child + .star-rating__label {
         margin-left: 0;
     }
 }

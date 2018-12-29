@@ -1,11 +1,11 @@
 mixin related-products(data)
-    // start related products 
-    .related-products&attributes(attributes)
+    section.related-products&attributes(attributes)
         .related-products__inner
             +title().related-products__title Related products
 
-            .related-products__list
+            ul.related-products__list
                 each product in data
-                    .related-products__item
+                    li.related-products__item
                         +product(product)
-    // end related products 
+        // /.related-products__inner 
+    // /.related-products 

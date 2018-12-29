@@ -11,7 +11,7 @@ mixin review(data)
             });
             return `${month} ${day}, ${time}`;
         };
-    .review&attributes(attributes)
+    li.review&attributes(attributes)
         .review__header
             img(src=data.avatar, alt=data.author).review__avatar
 
@@ -19,9 +19,12 @@ mixin review(data)
                 h3.review__author= data.author
                 .review__rating
                     +rating(data.rating)
+            // /.review__title 
+        // /.review__header 
         
-        .review__time
-            time(datetime=data.date)= formattedDate(data.date)
+        time.review__time(datetime=data.date)= formattedDate(data.date)
 
         .review__body
             .text.review__text !{data.text}
+        // /.review__body
+    // /.review 

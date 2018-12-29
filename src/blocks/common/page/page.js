@@ -17,14 +17,21 @@ import * as Menu            from '../../menu/menu/menu';
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
+
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
+
 import * as BlogGallery     from '../../blog/blog-gallery/blog-gallery';
 import * as Share           from '../../blog/share/share';
 import * as Comment         from '../../blog/comment/comment';
 import * as CommentForm     from '../../blog/comment-form/comment-form';
 import * as ShopFilter      from '../../shop/shop-filter/shop-filter';
+
+import * as AddToCart       from '../../shop/add-to-cart/add-to-cart';
+import * as Notice          from '../../shop/notice/notice';
 import * as Product         from '../../shop/product/product';
+import * as ProductGallery  from '../../shop/product-gallery/product-gallery';
+import * as ReviewForm      from '../../shop/review-form/review-form';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -123,12 +130,14 @@ export const initModule = function() {
         },
     });
 
-    // Initialize blocks
+    // Initialize common blocks
     Header.initModule();
     Nav.initModule();
     Search.initModule();
     Minicart.initModule();
     Tabs.initModule();
+
+    // Initialize page specific blocks
     Gallery.initModule();
     Slider.initModule();
     SpecialsSlider.initModule();
@@ -137,14 +146,24 @@ export const initModule = function() {
     ReservationForm.initModule();
     ContactForm.initModule();
     ContactMap.initModule();
+
+    // Initialize portfolio blocks
     Portfolio.initModule();
     ProjectSlider.initModule();
+
+    // Initialize blog blocks
     BlogGallery.initModule();
     Share.initModule();
     Comment.initModule();
     CommentForm.initModule();
+
+    // Initialize shop blocks
+    AddToCart.initModule();
+    Notice.initModule();
     ShopFilter.initModule();
     Product.initModule();
+    ProductGallery.initModule();
+    ReviewForm.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

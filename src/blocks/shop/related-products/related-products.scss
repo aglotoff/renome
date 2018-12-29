@@ -1,5 +1,5 @@
 /**
- * Related Products
+ * Styles for the related products block
  */
 .related-products {
     padding: 25px 0 70px;
@@ -11,11 +11,14 @@
     }
 
     &__inner {
-        margin: 0 auto;
-        max-width: 950px;
         padding: 0 10px;
 
         overflow: hidden;
+
+        @include breakpoint-up(lg) {
+            margin: 0 auto;
+            max-width: 950px;
+        }
     }
 
     &__list {
@@ -31,6 +34,7 @@
     }
 
     &__item {
+        flex: 0 1 370px;
         margin-top: 50px;
 
         @include breakpoint-up(md) {

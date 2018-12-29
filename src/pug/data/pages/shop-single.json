@@ -7,15 +7,13 @@
     "pageHeaderBg": "img/content/shop/shop-header-bg.jpg",
 
     "content": {
-        "info": {
-            "id": 12345,
-            "title": "Korean bibimbap",
-            "category": "mains",
-            "reviews": 2,
-            "rating": 4,
-            "price": 19.35,
-            "desc": "Sed porta efficitur enim, sed feugiat purus aliquam in. Proin vehicula sollicitudin tincidunt. Suspendisse vel ligula a orci viverra congue. Aenean felis odio, dictum eget volutpat eu, lacinia vitae mauris liquam convallis vulputate augue accumsan."
-        },
+        "id": 12345,
+        "title": "Korean bibimbap",
+        "category": "mains",
+        "totalReviews": 2,
+        "avgRating": 4,
+        "price": 19.35,
+        "shortDesc": "Sed porta efficitur enim, sed feugiat purus aliquam in. Proin vehicula sollicitudin tincidunt. Suspendisse vel ligula a orci viverra congue. Aenean felis odio, dictum eget volutpat eu, lacinia vitae mauris liquam convallis vulputate augue accumsan.",
         
         "images": [{
             "thumb": "img/content/shop/products/thumbs/100x100/korean-bibimbap-1.jpg",
@@ -47,13 +45,13 @@
             "id": 1001,
             "title": "Beef with pineapple",
             "price": 18.20,
-            "thumb": "img/content/shop/products/thumbs/370x370/beef-with-pineapple.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/beef-with-pineapple.jpg",
             "link": "shop-single.html"
         }, {
             "id": 1002,
             "title": "Egg baguette",
             "price": 8.10,
-            "thumb": "img/content/shop/products/thumbs/370x370/egg-baguette.jpg",
+            "thumb": "img/content/shop/products/thumbs/480x480/egg-baguette.jpg",
             "link": "shop-single.html"
         }]
     }

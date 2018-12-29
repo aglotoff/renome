@@ -1,0 +1,51 @@
+mixin product-single(data = {}, mods = {})
+    .product-single&attributes(attributes)
+        .product-single__notice
+            +notice()
+
+        .product-single__top
+            +product-gallery(data.images).product-single__gallery
+
+            .product-single__info
+                +product-breadcrumb({
+                    category : data.category,
+                    title    : data.title,
+                }).product-single__breadcrumb
+
+                h2.product-single__title= data.title
+
+                .product-single__reviews
+                    .product-single__reviews-total 
+                        | #{data.reviews.length} customer reviews
+                    +rating(data.avgRating).product-single__rating
+
+                .product-single__price $#{data.price.toFixed(2)}
+
+                .text.product-single__short-desc
+                    p= data.shortDesc
+                
+                +add-to-cart(data.id).product-single__add-to-cart
+            // /.product-single__info 
+        // /.product-single__top
+
+        +tabs([{
+            title  : 'Description',
+            id     : 'description',
+            active : true,
+            blocks : [{
+                name    : 'product-desc',
+                content : data.desc,
+            }],
+        }, {
+            title  : 'Reviews(' + data.reviews.length + ')',
+            id     : 'reviews',
+            blocks : [{
+                name    : 'reviews',
+                content : data.reviews,
+            }, {
+                name    : 'review-form',
+            }],
+        }]).product-single__tabs
+
+        +related-products(data.relatedProducts) 
+    // /.product-single 

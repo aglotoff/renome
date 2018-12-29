@@ -2,16 +2,18 @@
  * Styles for the tabs block
  */
 .tabs {
-    @include breakpoint-up(md) {
-        border-bottom: 1px solid $color-gallery;
-    }
-
     &__inner {
         padding: 0 10px;
 
         @include breakpoint-up(md) {
             margin: 0 auto;
             max-width: 1200px;
+        }
+    }
+
+    &__nav {
+        @include breakpoint-up(md) {
+            border-bottom: 1px solid $color-gallery;
         }
     }
 

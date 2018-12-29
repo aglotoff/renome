@@ -1,0 +1,15 @@
+mixin product-breadcrumb(data = {})
+    nav(aria-label="Product Category").product-breadcrumb&attributes(attributes)
+        ol.product-breadcrumb__list
+            li.product-breadcrumb__item
+                a(href="javascript:void(0);").product-breadcrumb__link
+                    | shop
+            li.product-breadcrumb__item
+                a(href="javascript:void(0);").product-breadcrumb__link
+                    | #{data.category}
+            li.product-breadcrumb__item
+                a(
+                    href         = "javascript:void(0);"
+                    aria-current = "page"
+                ).product-breadcrumb__link.product-breadcrumb__link_current
+                    | #{data.title}

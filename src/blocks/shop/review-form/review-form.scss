@@ -1,5 +1,5 @@
 /**
- * Review Form
+ * Styles for the review form block
  */
 .review-form {
     padding: 25px 0 70px;
@@ -43,13 +43,18 @@
             }
         }
 
-        &_has-label {
+        &_radio-group {
             margin-bottom: 30px;
+            margin-top: 50px;
         }
     }
 
     &__label {
-        margin-top: 50px;
+        display: none;
+    }
+        
+    &__legend {
+        display: block;
 
         @include font-size(11px);
         font-weight: $font-weight-bold;
@@ -61,13 +66,13 @@
         margin-top: 20px;
     }
 
-    &__submit {
+    &__bottom {
         margin-top: 50px;
 
         text-align: center;
     }
 
-    &__submit-btn {
+    &__submit {
         width: 180px;
     }
 

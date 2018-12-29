@@ -1,0 +1,13 @@
+mixin add-to-cart(data)
+    form(action="#" method="post").add-to-cart&attributes(attributes)
+        +input({large: true})(
+            aria-label = "Quantity"
+            name       = "quantity"
+            value      = "1"
+            required
+        ).add-to-cart__qty
+
+        +btn({title: 'Add to cart'}, 'submit').add-to-cart__btn(
+            name  = "add-to-cart"
+            value = data
+        )

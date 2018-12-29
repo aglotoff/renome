@@ -1,0 +1,22 @@
+mixin product-gallery(data)
+    .product-gallery&attributes(attributes)
+        ul.product-gallery__thumbs
+            each item, i in data
+                li.product-gallery__thumb
+                    a.product-gallery__thumb-link(
+                        href       = item.image
+                        role       = "button"
+                        class      = (i == 0) && 'product-gallery__thumb-link_active'
+                        data-slide = i
+                    )
+                        img(
+                            src = item.thumb
+                            alt = item.alt
+                        ).product-gallery__thumb-img
+
+        .product-gallery__container
+            each item in data
+                .product-gallery__slide
+                    img(src=item.image, alt=item.alt).product-gallery__slide-img
+        // /.product-gallery__container 
+    // /.product-gallery 

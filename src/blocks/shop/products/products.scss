@@ -14,12 +14,13 @@
         @include breakpoint-up(sm) {
             display: flex;
             flex-wrap: wrap;
-            margin: -25px -18px;
+            margin: 0 -18px;
         }
 
-        @include breakpoint-up(md) {
-            margin-bottom: -35px;
-            margin-top: -35px;
+        .products_center & {
+            @include breakpoint-up(sm) {
+                justify-content: center;
+            }
         }
     }
 
@@ -28,13 +29,12 @@
 
         @include breakpoint-up(sm) {
             flex: 0 0 50%;
-            padding: 25px 18px;
+            padding: 0 18px;
         }
 
         @include breakpoint-up(md) {
             flex: 0 0 33.33%;
-            padding-bottom: 35px;
-            padding-top: 35px;
+            margin-bottom: 70px;
         }
     }
 }

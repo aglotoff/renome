@@ -1,0 +1,35 @@
+/**
+ * Styles for the product breadcrumb block.
+ */
+.product-breadcrumb {
+    &__list {
+        display: flex;
+    }
+    
+    &__item {
+        @include font-size(10px);
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+    }
+
+    &__link {
+        color: $color-primary;
+        text-decoration: none;
+
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: $color-secondary;
+        }
+
+        .product-breadcrumb__item:not(:first-child) & {
+            &:before {
+                content: "/";
+            }
+        }
+
+        &_current {
+            color: $color-silver-sand;
+        }
+    }
+}

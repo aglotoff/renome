@@ -1,7 +1,7 @@
 mixin reviews(data)
-    // start reviews 
     .reviews&attributes(attributes)
-        .reviews__inner
+        ol.reviews__list
             each review in data
                 +review(review).reviews__review
-    // end reviews 
+        // /.reviews__inner 
+    // /.reviews 

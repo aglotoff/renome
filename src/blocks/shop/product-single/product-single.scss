@@ -1,0 +1,116 @@
+/**
+ * Styles for the product single block.
+ */
+.product-single {
+    position: relative;
+
+    padding-top: 70px;
+
+    @include breakpoint-up(lg) {
+        padding-top: 100px;
+    }
+
+    &__notice {
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+
+        @include breakpoint-up(lg) {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+    }
+
+    &__top {
+        margin: 0 auto;
+        max-width: 1200px;
+        padding: 0 10px;
+
+        @include breakpoint-up(lg) {
+            display: flex;
+        }
+    }
+
+    &__gallery {
+        margin: 0 auto;
+        max-width: 450px;
+
+        @include breakpoint-up(lg) {
+            margin: 0;
+            max-width: none;
+            width: 50%;
+        }
+    }
+
+    &__info {
+        margin-top: 50px;
+
+        @include breakpoint-up(lg) {
+            width: 50%;
+            margin-left: 40px;
+            margin-top: 0;
+        }
+    }
+
+    &__breadcrumb {
+        display: none;
+
+        @include breakpoint-up(lg) {
+            display: block;
+        }
+    }
+
+    &__title {
+        font-family: $font-family-title;
+        font-weight: $font-weight-bold;
+        @include font-size(30px);
+        letter-spacing: 0.3em;
+
+        text-transform: lowercase;
+
+        @include breakpoint-up(lg) {
+            margin-top: 20px;
+        }
+    }
+
+    &__reviews {
+        display: flex;
+        margin-top: 25px;
+    }
+
+    &__reviews-total {
+        color: $color-tundora;
+        letter-spacing: 0.15em;
+    }
+
+    &__rating {
+        margin-left: 10px;
+    }
+
+    &__price {
+        margin-top: 30px;
+
+        color: $color-secondary;
+        @include font-size(25px);
+        letter-spacing: 0.05em;
+    }
+
+    &__short-desc {
+        margin-top: 20px;
+    }
+
+    &__add-to-cart {
+        margin-top: 40px;
+    }
+
+    &__tabs {
+        margin-top: 45px;
+
+        @include breakpoint-up(lg) {
+            margin-top: 75px;
+        }
+    }
+}

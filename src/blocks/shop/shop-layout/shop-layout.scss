@@ -17,10 +17,10 @@
     }
 
     &__pagination {
-        margin-top: 70px;
+        margin-top: 20px;
 
         @include breakpoint-up(lg) {
-            margin-top: 100px;
+            margin-top: 30px;
         }
     }
 }
