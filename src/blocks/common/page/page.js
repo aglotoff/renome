@@ -4,34 +4,34 @@
  */
 
 import * as Header          from '../header/header';
+import * as Minicart        from '../mini-cart/mini-cart';
 import * as Nav             from '../nav/nav';
 import * as Search          from '../search/search';
-import * as Minicart        from '../mini-cart/mini-cart';
 import * as Tabs            from '../tabs/tabs';
 
-import * as Gallery         from '../../index/gallery/gallery';
-import * as Slider          from '../../index/slider/slider';
-import * as SpecialsSlider  from '../../index/specials-slider/specials-slider';
 import * as AboutGallery    from '../../about/about-gallery/about-gallery';
-import * as Menu            from '../../menu/menu/menu';
-import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
+import * as Gallery         from '../../index/gallery/gallery';
+import * as Menu            from '../../menu/menu/menu';
+import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
+import * as Slider          from '../../index/slider/slider';
+import * as SpecialsSlider  from '../../index/specials-slider/specials-slider';
 
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
 
 import * as BlogGallery     from '../../blog/blog-gallery/blog-gallery';
-import * as Share           from '../../blog/share/share';
 import * as Comment         from '../../blog/comment/comment';
 import * as CommentForm     from '../../blog/comment-form/comment-form';
-import * as ShopFilter      from '../../shop/shop-filter/shop-filter';
+import * as Share           from '../../blog/share/share';
 
 import * as AddToCart       from '../../shop/add-to-cart/add-to-cart';
 import * as Notice          from '../../shop/notice/notice';
 import * as Product         from '../../shop/product/product';
 import * as ProductGallery  from '../../shop/product-gallery/product-gallery';
 import * as ReviewForm      from '../../shop/review-form/review-form';
+import * as ShopFilter      from '../../shop/shop-filter/shop-filter';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
@@ -91,8 +91,8 @@ const onWindowScroll = function() {
 
 const onWindowResize = function() {
     Nav.handleResize();
-    Tabs.handleResize();
     Portfolio.handleResize();
+    Tabs.handleResize();
 };
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
@@ -132,20 +132,20 @@ export const initModule = function() {
 
     // Initialize common blocks
     Header.initModule();
+    Minicart.initModule();
     Nav.initModule();
     Search.initModule();
-    Minicart.initModule();
     Tabs.initModule();
 
-    // Initialize page specific blocks
-    Gallery.initModule();
-    Slider.initModule();
-    SpecialsSlider.initModule();
+    // Initialize inner page blocks
     AboutGallery.initModule();
-    Menu.initModule();
-    ReservationForm.initModule();
     ContactForm.initModule();
     ContactMap.initModule();
+    Gallery.initModule();
+    Menu.initModule();
+    ReservationForm.initModule();
+    Slider.initModule();
+    SpecialsSlider.initModule();
 
     // Initialize portfolio blocks
     Portfolio.initModule();
@@ -160,10 +160,10 @@ export const initModule = function() {
     // Initialize shop blocks
     AddToCart.initModule();
     Notice.initModule();
-    ShopFilter.initModule();
     Product.initModule();
     ProductGallery.initModule();
     ReviewForm.initModule();
+    ShopFilter.initModule();
 
     // Process the initial window size and scroll position
     onWindowResize();

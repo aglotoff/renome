@@ -1,20 +1,21 @@
 extends ../layouts/inner.pug
 
-include ../../blocks/blog/article/article.pug
-include ../../blocks/blog/blog-widget/blog-widget.pug
-include ../../blocks/blog/article-tags/article-tags.pug
-include ../../blocks/blog/article-author/article-author.pug
-include ../../blocks/blog/blog-cats/blog-cats.pug
-include ../../blocks/blog/blog-gallery/blog-gallery.pug
 include ../../blocks/blog/blog-layout/blog-layout.pug
+include ../../blocks/blog/article/article.pug
+include ../../blocks/blog/video/video.pug
+include ../../blocks/blog/blog-gallery/blog-gallery.pug
 include ../../blocks/blog/blog-search/blog-search.pug
+include ../../blocks/blog/blog-widget/blog-widget
+include ../../blocks/blog/blog-cats/blog-cats.pug
+include ../../blocks/blog/popular-posts/popular-posts.pug
+
+include ../../blocks/blog/article-tags/article-tags.pug
+include ../../blocks/blog/share/share.pug
+include ../../blocks/blog/article-author/article-author.pug
+include ../../blocks/blog/comments/comments.pug
 include ../../blocks/blog/comment/comment.pug
 include ../../blocks/blog/comment-form/comment-form.pug
-include ../../blocks/blog/comments/comments.pug
-include ../../blocks/blog/popular-posts/popular-posts.pug
 include ../../blocks/blog/related-posts/related-posts.pug
-include ../../blocks/blog/share/share.pug
-include ../../blocks/blog/video/video.pug
 
 block append page
     +blog-layout(data.content, {sidebar: 'left'})
