@@ -1,27 +1,7 @@
 mixin cart-shipping()
     .cart-shipping&attributes(attributes)
-        .cart-shipping__value Free shipping
+        ul.cart-shipping__methods
+            li.cart-shipping__method Free shipping
 
-        button(type="button").cart-shipping__toggle Calculate Shipping
-
-        form(action="#" method="post").cart-shipping__form
-            select(
-                name="country"
-            ).cart-shipping__country.required
-                option(value="") &nbsp;
-                option(value="uk") United Kingdom
-                option(value="us") United States
-
-            +input({alt: true})(
-                name="state"
-                placeholder="State / County"
-                required
-            ).cart-shipping__state
-
-            +input({alt: true})(
-                name="zip"
-                placeholder="Postcode / ZIP"
-                required
-            ).cart-shipping__zip
-
-            +btn({title: 'Update totals'}, 'submit').cart-shipping__submit
+        +shipping-calc().cart-shipping__calc
+    // /.cart-shipping 

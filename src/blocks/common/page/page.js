@@ -31,6 +31,7 @@ import * as Notice          from '../../shop/notice/notice';
 import * as Product         from '../../shop/product/product';
 import * as ProductGallery  from '../../shop/product-gallery/product-gallery';
 import * as ReviewForm      from '../../shop/review-form/review-form';
+import * as ShippingCalc    from '../../shop/shipping-calc/shipping-calc';
 import * as ShopFilter      from '../../shop/shop-filter/shop-filter';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
@@ -163,6 +164,7 @@ export const initModule = function() {
     Product.initModule();
     ProductGallery.initModule();
     ReviewForm.initModule();
+    ShippingCalc.initModule();
     ShopFilter.initModule();
 
     // Process the initial window size and scroll position

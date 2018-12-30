@@ -1,0 +1,51 @@
+mixin shipping-calc(data = {}, mods = {})
+    .shipping-calc(action="#" method="post")&attributes(attributes)
+        button(
+            type          = "button"
+            aria-haspopup = "true"
+            aria-expanded = "false"
+            aria-controls = "shipping-calc"
+        ).shipping-calc__toggle Calculate Shipping
+
+        form.shipping-calc__form#shipping-calc
+            label(
+                for = "shipping-country"
+                id  = "label-country"
+            ).shipping-calc__label
+            select(
+                id              = "shipping-country"
+                aria-labelledby = "label-country"
+                name            = "calc_shipping_country"
+            ).shipping-calc__country.required Shipping country
+                option(value="") &nbsp;
+                option(value="uk") United Kingdom
+                option(value="us") United States
+
+            label(
+                for = "shipping-state"
+                id  = "label-state"
+            ).shipping-calc__label Shipping state
+            +input({alt: true})(
+                id              = "shipping-state"
+                aria-labelledby = "label-state"
+                name            = "state"
+                placeholder     = "State / County"
+                required
+            ).shipping-calc__state
+    
+            label(
+                for = "shipping-postcode"
+                id  = "label-postcode"
+            ).shipping-calc__label Shipping postcode
+             +input({alt: true})(
+                id              = "shipping-postcode"
+                aria-labelledby = "label-postcode"
+                name            = "postcode"
+                placeholder     = "Postcode / ZIP"
+                required
+            ).shipping-calc__postcode
+
+            +btn({title: 'Update totals'}, 'submit').shipping-calc__submit(
+                name  = "calc_shipping"
+                value = "1"
+            )

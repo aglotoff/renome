@@ -1,5 +1,5 @@
 /**
- * Cart Totals
+ * Styles for the cart totals block
  */
 .cart-totals {
     position: relative;
@@ -38,7 +38,7 @@
         width: 100%;
     }
 
-    &__header {
+    &__table-header {
         padding: 15px 0;
 
         font-weight: $font-weight-bold;
@@ -50,13 +50,13 @@
         }
     }
 
-    &__value {
+    &__table-cell {
         padding: 15px 0;
 
         text-align: right;
     }
 
-    &__total {
+    &__order-total {
         @include font-size(20px);
     }
 
