@@ -239,8 +239,6 @@
         display: block;
         width: 100%;
 
-        text-align: center;
-
         @include breakpoint-up(md) {
             display: inline-block;
             width: 150px;

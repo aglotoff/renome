@@ -1,6 +1,6 @@
 mixin add-to-cart(data)
     form(action="#" method="post").add-to-cart&attributes(attributes)
-        +input({large: true})(
+        +input({theme: 'number'})(
             name       = "quantity"
             value      = "1"
             type       = "number"

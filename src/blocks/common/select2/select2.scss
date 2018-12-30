@@ -6,9 +6,10 @@
         height: auto;
 
         .select2-selection__rendered {
-            padding: 7px 0;
+            padding: 6px 0;
 
             color: $color-primary;
+            @include font-size(15px);
             font-weight: $font-weight-bold;
             line-height: 25px;
             text-align: left;
@@ -58,15 +59,6 @@
 
         overflow-y: auto;
     }
-}
-
-/* stylelint-disable-next-line selector-class-pattern */
-.select2-container--renome {
-    .select2-selection {
-        .select2-selection__rendered {
-            @include font-size(15px);
-        }
-    }
 
     .select2-results__option {
         padding: 4px 0 4px 20px;
@@ -81,12 +73,12 @@
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.select2-container--renome-alt {
+.select2-container--theme--small {
     text-transform: uppercase;
 
     .select2-selection {
         .select2-selection__rendered {
-            padding: 12px 0;
+            padding: 11px 0;
 
             @include font-size(11px);
             letter-spacing: 0.2em;
@@ -98,15 +90,22 @@
 
         @include font-size(11px);
         letter-spacing: 0.2em;
+    }
+}
 
-        &--highlighted {
-            font-weight: $font-weight-bold;
+/* stylelint-disable-next-line selector-class-pattern */
+.select2-container--theme--checkout {
+    .select2-selection {
+        .select2-selection__rendered {
+            padding: 11px 0;
+
+            font-weight: $font-weight-regular;
         }
     }
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.select2-container--renome-error {
+.select2-container--error {
     .select2-selection {
         .select2-selection__rendered {
             border-bottom-color: $color-error;

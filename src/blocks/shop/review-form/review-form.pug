@@ -9,7 +9,7 @@ mixin review-form()
                         for = "review-author"
                         id  = "label-author"
                     ).review-form__label Author
-                    +input({alt: true})(
+                    +input({theme: 'small'})(
                         id              = "review-author"
                         aria-labelledby = "label-author"
                         name            = "author"
@@ -22,7 +22,7 @@ mixin review-form()
                         for = "review-email"
                         id  = "label-email"
                     ).review-form__label Email
-                    +input({alt: true})(
+                    +input({theme: 'small'})(
                         type            = "email"
                         id              = "review-email"
                         aria-labelledby = "label-email"
@@ -44,7 +44,7 @@ mixin review-form()
                         for = "review-comment"
                         id  = "label-comment"
                     ).review-form__label Your review
-                    +text-area({alt: true})(
+                    +text-area({theme: 'small'})(
                         id              = "review-comment"
                         aria-labelledby = "label-comment"
                         name            = "comment"

@@ -8,7 +8,7 @@ mixin contact-form()
                     for = "contact-first-name"
                     id  = "label-first-name"
                 ).contact-form__label First Name
-                +input(
+                +input()(
                     id              = "contact-first-name"
                     name            = "first_name"
                     placeholder     = "First Name *"
@@ -21,7 +21,7 @@ mixin contact-form()
                     for = "contact-last-name"
                     id  = "label-last-name"
                 ).contact-form__label Last Name
-                +input(
+                +input()(
                     id              = "contact-last-name"
                     name            = "last_name"
                     placeholder     = "Last Name *"
@@ -34,7 +34,7 @@ mixin contact-form()
                     for = "contact-email"
                     id  = "label-email"
                 ).contact-form__label Email
-                +input(
+                +input()(
                     id              = "contact-email"
                     type            = "email"
                     name            = "email"
@@ -48,7 +48,7 @@ mixin contact-form()
                     for = "contact-subject"
                     id  = "label-subject"
                 ).contact-form__label Subject
-                +input(
+                +input()(
                     id              = "contact-subject"
                     name            = "subject"
                     placeholder     = "Subject *"
@@ -61,7 +61,7 @@ mixin contact-form()
                     for = "contact-message"
                     id  = "label-message"
                 ).contact-form__label Message
-                +text-area(
+                +text-area()(
                     id              = "contact-message"
                     name            = "message"
                     placeholder     = "Message *"
@@ -69,6 +69,9 @@ mixin contact-form()
                     required
                 ).contact-form__input.contact-form__input_large
 
-            +btn({title: 'Send'}, 'submit', {alt: true}).contact-form__submit
+            +btn({title: 'Send'}, 'submit', {
+                theme : 'light',
+                size  : 'small',
+            }).contact-form__submit
         // /.contact-form__fields 
     // /.contact-form 

@@ -25,19 +25,19 @@ mixin shipping-calc(data = {}, mods = {})
                 for = "shipping-state"
                 id  = "label-state"
             ).shipping-calc__label Shipping state
-            +input({alt: true})(
+            +input({theme: 'small'})(
                 id              = "shipping-state"
                 aria-labelledby = "label-state"
                 name            = "state"
                 placeholder     = "State / County"
                 required
-            ).shipping-calc__state
+            ).shipping-calc__input
     
             label(
                 for = "shipping-postcode"
                 id  = "label-postcode"
             ).shipping-calc__label Shipping postcode
-             +input({alt: true})(
+             +input({theme: 'small'})(
                 id              = "shipping-postcode"
                 aria-labelledby = "label-postcode"
                 name            = "postcode"

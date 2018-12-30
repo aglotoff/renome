@@ -4,41 +4,48 @@
 .btn {
     display: inline-block;
     margin: 0;
-    padding: 18px 25px;
 
-    color: $color-white;
     font-family: $font-family-regular;
-    @include font-size(11px);
+    
     font-weight: $font-weight-bold;
     letter-spacing: 0.15em;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
 
-    background: $color-primary;
     border: none;
     cursor: pointer;
     outline: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease-in;
 
-    &:hover,
-    &:focus {
-        background: $color-secondary;
+    &_theme_default {
+        color: $color-white;
+        background: $color-primary;
+
+        &:hover,
+        &:focus {
+            background: $color-secondary;
+        }
     }
 
-    &_alt {
-        padding-bottom: 12px;
-        padding-top: 12px;
-
+    &_theme_light {
         color: $color-primary;
-        @include font-size(12px);
         background: $color-catskill-white;
 
         &:hover,
         &:focus {
             color: $color-catskill-white;
-
             background: $color-primary;
         }
+    }
+
+    &_size_default {
+        padding: 18px 25px;
+        @include font-size(11px);
+    }
+
+    &_size_small {
+        padding: 12px 25px;
+        @include font-size(12px);
     }
 }

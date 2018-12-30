@@ -1,16 +1,17 @@
 /**
- * Text Area
+ * Styles for the text area block
  */
 .text-area {
     display: block;
+    height: 90px;
     min-width: 0;
-    padding: 7px 0;
+    padding: 6px 0;
     width: 100%;
 
     color: $color-primary;
     font-family: $font-family-regular;
-    font-weight: $font-weight-bold;
     @include font-size(15px);
+    font-weight: $font-weight-bold;
     line-height: 25px;
 
     background: $color-white;
@@ -26,10 +27,12 @@
         opacity: 1;
     }
 
-    &_alt {
-        padding: 12px 0;
+    &_theme_small {
+        height: 100px;
+        padding: 11px 0;
 
         @include font-size(11px);
+        font-weight: $font-weight-bold;
         letter-spacing: 0.2em;
 
         &::placeholder {
@@ -37,8 +40,9 @@
         }
     }
 
-    &_checkout {
-        padding: 12px 0;
+    &_theme_checkout {
+        height: 100px;
+        padding: 11px 0;
 
         &::placeholder {
             color: $color-silver-sand;

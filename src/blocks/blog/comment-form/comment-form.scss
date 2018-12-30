@@ -37,6 +37,7 @@
     &__input {
         margin-top: 1px;
         max-width: 420px;
+        width: 100%;
 
         @include breakpoint-up(sm) {
             max-width: none;
@@ -46,6 +47,7 @@
     &__submit {
         display: block;
         margin: 0 auto;
+        width: 180px;
     }
 
     &__error {

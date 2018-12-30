@@ -1,7 +1,5 @@
 mixin text-area(mods = {})
-    textarea.text-area(class={
-        'text-area_alt': !!mods.alt,
-        'text-area_checkout': !!mods.checkout
-    })&attributes(attributes)
+    - const theme = mods.theme || 'default';
+    textarea.text-area(class=`text-area_theme_${theme}`)&attributes(attributes)
         if block
             block

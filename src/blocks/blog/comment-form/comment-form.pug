@@ -8,7 +8,7 @@ mixin comment-form()
                     for = "comment-name"
                     id  = "label-name"
                 ).comment-form__label
-                +input({alt: true})(
+                +input({theme: 'small'})(
                     name            = "name"
                     id              = "comment-name"
                     aria-labelledby = "label-name"
@@ -21,7 +21,7 @@ mixin comment-form()
                     for = "comment-email"
                     id  = "label-email"
                 ).comment-form__label Email
-                +input({alt: true})(
+                +input({theme: 'small'})(
                     type            = "email"
                     name            = "email"
                     id              = "comment-email"
@@ -35,7 +35,7 @@ mixin comment-form()
                     for = "comment-message"
                     id  = "label-message"
                 ).comment-form__label Message
-                +text-area({alt: true})(
+                +text-area({theme: 'small'})(
                     name            = "message"
                     placeholder     = "Message"
                     id              = "comment-message"

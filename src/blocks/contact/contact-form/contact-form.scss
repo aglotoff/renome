@@ -37,6 +37,7 @@
 
     &__input {
         max-width: 420px;
+        width: 100%;
 
         @include breakpoint-up(md) {
             max-width: none;

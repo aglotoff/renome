@@ -36,7 +36,7 @@ mixin cart-form(data)
                                             | $#{item.price.toFixed(2)}
 
                             td.cart-form__cell
-                                +input({large: true})(
+                                +input({theme: 'number'})(
                                     type       = "number"
                                     value      = item.quantity
                                     name       = `[${item.id}][qty]`
@@ -64,7 +64,7 @@ mixin cart-form(data)
                         for = "cart-coupon-code"
                         id  = "label-coupon-code"
                     ) Coupon code
-                    +input({alt: true})(
+                    +input({theme: 'coupon'})(
                         type            = "text"
                         name            = "coupon_code"
                         placeholder     = "Coupon code"
@@ -77,6 +77,7 @@ mixin cart-form(data)
                         name  = "apply_coupon"
                         value = "Apply coupon"
                     )
+                // /.cart-form__coupon 
 
                 +btn({
                     title: 'Update Cart'
@@ -84,3 +85,5 @@ mixin cart-form(data)
                     name  = "update_cart"
                     value = "Update Cart"
                 )
+            // /.cart-form__actions 
+        // /.cart-form__inner 

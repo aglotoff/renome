@@ -1,6 +1,3 @@
 mixin input(mods={})
-    input.input(class={
-        input_alt: !!mods.alt,
-        input_large: !!mods.large,
-        input_checkout: !!mods.checkout,
-    })&attributes(attributes)
+    - const theme = mods.theme || 'default';
+    input.input(class=`input_theme_${theme}`)&attributes(attributes)

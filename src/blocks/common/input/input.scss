@@ -4,15 +4,13 @@
 .input {
     display: block;
     min-width: 0;
-    padding: 7px 0;
-    width: 100%;
+    padding: 6px 0;
 
     color: $color-primary;
     font-family: $font-family-regular;
     @include font-size(15px);
     font-weight: $font-weight-bold;
     line-height: 25px;
-
     background: $color-white;
     border: none;
     border-bottom: 3px solid $color-catskill-white;
@@ -23,8 +21,9 @@
         opacity: 1;
     }
 
-    &_alt {
-        padding: 12px 0;
+    &_theme_small,
+    &_theme_quantity {
+        padding: 11px 0;
 
         @include font-size(11px);
         letter-spacing: 0.2em;
@@ -34,24 +33,31 @@
         }
     }
 
-    &_checkout {
-        padding: 12px 0;
+    &_theme_quantity {
+        text-align: center;
+    }
+
+    &_theme_number {
+        padding: 11px 0;
+
+        @include font-size(25px);
+        font-weight: $font-weight-regular;
+        text-align: center;
+
+        appearance: textfield;
+    }
+
+    &_theme_checkout {
+        padding: 11px 0;
+
+        font-weight: $font-weight-regular;
 
         &::placeholder {
             color: $color-silver-sand;
         }
     }
 
-    &_large {
-        @include font-size(25px);
-        text-align: center;
-    }
-
     &_invalid {
         border-bottom-color: $color-error;
-    }
-
-    &[type="number"] {
-        appearance: textfield;
     }
 }

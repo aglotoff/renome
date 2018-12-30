@@ -28,7 +28,7 @@ export const initModule = function() {
     
     $country
         .select2({
-            theme                   : 'renome-alt',
+            theme                   : 'theme--small',
             width                   : 'style',
             minimumResultsForSearch : Infinity,
             placeholder             : 'Select a country',
@@ -36,10 +36,12 @@ export const initModule = function() {
         .data('select2')
         .$container
         .addClass('shipping-calc__input');
-    
+
     $form.validate({
         errorClass     : 'error shipping-calc__error',
     
+        ignore         : [],
+
         errorPlacement : function(error, element) {
             if (element.hasClass('shipping-calc__country')) {
                 error.insertAfter(element.next('.shipping-calc__input'));
@@ -54,17 +56,18 @@ export const initModule = function() {
             } else if ($(element).hasClass('shipping-calc__country')) {
                 $(element)
                     .next('.shipping-calc__input')
-                    .addClass('select2-container--renome-error');
+                    .addClass('select2-container--error');
             }
         },
     
         unhighlight     : function(element) {
+            console.log(element);
             if ($(element).hasClass('input')) {
                 $(element).removeClass('input_invalid');
             } else if ($(element).hasClass('shipping-calc__country')) {
                 $(element)
                     .next('.shipping-calc__input')
-                    .removeClass('select2-container--renome-error');
+                    .removeClass('select2-container--error');
             }
         }
     });
