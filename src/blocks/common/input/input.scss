@@ -1,5 +1,5 @@
 /**
- * Text Input Field.
+ * Styles for the input block.
  */
 .input {
     display: block;
@@ -49,5 +49,9 @@
 
     &_invalid {
         border-bottom-color: $color-error;
+    }
+
+    &[type="number"] {
+        appearance: textfield;
     }
 }

@@ -1,9 +1,13 @@
 mixin add-to-cart(data)
     form(action="#" method="post").add-to-cart&attributes(attributes)
         +input({large: true})(
-            aria-label = "Quantity"
             name       = "quantity"
             value      = "1"
+            type       = "number"
+            min        = "1"
+            size       = "4"
+            step       = "1"
+            aria-label = "Quantity"
             required
         ).add-to-cart__qty
 

@@ -1,9 +1,5 @@
 mixin cart-form(data)
-    // start cart form 
     form(action="#" method="post").cart-form&attributes(attributes)
-        .cart-form__alert
-            +notice()
-
         .cart-form__inner
             table.cart-form__table
                 colgroup
@@ -11,14 +7,16 @@ mixin cart-form(data)
                     col.cart-form__col.cart-form__col_name_qty
                     col.cart-form__col.cart-form__col_name_total
                     col.cart-form__col.cart-form__col_name_remove
+
                 thead
                     tr
-                        th.cart-form__header Product
-                        th.cart-form__header
-                            span.cart-form__header-abbr Qty
+                        th.cart-form__header(scope="col") Product
+                        th.cart-form__header(scope="col")
+                            abbr(title="Quantity").cart-form__header-abbr Qty
                             span.cart-form__header-full Quantity
-                        th.cart-form__header Total
-                        th.cart-form__header
+                        th.cart-form__header(scope="col") Total
+                        th.cart-form__header(scope="col") &nbsp;
+
                 tbody
                     each item in data
                         tr.cart-form__item
@@ -36,30 +34,53 @@ mixin cart-form(data)
                                         ).cart-form__product-title= item.title
                                         .cart-form__product-price
                                             | $#{item.price.toFixed(2)}
+
                             td.cart-form__cell
                                 +input({large: true})(
-                                    value=item.quantity
-                                    name=`[${item.id}][qty]`
+                                    type       = "number"
+                                    value      = item.quantity
+                                    name       = `[${item.id}][qty]`
+                                    min        = "0"
+                                    size       = "4"
+                                    step       = "1"
+                                    aria-label = "Quantity"
                                 ).cart-form__qty
-                            td.cart-form__cell
-                                span.cart-form__total
-                                    | $#{(item.quantity*item.price).toFixed(2)}
-                            td.cart-form__cell
-                                button(
-                                    type="button"
-                                    data-product-id=item.id
-                                ).cart-form__remove Remove
 
-            .cart-form__bottom
+                            td.cart-form__cell
+                                span.cart-form__subtotal
+                                    | $#{(item.quantity*item.price).toFixed(2)}
+
+                            td.cart-form__cell
+                                a(
+                                    href            = "javascript:void(0);"
+                                    type            = "button"
+                                    data-product-id = item.id
+                                    role            = "button"
+                                ).cart-form__remove Remove this item
+
+            .cart-form__actions
                 .cart-form__coupon
+                    label.cart-form__coupon-label(
+                        for = "cart-coupon-code"
+                        id  = "label-coupon-code"
+                    ) Coupon code
                     +input({alt: true})(
-                        placeholder="Coupon code"
-                    ).cart-form__coupon-code
+                        type            = "text"
+                        name            = "coupon_code"
+                        placeholder     = "Coupon code"
+                        id              = "cart-coupon-code"
+                        aria-labelledby = "label-coupon-code"
+                    ).cart-form__coupon-input
                     +btn({
                         title: 'Apply coupon'
-                    }, 'button').cart-form__coupon-apply
-                
+                    }, 'button').cart-form__coupon-apply(
+                        name  = "apply_coupon"
+                        value = "Apply coupon"
+                    )
+
                 +btn({
                     title: 'Update Cart'
-                }, 'submit').cart-form__submit
-    // end cart form
+                }, 'submit').cart-form__submit(
+                    name  = "update_cart"
+                    value = "Update Cart"
+                )

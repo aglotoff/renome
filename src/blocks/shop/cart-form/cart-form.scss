@@ -1,5 +1,5 @@
 /**
- * Shopping Cart Form
+ * Styles for the cart form block
  */
 .cart-form {
     position: relative;
@@ -162,7 +162,7 @@
         max-width: 55px;
     }
 
-    &__total {
+    &__subtotal {
         @include font-size(20px);
         letter-spacing: 0.05em;
     }
@@ -170,7 +170,8 @@
     &__remove {
         position: relative;
 
-        height: 12px;
+        display: block;
+        height: 14px;
         padding: 5px 0 5px 5px;
         width: 12px;
 
@@ -208,7 +209,8 @@
             transform: translateY(-50%) scale(1.25) rotate(-45deg);
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
             &:before,
             &:after {
                 background-color: $color-secondary;
@@ -216,7 +218,7 @@
         }
     }
 
-    &__bottom {
+    &__actions {
         margin: 35px auto 0;
         max-width: 300px;
 
@@ -229,7 +231,11 @@
         }
     }
 
-    &__coupon-code {
+    &__coupon-label {
+        display: none;
+    }
+
+    &__coupon-input {
         display: block;
         width: 100%;
 
