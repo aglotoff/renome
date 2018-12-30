@@ -79,7 +79,6 @@ const updateTimeSelect = function($time, startMoment) {
 };
 
 const initSelect = function($select) {
-    // TODO: get rid of select2 and use some *normal* dropdown plugin
     $select.select2({
         theme                   : 'theme--default',
         width                   : 'style',

@@ -1,38 +1,43 @@
-Renome
-======
+Renome Restaurant HTML Template
+===============================
 
-HTML restaurant template based on [the free PSD template by Veaceslav Burian](https://www.behance.net/gallery/35481315/Renome-Free-PSD-Restaurant-Template) 
+HTML restaurant template based on [this free PSD template by Veaceslav Burian](https://www.behance.net/gallery/35481315/Renome-Free-PSD-Restaurant-Template).
+
+Watch demo: [https://polarfawx.github.io/demos/renome/](https://polarfawx.github.io/demos/renome/)
 
 Features
 --------
 
-* Tasks automation with Gulp
+* 17 modern design pages
+* Fully responsive
 * BEM code organization methodology
-* HTML markup generation with Pug
-* Sass & automatic vendor prefixes
-* JavaScript bundling with Webpack & Babel
-* Code linting with Stylelint & ESLint
-* CSS & JS minification and optimization
-* Image optimization
-* Icon system with SVG sprites
-* Development server with live-reload capability
-* Deployment over FTP
+* W3C validated, clean code
+* Crossbrowser compatible (Chrome, Opera, Firefox, Safari, IE10+, Edge)
+* Accessibility-ready
+
+Resources
+---------
+
+* [focus-trap](https://github.com/davidtheclark/focus-trap)
+* [jQuery](https://jquery.com/)
+* [jQuery Validation](https://jqueryvalidation.org/)
+* [Magnific Popup](dimsemenov.com/plugins/magnific-popup/)
+* [Moment.js](https://momentjs.com/)
+* [Pikaday](https://github.com/Pikaday/Pikaday)
+* [Select2](https://select2.org/)
+* [Shuffle.js](https://vestride.github.io/Shuffle/)
+* [slick](http://kenwheeler.github.io/slick/)
+* [svg4everybody](https://github.com/jonathantneal/svg4everybody)
+
+Fonts
+-----
+
+* [Axis](https://www.1001fonts.com/axis-font.html)
+* [Montserrat](https://fonts.google.com/specimen/Montserrat)
+* [Streetwear](https://www.1001fonts.com/streetwear-font.html)
 
 Usage
 -----
 
-Install project dependencies:
-```
-npm install
-```
-
-To start the development server, run:
-```
-npm start
-```
-The server reloads automatically when any source files are modified.
-
-To build the site for production, run:
-```
-npm run build
-```
+See the documentation for the [starter template](https://github.com/polarfawx/frontend-template)
+this project is based on.
