@@ -1,80 +1,69 @@
 mixin payment(data = {}, mods = {})
     ul.payment&attributes(attributes)
         li.payment__method
-            input(
-                id       = "payment-method-direct"
-                type     = "radio"
-                name     = "payment_method"
-                value    = "direct"
-                required
-            ).payment__radio
+            label.payment__label
+                input(
+                    id       = "payment-method-direct"
+                    type     = "radio"
+                    name     = "payment_method"
+                    value    = "direct"
+                    checked  = true
+                    required
+                ).payment__radio
 
-    //-             input(
-    //-                 id="payment-direct"
-    //-                 type="radio"
-    //-                 name="payment"
-    //-                 value="direct"
-    //-                 required
-    //-             ).checkout__payment-radio
-    //-             .checkout__payment-radio-mark
+                span.payment__mark(aria-hidden="true")
 
-    //-             .checkout__payment-text
-    //-                 .checkout__payment-title
-    //-                     label(
-    //-                         for="payment-direct"
-    //-                     ).checkout__payment-label Direct payment
-    //-                 .text.checkout__payment-desc
-    //-                     p Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+                span.payment__title Direct payment
+        
+            .text.payment__desc
+                p Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+        
+        li.payment__method
+            label.payment__label
+                input(
+                    id       = "payment-method-cheque"
+                    type     = "radio"
+                    name     = "payment_method"
+                    value    = "cheque"
+                    required
+                ).payment__radio
 
-    //-         .checkout__payment-item
-    //-             input(
-    //-                 id="payment-cheque"
-    //-                 type="radio"
-    //-                 name="payment"
-    //-                 value="cheque"
-    //-                 required
-    //-             ).checkout__payment-radio
-    //-             .checkout__payment-radio-mark
+                span.payment__mark(aria-hidden="true")
 
-    //-             .checkout__payment-text
-    //-                 .checkout__payment-title
-    //-                     label(
-    //-                         for="payment-cheque"
-    //-                     ).checkout__payment-label Cheque payment
-    //-                 .text.checkout__payment-desc
-    //-                     p Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
+                span.payment__title Cheque payment
+        
+            .text.payment__desc
+                p Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
 
-    //-         .checkout__payment-item
-    //-             input(
-    //-                 id="payment-paypal"
-    //-                 type="radio"
-    //-                 name="payment"
-    //-                 value="paypal"
-    //-                 required
-    //-             ).checkout__payment-radio
-    //-             .checkout__payment-radio-mark
+        li.payment__method
+            label.payment__label
+                input(
+                    id       = "payment-method-paypal"
+                    type     = "radio"
+                    name     = "payment_method"
+                    value    = "paypal"
+                    required
+                ).payment__radio
 
-    //-             .checkout__payment-text
-    //-                 .checkout__payment-title
-    //-                     label(
-    //-                         for="payment-paypal"
-    //-                     ).checkout__payment-label PayPal
+                span.payment__mark(aria-hidden="true")
 
-    //-                     .checkout__payment-cards
-    //-                         img(
-    //-                             src="img/payments/visa.jpg"
-    //-                             alt="Visa"
-    //-                         ).checkout__payment-card
-    //-                         img(
-    //-                             src="img/payments/mastercard.jpg"
-    //-                             alt="Mastercard"
-    //-                         ).checkout__payment-card
-    //-                         img(
-    //-                             src="img/payments/paypal.jpg"
-    //-                             alt="PayPal"
-    //-                         ).checkout__payment-card
-                        
-    //-                     a(href="javascript:void(0);").checkout__payment-link
-    //-                         | What is PayPal?
-    //-                 .text.checkout__payment-desc
-    //-                     p Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account. 
+                span.payment__title PayPal
+        
+            .payment__cards
+                img(
+                    src = "img/payments/visa.jpg"
+                    alt = "Visa"
+                ).payment__card
+                img(
+                    src = "img/payments/mastercard.jpg"
+                    alt = "Mastercard"
+                ).payment__card
+                img(
+                    src = "img/payments/paypal.jpg"
+                    alt = "PayPal"
+                ).payment__card
+
+            a(href="javascript:void(0);").payment__link What is PayPal?
+                
+            .text.payment__desc
+                p Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account. 

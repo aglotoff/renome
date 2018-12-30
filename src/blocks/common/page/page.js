@@ -27,6 +27,7 @@ import * as CommentForm     from '../../blog/comment-form/comment-form';
 import * as Share           from '../../blog/share/share';
 
 import * as Checkout        from '../../shop/checkout/checkout';
+import * as Payment         from '../../shop/payment/payment';
 import * as Product         from '../../shop/product/product';
 import * as ProductGallery  from '../../shop/product-gallery/product-gallery';
 import * as ReviewForm      from '../../shop/review-form/review-form';
@@ -159,6 +160,7 @@ export const initModule = function() {
 
     // Initialize shop blocks
     Checkout.initModule();
+    Payment.initModule();
     Product.initModule();
     ProductGallery.initModule();
     ReviewForm.initModule();

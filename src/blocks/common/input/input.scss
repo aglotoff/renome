@@ -33,7 +33,7 @@
         }
     }
 
-    &_theme_quantity {
+    &_theme_coupon {
         text-align: center;
     }
 
@@ -44,7 +44,14 @@
         font-weight: $font-weight-regular;
         text-align: center;
 
-        appearance: textfield;
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            /* stylelint-disable-next-line property-no-vendor-prefix */
+            -webkit-appearance: none;
+        }
     }
 
     &_theme_checkout {

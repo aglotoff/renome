@@ -2,5 +2,97 @@
  * Styles for the payment block.
  */
 .payment {
+    &__method {
+        padding: 20px 0;
 
+        border-bottom: 1px solid $color-gallery;
+
+        @include breakpoint-up(md) {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__label {
+        align-items: center;
+        display: flex;
+    }
+
+    &__radio {
+        @include visually-hidden();
+    }
+
+    &__mark {
+        display: block;
+        height: 20px;
+        width: 20px;
+
+        background-color: $color-white;
+        border: 5px solid $color-athens-gray;
+        border-radius: 50%;
+        outline: none;
+
+        .payment__radio:checked + & {
+            background-color: $color-primary;
+        }
+    }
+
+    &__title {
+        margin-left: 15px;
+
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    &__cards {
+        display: flex;
+        margin-left: 35px;
+        margin-top: 15px;
+
+        @include breakpoint-up(md) {
+            margin-bottom: -5px;
+            margin-left: 50px;
+            margin-top: -5px;
+        }
+    }
+
+    &__card:not(:first-child) {
+        margin-left: 20px;
+    }
+
+    &__link {
+        display: block;
+
+        margin-left: 35px;
+        margin-top: 20px;
+
+        color: $color-primary;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+
+        transition: color 0.25s ease;
+
+        @include breakpoint-up(md) {
+            margin-left: 20px;
+            margin-top: 0;
+        }
+
+        &:hover,
+        &:focus {
+            color: $color-secondary;
+        }
+    }
+
+    &__desc {
+        display: none;
+        margin-left: 35px;
+        margin-top: 10px;
+        width: 100%;
+
+        .payment__method:first-child & {
+            display: block;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 mixin shipping-calc(data = {}, mods = {})
-    .shipping-calc(action="#" method="post")&attributes(attributes)
+    .shipping-calc&attributes(attributes)
         button(
             type          = "button"
             aria-haspopup = "true"
@@ -7,7 +7,7 @@ mixin shipping-calc(data = {}, mods = {})
             aria-controls = "shipping-calc"
         ).shipping-calc__toggle Calculate Shipping
 
-        form.shipping-calc__form#shipping-calc
+        form(action="#" method="post").shipping-calc__form#shipping-calc
             label(
                 for = "shipping-country"
                 id  = "label-country"
@@ -16,7 +16,7 @@ mixin shipping-calc(data = {}, mods = {})
                 id              = "shipping-country"
                 aria-labelledby = "label-country"
                 name            = "calc_shipping_country"
-            ).shipping-calc__country.required Shipping country
+            ).shipping-calc__country.required
                 option(value="") &nbsp;
                 option(value="uk") United Kingdom
                 option(value="us") United States
