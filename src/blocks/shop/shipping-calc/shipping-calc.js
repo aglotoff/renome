@@ -61,7 +61,6 @@ export const initModule = function() {
         },
     
         unhighlight     : function(element) {
-            console.log(element);
             if ($(element).hasClass('input')) {
                 $(element).removeClass('input_invalid');
             } else if ($(element).hasClass('shipping-calc__country')) {

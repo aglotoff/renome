@@ -9,6 +9,7 @@ mixin contact-form()
                     id  = "label-first-name"
                 ).contact-form__label First Name
                 +input()(
+                    type            = "text"
                     id              = "contact-first-name"
                     name            = "first_name"
                     placeholder     = "First Name *"
@@ -22,6 +23,7 @@ mixin contact-form()
                     id  = "label-last-name"
                 ).contact-form__label Last Name
                 +input()(
+                    type            = "text"
                     id              = "contact-last-name"
                     name            = "last_name"
                     placeholder     = "Last Name *"
@@ -35,8 +37,8 @@ mixin contact-form()
                     id  = "label-email"
                 ).contact-form__label Email
                 +input()(
-                    id              = "contact-email"
                     type            = "email"
+                    id              = "contact-email"
                     name            = "email"
                     placeholder     = "Email *"
                     aria-labelledby = "label-email"
@@ -49,6 +51,7 @@ mixin contact-form()
                     id  = "label-subject"
                 ).contact-form__label Subject
                 +input()(
+                    type            = "text"
                     id              = "contact-subject"
                     name            = "subject"
                     placeholder     = "Subject *"

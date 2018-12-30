@@ -31,10 +31,17 @@
         background-color: $color-white;
         border: 5px solid $color-athens-gray;
         border-radius: 50%;
-        outline: none;
+        cursor: pointer;
+
+        transition: color 0.25s ease;
 
         .payment__radio:checked + & {
             background-color: $color-primary;
+        }
+
+        &:hover,
+        .payment__radio:focus + & {
+            border-color: $color-secondary;
         }
     }
 
