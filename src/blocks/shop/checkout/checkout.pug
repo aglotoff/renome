@@ -1,302 +1,401 @@
 mixin checkout(data)
-    // start checkout 
     form(action="#" method="post").checkout&attributes(attributes)
-        .checkout__section
-            .checkout__section-inner
-                .checkout__section-title
-                    h2.checkout__legend Billing address
+        .checkout__customer-details
+            .checkout__section
+                .checkout__section-inner
+                    .checkout__section-header
+                        h2.checkout__section-title Billing address
 
-                .checkout__fields
-                    .checkout__fields-inner
-                        .checkout__group
-                            label(for="billing-country").checkout__label Country*
-                            select(
-                                id="billing-country"
-                                name="billing_country"
-                            ).checkout__select
-                                option(value="uk") United Kingdom (UK)
-                        .checkout__group.checkout__group_small
-                            label(for="billing-first-name").checkout__label First Name*
-                            +input({checkout: true})(
-                                id="billing-first-name"
-                                name="billing_first_name"
-                                required
-                            ).checkout__input
-                        .checkout__group.checkout__group_small
-                            label(for="billing-last-name").checkout__label Last Name*
-                            +input({checkout: true})(
-                                id="billing-last-name"
-                                name="billing_last_name"
-                                required
-                            ).checkout__input
-                        .checkout__group
-                            label(for="billing-company-name").checkout__label Company Name
-                            +input({checkout: true})(
-                                id="billing-company-name"
-                                name="billing_company_name"
-                            ).checkout__input
-                        .checkout__group
-                            label(for="billing-street-address").checkout__label Address*
-                            +input({checkout: true})(
-                                id="billing-street-address"
-                                name="billing_street_address"
-                                required
-                                placeholder="Street address"
-                            ).checkout__input
-                            +input({checkout: true})(
-                                id="billing-apartment"
-                                name="billing_apartment"
-                                placeholder="Apartment, Suite, Unite etc. (optional)"
-                            ).checkout__input
-                        .checkout__group
-                            label(for="billing-town").checkout__label Town / City*
-                            +input({checkout: true})(
-                                id="billing-town"
-                                name="billing_town"
-                                required
-                                placeholder="Town / City"
-                            ).checkout__input
-                        .checkout__group.checkout__group_small
-                            label(for="billing-county").checkout__label County
-                            +input({checkout: true})(
-                                id="billing-county"
-                                name="billing-county"
-                            ).checkout__input
-                        .checkout__group.checkout__group_small
-                            label(for="billing-postcode").checkout__label Postcode*
-                            +input({checkout: true})(
-                                id="billing-postcode"
-                                name="billing-postcode"
-                                required
-                            ).checkout__input
-                        .checkout__group
-                            label(for="email").checkout__label Email Address*
-                            +input({checkout: true})(
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                            ).checkout__input
-                        .checkout__group
-                            label(for="phone").checkout__label Phone*
-                            +input({checkout: true})(
-                                id="phone"
-                                name="phone"
-                                required
-                            ).checkout__input
-                
-                .checkout__account
-                    label.checkout__toggle
-                        input(
-                            type="checkbox"
-                            data-target-id="account"
-                        ).checkout__toggle-input
-                        span.checkout__toggle-mark.checkout__toggle-mark_type_checkbox
-                        span.checkout__toggle-label Create an account?
-                    
-                    .checkout__account-inner#account
-                        p.text.checkout__text Create an account by entering the information below. If you are a returning customer please login at the top of the page.
-                        
-                        .checkout__account-fields
-                            label(for="password").checkout__label Account password*
-                                +input({checkout: true})(
-                                    id="password"
-                                    name="password"
-                                    type="password"
+                    .checkout__fields-wrap
+                        .checkout__fields
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "billing-country"
+                                    id  = "label-billing-country"
+                                ).checkout__label Country*
+                                select(
+                                    id              = "billing-country"
+                                    name            = "billing_country"
+                                    aria-labelledby = "label-billing-country"
+                                ).checkout__select
+                                    option(value="uk") United Kingdom (UK)
+                            
+                            .checkout__group
+                                label(
+                                    for = "billing-first-name"
+                                    id  = "label-billing-first-name"
+                                ).checkout__label First Name*
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-first-name"
+                                    name            = "billing_first_name"
+                                    aria-labelledby = "label-billing-first-name"
                                     required
-                                    placeholder="Password"
                                 ).checkout__input
 
-        .checkout__section
-            .checkout__section-inner
-                .checkout__section-title
-                    h2.checkout__legend Shipping address
-                    label.checkout__toggle.checkout__toggle_inline
-                        input(
-                            type="checkbox"
-                            data-target-id="shipping"
-                        ).checkout__toggle-input
-                        span.checkout__toggle-mark.checkout__toggle-mark_type_checkbox
-                        span.checkout__toggle-label Ship to a different address?
-            
-                .checkout__fields.checkout__fields_hidden#shipping
-                    .checkout__fields-inner
-                        .checkout__group
-                            label(for="shipping-country").checkout__label Country*
-                            select(
-                                id="shipping-country"
-                                name="shipping_country"
-                            ).checkout__select
-                                option(value="uk") United Kingdom (UK)
-                        .checkout__group.checkout__group_small
-                            label(for="shipping-first-name").checkout__label First Name*
-                            +input({checkout: true})(
-                                id="shipping-first-name"
-                                name="shipping_first_name"
-                                required
-                            ).checkout__input
-                        .checkout__group.checkout__group_small
-                            label(for="shipping-last-name").checkout__label Last Name*
-                            +input({checkout: true})(
-                                id="shipping-last-name"
-                                name="shipping_last_name"
-                                required
-                            ).checkout__input
-                        .checkout__group
-                            label(for="shipping-company-name").checkout__label Company Name
-                            +input({checkout: true})(
-                                id="shipping-company-name"
-                                name="shipping_company_name"
-                            ).checkout__input
-                        .checkout__group
-                            label(for="shipping-street-address").checkout__label Address*
-                            +input({checkout: true})(
-                                id="shipping-street-address"
-                                name="shipping_street_address"
-                                required
-                                placeholder="Street address"
-                            ).checkout__input
-                            +input({checkout: true})(
-                                id="shipping-apartment"
-                                name="shipping_apartment"
-                                placeholder="Apartment, Suite, Unite etc. (optional)"
-                            ).checkout__input
-                        .checkout__group
-                            label(for="shipping-town").checkout__label Town / City*
-                            +input({checkout: true})(
-                                id="shipping-town"
-                                name="shipping_town"
-                                required
-                                placeholder="Town / City"
-                            ).checkout__input
-                        .checkout__group.checkout__group_small
-                            label(for="shipping-county").checkout__label County
-                            +input({checkout: true})(
-                                id="shipping-county"
-                                name="shipping_county"
-                            ).checkout__input
-                        .checkout__group.checkout__group_small
-                            label(for="shipping-postcode").checkout__label Postcode*
-                            +input({checkout: true})(
-                                id="shipping-postcode"
-                                name="shipping_postcode"
-                                required
-                            ).checkout__input
-                        .checkout__group
-                            label(for="shipping-notes").checkout__label Order Notes
-                            +text-area({checkout: true})(
-                                id="shipping-notes"
-                                name="shipping_notes"
-                                placeholder="Notes about you order, e.g. special notes for delivery."
-                            ).checkout__input
-            
-        .checkout__section
-            .checkout__section-inner
-                .checkout__section-title 
-                    span.checkout__legend Your order
+                            .checkout__group
+                                label(
+                                    for = "billing-last-name"
+                                    id  = "label-billing-last-name"
+                                ).checkout__label Last Name*
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-last-name"
+                                    name            = "billing_last_name"
+                                    aria-labelledby = "label-billing-last-name"
+                                    required
+                                ).checkout__input
 
-                table.checkout__table
-                    thead
-                        tr
-                            th(scope="col").checkout__table-header Product
-                            th(scope="col").checkout__table-header Total
-                    tbody
-                        each item in data.items
-                            tr
-                                td.checkout__table-cell
-                                    span.checkout__table-product
-                                        | #{item.title} x #{item.quantity}
-                                td.checkout__table-cell
-                                    span.checkout__table-total
-                                        | $#{item.total.toFixed(2)}
-                    tfoot
-                        tr
-                            th(scope="row").checkout__table-header Subtotal
-                            td.checkout__table-cell
-                                span.checkout__table-total
-                                    | $#{data.total.toFixed(2)}
-                        tr
-                            th(scope="row").checkout__table-header Shipping
-                            td.checkout__table-cell
-                                span.checkout__table-total Free shipping
-                        tr
-                            th(scope="row").checkout__table-header Total
-                            td.checkout__table-cell
-                                span.checkout__table-total.checkout__table-total_grand
-                                    | $#{data.total.toFixed(2)}
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "billing-company"
+                                    id  = "label-billing-company"
+                                ).checkout__label Company Name
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-company"
+                                    name            = "billing_company"
+                                    aria-labelledby = "label-billing-company"
+                                ).checkout__input
+
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "billing-address1"
+                                    id  = "label-billing-address1"
+                                ).checkout__label Address*
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-address1"
+                                    name            = "billing_address1"
+                                    aria-labelledby = "label-billing-address1"
+                                    placeholder     = "Street address"
+                                    required
+                                ).checkout__input
+                                +input({theme: 'checkout'})(
+                                    id          = "billing-address2"
+                                    name        = "billing_address2"
+                                    aria-label  = "Apartment, Suite, Unite etc. (optional)"
+                                    placeholder = "Apartment, Suite, Unite etc. (optional)"
+                                ).checkout__input
+
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "billing-city"
+                                    id  = "label-billing-city"
+                                ).checkout__label Town / City*
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-city"
+                                    name            = "billing_city"
+                                    aria-labelledby = "label-billing-city"
+                                    placeholder     = "Town / City"
+                                    required
+                                ).checkout__input
+
+                            .checkout__group
+                                label(
+                                    for = "billing-county"
+                                    id  = "label-billing-county"
+                                ).checkout__label County
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-county"
+                                    name            = "billing_county"
+                                    aria-labelledby = "label-billing-county"
+                                ).checkout__input
+
+                            .checkout__group
+                                label(
+                                    for = "billing-postcode"
+                                    id  = "label-billing-postcode"
+                                ).checkout__label Postcode*
+                                +input({theme: 'checkout'})(
+                                    id              = "billing-postcode"
+                                    name            = "billing_postcode"
+                                    aria-labelledby = "label-billing-postcode"
+                                    placeholder     = "Postcode"
+                                    required
+                                ).checkout__input
+
+                            .checkout__group
+                                label(
+                                    for = "billing-email"
+                                    id  = "label-billing-email"
+                                ).checkout__label Email address*
+                                +input({theme: 'checkout'})(
+                                    type            = "email"
+                                    id              = "billing-email"
+                                    name            = "billing_email"
+                                    aria-labelledby = "label-billing-email"
+                                    required
+                                ).checkout__input
                             
-        .checkout__payments
-            .checkout__payment-item
-                input(
-                    id="payment-direct"
-                    type="radio"
-                    name="payment"
-                    value="direct"
-                    required
-                ).checkout__payment-radio
-                .checkout__payment-radio-mark
+                            .checkout__group
+                                label(
+                                    for = "billing-phone"
+                                    id  = "label-billing-phone"
+                                ).checkout__label Phone*
+                                +input({theme: 'checkout'})(
+                                    type            = "tel"
+                                    id              = "billing-phone"
+                                    name            = "billing_phone"
+                                    aria-labelledby = "label-billing-phone"
+                                    required
+                                ).checkout__input
 
-                .checkout__payment-text
-                    .checkout__payment-title
-                        label(
-                            for="payment-direct"
-                        ).checkout__payment-label Direct payment
-                    .text.checkout__payment-desc
-                        p Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+                        label.checkout__check
+                            input(
+                                type        = "checkbox"
+                                name        = "create_account"
+                                value       = "1"
+                                data-toggle = "create-account"
+                            ).checkout__check-input
+                            span.checkout__check-mark(aria-hidden="true")
+                            | Create an account?
 
-            .checkout__payment-item
-                input(
-                    id="payment-cheque"
-                    type="radio"
-                    name="payment"
-                    value="cheque"
-                    required
-                ).checkout__payment-radio
-                .checkout__payment-radio-mark
+                        .checkout__account-fields#create-account
+                            .text.checkout__account-text
+                                p Create an account by entering the information below. If you are a returning customer please login at the top of the page.
+                            .checkout__fields
+                                .checkout__group.checkout__group_large
+                                    label(
+                                        for = "account-password"
+                                        id  = "label-account-password"
+                                    ).checkout__label Account Password*
+                                    +input({theme: 'checkout'})(
+                                        type            = "password"
+                                        id              = "account-password"
+                                        name            = "account-password"
+                                        aria-labelledby = "label-account-password"
+                                        placeholder     = "Password"
+                                        required
+                                    ).checkout__input
+                        // /.checkout__fields 
+                    // /.checkout__fields-wrap 
+                // /.checkout__section__inner 
+            // /.checkout__section 
 
-                .checkout__payment-text
-                    .checkout__payment-title
-                        label(
-                            for="payment-cheque"
-                        ).checkout__payment-label Cheque payment
-                    .text.checkout__payment-desc
-                        p Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
+            .checkout__section
+                .checkout__section-inner
+                    .checkout__section-header
+                        h2.checkout__section-title Shipping address
+                        label.checkout__check.checkout__check_inline
+                            input(
+                                type        = "checkbox"
+                                name        = "ship_to_different_address"
+                                value       = "1"
+                                data-toggle = "shipping-fields"
+                            ).checkout__check-input
+                            span.checkout__check-mark(aria-hidden="true")
+                            | Ship to a different address?
 
-            .checkout__payment-item
-                input(
-                    id="payment-paypal"
-                    type="radio"
-                    name="payment"
-                    value="paypal"
-                    required
-                ).checkout__payment-radio
-                .checkout__payment-radio-mark
+                    .checkout__fields-wrap
+                        .checkout__fields#shipping-fields
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "shipping-country"
+                                    id  = "label-shipping-country"
+                                ).checkout__label Country*
+                                select(
+                                    id              = "shipping-country"
+                                    name            = "shipping_country"
+                                    aria-labelledby = "label-shipping-country"
+                                ).checkout__select
+                                    option(value="uk") United Kingdom (UK)
+                            
+                            .checkout__group
+                                label(
+                                    for = "shipping-first-name"
+                                    id  = "label-shipping-first-name"
+                                ).checkout__label First Name*
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-first-name"
+                                    name            = "shipping_first_name"
+                                    aria-labelledby = "label-shipping-first-name"
+                                    required
+                                ).checkout__input
 
-                .checkout__payment-text
-                    .checkout__payment-title
-                        label(
-                            for="payment-paypal"
-                        ).checkout__payment-label PayPal
+                            .checkout__group
+                                label(
+                                    for = "shipping-last-name"
+                                    id  = "label-shipping-last-name"
+                                ).checkout__label Last Name*
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-last-name"
+                                    name            = "shipping_last_name"
+                                    aria-labelledby = "label-shipping-last-name"
+                                    required
+                                ).checkout__input
 
-                        .checkout__payment-cards
-                            img(
-                                src="img/payments/visa.jpg"
-                                alt="Visa"
-                            ).checkout__payment-card
-                            img(
-                                src="img/payments/mastercard.jpg"
-                                alt="Mastercard"
-                            ).checkout__payment-card
-                            img(
-                                src="img/payments/paypal.jpg"
-                                alt="PayPal"
-                            ).checkout__payment-card
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "shipping-company"
+                                    id  = "label-shipping-company"
+                                ).checkout__label Company Name
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-company"
+                                    name            = "shipping_company"
+                                    aria-labelledby = "label-shipping-company"
+                                ).checkout__input
+
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "shipping-address1"
+                                    id  = "label-shipping-address1"
+                                ).checkout__label Address*
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-address1"
+                                    name            = "shipping_address1"
+                                    aria-labelledby = "label-shipping-address1"
+                                    placeholder     = "Street address"
+                                    required
+                                ).checkout__input
+                                +input({theme: 'checkout'})(
+                                    id          = "shipping-address2"
+                                    name        = "shipping_address2"
+                                    aria-label  = "Apartment, Suite, Unite etc. (optional)"
+                                    placeholder = "Apartment, Suite, Unite etc. (optional)"
+                                ).checkout__input
+
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "shipping-city"
+                                    id  = "label-shipping-city"
+                                ).checkout__label Town / City*
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-city"
+                                    name            = "shipping_city"
+                                    aria-labelledby = "label-shipping-city"
+                                    placeholder     = "Town / City"
+                                    required
+                                ).checkout__input
+
+                            .checkout__group
+                                label(
+                                    for = "shipping-county"
+                                    id  = "label-shipping-county"
+                                ).checkout__label County
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-county"
+                                    name            = "shipping_county"
+                                    aria-labelledby = "label-shipping-county"
+                                ).checkout__input
+
+                            .checkout__group
+                                label(
+                                    for = "shipping-postcode"
+                                    id  = "label-shipping-postcode"
+                                ).checkout__label Postcode*
+                                +input({theme: 'checkout'})(
+                                    id              = "shipping-postcode"
+                                    name            = "shipping_postcode"
+                                    aria-labelledby = "label-shipping-postcode"
+                                    placeholder     = "Postcode"
+                                    required
+                                ).checkout__input
+                        // /.checkout__fields 
+
+                        .checkout__fields
+                            .checkout__group.checkout__group_large
+                                label(
+                                    for = "shipping-notes"
+                                    id  = "label-shipping-notes"
+                                ).checkout__label Order notes
+                                +text-area({theme: 'checkout'})(
+                                    id              = "shipping-notes"
+                                    name            = "shipping_notes"
+                                    aria-labelledby = "label-shipping-notes"
+                                    placeholder     = "Notes about you order, e.g. special notes for delivery."
+                                ).checkout__input
+                        // /.checkout__fields 
+                    // /.checkout__fields-wrap 
+                // /.checkout__section__inner 
+            // /.checkout__section 
+        // /.checkout__customer-details 
+
+        .checkout__section
+            .checkout__section-inner
+                .checkout__section-heading
+                    h2.checkout__section-title Your order
+
+                .checkout__review-order
+                    +review-order(data.order)
+            // /.checkout__section__inner 
+        // /.checkout__section
+        +payment().checkout__payment
+
+        .checkout__place-order
+            +btn({title: 'Place order'}, 'submit').checkout__order-btn(
+                name  = "place_order"
+                value = "Place order"
+            )
+
+                            
+    //-     .checkout__payments
+    //-         .checkout__payment-item
+    //-             input(
+    //-                 id="payment-direct"
+    //-                 type="radio"
+    //-                 name="payment"
+    //-                 value="direct"
+    //-                 required
+    //-             ).checkout__payment-radio
+    //-             .checkout__payment-radio-mark
+
+    //-             .checkout__payment-text
+    //-                 .checkout__payment-title
+    //-                     label(
+    //-                         for="payment-direct"
+    //-                     ).checkout__payment-label Direct payment
+    //-                 .text.checkout__payment-desc
+    //-                     p Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
+
+    //-         .checkout__payment-item
+    //-             input(
+    //-                 id="payment-cheque"
+    //-                 type="radio"
+    //-                 name="payment"
+    //-                 value="cheque"
+    //-                 required
+    //-             ).checkout__payment-radio
+    //-             .checkout__payment-radio-mark
+
+    //-             .checkout__payment-text
+    //-                 .checkout__payment-title
+    //-                     label(
+    //-                         for="payment-cheque"
+    //-                     ).checkout__payment-label Cheque payment
+    //-                 .text.checkout__payment-desc
+    //-                     p Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
+
+    //-         .checkout__payment-item
+    //-             input(
+    //-                 id="payment-paypal"
+    //-                 type="radio"
+    //-                 name="payment"
+    //-                 value="paypal"
+    //-                 required
+    //-             ).checkout__payment-radio
+    //-             .checkout__payment-radio-mark
+
+    //-             .checkout__payment-text
+    //-                 .checkout__payment-title
+    //-                     label(
+    //-                         for="payment-paypal"
+    //-                     ).checkout__payment-label PayPal
+
+    //-                     .checkout__payment-cards
+    //-                         img(
+    //-                             src="img/payments/visa.jpg"
+    //-                             alt="Visa"
+    //-                         ).checkout__payment-card
+    //-                         img(
+    //-                             src="img/payments/mastercard.jpg"
+    //-                             alt="Mastercard"
+    //-                         ).checkout__payment-card
+    //-                         img(
+    //-                             src="img/payments/paypal.jpg"
+    //-                             alt="PayPal"
+    //-                         ).checkout__payment-card
                         
-                        a(href="javascript:void(0);").checkout__payment-link
-                            | What is PayPal?
-                    .text.checkout__payment-desc
-                        p Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account. 
+    //-                     a(href="javascript:void(0);").checkout__payment-link
+    //-                         | What is PayPal?
+    //-                 .text.checkout__payment-desc
+    //-                     p Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account. 
 
-        .checkout__submit
-            +btn({title: 'Place order'}, 'submit').checkout__submit-btn
-    // end checkout 
+    //-     
+    //- // end checkout 

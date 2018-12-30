@@ -1,0 +1,31 @@
+mixin review-order(data = {}, mods = {})
+    table.review-order&attributes(attributes)
+        thead
+            tr
+                th(scope="col").review-order__header Product
+                th(scope="col").review-order__header Total
+
+        tbody
+            each item in data.items
+                tr
+                    td.review-order__cell
+                        span.review-order__product-name
+                            | #{item.title} x #{item.quantity}
+                    td.review-order__cell
+                        span.review-order__product-total
+                            | $#{item.total.toFixed(2)}
+        tfoot
+            tr
+                th(scope="row").review-order__header Subtotal
+                td.review-order__cell
+                    span.review-order__subtotal
+                        | $#{data.total.toFixed(2)}
+            tr
+                th(scope="row").review-order__header Shipping
+                td.review-order__cell
+                    span.review-order__shipping Free shipping
+            tr
+                th(scope="row").review-order__header Total
+                td.review-order__cell
+                    span.review-order__total
+                        | $#{data.total.toFixed(2)}

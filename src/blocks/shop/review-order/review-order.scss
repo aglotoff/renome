@@ -1,0 +1,41 @@
+/**
+ * Styles for the review order block.
+ */
+.review-order {
+    width: 100%;
+
+    &__header {
+        padding: 15px 0;
+
+        letter-spacing: 0.2em;
+        font-weight: $font-weight-bold;
+        text-align: left;
+        text-transform: uppercase;
+        vertical-align: middle;
+
+        border-bottom: 1px solid $color-gallery;
+    }
+
+    &__cell {
+        padding: 15px 0;
+
+        vertical-align: middle;
+
+        border-bottom: 1px solid $color-gallery;
+    }
+
+    &__product-name {
+        @include font-size(14px);
+        font-weight: $font-weight-bold;
+        line-height: 1.6;
+        letter-spacing: 0.05em;
+    }
+
+    &__shipping {
+        text-transform: uppercase;
+    }
+
+    &__total {
+        @include font-size(20px);
+    }
+}
