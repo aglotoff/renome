@@ -44,7 +44,7 @@
         padding: 0 10px;
 
         @include breakpoint-up(md) {
-            flex: 1;
+            flex: 0 1 345px;
             margin: 0;
         }
 

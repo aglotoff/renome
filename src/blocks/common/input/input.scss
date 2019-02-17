@@ -3,14 +3,14 @@
  */
 .input {
     display: block;
+    height: 40px;
     min-width: 0;
-    padding: 6px 0;
 
     color: $color-primary;
     font-family: $font-family-regular;
     @include font-size(15px);
     font-weight: $font-weight-bold;
-    line-height: 25px;
+    line-height: 40px;
     background: $color-white;
     border: none;
     border-bottom: 3px solid $color-catskill-white;
@@ -18,30 +18,40 @@
     &::placeholder {
         color: $color-primary;
         font-weight: $font-weight-regular;
+        line-height: 40px;
+
         opacity: 1;
     }
 
     &_theme_small,
     &_theme_quantity {
-        padding: 11px 0;
+        height: 50px;
 
         @include font-size(11px);
         letter-spacing: 0.2em;
 
         &::placeholder {
+            line-height: 50px;
             text-transform: uppercase;
         }
     }
 
     &_theme_coupon {
+        height: 50px;
+
         text-align: center;
+
+        &::placeholder {
+            line-height: 50px;
+        }
     }
 
     &_theme_number {
-        padding: 11px 0;
+        height: 50px;
 
         @include font-size(25px);
         font-weight: $font-weight-regular;
+        line-height: 50px;
         text-align: center;
 
         /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -52,15 +62,21 @@
             /* stylelint-disable-next-line property-no-vendor-prefix */
             -webkit-appearance: none;
         }
+
+        &::placeholder {
+            line-height: 50px;
+        }
     }
 
     &_theme_checkout {
-        padding: 11px 0;
+        height: 50px;
 
         font-weight: $font-weight-regular;
+        line-height: 50px;
 
         &::placeholder {
             color: $color-silver-sand;
+            line-height: 50px;
         }
     }
 

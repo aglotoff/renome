@@ -19,7 +19,7 @@
     border-bottom: 3px solid $color-catskill-white;
     outline: none;
 
-    resize: none;
+    overflow: auto;
 
     &::placeholder {
         color: $color-primary;

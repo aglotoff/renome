@@ -28,13 +28,13 @@
         margin-bottom: 50px;
 
         @include breakpoint-up(sm) {
-            flex: 0 0 50%;
             padding: 0 18px;
+            width: 50%;
         }
 
         @include breakpoint-up(md) {
-            flex: 0 0 33.33%;
             margin-bottom: 70px;
+            width: 33.3333%;
         }
     }
 }

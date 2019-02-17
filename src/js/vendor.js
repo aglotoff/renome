@@ -10,6 +10,7 @@ import 'jquery-validation';
 import 'magnific-popup';
 import 'select2';
 import 'slick-carousel';
+import '@babel/polyfill';
 
 // Expose libraries to the global Window object
 window.$ = window.jQuery = jQuery;

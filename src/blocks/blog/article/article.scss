@@ -107,9 +107,10 @@
     }
 
     &__footer-top {
+        align-items: baseline;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         padding: 0 10px;
 
         @include breakpoint-up(md) {
@@ -123,12 +124,12 @@
 
     &__tags {
         margin-bottom: 10px;
-        margin-right: auto;
+        margin-right: 15px;
     }
 
     &__share {
         margin-bottom: 10px;
-        margin-left: 15px;
+        margin-left: auto;
     }
 
     &__author {
