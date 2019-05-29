@@ -1,3 +1,4 @@
-import * as Page from '../blocks/common/page/page';
+import Page from '../blocks/common/page/page';
 
-Page.initModule();
+// The page block is responsible for initialization of all other blocks
+Page.initBlock();

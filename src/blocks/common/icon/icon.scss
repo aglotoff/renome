@@ -1,0 +1,45 @@
+/**
+ * Styles for the icon block
+ * This file is auto-generated, do not edit
+ */
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+
+	fill: currentColor;
+
+	&_calendar {
+		width: (20 / 21) * 1em;
+	}
+	&_cart {
+		width: (15 / 12) * 1em;
+	}
+	&_fb {
+		width: (6 / 12) * 1em;
+	}
+	&_gplus {
+		width: (12 / 12) * 1em;
+	}
+	&_people {
+		width: (20 / 21) * 1em;
+	}
+	&_play {
+		width: (34 / 44) * 1em;
+	}
+	&_search {
+		width: (16 / 16) * 1em;
+	}
+	&_share {
+		width: (10 / 9) * 1em;
+	}
+	&_time {
+		width: (20 / 20) * 1em;
+	}
+	&_twitter {
+		width: (15 / 12) * 1em;
+	}
+	&_zoom {
+		width: (38 / 38) * 1em;
+	}
+}
