@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/polarfawx/renome.git"
+    "url": "git+https://github.com/aglotoff/renome.git"
   },
   "author": "Andrey Glotov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/polarfawx/renome/issues"
+    "url": "https://github.com/aglotoff/renome/issues"
   },
-  "homepage": "https://github.com/polarfawx/renome#readme",
+  "homepage": "https://github.com/aglotoff/renome#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
