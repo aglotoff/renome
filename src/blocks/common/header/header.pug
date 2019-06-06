@@ -5,16 +5,16 @@ mixin header(data, mods = {})
         .header__inner
             if !!data.isHomepage
                 h1.header__logo
-                    img(src="img/logo.png", alt="Renome").header__logo-img
+                    img(src="img/logo.svg", alt="Renome").header__logo-img
                     span.header__logo-text Renome
             else
                 a(href="index.html").header__logo
                     img(
-                        src="img/logo.png"
+                        src="img/logo.svg"
                         alt="Renome"
                     ).header__logo-img
                     img(
-                        src="img/logo-alt.png"
+                        src="img/logo-alt.svg"
                         alt="Renome"
                     ).header__logo-img_alt
 
