@@ -1,12 +1,16 @@
+//-
+    name: search
+    description: Markup for the search block
+
 mixin search()
     .search(role="dialog" aria-label="Search")&attributes(attributes)
         form.search__form(action="#" method="post")
             input(
-                type        = "text"
-                name        = "q"
-                placeholder = "Search..."
+                type="text"
+                name="s"
+                placeholder="Search..."
             ).search__input
             button(type="submit").search__submit
                 +icon('search', 'Search')
             button(type="button" aria-label="Close").search__close
-    // /.search 
+    // .search 

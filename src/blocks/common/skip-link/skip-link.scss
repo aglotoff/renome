@@ -1,0 +1,17 @@
+/**
+ * Styles for the skip-link block.
+ */
+.skip-link {
+    display: block;
+    padding: 15px 20px;
+
+    color: $color-white;
+    @include font-size(14px);
+    text-decoration: none;
+
+    background: $color-primary;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

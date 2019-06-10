@@ -2,10 +2,22 @@
  * Styles for the header block
  */
 .header {
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+
+    margin-top: auto;
+
     color: $color-black;
 
     background: $color-white;
     box-shadow: 0 2px 5px rgba($color-black, 0.1);
+
+    @include breakpoint-up(lg) {
+        position: absolute;
+    }
 
     &__inner {
         align-items: center;
@@ -147,6 +159,23 @@
 
         .header__actions:before {
             background: $color-white;
+        }
+    }
+
+    &_scroll {
+        @include breakpoint-up(lg) {
+            position: fixed;
+
+            margin-top: 0;
+
+            transition: margin-top 0.25s linear;
+        }
+    }
+
+    /* Don't show the header until scrolled to a certain position */
+    &_hidden {
+        @include breakpoint-up(lg) {
+            margin-top: -100px;
         }
     }
 }

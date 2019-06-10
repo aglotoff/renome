@@ -1,12 +1,21 @@
-mixin header(data, mods = {})
-    header.header(
-        class=!!mods.transparent ? 'header_transparent' : ''
-    )&attributes(attributes)
+//-
+    name: header
+    description: Markup for the header block
+    arguments:
+        - {object} props - block properties
+        - {boolean} props.isHomepage - true if the current page is homepage
+        - {boolean} props.transparent - if true, apply transparent modifier
+
+mixin header(props = {})
+    header#masthead(class={
+        header: true,
+        header_transparent: !!props.transparent
+    })&attributes(attributes)
         .header__inner
-            if !!data.isHomepage
+            if !!props.isHomepage
                 h1.header__logo
                     img(src="img/logo.svg", alt="Renome").header__logo-img
-                    span.header__logo-text Renome
+                    span.header__logo-text= data.siteTitle
             else
                 a(href="index.html").header__logo
                     img(
@@ -18,14 +27,15 @@ mixin header(data, mods = {})
                         alt="Renome"
                     ).header__logo-img_alt
 
-            +nav(data.nav).header__nav
+            +nav().header__nav
 
             .header__actions
                 button.header__search-toggle
                     +icon('search', 'Show search form')
 
                 +mini-cart(data.cart).header__mini-cart
-            // /.header__actions 
-        // /.header__inner 
+            // .header__actions 
+        // .header__inner 
 
         +search().header__search
+    // #masthead 

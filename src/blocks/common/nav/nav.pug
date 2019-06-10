@@ -38,7 +38,27 @@ mixin nav__list(data, level = 0)
                         }
                     )= item.text
 
-mixin nav(data)
+mixin nav()
+    -
+        const navData = data.nav.map((item) => {
+            if (item.text == data.activeNavItem) {
+                return {
+                    link: item.link,
+                    text: item.text,
+                    active: true,
+                    submenu: item.submenu 
+                        ? item.submenu.map((subItem) => ({
+                            link: subItem.link,
+                            text: subItem.text,
+                            active: subItem.text == data.activeNavSubItem,
+                        }))
+                        : null,
+                } 
+            } else {
+                return item;
+            }
+        });
+
     nav.nav&attributes(attributes)
         +hamburger('Toggle nav')(
             aria-haspopup = "true"
@@ -49,6 +69,6 @@ mixin nav(data)
         .nav__menu#main-menu
             .nav__scrollpane
                 +mobile-search().nav__search
-                +nav__list(data).nav__list_horizontal
+                +nav__list(navData).nav__list_horizontal
             // /.nav__scrollpane 
         // /.nav__menu 

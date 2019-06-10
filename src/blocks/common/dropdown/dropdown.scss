@@ -1,0 +1,25 @@
+/**
+ * Styles for the dropdown block
+ */
+.dropdown {
+    position: relative;
+
+    &__drawer {
+        position: absolute;
+        right: 0;
+        top: 100%;
+
+        opacity: 0;
+
+        transition: opacity 0.2s ease-out,
+                    visibility 0.2s step-start 0.2s;
+        visibility: hidden;
+
+        &_expanded {
+            opacity: 1;
+
+            transition-delay: 0s;
+            visibility: visible;
+        }
+    }
+}

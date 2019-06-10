@@ -17,7 +17,7 @@ include ../../blocks/common/tabs/tabs.pug
 include ../../blocks/common/text-area/text-area.pug
 include ../../blocks/common/title/title.pug
 
-<!DOCTYPE html>
+doctype html
 html(lang="en")
     block functions
         -
@@ -43,39 +43,19 @@ html(lang="en")
                 | #{data.siteTitle} &#8211; #{data.siteTagline}
 
         link(rel="stylesheet", href="css/style.css")
-
         link(rel="icon", href="img/favicon.ico")
 
     body.page(class=data.isHomepage ? 'page_home' : '')
-        a(href="#main-content").page__skip-link Skip to content
+        a(href="#content").skip-link.page__skip-link Skip to content
 
-        -
-            const navData = data.nav.map((item) => {
-                if (item.text == data.activeNavItem) {
-                    return {
-                        link: item.link,
-                        text: item.text,
-                        active: true,
-                        submenu: item.submenu 
-                            ? item.submenu.map((subItem) => ({
-                                link: subItem.link,
-                                text: subItem.text,
-                                active: subItem.text == data.activeNavSubItem,
-                            }))
-                            : null,
-                    } 
-                } else {
-                    return item;
-                }
-            }); 
         +header({
-            nav: navData,
-            cart: data.cart,
             isHomepage: data.isHomepage,
-        }, {transparent: !data.isHomepage}).page__header
-    
-        main.page__main#main-content
+            transparent: !data.isHomepage,
+        }).page__header
+
+        main#content
             block page
+        // #content 
 
         +footer()
 

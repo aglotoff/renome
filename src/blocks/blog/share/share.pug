@@ -1,13 +1,13 @@
 mixin share()
-    .share&attributes(attributes)
+    .share.dropdown&attributes(attributes)
         button(
             aria-expanded = "false"
             aria-controls = "share"
-        ).share__toggle
+        ).share__toggle.dropdown__toggle
             | Share
             +icon('share').share__icon
 
-        ul.share__drop#share
+        ul.share__drop.dropdown__drawer#share
             li.share__item
                 a(href="javascript:void(0);").share__link Facebook
             li.share__item

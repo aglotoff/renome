@@ -20,55 +20,13 @@
     &__skip-link {
         left: 0;
         position: fixed;
-        top: -100px;
+        top: 0;
         z-index: 200;
 
-        display: block;
-        padding: 15px 20px;
-
-        color: $color-white;
-        @include font-size(14px);
-        text-decoration: none;
-
-        background: $color-primary;
-
-        &:hover {
-            text-decoration: underline;
-        }
+        transform: translateY(-100px);
 
         &:focus {
-            top: 0;
-        }
-    }
-
-    &__header {
-        left: 0;
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 100;
-
-        margin-top: auto;
-
-        @include breakpoint-up(lg) {
-            position: absolute;
-        }
-
-        &_scroll {
-            @include breakpoint-up(lg) {
-                position: fixed;
-
-                margin-top: 0;
-
-                transition: margin-top 0.25s linear;
-            }
-        }
-
-        /* Don't show the header until scrolled to a certain position */
-        &_hidden {
-            @include breakpoint-up(lg) {
-                margin-top: -100px;
-            }
+            transform: translateY(0);
         }
     }
 
