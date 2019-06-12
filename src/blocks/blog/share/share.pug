@@ -5,13 +5,14 @@
 mixin share()
     .share&attributes(attributes)
         button(
-            aria-expanded = "false"
-            aria-controls = "share"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="share-post"
         ).share__trigger
             span Share
             +icon('share').share__icon
 
-        ul.share__drawer#share
+        ul.share__drawer#share-post
             li.share__item
                 a(href="javascript:void(0);").share__link Facebook
             li.share__item

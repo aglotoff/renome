@@ -1,15 +1,19 @@
-mixin mini-cart(data)
+//-
+    name: mini-cart
+    description: Markup for the mini-cart block
+
+mixin mini-cart()
     .mini-cart&attributes(attributes)
         button(
-            aria-haspopup = "true"
-            aria-controls = "minicart"
-            aria-expanded = "false"
+            aria-haspopup="true"
+            aria-controls="minicart"
+            aria-expanded="false"
         ).mini-cart__trigger
             +icon('cart', 'Toggle minicart')
-            span.mini-cart__item-count= data.quantity
+            span.mini-cart__item-count= data.cart.quantity
 
         .mini-cart__drawer#minicart
-            span.mini-cart__total $#{data.total.toFixed(2)}
+            span.mini-cart__total $#{data.cart.total.toFixed(2)}
             a(href="shop-cart.html").mini-cart__action View Cart
             a(href="shop-checkout.html").mini-cart__action Checkout
         // .mini-cart__drawer 
