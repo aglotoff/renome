@@ -1,13 +1,17 @@
+//-
+    name: share
+    description: Markup for the share block
+
 mixin share()
-    .share.dropdown&attributes(attributes)
+    .share&attributes(attributes)
         button(
             aria-expanded = "false"
             aria-controls = "share"
-        ).share__toggle.dropdown__toggle
-            | Share
+        ).share__trigger
+            span Share
             +icon('share').share__icon
 
-        ul.share__drop.dropdown__drawer#share
+        ul.share__drawer#share
             li.share__item
                 a(href="javascript:void(0);").share__link Facebook
             li.share__item
@@ -16,4 +20,5 @@ mixin share()
                 a(href="javascript:void(0);").share__link Google+
             li.share__item
                 a(href="javascript:void(0);").share__link Pinterest
-    // /.share 
+        // .share__drawer 
+    // .share 

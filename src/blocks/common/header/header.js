@@ -4,6 +4,8 @@
  */
 
 import Search from '../search/search';
+import MiniCart from '../mini-cart/mini-cart';
+
 import forceReflow from '../../../js/utils/force-reflow';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
@@ -88,6 +90,7 @@ function initBlock() {
     isTransparent = elements.$header.hasClass('header_transparent');
 
     Search.initBlock();
+    MiniCart.initBlock();
 
     elements.$searchToggle.click(handleSearchToggle);
 

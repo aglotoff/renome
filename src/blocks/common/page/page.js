@@ -6,7 +6,6 @@
 import LazyLoader from '../../../js/utils/lazy-loader';
 
 import Header from '../header/header';
-import Dropdown from '../dropdown/dropdown';
 
 import * as Nav             from '../nav/nav';
 import * as Tabs            from '../tabs/tabs';
@@ -26,6 +25,7 @@ import * as ProjectSlider   from '../../portfolio/project-slider/project-slider'
 import * as BlogGallery     from '../../blog/blog-gallery/blog-gallery';
 import * as Comment         from '../../blog/comment/comment';
 import * as CommentForm     from '../../blog/comment-form/comment-form';
+import Share from '../../blog/share/share';
 
 import * as Checkout        from '../../shop/checkout/checkout';
 import * as Payment         from '../../shop/payment/payment';
@@ -112,7 +112,6 @@ function initBlock() {
     LazyLoader.init();
 
     // Common blocks
-    Dropdown.initAll();
     Header.initBlock();
     Nav.initModule();
     Tabs.initModule();
@@ -135,6 +134,7 @@ function initBlock() {
     BlogGallery.initModule();
     Comment.initModule();
     CommentForm.initModule();
+    Share.initBlock();
 
     // Shop blocks
     Checkout.initModule();

@@ -4,7 +4,7 @@
 .mini-cart {
     position: relative;
 
-    &__toggle {
+    &__trigger {
         display: block;
         padding: 25px 5px;
 
@@ -36,7 +36,11 @@
         vertical-align: top;
     }
 
-    &__drop {
+    &__drawer {
+        position: absolute;
+        right: 0;
+        top: 100%;
+
         padding: 5px;
 
         font-weight: $font-weight-bold;
@@ -44,6 +48,18 @@
 
         background: $color-white;
         box-shadow: 1px 1px 3px rgba($color-black, 0.3);
+        opacity: 0;
+
+        transition: opacity 0.2s ease-out,
+                    visibility 0.2s step-start 0.2s;
+        visibility: hidden;
+
+        &_expanded {
+            opacity: 1;
+
+            transition-delay: 0s;
+            visibility: visible;
+        }
     }
 
     &__total,

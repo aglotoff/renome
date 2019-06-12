@@ -1,5 +1,5 @@
 /**
- * @file Implementation of the dropdown block
+ * @file Implementation of the dropdown strategy for menus
  * @author Andrey Glotov
  */
 
@@ -14,20 +14,15 @@ const Keys = {
 
 // ------------------------------ END CONSTANTS -------------------------------
 
-/**
- * Dropdown implementation
- */
-class Dropdown {
+export default class DropdownStrategy {
     /**
-     * Create a dropdown
+     * Create a dropdown strategy
      * @param {JQuery} $root The root node
+     * @param {JQuery} $trigger The dropdown button
+     * @param {JQuery} $drawer The dropdown drawer
      */
-    constructor($root) {
-        this._elements = { $root };
-
-        this._elements.$toggle = $('.dropdown__toggle', $root);
-        this._elements.$drawer = $('.dropdown__drawer', $root);
-
+    constructor($root, $trigger, $drawer) {
+        this._elements = { $root, $trigger, $drawer };
         this._isExpanded = false;
 
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
@@ -38,7 +33,7 @@ class Dropdown {
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
 
-        this._elements.$toggle.on({
+        this._elements.$trigger.on({
             click: this.handleToggleClick,
             keydown: this.handleToggleKeyDown,
             keyup: this.handleToggleKeyUp,
@@ -113,7 +108,6 @@ class Dropdown {
             this._elements.$root.on('keydown', this.handleKeyDown);
 
             this._elements.$toggle.attr('aria-expanded', 'true');
-            this._elements.$drawer.addClass('dropdown__drawer_expanded');
         }, 0);
     }
 
@@ -129,8 +123,7 @@ class Dropdown {
         });
         this._elements.$root.off('keydown', this.handleKeyDown);
 
-        this._elements.$toggle.attr('aria-expanded', 'false');
-        this._elements.$drawer.removeClass('dropdown__drawer_expanded');
+        this._elements.$trigger.attr('aria-expanded', 'false');
     }
 
     /**
@@ -145,15 +138,39 @@ class Dropdown {
     }
 
     /**
-     * Initialize all dropdown blocks on the page
+     * Activate the strategy: add event listeners.
      */
-    static initAll() {
-        $('.dropdown').each(function() {
-            new Dropdown($(this));
+    activate() {
+        this._elements.$root.on({
+            mouseenter: this.handleMouseEnter,
+            mouseleave: this.handleMouseLeave,
+        });
+
+        this._elements.$trigger.on({
+            click: this.handleToggleClick,
+            keydown: this.handleToggleKeyDown,
+            keyup: this.handleToggleKeyUp,
         });
     }
 
-    // --------------------------- END PUBLIC METHODS -------------------------
-}
+    /**
+     * Deactivate the strategy: collapse the dropdown and remove event
+     * listeners.
+     */
+    deactivate() {
+        if (this._isExpanded) {
+            this.collapse();
+        }
 
-export default Dropdown;
+        this._elements.$root.off({
+            mouseenter: this.handleMouseEnter,
+            mouseleave: this.handleMouseLeave,
+        });
+
+        this._elements.$trigger.off({
+            click: this.handleToggleClick,
+            keydown: this.handleToggleKeyDown,
+            keyup: this.handleToggleKeyUp,
+        });
+    }
+}
