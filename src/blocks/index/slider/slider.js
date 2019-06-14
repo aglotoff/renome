@@ -3,46 +3,71 @@
  * @author Andrey Glotov
  */
 
+// ----------------------------- BEGIN CONSTANTS ------------------------------
+const AUTOPLAY_SPEED = 5000;
+const TRANSITION_SPEED = 500;
+// ------------------------------ END CONSTANTS -------------------------------
+
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const onSlickBeforeChange = function(event, slick, current, next) {
-    // Remove the "active" modifier from the previous slide and apply it to the
-    // current one
+
+/**
+ * Remove the "active" modifier from the previous slide and apply it to the
+ * current one
+ * @param {Object} e The event
+ * @param {Object} slick Slider instance
+ * @param {number} current Current slide index
+ * @param {number} next Next slide index
+ */
+function handleSlickBeforeChange(e, slick, current, next) {
     slick.$slides.eq(current).removeClass('slider__slide_active');
     slick.$slides.eq(next).addClass('slider__slide_active');
-};
+}
+
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
+
 /**
- * Initialize the slider module.
+ * Initialize the slider block.
  * @return true
  */
-export const initModule = function() {
-    $('.slider').each(function() {
-        const $slider    = $(this);
-        const $container = $('.slider__container', $slider);
-        const $prevArrow = $('.slider__arrow_dir_prev', $slider);
-        const $nextArrow = $('.slider__arrow_dir_next', $slider);
+function initBlock($slider) {
+    const $container = $('.slider__container', $slider);
+    const $prevArrow = $('.slider__arrow_dir_prev', $slider);
+    const $nextArrow = $('.slider__arrow_dir_next', $slider);
 
-        $container.slick({
-            rows          : 0,
+    $container.slick({
+        rows: 0,
+        zIndex: 1,
 
-            prevArrow     : $prevArrow,
-            nextArrow     : $nextArrow,
+        cssEase: 'linear',
+        fade: true,
+        speed: TRANSITION_SPEED,
 
-            autoplay      : true,
-            autoplaySpeed : 5000,
+        autoplay: true,
+        autoplaySpeed: AUTOPLAY_SPEED,
+        pauseOnFocus  : false,
+        pauseOnHover  : false,
 
-            cssEase       : 'linear',
-            fade          : true,
-            speed         : 500,
-            zIndex        : 1,
-
-            pauseOnFocus  : false,
-            pauseOnHover  : false,
-        });
-
-        $container.on('beforeChange', onSlickBeforeChange);
+        prevArrow: $prevArrow,
+        nextArrow: $nextArrow,
     });
-};
+
+    $container.on('beforeChange', handleSlickBeforeChange);
+}
+
+/**
+ * Initialize all slider blocks on the page.
+ */
+function initAll() {
+    $('.slider').each(function() {
+        initBlock($(this));
+    });
+}
+
 // ----------------------------- END PUBLIC METHODS ---------------------------
+
+export default {
+    initAll,
+    initBlock,
+};

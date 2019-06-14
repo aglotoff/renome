@@ -1,20 +1,32 @@
-mixin slider(data)
+//-
+    name: slider
+    description: Markup for the slider block
+    arguments:
+        - {object} props - block properties
+        - {array} props.slides - slides
+        - {string} props.slides[].image - slide image
+        - {string} props.slides[].title - slide title
+        - {string} props.slides[].subtitle - slide subtitle
+
+mixin slider(props = {})
     .slider&attributes(attributes)
         .slider__container
             each slide, i in data
                 .slider__slide(
-                    class=(i == 0) ? 'slider__slide_active': ''
+                    class=(i == 0) && 'slider__slide_active'
                     style=`background-image: url(${slide.image})`
                 )
                     .slider__slide-content
                         .slider__slide-heading
                             h2.slider__slide-title= slide.title
                             .slider__slide-subtitle= slide.subtitle
-                // /.slider__slide 
-        // /.slider__container 
+                        // .slider__slide-heading 
+                    // .slider__slide-content 
+                // .slider__slide 
+        // .slider__container 
 
         .slider__arrows
             button(type="button").slider__arrow.slider__arrow_dir_prev Previous
             button(type="button").slider__arrow.slider__arrow_dir_next Next
-        // /.slider__arrows 
-    // /.slider 
+        // .slider__arrows 
+    // .slider 

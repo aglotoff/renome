@@ -16,7 +16,7 @@ import * as ContactMap      from '../../contact/map/map';
 import * as Gallery         from '../../index/gallery/gallery';
 import * as Menu            from '../../menu/menu/menu';
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
-import * as Slider          from '../../index/slider/slider';
+import Slider from '../../index/slider/slider';
 import * as SpecialsSlider  from '../../index/specials-slider/specials-slider';
 
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
@@ -123,7 +123,7 @@ function initBlock() {
     Gallery.initModule();
     Menu.initModule();
     ReservationForm.initModule();
-    Slider.initModule();
+    Slider.initAll();
     SpecialsSlider.initModule();
 
     // Portfolio blocks
