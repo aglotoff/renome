@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-// ----------------------------- BEGIN CONSTANTS ------------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 const $document = $(document);
 
@@ -12,7 +12,7 @@ const Keys = {
     SPACE: 32
 };
 
-// ------------------------------ END CONSTANTS -------------------------------
+// --------------------------- END MODULE VARIABLES ---------------------------
 
 export default class DropdownStrategy {
     /**
@@ -20,10 +20,16 @@ export default class DropdownStrategy {
      * @param {JQuery} $root The root node
      * @param {JQuery} $trigger The dropdown button
      * @param {JQuery} $drawer The dropdown drawer
+     * @param {Object} $options Options object
      */
-    constructor($root, $trigger, $drawer) {
+    constructor($root, $trigger, $drawer, options = {}) {
         this._elements = { $root, $trigger, $drawer };
         this._isExpanded = false;
+
+        this._handlers = {
+            collapseHandler: options.on && options.on.collapse,
+            expandHandler: options.on && options.on.expand,
+        };
 
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
         this.handleToggleClick = this.handleToggleClick.bind(this);
@@ -32,16 +38,6 @@ export default class DropdownStrategy {
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
-
-        this._elements.$trigger.on({
-            click: this.handleToggleClick,
-            keydown: this.handleToggleKeyDown,
-            keyup: this.handleToggleKeyUp,
-        });
-        this._elements.$root.on({
-            mouseenter: this.handleMouseEnter,
-            mouseleave: this.handleMouseLeave,
-        });
     }
 
     // -------------------------- BEGIN EVENT HANDLERS ------------------------
@@ -78,7 +74,7 @@ export default class DropdownStrategy {
     handleKeyDown(event) {
         if (event.which === Keys.ESC) {
             this.collapse();
-            this._elements.$toggle.focus();
+            this._elements.$trigger.focus();
         }
     }
 
@@ -107,7 +103,11 @@ export default class DropdownStrategy {
             });
             this._elements.$root.on('keydown', this.handleKeyDown);
 
-            this._elements.$toggle.attr('aria-expanded', 'true');
+            this._elements.$trigger.attr('aria-expanded', 'true');
+
+            if (this._handlers.expandHandler) {
+                this._handlers.expandHandler();
+            }
         }, 0);
     }
 
@@ -124,6 +124,10 @@ export default class DropdownStrategy {
         this._elements.$root.off('keydown', this.handleKeyDown);
 
         this._elements.$trigger.attr('aria-expanded', 'false');
+
+        if (this._handlers.collapseHandler) {
+            this._handlers.collapseHandler();
+        }
     }
 
     /**

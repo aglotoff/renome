@@ -3,112 +3,136 @@
  * @author Andrey Glotov
  */
 
-import {makeDropdown, makeDrilldown} from '../../../js/utils';
+import DropdownStrategy from '../../../js/utils/dropdown-strategy';
+import DrilldownStrategy from '../../../js/utils/drilldown-strategy';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT = 992;  // Minimum desktop screen width
 
-let $nav, $menuToggle, $menu, $scrollpanes, $submenus;
-let menuDrilldown;
+const SCROLL_BUFFER = 100;  // Offset from top to scroll target
+const SCROLL_SPEED = 1000;
 
-let isMobile = true;
+let $submenus;
+let mobileMenu;
+
+let isDesktop = false;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// ----------------------------- BEGIN DOM METHODS ----------------------------
-const toggleMenu = function(open) {
-    $menu.toggleClass('nav__menu_visible', open);
-    $scrollpanes.scrollTop(0);
+// --------------------------- BEGIN EVENT HANDLERS ---------------------------
 
-    $menuToggle
-        .toggleClass('hamburger_open', open)
-        .attr('aria-expanded', String(open));
-};
+/**
+ * Scroll smoothly when navigating to internal links.
+ */
+function handleInternalLinkClick() {
+    const $link = $(this);
 
-const toggleSubmenu = function toggleSubmenu($submenu, $toggle, open) {
-    $submenu.toggleClass('nav__submenu_visible', open);
-    $toggle.attr('aria-expanded', String(open));
-};
-// ------------------------------ END DOM METHODS -----------------------------
+    const targetId = $link.attr('href');
+    const $targetElem = $(targetId);
+    if ($targetElem.length === 0) {
+        return;
+    }
+
+    if (!isDesktop) {
+        $submenus.each(function() {
+            $(this).data('drilldownStrategy').collapse();
+        });
+        mobileMenu.collapse();
+    }
+
+    $('html, body').animate({
+        scrollTop: Math.max(0, $targetElem.offset().top - SCROLL_BUFFER),
+    }, SCROLL_SPEED, 'swing', function() {
+        $targetElem.focus();
+    });
+
+    return false;
+}
+
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
+
+/**
+ * Initialize submenus.
+ * 
+ * Each submenu has two behavior strategies: drilldown menu for smaller screens
+ * and dropdown menu for larger screens.
+ * 
+ * @param {JQuery} $submenu The submenu elements
+ */
+function initSubmenu($submenu) {
+    const $submenuToggle = $submenu.prev('.nav__link');
+    const $parentItem  = $submenu.closest('.nav__item');
+    const $scrollpane = $('.nav__scrollpane', $submenu).first();
+    const $backLink = $('.nav__link_back', $submenu).first();
+    const $firstLink = $('.nav__link', $submenu)
+        .not('.nav__link_back')
+        .first();
+
+    const collapse = () => {
+        $submenu.removeClass('nav__submenu_visible');
+    };
+
+    const expand = () => {
+        $scrollpane.scrollTop(0);
+        $submenu.addClass('nav__submenu_visible');
+    };
+
+    const drilldownStrategy = new DrilldownStrategy(
+        $submenuToggle,
+        $submenu,
+        $firstLink,
+        { on: { collapse, expand } }
+    );
+    drilldownStrategy.activate();
+    $backLink.click(() => drilldownStrategy.collapse());
+
+    const dropdownStrategy = new DropdownStrategy(
+        $parentItem,
+        $submenuToggle,
+        $submenu,
+        { on: { collapse, expand } }
+    );
+
+    $submenu.data({ dropdownStrategy, drilldownStrategy });
+}
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
 
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
+
 /**
  * Initialize the navigation block.
  * @return true
  */
 export const initModule = function() {
-    $nav         = $('.nav');
-    $menuToggle  = $nav.find('.nav__toggle');
-    $menu        = $nav.find('.nav__menu');
-    $scrollpanes = $menu.find('.nav__scrollpane');
-    $submenus    = $nav.find('.nav__submenu');
+    const $nav = $('.nav');
+    const $menuToggle = $('.nav__toggle', $nav);
+    const $menu = $('.nav__menu', $nav);
+    const $scrollpane = $('.nav__scrollpane', $nav);
 
-    menuDrilldown = makeDrilldown($nav, $menuToggle, {
-        onToggle: toggleMenu,
+    $submenus = $('.nav__submenu', $nav);
+
+    mobileMenu = new DrilldownStrategy($menuToggle, $nav, null, {
+        on: {
+            expand() {
+                $menu.addClass('nav__menu_visible');
+                $scrollpane.scrollTop(0);
+                $menuToggle.addClass('hamburger_open');
+            },
+            collapse() {
+                $menu.removeClass('nav__menu_visible');
+                $menuToggle.removeClass('hamburger_open');
+            }
+        }
     });
+    mobileMenu.activate();
 
-    // begin initialize submenus
     $submenus.each(function() {
-        const $submenu       = $(this);
-        const $submenuToggle = $submenu.prev('.nav__link');
-        const $parentItem    = $submenu.closest('.nav__item');
-        const $submenuClose  = $submenu.find('.nav__link_back').first();
-        const $firstLink     = $submenu
-            .find('.nav__link')
-            .not('.nav__link_back')
-            .first();
-
-        const onSubmenuToggle = toggleSubmenu.bind(
-            null,
-            $submenu,
-            $submenuToggle
-        );
-
-        // Each submenu has two behavior patterns: drilldown menu for mobile
-        // and dropdown menu for larger screens.
-        const dropdownLogic  = makeDropdown($parentItem, $submenuToggle, {
-            hoverToggles : true,
-            onToggle     : onSubmenuToggle,
-        });
-        // By default, turn off the dropdown logic (mobile-first approach)
-        dropdownLogic.pause();
-
-        const drilldownLogic = makeDrilldown($submenu, $submenuToggle, {
-            initialFocus : $firstLink,
-            onToggle     : onSubmenuToggle,
-        });
-
-        $submenuClose.click(function onSubmenuClose() {
-            drilldownLogic.hide();
-        });
-
-        $submenu.data('dropdown',  dropdownLogic);
-        $submenu.data('drilldown', drilldownLogic);
+        initSubmenu($(this));
     });
 
-    // Scroll smoothly to internal links
-    $nav.on('click', '.nav__link[href^="#"]', function onInternalLink(event) {
-        event.preventDefault();
-
-        const targetId = $(this).attr('href');
-        const $target  = $(targetId);
-        if ($target.length === 0) {
-            return;
-        }
-
-        if (isMobile) {
-            $submenus.each(function() {
-                $(this).data('drilldown').hide();
-            });
-            menuDrilldown.hide();
-        }
-
-        $('html, body').animate({
-            scrollTop: Math.max(0, $target.offset().top - 100),
-        }, 1000, 'swing', function() {
-            $target.focus();
-        });
-    });
-    // end initialize submenus
+    $nav.on('click', '.nav__link[href^="#"]', handleInternalLinkClick);
 };
 
 /**
@@ -117,22 +141,23 @@ export const initModule = function() {
 export const handleResize = function() {
     // Switch between drilldown submenus on mobile and dropdown submenus on
     // desktop
-    if (!isMobile && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
-        isMobile = true;
+    if (isDesktop && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
+        isDesktop = false;
 
         $submenus.each(function() {
-            $(this).data('dropdown').hide().pause();
-            $(this).data('drilldown').unpause();
+            $(this).data('dropdownStrategy').deactivate();
+            $(this).data('drilldownStrategy').activate();
         });
-    } else if (isMobile && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
-        isMobile = false;
+    } else if (!isDesktop && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
+        isDesktop = true;
 
         $submenus.each(function() {
-            $(this).data('drilldown').hide().pause();
-            $(this).data('dropdown').unpause();
+            $(this).data('drilldownStrategy').deactivate();
+            $(this).data('dropdownStrategy').activate();
         });
 
-        menuDrilldown.hide();
+        mobileMenu.collapse();
     }
 };
+
 // ----------------------------- END PUBLIC METHODS ---------------------------

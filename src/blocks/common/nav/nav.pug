@@ -1,45 +1,10 @@
-mixin nav__list(data, level = 0)
-    ul.nav__list&attributes(attributes)
-        each item in data
-            li.nav__item
-                if item.submenu
-                    a.nav__link(
-                        href          = item.link
-                        class         = {
-                            nav__link_submenu : level > 0,
-                            nav__link_active  : !!item.active,
-                        }
-                        role          = "button"
-                        aria-haspopup = "true"
-                        aria-expanded = "false"
-                        aria-controls = "submenu-" + item.text.toLowerCase()
-                    )= item.text
-                        span.nav__arrow.nav__arrow_open(aria-hidden="true")
-
-                    .nav__submenu(id = "submenu-" + item.text.toLowerCase())
-                        .nav__scrollpane
-                            a(
-                                href = "javascript:void(0)"
-                                role = "button"
-                            ).nav__link.nav__link_back Back
-                                span.nav__arrow.nav__arrow_close(
-                                    aria-hidden="true"
-                                )
-
-                            +nav__list(item.submenu, level + 1)
-                        // /.nav__scrollpane 
-                    // /.nav__submenu 
-                else
-                    a.nav__link(
-                        href=item.link
-                        class={
-                            nav__link_submenu: level > 0,
-                            nav__link_active: !!item.active,
-                        }
-                    )= item.text
+//-
+    name: nav
+    description: Markup for the main menu block
 
 mixin nav()
     -
+        // Mark active menu items
         const navData = data.nav.map((item) => {
             if (item.text == data.activeNavItem) {
                 return {
@@ -61,14 +26,62 @@ mixin nav()
 
     nav.nav&attributes(attributes)
         +hamburger('Toggle nav')(
-            aria-haspopup = "true"
-            aria-expanded = "false"
-            aria-controls = "main-menu"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="site-navigation"
         ).nav__toggle
 
-        .nav__menu#main-menu
+        .nav__menu#site-navigation
             .nav__scrollpane
                 +mobile-search().nav__search
-                +nav__list(navData).nav__list_horizontal
-            // /.nav__scrollpane 
-        // /.nav__menu 
+
+                ul.nav__list.nav__list_horizontal
+                    each item in navData
+                        li.nav__item
+                            if item.submenu
+                                a.nav__link(
+                                    href=item.link
+                                    class={
+                                        nav__link: true,
+                                        nav__link_active: !!item.active,
+                                    }
+                                    role="button"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    aria-controls="submenu-" + item.text.toLowerCase()
+                                )= item.text
+                                    span.nav__arrow.nav__arrow_open(aria-hidden="true")
+
+                                .nav__submenu(id="submenu-" + item.text.toLowerCase())
+                                    .nav__scrollpane
+                                        a(
+                                            href="javascript:void(0);"
+                                            role="button"
+                                        ).nav__link.nav__link_back Back
+                                            span.nav__arrow.nav__arrow_close(
+                                                aria-hidden="true"
+                                            )
+                                        
+                                        ul.nav__list
+                                            each subItem in item.submenu
+                                                li.nav__item
+                                                    a(
+                                                        href=item.link
+                                                        class={
+                                                            nav__link: true,
+                                                            nav__link_submenu:true,
+                                                            nav__link_active: !!subItem.active,
+                                                        }
+                                                    )= subItem.text
+                                    // .nav__scrollpane 
+                                // .nav__submenu 
+                            else
+                                a(
+                                    href=item.link
+                                    class={
+                                        nav__link: true,
+                                        nav__link_active: !!item.active,
+                                    }
+                                )= item.text
+            // .nav__scrollpane 
+        // #site-navigation 

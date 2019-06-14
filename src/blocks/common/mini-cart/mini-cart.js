@@ -7,30 +7,25 @@ import DropdownStrategy from '../../../js/utils/dropdown-strategy';
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
-class MiniCart extends DropdownStrategy {
-    collapse() {
-        super.collapse();
-
-        this._elements.$drawer.removeClass('mini-cart__drawer_expanded');
-    }
-
-    expand() {
-        super.expand();
-
-        this._elements.$drawer.addClass('mini-cart__drawer_expanded');
-    }
-}
-
 /**
  * Initialize the mini cart block.
  * @return true
  */
 function initBlock() {
-    const $root = $('.mini-cart');
-    const $trigger = $('.mini-cart__trigger', $root);
-    const $drawer = $('.mini-cart__drawer', $root);
+    const $minicart = $('.mini-cart');
+    const $trigger = $('.mini-cart__trigger', $minicart);
+    const $drawer = $('.mini-cart__drawer', $minicart);
 
-    const minicart = new MiniCart($root, $trigger, $drawer);
+    const minicart = new DropdownStrategy($minicart, $trigger, $drawer, {
+        on: {
+            expand() {
+                $drawer.addClass('mini-cart__drawer_expanded');
+            },
+            collapse() {
+                $drawer.removeClass('mini-cart__drawer_expanded');
+            }
+        }
+    });
     minicart.activate();
 
     return true;
