@@ -106,8 +106,8 @@
         }
     }
 
-    &:hover,
-    &_has-focus {
+    &_has-focus,
+    &:hover {
         .product__add-wrapper {
             opacity: 1;
         }

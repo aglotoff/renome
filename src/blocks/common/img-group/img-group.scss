@@ -5,8 +5,13 @@
     display: flex;
     overflow: hidden;
 
-    &__row {
+    &__wrapper {
         overflow: hidden;
+        width: 80%;
+
+        &_wide {
+            width: 90%;
+        }
     }
 
     &__img {
@@ -14,97 +19,54 @@
         max-width: 100%;
     }
 
-    &_order_top-left,
-    &_order_top-right {
-        flex-direction: column-reverse;
+    $vertical-directions: top, bottom;
+    $horizontal-directions: left, right;
 
-        &.img-group_size_sm {
-            .img-group__row {
-                &:first-child {
-                    margin-top: -20%;
-                }
-            }
-        }
-
-        &.img-group_size_lg {
-            .img-group__row {
-                &:first-child {
-                    margin-top: -10%;
-                }
-            }
-        }
-    }
-
-    &_order_bottom-left,
-    &_order_bottom-right {
-        flex-direction: column;
-
-        &.img-group_size_sm {
-            .img-group__row {
-                &:last-child {
-                    margin-top: -20%;
-                }
-            }
-        }
-
-        &.img-group_size_lg {
-            .img-group__row {
-                &:last-child {
-                    margin-top: -10%;
-                }
-            }
-        }
-    }
-
-    &_order_top-left,
-    &_order_bottom-left {
-        &.img-group_size_sm {
-            .img-group__row {
-                &:first-child {
-                    padding-left: 20%;
+    @each $vdir in $vertical-directions {
+        @each $hdir in $horizontal-directions {
+            &_order_#{$vdir}-#{$hdir} {
+                @if $vdir == top {
+                    flex-direction: column-reverse;
+                } @else {
+                    flex-direction: column;
                 }
 
-                &:last-child {
-                    padding-right: 20%;
-                }
-            }
-        }
+                .img-group__wrapper {
+                    @if $hdir == left {
+                        &:nth-child(odd) {
+                            margin-left: auto;
+                        }
+        
+                        &:nth-child(even) {
+                            margin-right: auto;
+                        }
+                    } @else {
+                        &:nth-child(odd) {
+                            margin-right: auto;
+                        }
+        
+                        &:nth-child(even) {
+                            margin-left: auto;
+                        }
+                    }
 
-        &.img-group_size_lg {
-            .img-group__row {
-                &:first-child {
-                    padding-left: 10%;
-                }
+                    @if $vdir == top {
+                        &:not(:last-child) {
+                            margin-top: -20%;
+                        }
 
-                &:last-child {
-                    padding-right: 10%;
-                }
-            }
-        }
-    }
+                        &_wide:not(:last-child) {
+                            margin-top: -10%;
+                        }
+                    } @else {
+                        &:not(:first-child) {
+                            margin-top: -20%;
+                        }
 
-    &_order_top-right,
-    &_order_bottom-right {
-        &.img-group_size_sm {
-            .img-group__row {
-                &:first-child {
-                    padding-right: 20%;
-                }
-
-                &:last-child {
-                    padding-left: 20%;
-                }
-            }
-        }
-
-        &.img-group_size_lg {
-            .img-group__row {
-                &:first-child {
-                    padding-right: 10%;
-                }
-
-                &:last-child {
-                    padding-left: 10%;
+                        &_wide:not(:first-child) {
+                            margin-top: -10%;
+                        }
+                    }
                 }
             }
         }

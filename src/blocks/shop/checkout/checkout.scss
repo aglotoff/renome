@@ -127,13 +127,13 @@
 
         transition: all 0.25s ease-out;
 
-        .checkout__check-input:checked + & {
-            background-color: $color-primary;
+        &:hover,
+        .checkout__check-input:focus + & {
+            border-color: $color-secondary;
         }
 
-        .checkout__check-input:focus + &,
-        &:hover {
-            border-color: $color-secondary;
+        .checkout__check-input:checked + & {
+            background-color: $color-primary;
         }
     }
 

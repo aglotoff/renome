@@ -11,7 +11,7 @@
 mixin slider(props = {})
     .slider&attributes(attributes)
         .slider__container
-            each slide, i in data
+            each slide, i in props.slides
                 .slider__slide(
                     class=(i == 0) && 'slider__slide_active'
                     style=`background-image: url(${slide.image})`

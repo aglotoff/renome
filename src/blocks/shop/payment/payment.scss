@@ -35,13 +35,13 @@
 
         transition: color 0.25s ease;
 
-        .payment__radio:checked + & {
-            background-color: $color-primary;
-        }
-
         &:hover,
         .payment__radio:focus + & {
             border-color: $color-secondary;
+        }
+
+        .payment__radio:checked + & {
+            background-color: $color-primary;
         }
     }
 

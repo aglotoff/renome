@@ -2,6 +2,26 @@
  * Styles for the hamburger block
  */
 .hamburger {
+    @mixin hamburger-line {
+        left: 0;
+        position: absolute;
+
+        display: inline-block;
+        height: 2px;
+        width: 100%;
+
+        text-indent: -9999px;
+
+        background: $color-black;
+
+        overflow: hidden;
+        transition: all 0.25s linear;
+
+        .hamburger:hover & {
+            background: $color-secondary;
+        }
+    }
+
     display: inline-block;
     padding: 10px 0;
 
@@ -22,65 +42,38 @@
     &__inner:before,
     &__inner:after {
         content: "";
-    }
 
-    &__inner:before,
-    &__inner:after,
-    &__title {
-        left: 0;
-        position: absolute;
-
-        display: inline-block;
-        height: 2px;
-        width: 100%;
-
-        text-indent: -9999px;
-
-        background: $color-black;
-
-        overflow: hidden;
-        transition: all 0.25s linear;
+        @include hamburger-line();
     }
 
     &__inner:before {
         top: 0;
 
         transform-origin: 0 0;
+
+        .hamburger_open & {
+            transform: translateX(1px) scale(1.1) rotate(45deg);
+        }
     }
 
     &__inner:after {
         bottom: 0;
 
         transform-origin: 0 100%;
+
+        .hamburger_open & {
+            transform: translateX(1px) scale(1.1) rotate(-45deg);
+        }
     }
 
     &__title {
+        @include hamburger-line();
+
         top: 50%;
 
         transform: translateY(-50%);
-    }
 
-    &:hover,
-    &:focus {
-        color: $color-secondary;
-
-        .hamburger__inner:before,
-        .hamburger__inner:after,
-        .hamburger__title {
-            background: $color-secondary;
-        }
-    }
-
-    &_open {
-        .hamburger__inner:before {
-            transform: translateX(1px) scale(1.1) rotate(45deg);
-        }
-
-        .hamburger__inner:after {
-            transform: translateX(1px) scale(1.1) rotate(-45deg);
-        }
-
-        .hamburger__title {
+        .hamburger_open & {
             opacity: 0;
         }
     }

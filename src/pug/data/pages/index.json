@@ -4,19 +4,21 @@
     "isHomepage": true,
 
     "content": {
-        "slider": [{
-            "image": "img/content/slider/slide-01.jpg",
-            "title": "Made with love",
-            "subtitle": "for you"
-        }, {
-            "image": "img/content/slider/slide-02.jpg",
-            "title": "Made with love",
-            "subtitle": "for you"
-        }, {
-            "image": "img/content/slider/slide-03.jpg",
-            "title": "Made with love",
-            "subtitle": "for you"
-        }],
+        "slider": {
+            "slides": [{
+                "image": "img/content/slider/slide-01.jpg",
+                "title": "Made with love",
+                "subtitle": "for you"
+            }, {
+                "image": "img/content/slider/slide-02.jpg",
+                "title": "Made with love",
+                "subtitle": "for you"
+            }, {
+                "image": "img/content/slider/slide-03.jpg",
+                "title": "Made with love",
+                "subtitle": "for you"
+            }]
+        },
 
         "about": {
             "title": "About",

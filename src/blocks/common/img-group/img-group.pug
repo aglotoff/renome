@@ -1,9 +1,11 @@
 mixin img-group(data, order = 'bottom-right', size = 'lg')
     .img-group(
-        class=`img-group_order_${order} img-group_size_${size}`
+        class=`img-group_order_${order}`
     )&attributes(attributes)
-        .img-group__row
+        .img-group__wrapper(class=(size == 'lg') && 'img-group__wrapper_wide')
             img(src=data.first.src, alt=data.first.alt).img-group__img
-        .img-group__row
+        // .img-group__wrapper 
+        .img-group__wrapper(class=(size == 'lg') && 'img-group__wrapper_wide')
             img(src=data.second.src, alt=data.second.alt).img-group__img
-    // /.img-group 
+        // .img-group__wrapper 
+    // .img-group 
