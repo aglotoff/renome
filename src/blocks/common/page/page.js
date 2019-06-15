@@ -13,11 +13,11 @@ import * as Tabs            from '../tabs/tabs';
 import * as AboutGallery    from '../../about/about-gallery/about-gallery';
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
-import * as Gallery         from '../../index/gallery/gallery';
+import * as Gallery         from '../../common/gallery/gallery';
 import * as Menu            from '../../menu/menu/menu';
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
-import Slider from '../../index/slider/slider';
-import * as SpecialsSlider  from '../../index/specials-slider/specials-slider';
+import Slider from '../../common/slider/slider';
+import * as SpecialsSlider  from '../../common/specials-slider/specials-slider';
 
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';

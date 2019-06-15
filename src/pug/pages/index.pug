@@ -1,12 +1,12 @@
 extends ../layouts/base.pug
 
-include ../../blocks/index/slider/slider.pug
-include ../../blocks/index/specials/specials.pug
-include ../../blocks/index/specials-slider/specials-slider.pug
-include ../../blocks/index/testimonial/testimonial.pug
-include ../../blocks/index/services/services.pug
-include ../../blocks/index/cta/cta.pug
-include ../../blocks/index/recent-posts/recent-posts.pug
+include ../../blocks/common/slider/slider.pug
+include ../../blocks/common/specials/specials.pug
+include ../../blocks/common/specials-slider/specials-slider.pug
+include ../../blocks/common/testimonial/testimonial.pug
+include ../../blocks/common/services/services.pug
+include ../../blocks/common/cta/cta.pug
+include ../../blocks/common/recent-posts/recent-posts.pug
 
 block page
     +slider(data.content.slider)

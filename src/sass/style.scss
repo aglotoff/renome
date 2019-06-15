@@ -42,21 +42,14 @@
 @import "../blocks/common/select2/select2";
 @import "../blocks/common/pagination/pagination";
 @import "../blocks/common/title/title";
-
-/*
- * ----------------------------------------
- * Homepage Blocks
- * ----------------------------------------
- */
-
-@import "../blocks/index/cta/cta";
-@import "../blocks/index/recent-posts/recent-posts";
-@import "../blocks/index/services/services";
-@import "../blocks/index/slider/slider";
-@import "../blocks/index/specials/specials";
-@import "../blocks/index/specials-slider/specials-slider";
-@import "../blocks/index/testimonial/testimonial.scss";
-@import "../blocks/index/gallery/gallery.scss";
+@import "../blocks/common/cta/cta";
+@import "../blocks/common/recent-posts/recent-posts";
+@import "../blocks/common/services/services";
+@import "../blocks/common/slider/slider";
+@import "../blocks/common/specials/specials";
+@import "../blocks/common/specials-slider/specials-slider";
+@import "../blocks/common/testimonial/testimonial.scss";
+@import "../blocks/common/gallery/gallery.scss";
 
 /*
  * ----------------------------------------
