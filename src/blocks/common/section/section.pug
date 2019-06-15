@@ -33,7 +33,10 @@ mixin section(props = {})
                     // .rich-text 
 
                 if (props.link)
-                    a(href=props.link).section__read-more ...
+                    a(
+                        href=props.link
+                        aria-label="Read More"
+                    ).section__read-more ...
             // .section__content 
         // .section__inner 
     // .section 
