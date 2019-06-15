@@ -4,7 +4,8 @@ mixin article-author(data)
 
         .article-author__text
             h3.article-author__name= data.name
-            .article-author__bio= data.bio
+            .rich-text.rich-text_small.article-author__bio
+                p= data.bio
 
             ul.article-author__social
                 li.article-author__social-item

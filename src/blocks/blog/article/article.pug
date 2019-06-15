@@ -28,7 +28,7 @@ mixin article(data)
             else if data.gallery
                 +blog-gallery(data.gallery).article__gallery
 
-            .text.article__text !{data.content}
+            .rich-text.article__text !{data.content}
             // /.article__text 
 
             if data.link

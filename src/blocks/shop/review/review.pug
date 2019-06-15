@@ -25,6 +25,6 @@ mixin review(data)
         time.review__time(datetime=data.date)= formattedDate(data.date)
 
         .review__body
-            .text.review__text !{data.text}
+            .rich-text.review__text !{data.text}
         // /.review__body
     // /.review 

@@ -12,7 +12,7 @@
 
     h3 {
         color: $color-black;
-        @include font-size(15px);
+        font-size: 1.25em;
         font-weight: $font-weight-bold;
         text-transform: uppercase;
     }
@@ -22,11 +22,19 @@
     }
 
     blockquote {
-        padding-left: 18px;
+        padding-left: 1.5em;
 
         color: $color-black;
-        @include font-size(14px);
+        font-size: 1.1667em;
 
         border-left: 3px solid $color-athens-gray;
+    }
+
+    &_small-size {
+        @include font-size(11px);
+    }
+
+    &_small-spacing {
+        line-height: 2;
     }
 }

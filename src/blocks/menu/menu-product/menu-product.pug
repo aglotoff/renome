@@ -16,4 +16,5 @@ mixin menu-product(data)
 
         .menu-product__text
             h3.menu-product__title= data.title
-            .menu-product__desc= data.desc
+            .rich-text.rich-text_small-spacing.menu-product__desc
+                p= data.desc

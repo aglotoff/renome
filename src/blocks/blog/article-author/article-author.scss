@@ -17,12 +17,7 @@
     }
 
     &__text {
-        margin-top: 15px;
-
-        color: $color-black;
-        @include font-size(11px);
-        line-height: 2.5;
-        letter-spacing: 0.2em;
+        margin-top: 15px;       
 
         @include breakpoint-up(md) {
             overflow: hidden;
@@ -30,7 +25,13 @@
     }
 
     &__name {
+        margin-bottom: 8px;
+        margin-top: 8px;
+
         font-weight: $font-weight-bold;
+        color: $color-black;
+        @include font-size(11px);
+        letter-spacing: 0.2em;
         text-transform: uppercase;
     }
 

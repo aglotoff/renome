@@ -21,7 +21,7 @@ mixin product-single(data = {}, mods = {})
 
                 .product-single__price $#{data.price.toFixed(2)}
 
-                .text.product-single__short-desc
+                .rich-text.product-single__short-desc
                     p= data.shortDesc
                 
                 +add-to-cart(data.id).product-single__add-to-cart

@@ -15,7 +15,7 @@ mixin payment(data = {}, mods = {})
 
                 span.payment__title Direct payment
         
-            .text.payment__desc
+            .rich-text.payment__desc
                 p Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.
         
         li.payment__method
@@ -32,7 +32,7 @@ mixin payment(data = {}, mods = {})
 
                 span.payment__title Cheque payment
         
-            .text.payment__desc
+            .rich-text.payment__desc
                 p Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
 
         li.payment__method
@@ -65,5 +65,5 @@ mixin payment(data = {}, mods = {})
 
             a(href="javascript:void(0);").payment__link What is PayPal?
                 
-            .text.payment__desc
+            .rich-text.payment__desc
                 p Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account. 
