@@ -1,11 +1,18 @@
-mixin img-group(data, order = 'bottom-right', size = 'lg')
-    .img-group(
-        class=`img-group_order_${order}`
-    )&attributes(attributes)
-        .img-group__wrapper(class=(size == 'lg') && 'img-group__wrapper_wide')
-            img(src=data.first.src, alt=data.first.alt).img-group__img
-        // .img-group__wrapper 
-        .img-group__wrapper(class=(size == 'lg') && 'img-group__wrapper_wide')
-            img(src=data.second.src, alt=data.second.alt).img-group__img
-        // .img-group__wrapper 
+//-
+    name: img-group
+    description: Markup for the image group block
+    arguments:
+        - {object} props - block properties
+        - {string} props.order - image stacking order
+        - {boolean} props.wide - true if image are wide
+        - {object} props.images[] - images
+        - {string} props.images[].src - image URL
+        - {string} props.images[].alt - image alt text
+
+mixin img-group(props = {})
+    .img-group(class=`img-group_order_${props.order}`)&attributes(attributes)
+        each image in props.images
+            .img-group__wrapper(class=props.wide && 'img-group__wrapper_wide')
+                img(src=image.src, alt=image.alt).img-group__img
+            // .img-group__wrapper 
     // .img-group 

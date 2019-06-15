@@ -1,6 +1,16 @@
-mixin heading-group(data, level = 'section')
-    - const titleTag = (level === 'page') ? 'h1' : 'h2';
-    .heading-group(class=`heading-group_lvl_${level}`)&attributes(attributes)
-        #{titleTag}.heading-group__title= data.title
-        p.heading-group__subtitle= data.subtitle
-    // /.heading-group 
+//-
+    name: heading-group
+    description: Markup for the heading group block
+    arguments:
+        - {object} props - block properties
+        - {string} props.title - title text
+        - {string} props.subtitle - subtitle text
+        - {string} props.level - heading tag level
+
+mixin heading-group(props = {})
+    .heading-group(
+        class=`heading-group_lvl_${props.level}`
+    )&attributes(attributes)
+        #{'h' + props.level}.heading-group__title= props.title
+        p.heading-group__subtitle= props.subtitle
+    // .heading-group 

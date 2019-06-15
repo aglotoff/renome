@@ -1,16 +1,24 @@
 /**
- * Styles for the formatted text block
+ * Styles for the rich text block
  */
-.text {
+.rich-text {
     color: $color-tundora;
     line-height: 2.5;
     letter-spacing: .15em;
+
+    * + * {
+        margin-top: 2em;
+    }
 
     h3 {
         color: $color-black;
         @include font-size(15px);
         font-weight: $font-weight-bold;
         text-transform: uppercase;
+    }
+
+    h3 + p {
+        margin-top: 1em;
     }
 
     blockquote {
@@ -20,13 +28,5 @@
         @include font-size(14px);
 
         border-left: 3px solid $color-athens-gray;
-    }
-
-    * + * {
-        margin-top: 2em;
-    }
-
-    h3 + p {
-        margin-top: 1em;
     }
 }

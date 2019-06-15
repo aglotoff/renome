@@ -1,29 +1,39 @@
-mixin section(data, mods = {})
+//-
+    name: section
+    description: Markup for the section block
+    arguments:
+        - {object} props - block properties
+        - {boolean} props.reverse - true if images are on the right side
+        - {object} props.imgGroup - image group properties
+        - {string} props.title - section title
+        - {string} props.subtitle - section subtitle
+        - {string} props.id - optional ID attribute (for smooth scrolling)
+        - {string} props.text - section text
+        - {string} props.link - read more link
+
+mixin section(props = {})
     section.section(
-        class=!!mods.reverse ? 'section_reverse' : ''
+        class=props.reverse && 'section_reverse'
     )&attributes(attributes)
         .section__inner
-            +img-group(
-                data.images,
-                data.imageOrder,
-                data.imageSize
-            ).section__images
+            +img-group(props.imgGroup).section__images
 
             .section__content
                 +heading-group({
-                    title    : data.title, 
-                    subtitle : data.subtitle,
+                    title: props.title, 
+                    subtitle: props.subtitle,
+                    level: 2,
                 })(
-                    id       = data.id
-                    tabindex = data.id && "-1"
+                    id=props.id
+                    tabindex=props.id && '-1'
                 )
 
-                if data.text
-                    .text.section__text !{data.text}
+                if props.text
+                    .rich-text.section__text !{props.text}
+                    // .rich-text 
 
-                if (data.link)
-                    .section__read-more
-                        a(href=data.link).section__link ...
-            // /.section__content 
-        // /.section__inner 
-    // /.section 
+                if (props.link)
+                    a(href=props.link).section__link ...
+            // .section__content 
+        // .section__inner 
+    // .section 

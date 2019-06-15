@@ -16,7 +16,7 @@
         letter-spacing: 0.1em;
     }
 
-    &_lvl_page {
+    &_lvl_1 {
         .heading-group__title {
             @include font-size(31px);
 
@@ -34,7 +34,7 @@
         }
     }
 
-    &_lvl_section {
+    &_lvl_2 {
         .heading-group__title {
             color: $color-primary;
             @include font-size(38px);
