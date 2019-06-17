@@ -1,8 +1,17 @@
-mixin cta(data)
+//-
+    name: cta
+    description: Markup for the call-to-action block
+    arguments:
+        - {object} props - block properties
+        - {string} props.title - button title
+        - {string} props.link - button link
+
+mixin cta(props = {})
     .cta&attributes(attributes)
         .cta__inner
             +btn({
-                title: data.title,
-                link: data.link,
+                title: props.title,
+                link: props.link,
             }, 'link').cta__btn
-    // /.cta 
+        // .cta__inner 
+    // .cta 

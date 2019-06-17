@@ -1,13 +1,23 @@
-mixin services(data)
+//-
+    name: services
+    description: Markup for the services block
+    arguments:
+        - {object} props - block properties
+        - {string} props.title - section title
+        - {string} props.subtitle - section subtitle
+        - {string[]} props.items - list of services
+
+mixin services(props = {})
     section.services&attributes(attributes)
         +heading-group({
-            title: data.title,
-            subtitle: data.subtitle,
+            title: props.title,
+            subtitle: props.subtitle,
             level: 2,
         })
 
         .services__list-wrapper
             ul.services__list
-                each item in data.items
+                each item in props.items
                     li.services__item= item
-        // /.services__list-wrapper 
+        // .services__list-wrapper 
+    // .services 
