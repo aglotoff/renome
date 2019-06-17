@@ -9,14 +9,79 @@ import DrilldownStrategy from '../../../js/utils/drilldown-strategy';
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT = 992;  // Minimum desktop screen width
 
-const SCROLL_BUFFER = 100;  // Offset from top to scroll target
+const SCROLL_BUFFER = 100;  // Offset from window top to scroll target
 const SCROLL_SPEED = 1000;
 
-let $submenus;
+let submenus;
 let mobileMenu;
 
 let isDesktop = false;
 // --------------------------- END MODULE VARIABLES ---------------------------
+
+/**
+ * Implementation of submenus.
+ * 
+ * Each submenu has two behavior strategies: drilldown menu for smaller screens
+ * and dropdown menu for larger screens.
+ */
+class NavSubmenu {
+    /**
+     * Iniitalize submenu.
+     * 
+     * @param {JQuery} $root Submenu root element
+     */
+    constructor($root) {
+        this._elements = {
+            $root,
+            $parentLink: $root.prev('.nav__link'),
+            $parentItem: $root.closest('.nav__item'),
+            $scrollpane: $('.nav__scrollpane', $root).first(),
+            $backLink: $('.nav__link_back', $root).first(),
+            $firstLink: $('.nav__link', $root).not('.nav__link_back').first(),
+        };
+
+        this.drilldownStrategy = new DrilldownStrategy(
+            this._elements.$parentLink,
+            this._elements.$root,
+            this._elements.$firstLink,
+            {
+                on: { 
+                    collapse: this.collapse.bind(this), 
+                    expand: this.expand.bind(this),
+                }
+            }
+        );
+
+        this.dropdownStrategy = new DropdownStrategy(
+            this._elements.$parentItem,
+            this._elements.$parentLink,
+            this._elements.$root,
+            {
+                on: { 
+                    collapse: this.collapse.bind(this), 
+                    expand: this.expand.bind(this),
+                }
+            }
+        );
+
+        this.drilldownStrategy.activate();
+
+        this._elements.$backLink.click(() => this.drilldownStrategy.collapse());
+    }
+
+    collapse() {
+        const { $root } = this._elements;
+
+        $root.removeClass('nav__submenu_visible');
+    }
+
+    expand() {
+        const { $root, $scrollpane } = this._elements;
+
+        $scrollpane.scrollTop(0);   // Reset submenu scroll position
+        $root.addClass('nav__submenu_visible');
+    }
+}
 
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
 
@@ -33,9 +98,7 @@ function handleInternalLinkClick() {
     }
 
     if (!isDesktop) {
-        $submenus.each(function() {
-            $(this).data('drilldownStrategy').collapse();
-        });
+        submenus.forEach((submenu) => submenu.drilldownStrategy.collapse());
         mobileMenu.collapse();
     }
 
@@ -50,68 +113,17 @@ function handleInternalLinkClick() {
 
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
-// --------------------------- BEGIN PRIVATE METHODS --------------------------
-
-/**
- * Initialize submenus.
- * 
- * Each submenu has two behavior strategies: drilldown menu for smaller screens
- * and dropdown menu for larger screens.
- * 
- * @param {JQuery} $submenu The submenu elements
- */
-function initSubmenu($submenu) {
-    const $submenuToggle = $submenu.prev('.nav__link');
-    const $parentItem  = $submenu.closest('.nav__item');
-    const $scrollpane = $('.nav__scrollpane', $submenu).first();
-    const $backLink = $('.nav__link_back', $submenu).first();
-    const $firstLink = $('.nav__link', $submenu)
-        .not('.nav__link_back')
-        .first();
-
-    const collapse = () => {
-        $submenu.removeClass('nav__submenu_visible');
-    };
-
-    const expand = () => {
-        $scrollpane.scrollTop(0);
-        $submenu.addClass('nav__submenu_visible');
-    };
-
-    const drilldownStrategy = new DrilldownStrategy(
-        $submenuToggle,
-        $submenu,
-        $firstLink,
-        { on: { collapse, expand } }
-    );
-    drilldownStrategy.activate();
-    $backLink.click(() => drilldownStrategy.collapse());
-
-    const dropdownStrategy = new DropdownStrategy(
-        $parentItem,
-        $submenuToggle,
-        $submenu,
-        { on: { collapse, expand } }
-    );
-
-    $submenu.data({ dropdownStrategy, drilldownStrategy });
-}
-
-// ---------------------------- END PRIVATE METHODS ---------------------------
-
 // ---------------------------- BEGIN PUBLIC METHODS --------------------------
 
 /**
  * Initialize the navigation block.
  * @return true
  */
-export const initModule = function() {
+function initBlock() {
     const $nav = $('.nav');
     const $menuToggle = $('.nav__toggle', $nav);
     const $menu = $('.nav__menu', $nav);
     const $scrollpane = $('.nav__scrollpane', $nav);
-
-    $submenus = $('.nav__submenu', $nav);
 
     mobileMenu = new DrilldownStrategy($menuToggle, $nav, null, {
         on: {
@@ -128,36 +140,44 @@ export const initModule = function() {
     });
     mobileMenu.activate();
 
-    $submenus.each(function() {
-        initSubmenu($(this));
-    });
+    submenus = $('.nav__submenu', $nav)
+        .map(function() {
+            return new NavSubmenu($(this));
+        })
+        .toArray();
 
     $nav.on('click', '.nav__link[href^="#"]', handleInternalLinkClick);
-};
+}
 
 /**
  * Respond to window resize event.
+ * 
+ * Switch between drilldown behavior for submenus on mobile and dropdown 
+ * behavior on desktop.
  */
-export const handleResize = function() {
-    // Switch between drilldown submenus on mobile and dropdown submenus on
-    // desktop
+function handleResize() {
     if (isDesktop && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
         isDesktop = false;
 
-        $submenus.each(function() {
-            $(this).data('dropdownStrategy').deactivate();
-            $(this).data('drilldownStrategy').activate();
+        submenus.forEach((submenu) => {
+            submenu.dropdownStrategy.deactivate();
+            submenu.drilldownStrategy.activate();
         });
     } else if (!isDesktop && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
         isDesktop = true;
 
-        $submenus.each(function() {
-            $(this).data('drilldownStrategy').deactivate();
-            $(this).data('dropdownStrategy').activate();
+        submenus.forEach((submenu) => {
+            submenu.drilldownStrategy.deactivate();
+            submenu.dropdownStrategy.activate();
         });
 
         mobileMenu.collapse();
     }
-};
+}
 
 // ----------------------------- END PUBLIC METHODS ---------------------------
+
+export default {
+    initBlock,
+    handleResize,
+};

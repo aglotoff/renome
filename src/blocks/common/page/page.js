@@ -7,7 +7,7 @@ import LazyLoader from '../../../js/utils/lazy-loader';
 
 import Header from '../header/header';
 
-import * as Nav             from '../nav/nav';
+import Nav from '../nav/nav';
 import * as Tabs            from '../tabs/tabs';
 
 import * as AboutGallery    from '../../about/about-gallery/about-gallery';
@@ -113,7 +113,7 @@ function initBlock() {
 
     // Common blocks
     Header.initBlock();
-    Nav.initModule();
+    Nav.initBlock();
     Tabs.initModule();
 
     // Inner page blocks
