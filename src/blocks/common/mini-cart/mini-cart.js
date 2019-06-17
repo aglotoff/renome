@@ -16,14 +16,16 @@ function initBlock() {
     const $trigger = $('.mini-cart__trigger', $minicart);
     const $drawer = $('.mini-cart__drawer', $minicart);
 
-    const minicart = new DropdownStrategy($minicart, $trigger, $drawer, {
-        on: {
-            expand() {
-                $drawer.addClass('mini-cart__drawer_expanded');
-            },
-            collapse() {
-                $drawer.removeClass('mini-cart__drawer_expanded');
-            }
+    const minicart = new DropdownStrategy({
+        $root: $minicart,
+        $trigger,
+        $drawer,
+
+        onExpand() {
+            $drawer.addClass('mini-cart__drawer_expanded');
+        },
+        onCollapse() {
+            $drawer.removeClass('mini-cart__drawer_expanded');
         }
     });
     minicart.activate();

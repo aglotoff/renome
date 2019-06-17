@@ -17,18 +17,20 @@ const Keys = {
 export default class DropdownStrategy {
     /**
      * Create a dropdown strategy
-     * @param {JQuery} $root The root node
-     * @param {JQuery} $trigger The dropdown button
-     * @param {JQuery} $drawer The dropdown drawer
-     * @param {Object} $options Options object
+     * @param {Object} props - Properties object
+     * @param {JQuery} props.$root The root node
+     * @param {JQuery} props.$trigger The dropdown button
+     * @param {JQuery} props.$drawer The dropdown drawer
+     * @param {Function} props.onCollapse The callback to execute on collapse
+     * @param {FUnction} props.onExpand The callback to execute on expand
      */
-    constructor($root, $trigger, $drawer, options = {}) {
+    constructor({$root, $trigger, $drawer, onCollapse, onExpand}) {
         this._elements = { $root, $trigger, $drawer };
         this._isExpanded = false;
 
         this._handlers = {
-            collapseHandler: options.on && options.on.collapse,
-            expandHandler: options.on && options.on.expand,
+            collapseHandler: onCollapse,
+            expandHandler: onExpand,
         };
 
         this.handleOutsideClick = this.handleOutsideClick.bind(this);

@@ -40,30 +40,25 @@ class NavSubmenu {
             $firstLink: $('.nav__link', $root).not('.nav__link_back').first(),
         };
 
-        this.drilldownStrategy = new DrilldownStrategy(
-            this._elements.$parentLink,
-            this._elements.$root,
-            this._elements.$firstLink,
-            {
-                on: { 
-                    collapse: this.collapse.bind(this), 
-                    expand: this.expand.bind(this),
-                }
-            }
-        );
+        this.drilldownStrategy = new DrilldownStrategy({
+            $trigger: this._elements.$parentLink,
+            $drawer: this._elements.$root,
+            $initialFocus:  this._elements.$firstLink,
 
-        this.dropdownStrategy = new DropdownStrategy(
-            this._elements.$parentItem,
-            this._elements.$parentLink,
-            this._elements.$root,
-            {
-                on: { 
-                    collapse: this.collapse.bind(this), 
-                    expand: this.expand.bind(this),
-                }
-            }
-        );
+            onCollapse: this.collapse.bind(this), 
+            onExpand: this.expand.bind(this),
+        });
 
+        this.dropdownStrategy = new DropdownStrategy({
+            $root: this._elements.$parentItem,
+            $trigger: this._elements.$parentLink,
+            $drawer: this._elements.$root,
+
+            onCollapse: this.collapse.bind(this), 
+            onExpand: this.expand.bind(this),
+        });
+
+        // Mobile by default
         this.drilldownStrategy.activate();
 
         this._elements.$backLink.click(() => this.drilldownStrategy.collapse());
@@ -125,18 +120,20 @@ function initBlock() {
     const $menu = $('.nav__menu', $nav);
     const $scrollpane = $('.nav__scrollpane', $nav);
 
-    mobileMenu = new DrilldownStrategy($menuToggle, $nav, null, {
-        on: {
-            expand() {
-                $menu.addClass('nav__menu_visible');
-                $scrollpane.scrollTop(0);
-                $menuToggle.addClass('hamburger_open');
-            },
-            collapse() {
-                $menu.removeClass('nav__menu_visible');
-                $menuToggle.removeClass('hamburger_open');
-            }
-        }
+    mobileMenu = new DrilldownStrategy({
+        $trigger: $menuToggle,
+        $drawer: $nav,
+
+        onCollapse() {
+            $menu.removeClass('nav__menu_visible');
+            $menuToggle.removeClass('hamburger_open');
+        },
+
+        onExpand() {
+            $menu.addClass('nav__menu_visible');
+            $scrollpane.scrollTop(0);
+            $menuToggle.addClass('hamburger_open');
+        },
     });
     mobileMenu.activate();
 

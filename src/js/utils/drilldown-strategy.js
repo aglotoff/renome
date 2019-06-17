@@ -17,12 +17,14 @@ let activeDrilldown = null;
 export default class DrilldownStrategy {
     /**
      * Create a drilldown strategy
-     * @param {JQuery} $trigger The drilldown button
-     * @param {JQuery} $drawer The drilldown drawer
-     * @param {JQuery} $initialFocus The element to receive initialFocus
-     * @param {Object} $options Options object
+     * @param {Object} props - Properties object
+     * @param {JQuery} props.$trigger The drilldown button
+     * @param {JQuery} props.$drawer The drilldown drawer
+     * @param {JQuery} props.$initialFocus The element to receive initialFocus
+     * @param {Function} props.onCollapse The callback to execute on collapse
+     * @param {FUnction} props.onExpand The callback to execute on expand
      */
-    constructor($trigger, $drawer, $initialFocus, options = {}) {
+    constructor({$trigger, $drawer, $initialFocus, onCollapse, onExpand}) {
         this._elements = { $trigger, $drawer, $initialFocus };
         this._isExpanded = false;
 
@@ -31,8 +33,8 @@ export default class DrilldownStrategy {
         this.handleTrapDeactivate = this.handleTrapDeactivate.bind(this);
 
         this._handlers = {
-            collapseHandler: options.on && options.on.collapse,
-            expandHandler: options.on && options.on.expand,
+            collapseHandler: onCollapse,
+            expandHandler: onExpand,
         };
 
         this._focusTrap = new focusTrap($drawer.get(0), {

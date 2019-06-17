@@ -16,14 +16,16 @@ function initBlock() {
     const $trigger = $('.share__trigger', $share);
     const $drawer = $('.share__drawer', $share);
 
-    const share = new DropdownStrategy($share, $trigger, $drawer, {
-        on: {
-            expand() {
-                $drawer.addClass('share__drawer_expanded');
-            },
-            collapse() {
-                $drawer.removeClass('share__drawer_expanded');
-            }
+    const share = new DropdownStrategy({
+        $root: $share,
+        $trigger,
+        $drawer,
+
+        onExpand() {
+            $drawer.addClass('share__drawer_expanded');
+        },
+        onCollapse() {
+            $drawer.removeClass('share__drawer_expanded');
         }
     });
     share.activate();
