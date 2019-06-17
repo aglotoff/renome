@@ -68,6 +68,7 @@
         },
 
         "menu": {
+            "reverse": true,
             "title": "Menu",
             "subtitle": "Delicious and beautiful",
 
@@ -150,6 +151,7 @@
         },
 
         "contact": {
+            "reverse": true,
             "title": "Contact",
             "subtitle": "We welcome you in our restaurant",
 

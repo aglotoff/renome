@@ -110,6 +110,7 @@
         },
 
         "menuIntro": {
+            "reverse": true,
             "title": "Menu",
             "subtitle": "Delicious and beautiful",
             "id": "menu",
@@ -302,6 +303,7 @@
         },
 
         "contact": {
+            "reverse": true,
             "title": "Contact",
             "subtitle": "We welcome you in our restaurant",
             "id": "contact",

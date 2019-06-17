@@ -6,7 +6,7 @@ include ../../blocks/contact/contact-form/contact-form.pug
 include ../../blocks/contact/map/map.pug
 
 block append page
-    +section(data.content.happy, {reverse: true})
+    +section(data.content.happy)
     +contact-bottom({details: data.content.details})
     +map()
 

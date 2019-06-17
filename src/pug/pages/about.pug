@@ -6,7 +6,7 @@ include ../../blocks/about/opening-hours/opening-hours.pug
 
 block append page
     +section(data.content.history)
-    +section(data.content.goals, {reverse: true})
+    +section(data.content.goals)
     +about-bottom({
         gallery: data.content.gallery,
         openingHours: data.content.openingHours,
