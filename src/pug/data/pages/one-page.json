@@ -253,7 +253,9 @@
         "testimonial": {
             "img": "img/content/index/testimonial.jpg",
             "text": "The most romantic and perfect place",
-            "author": "John Doe"
+            "author": "John Doe",
+            
+            "reverse": true
         },
 
         "reservation": {

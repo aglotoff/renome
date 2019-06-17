@@ -1,14 +1,26 @@
-mixin testimonial(data, mods = {})
+//-
+    name: testimonial
+    description: Markup for the testimonial block
+    arguments:
+        - {object} props - block properties
+        - {string} props.img - image
+        - {string} props.text - quote text
+        - {string} props.author - quote author
+        - {boolean} props.reverse - display image on the right
+
+mixin testimonial(props = {})
     .testimonial(
-        class = !!mods.reverse ? 'testimonial_reverse' : ''
+        class = props.reverse && 'testimonial_reverse'
     )&attributes(attributes)
         .testimonial__content
             .testimonial__inner
                 .testimonial__img-wrapper
-                    img(src=data.img, alt="Testimonial").testimonial__img
+                    img(src=props.img, alt="Testimonial").testimonial__img
 
                 blockquote.testimonial__quote
-                    p.testimonial__quote-text= data.text
+                    p.testimonial__quote-text= props.text
                     footer.testimonial__quote-footer
-                        cite= data.author 
-    // /.testimonial 
+                        cite= props.author 
+            // .testimonial__inner 
+        // .testimonial__content 
+    // .testimonial 
