@@ -1,24 +1,37 @@
-mixin specials-slider(data)
+//-
+    name: specials-slider
+    description: Markup for the specials slider block
+    arguments:
+        - {object} props - block properties
+        - {array} props.slides - slides
+        - {string} props.slides[].img - product image
+        - {string} props.slides[].title - product title
+        - {string} props.slides[].weekday - day of week
+        - {number} props.slides[].price - product price
+
+mixin specials-slider(props)
     .specials-slider&attributes(attributes)
         .specials-slider__inner
             .specials-slider__container
-                each slide, i in data
+                each slide, i in props.slides
                     .specials-slider__slide(
-                        class=(i == 0) ? 'specials-slider__slide_active' : ''
+                        class=(i == 0) && 'specials-slider__slide_active'
                     )
-                        img(
-                            src=slide.img
-                            alt=slide.title
-                        ).specials-slider__slide-img
+                        .specials-slider__slide-inner
+                            img(
+                                src=slide.img
+                                alt=slide.title
+                            ).specials-slider__slide-img
 
-                        .specials-slider__slide-text
-                            h3.specials-slider__slide-title= slide.title
-                            .specials-slider__slide-weekday= slide.weekday
+                            .specials-slider__slide-text
+                                h3.specials-slider__slide-title= slide.title
+                                .specials-slider__slide-weekday= slide.weekday
 
-                        .specials-slider__slide-price
-                            | $#{slide.price.toFixed(2)}
-                    // /.specials-slider__slide 
-            // /.specials-slider__container 
+                            .specials-slider__slide-price
+                                | $#{slide.price.toFixed(2)}
+                        // .specials-slider__slide-inner 
+                    // .specials-slider__slide 
+            // .specials-slider__container 
 
             .specials-slider__arrows
                 button(
@@ -29,6 +42,6 @@ mixin specials-slider(data)
                     type="button"
                 ).specials-slider__arrow.specials-slider__arrow_dir_next
                     | Next
-            // /.specials-slider__arrows 
-        // /.specials-slider__inner 
-    // /.specials-slider 
+            // .specials-slider__arrows 
+        // .specials-slider__inner 
+    // .specials-slider 

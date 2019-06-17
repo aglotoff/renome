@@ -1,12 +1,21 @@
-mixin specials(data)
+//-
+    name: specials
+    description: Markup for the specials section block
+    arguments:
+        - {object} props - block properties
+        - {string} props.title - section title
+        - {string} props.subtitle - section subtitle
+        - {array} props.slides - slider slides
+
+mixin specials(props = {})
     section.specials
         .specials__inner
             +heading-group({
-                title: data.title,
-                subtitle: data.subtitle,
+                title: props.title,
+                subtitle: props.subtitle,
                 level: 2,
             }).specials__heading
 
-            +specials-slider(data.slides).specials__slider
-        // /.specials__inner 
-    // /.specials 
+            +specials-slider({slides: props.slides}).specials__slider
+        // .specials__inner 
+    // .specials 

@@ -57,7 +57,7 @@ function updateHeaderStyles() {
                     .addClass('header_scroll header_hidden')
                     .removeClass('header_transparent');
 
-                forceReflow($header.get(0));
+                forceReflow($header);
             }
             
             $header.removeClass('header_hidden');

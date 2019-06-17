@@ -32,10 +32,7 @@
         width: 100%;
 
         overflow: visible;
-        transform-origin: 100% 50%;
-        transition: left 0.3s linear,
-                    opacity 0.3s linear,
-                    transform 0.3s linear;
+        transition: transform 0.3s linear;
 
         &_active {
             display: block;
@@ -44,7 +41,7 @@
 
         &_moving {
             /* stylelint-disable-next-line declaration-no-important */
-            left: -100% !important;
+            transform: translateX(-100%) !important;
         }
     }
 
@@ -95,8 +92,7 @@
             }
         }
 
-        &:hover,
-        &:focus {
+        &:hover {
             @include breakpoint-up(md) {
                 background: $color-secondary;
             }
@@ -131,6 +127,12 @@
                 }
             }
         }
+    }
+
+    &__slide-inner {
+        transform-origin: 100% 50%;
+        transition: opacity 0.15s linear,
+                    transform 0.3s linear;
     }
 
     &__slide-img {
