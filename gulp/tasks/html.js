@@ -28,7 +28,8 @@ const htmlTasks = lazypipe()
         return {
             data: fs.existsSync(dataFile)
                 ? {...globalData, ...JSON.parse(fs.readFileSync(dataFile))}
-                : globalData
+                : globalData,
+            moment: require('moment'),
         };
     })
     .pipe(pug, config.plugins.pug)

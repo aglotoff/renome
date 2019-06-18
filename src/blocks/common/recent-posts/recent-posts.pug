@@ -1,26 +1,27 @@
-mixin recent-posts(data)
-    -
-        const formattedDate = function(datestr) {
-            const date = new Date(datestr);
-            let month = date.getMonth() + 1;
-            if (month < 10)
-                month = '0' + month;
-            let day = date.getDate();
-            if (day < 10)
-                day = '0' + day;
-            return `${month}/${day}`;
-        };
+//-
+    name: recent-posts
+    description: Markup for the recent posts block
+    arguments:
+        - {object} props - block properties
+        - {string} props.title - section title
+        - {string} props.subtitle - section subtitle
+        - {object[]} props.posts - list of posts
+        - {string} props.posts[].thumb - post thumbnail image
+        - {string} props.posts[].date - post publication date
+        - {string} props.posts[].title - post title
+        - {string} props.posts[].link - post link
 
+mixin recent-posts(props = {})
     section.recent-posts
         .recent-posts__inner
             +heading-group({
-                title: data.title,
-                subtitle: data.subtitle,
+                title: props.title,
+                subtitle: props.subtitle,
                 level: 2,
             })
 
             .recent-posts__list
-                each post in data.posts
+                each post in props.posts
                     .recent-posts__item
                         article(
                             style=`background-image: url(${post.thumb})`
@@ -28,10 +29,13 @@ mixin recent-posts(data)
                             .recent-posts__post-inner
                                 .recent-posts__date
                                     time(datetime=post.date)
-                                        = formattedDate(post.date)
+                                        = moment(post.date).format('MM/DD')
                                 h3.recent-posts__title= post.title
-                                a(href=post.link).recent-posts__link ...
-                    // /.recent-posts__item 
-            // /.recent-posts__list 
-        // /.recent-posts__inner 
-    // /.recent-posts 
+                                a(
+                                    href=post.link
+                                    aria-label="Read More"
+                                ).recent-posts__link ...
+                    // .recent-posts__item 
+            // .recent-posts__list 
+        // .recent-posts__inner 
+    // .recent-posts 
