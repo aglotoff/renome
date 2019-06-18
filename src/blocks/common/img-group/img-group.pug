@@ -13,6 +13,6 @@ mixin img-group(props = {})
     .img-group(class=`img-group_order_${props.order}`)&attributes(attributes)
         each image in props.images
             .img-group__wrapper(class=props.wide && 'img-group__wrapper_wide')
-                img(src=image.src, alt=image.alt).img-group__img
+                +picture(image.src)(alt=image.alt).img-group__img
             // .img-group__wrapper 
     // .img-group 

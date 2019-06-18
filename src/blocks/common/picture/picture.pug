@@ -1,0 +1,15 @@
+//-
+    name: picture
+    description: Markup for the picture block
+    arguments:
+        - {src} props - original image source
+
+mixin picture(src)
+    - const origType = src.endsWith('.png') ? 'image/png' : 'image/jpeg';
+    - const src2x = src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1');
+    - const srcWebp = src.replace(/\.(jpg|jpeg|png)$/, '.webp');
+    - const srcWebp2x = src2x.replace(/\.(jpg|jpeg|png)$/, '.webp');
+    picture
+        source(srcset=`${srcWebp} 1x, ${srcWebp2x} 2x` type="image/webp")
+        source(srcset=`${src} 1x, ${src2x} 2x` type=origType)
+        img(src=src)&attributes(attributes)

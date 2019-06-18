@@ -18,8 +18,7 @@ mixin specials-slider(props)
                         class=(i == 0) && 'specials-slider__slide_active'
                     )
                         .specials-slider__slide-inner
-                            img(
-                                src=slide.img
+                            +picture(slide.img)(
                                 alt=slide.title
                             ).specials-slider__slide-img
 

@@ -112,7 +112,7 @@ gulp.task('build', gulp.series(
             'build:icons',
             'lint:css',
             'build:css',
-            'build:img'
+            'build:img',
         ),
         'build:fonts',
         'build:html',

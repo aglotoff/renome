@@ -2,8 +2,10 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const gulp = require('gulp');
 const changed = require('gulp-changed');
+const cloneSink = require('gulp-clone').sink();
 const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
+const webp = require('gulp-webp');
 const mozjpeg = require('imagemin-mozjpeg');
 
 const config = require('../config');
@@ -23,6 +25,9 @@ gulp.task('build:img', () => {
             imagemin.svgo(config.plugins.imagemin.svgo),
             mozjpeg({progressive: true}),
         ]))
+        .pipe(cloneSink)
+        .pipe(webp())
+        .pipe(cloneSink.tap())
         .pipe(gulp.dest(config.paths.img.dest))
         .pipe(browserSync.reload({
             stream: true

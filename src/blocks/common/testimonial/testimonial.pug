@@ -15,7 +15,7 @@ mixin testimonial(props = {})
         .testimonial__content
             .testimonial__inner
                 .testimonial__img-wrapper
-                    img(src=props.img, alt="Testimonial").testimonial__img
+                    +picture(props.img)(alt="Testimonial").testimonial__img
 
                 blockquote.testimonial__quote
                     p.testimonial__quote-text= props.text
