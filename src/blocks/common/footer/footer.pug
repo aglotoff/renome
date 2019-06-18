@@ -1,27 +1,41 @@
-mixin footer()
-    footer.footer&attributes(attributes)
+//-
+    name: footer
+    description: Markup for the footer block
+    arguments:
+        - {object} props - block properties
+        - {object} props.socials - social links
+        - {string} props.socials.fb - Facebook link
+        - {string} props.socials.twitter - Twitter link
+        - {string} props.socials.gplus - Google Plus link
+
+mixin footer(props = {})
+    footer.footer#colophon&attributes(attributes)
         .footer__inner
             .footer__social
                 .footer__social-text Follow us:
                 ul.footer__social-list
-                    li.footer__social-item
-                        a(href="javascript:void(0);").footer__social-link
-                            +icon('fb', 'Follow us on Facebook')
-                    li.footer__social-item
-                        a(href="javascript:void(0);").footer__social-link
-                            +icon('twitter', 'Follow us on Twitter')
-                    li.footer__social-item
-                        a(href="javascript:void(0);").footer__social-link
-                            +icon('gplus', 'Follow us on Google Plus')
-            // /.footer__social 
+                    if props.socials.fb
+                        li.footer__social-item
+                            a(href=props.socials.fb).footer__social-link
+                                +icon('fb', 'Follow us on Facebook')
+                    if props.socials.twitter
+                        li.footer__social-item
+                            a(href=props.socials.twitter).footer__social-link
+                                +icon('twitter', 'Follow us on Twitter')
+                    if props.socials.gplus
+                        li.footer__social-item
+                            a(href=props.socials.gplus).footer__social-link
+                                +icon('gplus', 'Follow us on Google Plus')
+            // .footer__social 
 
             a(href="index.html").footer__logo
-                img(src="img/logo.svg", alt="Renome")
-            // /.footer__logo 
+                img(src="img/logo.svg" alt="Renome")
+            // .footer__logo 
 
             .footer__copyright
                 | Copyright 2015 Renome by Estetiq
                 br
                 | HTML template by Andrey Glotov
-            // /.footer__copyright 
-        // /.footer__inner 
+            // .footer__copyright 
+        // .footer__inner 
+    // #colophon 

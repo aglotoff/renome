@@ -50,5 +50,11 @@
     "cart": {
         "quantity": 2,
         "total": 44.50
+    },
+
+    "socials": {
+        "fb": "javascript:void(0);",
+        "twitter": "javascript:void(0);",
+        "gplus": "javascript:void(0);"
     }
 }
