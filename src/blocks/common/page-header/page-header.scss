@@ -12,14 +12,17 @@
     &__inner {
         display: flex;
         flex-direction: column;
-        height: 660px;
         justify-content: flex-end;
         margin: 0 auto;
+        max-height: 660px;
         max-width: 1200px;
-        padding: 0 10px 85px;
+        height: calc(100vh - 85px);
+        padding: 10px 10px 60px;
 
         @include breakpoint-up(lg) {
-            height: 700px;
+            height: 100vh;
+            max-height: 700px;
+            padding-bottom: 85px;
         }
     }
 }

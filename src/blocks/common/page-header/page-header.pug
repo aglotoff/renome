@@ -1,11 +1,20 @@
-mixin page-header(data)
+//-
+    name: page-header
+    description: Markup for the page header block
+    arguments:
+        - {object} props - block properties
+        - {string} props.bgImage - background image
+        - {string} props.title - page title
+        - {string} props.subtitle - page subtitle
+
+mixin page-header(props = {})
     .page-header(
-        style=`background-image: url(${data.bgImage})`
+        style=`background-image: url(${props.bgImage})`
     )&attributes(attributes)
         .page-header__inner
             +heading-group({
-                title: data.title,
-                subtitle: data.subtitle,
+                title: props.title,
+                subtitle: props.subtitle,
                 level: 1,
             }).page-header__title
-    // /.page-header 
+    // .page-header 
