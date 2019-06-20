@@ -12,10 +12,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/about/history-1.jpg",
+                    "src": "img/content/about/history-1",
                     "alt": "About"
                 }, {
-                    "src": "img/content/about/history-2.jpg",
+                    "src": "img/content/about/history-2",
                     "alt": "About"
                 }],
                 "wide": true,
@@ -32,10 +32,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/about/goals-1.jpg",
+                    "src": "img/content/about/goals-1",
                     "alt": "About"
                 }, {
-                    "src": "img/content/about/goals-2.jpg",
+                    "src": "img/content/about/goals-2",
                     "alt": "About"
                 }],
                 "wide": true,

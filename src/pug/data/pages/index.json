@@ -26,10 +26,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/about/history-1.jpg",
+                    "src": "img/content/about/history-1",
                     "alt": "About"
                 }, {
-                    "src": "img/content/about/history-2.jpg",
+                    "src": "img/content/about/history-2",
                     "alt": "About"
                 }],
                 "wide": true,
@@ -46,22 +46,22 @@
 
             "slides": [{
                 "title": "Homemade baguette",
-                "img": "img/content/specials/homemade-baguette.jpg",
+                "img": "img/content/specials/homemade-baguette",
                 "weekday": "Monday",
                 "price": 8.95
             }, {
                 "title": "Korean bibimbap",
-                "img": "img/content/specials/korean-bibimbap.jpg",
+                "img": "img/content/specials/korean-bibimbap",
                 "weekday": "Tuesday",
                 "price": 15.70
             }, {
                 "title": "Apple pie",
-                "img": "img/content/specials/apple-pie.jpg",
+                "img": "img/content/specials/apple-pie",
                 "weekday": "Wednesday",
                 "price": 8.75
             }, {
                 "title": "Steak with vegetables",
-                "img": "img/content/specials/steak-with-vegetables.jpg",
+                "img": "img/content/specials/steak-with-vegetables",
                 "weekday": "Monday",
                 "price": 14.20
             }]
@@ -74,10 +74,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/menu/menu-1.jpg",
+                    "src": "img/content/menu/menu-1",
                     "alt": "Menu"
                 }, {
-                    "src": "img/content/menu/menu-2.jpg",
+                    "src": "img/content/menu/menu-2",
                     "alt": "Menu"
                 }],
                 "order": "top-right"
@@ -88,7 +88,7 @@
         },
 
         "testimonial": {
-            "img": "img/content/index/testimonial.jpg",
+            "img": "img/content/testimonial/testimonial",
             "text": "The most romantic and perfect place",
             "author": "John Doe"
         },
@@ -99,10 +99,10 @@
             
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/reservation/reservation-1.jpg",
+                    "src": "img/content/reservation/reservation-1",
                     "alt": "Reservation"
                 }, {
-                    "src": "img/content/reservation/reservation-2.jpg",
+                    "src": "img/content/reservation/reservation-2",
                     "alt": "Reservation"
                 }],
                 "order": "top-left"
@@ -157,10 +157,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/contact/contact-1.jpg",
+                    "src": "img/content/contact/contact-1",
                     "alt": "Contact"
                 }, {
-                    "src": "img/content/contact/contact-2.jpg",
+                    "src": "img/content/contact/contact-2",
                     "alt": "Contact"
                 }],
                 "order": "top-right"

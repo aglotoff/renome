@@ -13,10 +13,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/contact/contact-1.jpg",
+                    "src": "img/content/contact/contact-1",
                     "alt": "Contact"
                 }, {
-                    "src": "img/content/contact/contact-2.jpg",
+                    "src": "img/content/contact/contact-2",
                     "alt": "Contact"
                 }],
                 "order": "top-right"

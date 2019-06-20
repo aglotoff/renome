@@ -17,10 +17,49 @@ mixin specials-slider(props)
                     .specials-slider__slide(
                         class=(i == 0) && 'specials-slider__slide_active'
                     )
+                        -
+                            const mobileJpegSrcSet = `
+                                ${slide.img}-small.jpg 1x,
+                                ${slide.img}-medium.jpg 2x
+                            `;
+                            const desktopJpegSrcSet = `
+                                ${slide.img}-small.jpg 1x,
+                                ${slide.img}-medium.jpg 1.5x,
+                                ${slide.img}-large.jpg 2x
+                            `;
+                            const mobileWebpSrcSet = `
+                                ${slide.img}-small.webp 1x,
+                                ${slide.img}-medium.webp 2x
+                            `;
+                            const desktopWebpSrcSet = `
+                                ${slide.img}-small.webp 1x,
+                                ${slide.img}-medium.webp 1.5x,
+                                ${slide.img}-large.webp 2x
+                            `;
                         .specials-slider__slide-inner
-                            +picture(slide.img)(
-                                alt=slide.title
-                            ).specials-slider__slide-img
+                            picture
+                                source(
+                                    srcset=mobileWebpSrcSet
+                                    media="(max-width: 480px)"
+                                    type="image/webp"
+                                )
+                                source(
+                                    srcset=desktopWebpSrcSet
+                                    type="image/webp"
+                                )
+                                source(
+                                    srcset=mobileJpegSrcSet
+                                    media="(max-width: 480px)"
+                                    type="image/jpeg"
+                                )
+                                source(
+                                    srcset=desktopJpegSrcSet
+                                    type="image/jpeg"
+                                )
+                                img(
+                                    src=`${slide.img}-small.jpg`
+                                    alt=slide.title
+                                ).specials-slider__slide-img
 
                             .specials-slider__slide-text
                                 h3.specials-slider__slide-title= slide.title

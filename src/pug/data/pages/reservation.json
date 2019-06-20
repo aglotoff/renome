@@ -12,10 +12,10 @@
 
             "imgGroup": {
                 "images": [{
-                    "src": "img/content/reservation/reservation-1.jpg",
+                    "src": "img/content/reservation/reservation-1",
                     "alt": "Reservation"
                 }, {
-                    "src": "img/content/reservation/reservation-2.jpg",
+                    "src": "img/content/reservation/reservation-2",
                     "alt": "Reservation"
                 }],
                 "order": "bottom-right"

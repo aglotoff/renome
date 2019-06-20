@@ -13,6 +13,47 @@ mixin img-group(props = {})
     .img-group(class=`img-group_order_${props.order}`)&attributes(attributes)
         each image in props.images
             .img-group__wrapper(class=props.wide && 'img-group__wrapper_wide')
-                +picture(image.src)(alt=image.alt).img-group__img
+                -
+                    const mobileJpegSrcSet = `
+                        ${image.src}-small.jpg 1x,
+                        ${image.src}-medium.jpg 2x
+                    `;
+                    const desktopJpegSrcSet = `
+                        ${image.src}-small.jpg 1x,
+                        ${image.src}-medium.jpg 1.5x,
+                        ${image.src}-large.jpg 2x
+                    `;
+                    const mobileWebpSrcSet = `
+                        ${image.src}-small.webp 1x,
+                        ${image.src}-medium.webp 2x
+                    `;
+                    const desktopWebpSrcSet = `
+                        ${image.src}-small.webp 1x,
+                        ${image.src}-medium.webp 1.5x,
+                        ${image.src}-large.webp 2x
+                    `;
+                picture
+                    source(
+                        srcset=mobileWebpSrcSet
+                        media="(max-width: 480px)"
+                        type="image/webp"
+                    )
+                    source(
+                        srcset=desktopWebpSrcSet
+                        type="image/webp"
+                    )
+                    source(
+                        srcset=mobileJpegSrcSet
+                        media="(max-width: 480px)"
+                        type="image/jpeg"
+                    )
+                    source(
+                        srcset=desktopJpegSrcSet
+                        type="image/jpeg"
+                    )
+                    img(
+                        src=`${image.src}-small.jpg`
+                        alt=image.alt
+                    ).img-group__img
             // .img-group__wrapper 
     // .img-group 
