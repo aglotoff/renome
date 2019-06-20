@@ -1,10 +1,19 @@
-mixin opening-hours(data)
+//-
+    name: opening-hours
+    description: Markup for the opening hours block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.timetable - time table
+        - {string} props.timetable[].days - week days
+        - {string} props.timetable[].time - working hours
+
+mixin opening-hours(props)
     .opening-hours&attributes(attributes)
         h2.opening-hours__title Opening hours
 
         ul.opening-hours__list
-            each item in data
+            each item in props.timetable
                 li.opening-hours__item
-                    .opening-hours__weekdays= item.days
-                    .opening-hours__time= item.time
-    // /.opening-hours 
+                    span.opening-hours__weekdays= item.days
+                    span.opening-hours__time= item.time
+    // .opening-hours 

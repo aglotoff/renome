@@ -10,7 +10,7 @@ import Header from '../header/header';
 import Nav from '../nav/nav';
 import * as Tabs            from '../tabs/tabs';
 
-import * as AboutGallery    from '../../about/about-gallery/about-gallery';
+import AccordionSlider from '../../about/accordion-slider/accordion-slider';
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
 import * as Gallery         from '../../common/gallery/gallery';
@@ -61,6 +61,7 @@ function handleWindowScroll() {
  */
 function handleWindowResize() {
     Nav.handleResize();
+    AccordionSlider.handleResize();
     Portfolio.handleResize();
     Tabs.handleResize();
 }
@@ -117,7 +118,7 @@ function initBlock() {
     Tabs.initModule();
 
     // Inner page blocks
-    AboutGallery.initModule();
+    AccordionSlider.initAll();
     ContactForm.initModule();
     ContactMap.initModule();
     Gallery.initModule();

@@ -26,7 +26,7 @@ let isDesktop = false;
  */
 class NavSubmenu {
     /**
-     * Iniitalize submenu.
+     * Initialize submenu.
      * 
      * @param {JQuery} $root Submenu root element
      */

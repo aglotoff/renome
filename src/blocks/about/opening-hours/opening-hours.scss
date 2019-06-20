@@ -33,4 +33,9 @@
             margin-top: 1.6em;
         }
     }
+
+    &__weekdays,
+    &__time {
+        display: block;
+    }
 }

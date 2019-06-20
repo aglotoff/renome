@@ -1,7 +1,15 @@
-mixin about-bottom(data)
+//-
+    name: about-bottom
+    description: Markup for the about page bottom block
+    arguments:
+        - {object} props - block options
+        - {object} props.gallery - gallery options
+        - {object} props.openingHours - opening hours options
+
+mixin about-bottom(props = {})
     .about-bottom&attributes(attributes)
         .about-bottom__inner
-            +about-gallery(data.gallery).about-bottom__gallery
-            +opening-hours(data.openingHours).about-bottom__opening-hours
-        // /.about-bottom__inner 
-    // /.about-bottom 
+            +accordion-slider(props.gallery).about-bottom__gallery
+            +opening-hours(props.openingHours).about-bottom__opening-hours
+        // .about-bottom__inner 
+    // .about-bottom 

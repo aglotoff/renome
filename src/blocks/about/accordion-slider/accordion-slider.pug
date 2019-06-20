@@ -1,0 +1,48 @@
+//-
+    name: accordion-slider
+    description: Markup for the accordion slider block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.items - gallery items
+        - {string} props.items[].type - image or video
+        - {string} props.items[].thumb - thumbnail image
+        - {string} props.items[].thumbAlt - thumbnail alt text
+        - {string} props.items[].link - link to full image or video file
+
+mixin accordion-slider(props = {})
+    .accordion-slider&attributes(attributes)
+        each item in props.items
+            a(
+                href=item.link
+                class={
+                    'accordion-slider__thumb': true,
+                    'mfp-image': item.type == 'image',
+                    'mfp-iframe': item.type == 'video',
+                }
+                role="button"
+            )
+                -
+                    const jpegSrcSet = `
+                        ${item.thumb}-small.jpg 1x,
+                        ${item.thumb}-medium.jpg 1.5x,
+                        ${item.thumb}-large.jpg 2x
+                    `;
+                    const webpSrcSet = `
+                        ${item.thumb}-small.webp 1x,
+                        ${item.thumb}-medium.webp 1.5x,
+                        ${item.thumb}-large.webp 2x
+                    `;
+                picture
+                    source(srcset=webpSrcSet type="image/webp")
+                    source(srcset=jpegSrcSet type="image/jpeg")
+                    img(
+                        src=`${item.thumb}-small.jpg`
+                        alt=item.thumbAlt
+                    ).accordion-slider__thumb-img
+
+                .accordion-slider__thumb-overlay
+                    +icon(
+                        item.type == 'video' ? 'play' : 'zoom',
+                        item.type == 'video' ? 'Play video' : 'Zoom image'
+                    )
+    // .accordion-slider 

@@ -45,44 +45,48 @@
             "text": "<p>Our guests come for all occasions – a drink after work, a quick bite before a movie, a business dinner and much more. Our goal is to satisfy the needs of every visitor to our restaurant every day improving the quality of our services.</p>"
         },
 
-        "gallery": [{
-            "src": "img/content/about/gallery/thumbs/thumb-01.jpg",
-            "alt": "About",
-            "type": "image",
-            "link": "img/content/about/gallery/img-01.jpg"
-        }, {
-            "src": "img/content/about/gallery/thumbs/thumb-02.jpg",
-            "alt": "About",
-            "type": "image",
-            "link": "img/content/about/gallery/img-02.jpg"
-        }, {
-            "src": "img/content/about/gallery/thumbs/thumb-03.jpg",
-            "alt": "About",
-            "type": "image",
-            "link": "img/content/about/gallery/img-03.jpg"
-        }, {
-            "src": "img/content/about/gallery/thumbs/thumb-04.jpg",
-            "alt": "About",
-            "type": "image",
-            "link": "img/content/about/gallery/img-04.jpg"
-        }, {
-            "src": "img/content/about/gallery/thumbs/thumb-05.jpg",
-            "alt": "About",
-            "type": "image",
-            "link": "img/content/about/gallery/img-05.jpg"
-        }, {
-            "src": "img/content/about/gallery/thumbs/thumb-06.jpg",
-            "alt": "About",
-            "type": "video",
-            "link": "https://www.youtube.com/watch?v=ScMzIvxBSi4"
-        }],
+        "gallery": {
+            "items": [{
+                "thumb": "img/content/about/gallery/thumbs/thumb-01",
+                "thumbAlt": "About",
+                "type": "image",
+                "link": "img/content/about/gallery/img-01.jpg"
+            }, {
+                "thumb": "img/content/about/gallery/thumbs/thumb-02",
+                "thumbAlt": "About",
+                "type": "image",
+                "link": "img/content/about/gallery/img-02.jpg"
+            }, {
+                "thumb": "img/content/about/gallery/thumbs/thumb-03",
+                "thumbAlt": "About",
+                "type": "image",
+                "link": "img/content/about/gallery/img-03.jpg"
+            }, {
+                "thumb": "img/content/about/gallery/thumbs/thumb-04",
+                "thumbAlt": "About",
+                "type": "image",
+                "link": "img/content/about/gallery/img-04.jpg"
+            }, {
+                "thumb": "img/content/about/gallery/thumbs/thumb-05",
+                "thumbAlt": "About",
+                "type": "image",
+                "link": "img/content/about/gallery/img-05.jpg"
+            }, {
+                "thumb": "img/content/about/gallery/thumbs/thumb-06",
+                "thumbAlt": "About",
+                "type": "video",
+                "link": "https://www.youtube.com/watch?v=ScMzIvxBSi4"
+            }]
+        },
 
-        "openingHours": [{
-            "days": "Monday - Friday",
-            "time": "9:00 - 22:00"
-        }, {
-            "days": "Saturday - Sunday",
-            "time": "10:00 - 21:00"
-        }]
+        "openingHours": {
+            "timetable": [{
+                "days": "Monday - Friday",
+                "time": "9:00 - 22:00"
+            }, {
+                "days": "Saturday - Sunday",
+                "time": "10:00 - 21:00"
+            }]
+        }
     }
 }
