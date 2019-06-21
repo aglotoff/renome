@@ -46,25 +46,25 @@
                     "title": "Chicken wings",
                     "desc": "It’s all about flavour and fun, fun, fun. Toss fried chicken with a finger-licking sauce spiked with chilli and fresh ginger.",
                     "price": 9.95,
-                    "thumb": "img/content/menu/products/thumbs/chicken-wings.jpg",
+                    "thumb": "img/content/menu/products/thumbs/chicken-wings",
                     "img": "img/content/menu/products/chicken-wings.jpg"
                 }, {
                     "title": "Dumplings",
                     "desc": "Small dumplings filled with spiced lamb. Tossed in a tomato sauce and served with sumac-flavoured Greek yoghurt.",
                     "price": 5.70,
-                    "thumb": "img/content/menu/products/thumbs/dumplings.jpg",
+                    "thumb": "img/content/menu/products/thumbs/dumplings",
                     "img": "img/content/menu/products/dumplings.jpg"
                 }, {
                     "title": "French onion soup",
                     "desc": "French onion soup is deeply savoury and hearty - and cheesy croutons make it extra special!",
                     "price": 5.80,
-                    "thumb": "img/content/menu/products/thumbs/french-onion-soup.jpg",
+                    "thumb": "img/content/menu/products/thumbs/french-onion-soup",
                     "img": "img/content/menu/products/french-onion-soup.jpg"
                 }, {
                     "title": "Mini chilli pretzels",
                     "desc": "These freshly-baked savouries beat anything out of a packet.",
                     "price": 2.10,
-                    "thumb": "img/content/menu/products/thumbs/mini-chilli-pretzels.jpg",
+                    "thumb": "img/content/menu/products/thumbs/mini-chilli-pretzels",
                     "img": "img/content/menu/products/mini-chilli-pretzels.jpg"
                 }]
             }, {
@@ -73,26 +73,26 @@
                     "title": "Atlantic Salmon",
                     "desc": "Have dinner on the table super fast with clever shortcuts and this easy salmon and Greek rice salad.",
                     "price": 7.30,
-                    "thumb": "img/content/menu/products/thumbs/atlantic-salmon.jpg",
+                    "thumb": "img/content/menu/products/thumbs/atlantic-salmon",
                     "img": "img/content/menu/products/atlantic-salmon.jpg"
                 }, {
                     "title": "Fish tacos",
                     "desc": "Fish is a healthy, low-fat taco filling, and it tastes absolutely delicious.",
                     "price": 5.45,
-                    "thumb": "img/content/menu/products/thumbs/fish-tacos.jpg",
+                    "thumb": "img/content/menu/products/thumbs/fish-tacos",
                     "img": "img/content/menu/products/fish-tacos.jpg",
                     "new": true
                 }, {
                     "title": "Sesame Tuna",
                     "desc": "Sesame seeds form a tasty crust and are rich in calcium, copper and magnesium.",
                     "price": 4.60,
-                    "thumb": "img/content/menu/products/thumbs/sesame-tuna.jpg",
+                    "thumb": "img/content/menu/products/thumbs/sesame-tuna",
                     "img": "img/content/menu/products/sesame-tuna.jpg"
                 }, {
                     "title": "Parmesan chicken",
                     "desc": "This crunchy crumbed chicken tastes fabulous paired with the fresh flavours of zucchini, mint and olives.",
                     "price": 8.35,
-                    "thumb": "img/content/menu/products/thumbs/parmesan-chicken.jpg",
+                    "thumb": "img/content/menu/products/thumbs/parmesan-chicken",
                     "img": "img/content/menu/products/parmesan-chicken.jpg"
                 }]
             }, {
@@ -101,19 +101,19 @@
                     "title": "Seared scallops",
                     "desc": "Escape the hustle and bustle with this exotic breakfast that will satisfy your taste buds..",
                     "price": 3.80,
-                    "thumb": "img/content/menu/products/thumbs/seared-scallops.jpg",
+                    "thumb": "img/content/menu/products/thumbs/seared-scallops",
                     "img": "img/content/menu/products/seared-scallops.jpg"
                 }, {
                     "title": "Poached salmon",
                     "desc": "Decidedly gourmet poached salmon dish with a zingy watercress mayonnaise.",
                     "price": 9.25,
-                    "thumb": "img/content/menu/products/thumbs/poached-salmon.jpg",
+                    "thumb": "img/content/menu/products/thumbs/poached-salmon",
                     "img": "img/content/menu/products/poached-salmon.jpg"
                 }, {
                     "title": "Green curry",
                     "desc": "This balance of sweet, sour and salty flavours is a hallmark of Thai cooking.",
                     "price": 7.70,
-                    "thumb": "img/content/menu/products/thumbs/green-curry.jpg",
+                    "thumb": "img/content/menu/products/thumbs/green-curry",
                     "img": "img/content/menu/products/green-curry.jpg"
                 }]
             }, {
@@ -122,25 +122,25 @@
                     "title": "Lobster salad",
                     "desc": "A simple lobster salad with butter and just a hint of mayonnaise so that you can still taste the sweet lobster meat.",
                     "price": 6.30,
-                    "thumb": "img/content/menu/products/thumbs/lobster-salad.jpg",
+                    "thumb": "img/content/menu/products/thumbs/lobster-salad",
                     "img": "img/content/menu/products/lobster-salad.jpg"
                 }, {
                     "title": "Chicken & orange salad",
                     "desc": "With juicy oranges and a yoghurt dressing, this chicken salad is a treat on any spring table. ",
                     "price": 8.50,
-                    "thumb": "img/content/menu/products/thumbs/chicken-orange-salad.jpg",
+                    "thumb": "img/content/menu/products/thumbs/chicken-orange-salad",
                     "img": "img/content/menu/products/chicken-orange-salad.jpg"
                 }, {
                     "title": "Winter salad",
                     "desc": "This is a simple winter salad, fresh and crisp. ",
                     "price": 4.15,
-                    "thumb": "img/content/menu/products/thumbs/winter-salad.jpg",
+                    "thumb": "img/content/menu/products/thumbs/winter-salad",
                     "img": "img/content/menu/products/winter-salad.jpg"
                 }, {
                     "title": "Thai-style salad",
                     "desc": "This is a simple winter salad, fresh and crisp.",
                     "price": 5.05,
-                    "thumb": "img/content/menu/products/thumbs/thai-style-salad.jpg",
+                    "thumb": "img/content/menu/products/thumbs/thai-style-salad",
                     "img": "img/content/menu/products/thai-style-salad.jpg"
                 }]
             }]

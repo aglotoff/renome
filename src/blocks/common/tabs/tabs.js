@@ -3,104 +3,276 @@
  * @author Andrey Glotov
  */
 
-import {makeListbox} from '../../../js/utils';
+import forceReflow from '../../../js/utils/force-reflow';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-const TRANSITION_DURATION = 250;
-const MEDIUM_BREAKPOINT   = 768;
+const TRANSITION_DURATION = 200;
+const MOBILE_BREAKPOINT = 768;
 
-let verticalLayout = true;
+const ClassNames = {
+    PANEL_ACTIVE: 'tabs__panel_active',
+    PANEL_HIDDEN: 'tabs__panel_hidden',
+};
+  
+const Selectors = {
+    ROOT: '.tabs',
+    TABLIST: '.tabs__list',
+    TABS: '.tabs__tab',
+    PANELS: '.tabs__panel',
+};
+  
+const Keys = {
+    ENTER: 13,
+    SPACE: 32,
+    END: 35,
+    HOME: 36,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+};
 
-const allTabs = [];
+let isMobile = true;
+const tabs = [];
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-const tabsProto = {
-    _onTabSelect(next, prev) {
-        const $prevLink  = this._$links.eq(prev);
-        const $prevPanel = this._$panels.eq(prev);
-        const $nextLink  = this._$links.eq(next);
-        const $nextPanel = this._$panels.eq(next);
+/**
+ * Tabs implementation
+ */
+class Tabs {
 
-        $prevLink
-            .removeClass('tabs__link_active')
-            .attr({
-                'aria-selected' : 'false',
-                'tabindex'      : '-1'
+    /**
+     * Create tabs.
+     * 
+     * @param {JQuery} $root The root element
+     */
+    constructor($root) {
+        const $list = $(Selectors.TABLIST, $root);
+        const $tabs = $(Selectors.TABS, $list);
+        const $panels = $(Selectors.PANELS, $root);
+
+        if (($tabs.length === 0) || ($tabs.length !== $panels.length)) {
+            return;
+        }
+
+        let activeIndex = null;
+
+        $tabs.each(function(i) {
+            const $tab = $(this);
+
+            if ($tab.attr('aria-selected') === 'true') {
+                if (activeIndex === -1) {
+                    activeIndex = i;
+                } else {
+                    $tab.attr('aria-selected', 'false');
+                }
+
+                $tab.attr('tabindex', '0');
+            } else {
+                $tab.attr('tabindex', '-1');
+            }
+        });
+        
+        if (activeIndex == null) {
+            $tabs.eq(0).attr({
+                'aria-selected': 'true',
+                'tabindex': '0',
             });
 
-        $nextLink
-            .addClass('tabs__link_active')
-            .attr({
-                'aria-selected' : 'true',
-                'tabindex'      : '0'
-            })
-            .focus();
+            activeIndex = 0;
+        }
+        
+        $panels.each(function(i) {
+            $(this).toggleClass(ClassNames.PANEL_ACTIVE, i === activeIndex);
+        });
 
-        $prevPanel.addClass('tabs__panel_fade');
-        $nextPanel.addClass('tabs__panel_fade');
+        this._elements = {
+            $root,
+            $list,
+            $tabs,
+            $panels,
+        };
+    
+        this._state = {
+            activeIndex,
+            isTransitioning: false,
+            orientation: 'vertical',
+        };
+
+        this._handleTabClick = this._handleTabClick.bind(this);
+        this._handleTabKeyDown = this._handleTabKeyDown.bind(this);
+
+        $list.on('click', Selectors.TABS, this._handleTabClick);
+        $list.on('keydown', Selectors.TABS, this._handleTabKeyDown);
+    }
+    
+    // --------------------------- BEGIN EVENT HANDLERS --------------------------
+    
+    /**
+     * Handle the tab click event
+     * 
+     * @param {JQuery.Event} e The event object
+     */
+    _handleTabClick(e) {
+        const tabIndex = this._elements.$tabs.index($(e.currentTarget));
+        this.showTab(tabIndex);
+        return false;
+    }
+  
+    /**
+     * Handle the tab keydown event
+     * 
+     * @param {JQuery.Event} e The event object
+     */
+    _handleTabKeyDown(e) {  
+        const { $tabs } = this._elements;
+        const { orientation, activeIndex } = this._state;
+        const { which } = e;
+      
+        let nextFocus = null;
+
+        switch (which) {
+        case Keys.END:
+            // Move focus to the last tab
+            nextFocus = $tabs.length - 1;
+            break;
+  
+        case Keys.HOME:
+            // Move focus to the first tab
+            nextFocus = 0;
+            break;
+  
+        case Keys.DOWN:
+            // Move focus to the next tab (in vertical tab list)
+            if (orientation === 'vertical') {
+                nextFocus = ($tabs.length + activeIndex + 1) % $tabs.length;
+            }
+            break;
+  
+        case Keys.LEFT:
+            // Move focus to the previous tab (in horizontal tab list)
+            if (orientation === 'horizontal') {
+                nextFocus = ($tabs.length + activeIndex - 1) % $tabs.length;
+            }
+            break;
+  
+        case Keys.UP:
+            // Move focus to the previous tab (in vertical tab list)
+            if (orientation === 'vertical') {
+                nextFocus = ($tabs.length + activeIndex - 1) % $tabs.length;
+            }
+            break;
+  
+        case Keys.RIGHT:
+            // Move focus to the next tab (in horizontal tab list)
+            if (orientation === 'horizontal') {
+                nextFocus = ($tabs.length + activeIndex + 1) % $tabs.length;
+            }
+            break;
+        }
+
+        if (nextFocus != null) {
+            this.showTab(nextFocus);
+            return false;
+        }
+    }
+    
+    // ---------------------------- END EVENT HANDLERS ---------------------------
+    
+    // --------------------------- BEGIN PUBLIC METHODS --------------------------
+    
+    /**
+     * Activate the given tab.
+     * 
+     * @param {number} i index of the tab to be activated
+     */
+    showTab(i) {
+        const { $tabs, $panels } = this._elements;
+        const { isTransitioning, activeIndex } = this._state;
+
+        if ((i < 0) || (i >= $tabs.length)) {
+            return;
+        }
+      
+        if (isTransitioning || (activeIndex === i)) {
+            return;
+        }
+      
+        this._state.isTransitioning = true;
+      
+        const $prevTab = $tabs.eq(activeIndex);
+        const $prevPanel = $panels.eq(activeIndex);
+        const $nextTab = $tabs.eq(i);
+        const $nextPanel = $panels.eq(i);
+      
+        $prevTab.attr({
+            'aria-selected': 'false',
+            'tabindex': '-1',
+        });
+        $nextTab.attr({
+            'aria-selected': 'true',
+            'tabindex': '0',
+        });
+
+        $nextTab.focus();
+
+        $prevPanel.addClass(ClassNames.PANEL_HIDDEN);
 
         setTimeout(() => {
             $prevPanel
-                .removeClass('tabs__panel_fade')
-                .removeClass('tabs__panel_active');
+                .removeClass(ClassNames.PANEL_ACTIVE)
+                .removeClass(ClassNames.PANEL_HIDDEN);
             $nextPanel
-                .removeClass('tabs__panel_fade')
-                .addClass('tabs__panel_active');
+                .addClass(ClassNames.PANEL_ACTIVE)
+                .addClass(ClassNames.PANEL_HIDDEN);
+            
+            forceReflow($nextPanel);
+            
+            $nextPanel.removeClass(ClassNames.PANEL_HIDDEN);
+            
+            this._state.activeIndex = i;
+            this._state.isTransitioning = false;
         }, TRANSITION_DURATION);
-    },
-
-    setOrientation(orientation) {
-        this._$list.attr('aria-orientation', orientation);
-        this._logic.setOrientation(orientation);
-    },
-};
-
-/**
- * Initialize the tabs module.
- * @return true
- */
-export const initModule = function() {
-    $('.tabs').each(function() {
-        const $container = $(this);
-
-        const tabs = Object.create(tabsProto);
-
-        tabs._$list    = $container.find('.tabs__list');
-        tabs._$links   = tabs._$list.find('.tabs__link');
-        tabs._$panels  = $container.find('.tabs__panel');
-
-        tabs._logic    = makeListbox(tabs._$list, tabs._$links, {
-            orientation : 'vertical',
-            onSelect    : tabs._onTabSelect.bind(tabs),
-        });
-
-        allTabs.push(tabs);
-    });
-
-    return true;
-};
-
-/**
- * Respond to window resize event.
- */
-export const handleResize = function() {
-    const screenWidth = $(window).outerWidth();
+    }
     
-    // Switch tabs orientation to vertical on mobile and to horizontal on
-    // larger screens.
-    if (!verticalLayout && (screenWidth < MEDIUM_BREAKPOINT)) {
-        verticalLayout = true;
-
-        allTabs.forEach(function(tab) {
-            tab.setOrientation('vertical');
-        });
-    } else if (verticalLayout && (screenWidth >= MEDIUM_BREAKPOINT)) {
-        verticalLayout = false;
-
-        allTabs.forEach(function(tab) {
-            tab.setOrientation('horizontal');
+    /**
+     * Change tabs orienation.
+     * 
+     * @param {string} orientation 'vertical' or 'horizontal'
+     */
+    setOrientation(orientation) {
+        this._state.orientation = orientation;
+        this._elements.$list.attr('aria-orientation', orientation);
+    }
+    
+    /** 
+     * Initialize all tabs blocks on the page.
+     */
+    static initAll() {
+        $(Selectors.ROOT).each(function() {
+            tabs.push(new Tabs($(this)));
         });
     }
-};
-// ---------------------------- END PUBLIC METHODS ----------------------------
+
+    /**
+     * Respond to window resize event.
+     * 
+     * Switch between vertical orientation on mobile devices and horizontal
+     * orientation on larger screens.
+     */
+    static handleResize() {
+        if (!isMobile && ($(window).outerWidth() < MOBILE_BREAKPOINT)) {
+            isMobile = true;
+    
+            tabs.forEach((tab) => tab.setOrientation('vertical'));
+        } else if (isMobile && ($(window).outerWidth() >= MOBILE_BREAKPOINT)) {
+            isMobile = false;
+    
+            tabs.forEach((tab) => tab.setOrientation('horizontal'));
+        }
+    }
+
+    // ---------------------------- END PUBLIC METHODS ---------------------------
+}
+
+export default Tabs;

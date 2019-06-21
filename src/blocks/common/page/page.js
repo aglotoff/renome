@@ -8,13 +8,13 @@ import LazyLoader from '../../../js/utils/lazy-loader';
 import Header from '../header/header';
 
 import Nav from '../nav/nav';
-import * as Tabs            from '../tabs/tabs';
+import Tabs from '../tabs/tabs';
 
 import AccordionSlider from '../../about/accordion-slider/accordion-slider';
 import * as ContactForm     from '../../contact/contact-form/contact-form';
 import * as ContactMap      from '../../contact/map/map';
 import * as Gallery         from '../../common/gallery/gallery';
-import * as Menu            from '../../menu/menu/menu';
+import Menu from '../../menu/menu/menu';
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 import Slider from '../../common/slider/slider';
 import SpecialsSlider from '../../common/specials-slider/specials-slider';
@@ -115,17 +115,17 @@ function initBlock() {
     // Common blocks
     Header.initBlock();
     Nav.initBlock();
-    Tabs.initModule();
 
     // Inner page blocks
     AccordionSlider.initAll();
     ContactForm.initModule();
     ContactMap.initModule();
     Gallery.initModule();
-    Menu.initModule();
+    Menu.initAll();
     ReservationForm.initModule();
     Slider.initAll();
     SpecialsSlider.initAll();
+    Tabs.initAll();
 
     // Portfolio blocks
     Portfolio.initModule();

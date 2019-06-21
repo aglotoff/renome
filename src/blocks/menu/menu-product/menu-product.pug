@@ -1,20 +1,52 @@
-mixin menu-product(data)
+//-
+    name: menu-product
+    description: Markup for the menu product block
+    arguments:
+        - {object} props - block options
+        - {string} props.thumb - thumbnail image
+        - {string} props.img - full product image
+        - {string} props.title - product title
+        - {boolean} props.new - is this a new product?
+        - {number} props.price - product price
+        - {string} props.desc - product description
+
+mixin menu-product(props = {})
     li.menu-product&attributes(attributes)
         .menu-product__thumb
-            img(src=data.thumb, alt=data.title).menu-product__img
-            if data.new
+            -
+                const jpegSrcSet = `
+                    ${props.thumb}-small.jpg 1x,
+                    ${props.thumb}-large.jpg 2x
+                `;
+                const webpSrcSet = `
+                    ${props.thumb}-small.webp 1x,
+                    ${props.thumb}-large.webp 2x
+                `;
+            picture
+                source(data-srcset=webpSrcSet type="image/webp")
+                source(data-srcset=jpegSrcSet type="image/jpeg")
+                img(
+                    src="img/content/menu/products/thumbs/placeholder.jpg"
+                    data-src=`${props.thumb}-small.jpg`
+                    alt=props.title
+                ).menu-product__img.lazy
+
+            if props.new
                 .menu-product__label New
-            a(href=data.img role="button").menu-product__link
+            a(href=props.img role="button").menu-product__link
                 +icon('zoom', 'View full size image')
+        // .menu-product__thumb 
         
         .menu-product__price
             -
-                const units = Math.floor(data.price);
-                const decimals = (data.price - units).toFixed(2).substring(1);
+                const units = Math.floor(props.price);
+                const decimals = (props.price - units).toFixed(2).substring(1);
             | $#{units}
             span.menu-product__price-decimals= decimals
+        // .menu-product__price 
 
         .menu-product__text
-            h3.menu-product__title= data.title
+            h3.menu-product__title= props.title
             .rich-text.rich-text_small-spacing.menu-product__desc
-                p= data.desc
+                p= props.desc
+        // .menu-product__text 

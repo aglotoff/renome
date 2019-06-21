@@ -1,17 +1,27 @@
-mixin menu(data)
+//-
+    name: menu
+    description: Markup for the menu block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.categories - list of menu categories
+        - {string} props.categories[].title - category title
+        - {string} props.categories[].id - category id
+        - {object[]) props.sections - menu sections (the same for each category)
+
+mixin menu(props)
     .menu&attributes(attributes)
         -
-            const tabData = data.categories.map((cat, i) => ({
-                title  : cat.title,
-                active : i == 0,
-                id     : cat.id,
-                blocks : [{
-                    name    : 'menu-cat',
-                    content : {
-                        title    : cat.title,
-                        sections : data.sections,
+            const tabData = props.categories.map((cat, i) => ({
+                title: cat.title,
+                active: i == 0,
+                id: cat.id,
+                blocks: [{
+                    name: 'menu-cat',
+                    content: {
+                        title: cat.title,
+                        sections: props.sections,
                     },
                 }],
             }))
-        +tabs(tabData)
-    // /.menu 
+        +tabs({tabs: tabData})
+    // .menu 

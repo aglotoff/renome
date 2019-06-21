@@ -45,7 +45,7 @@
         }
     }
 
-    &__link {
+    &__tab {
         position: relative;
 
         display: inline-block;
@@ -77,13 +77,13 @@
 
         &:hover,
         &:focus,
-        &_active {
+        &[aria-selected="true"] {
             &:after {
                 background: $color-secondary;
             }
         }
 
-        &_active {
+        &[aria-selected="true"] {
             color: $color-secondary;
         }
     }
@@ -93,13 +93,13 @@
 
         opacity: 1;
 
-        transition: opacity 0.25s ease;
+        transition: opacity 0.2s linear;
 
         &_active {
             display: block;
         }
 
-        &_fade {
+        &_hidden {
             opacity: 0;
         }
     }

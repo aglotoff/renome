@@ -1,28 +1,40 @@
-mixin tabs(data)
+//-
+    name: tabs
+    description: Markup for the tabs block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.tabs - list of tabs
+        - {boolean} props.tabs[].active - is this tab active?
+        - {string} props.tabs[].id - panel id
+        - {string} props.tabs[].title - tab title
+        - {object[]} props.tabs[].blocks - list of blocks in panel
+        - {string} props.tabs[].blocks[].name - name of the block mixin
+        - {object} props.tabs[].blocks[].content - data for the block mixin
+
+mixin tabs(props = {})
     .tabs&attributes(attributes)
         .tabs__nav
             ul.tabs__list(role="tablist" aria-orientation="vertical")
-                each item in data
+                each item in props.tabs
                     li.tabs__item
-                        a.tabs__link(
-                            class         = item.active && 'tabs__link_active'
-                            id            = item.id + '-tab'
-                            tabindex      = item.active ? "0" : "-1"
-                            href          = '#' + item.id
-                            role          = 'tab'
-                            aria-controls = item.id
-                            aria-selected = String(item.active)
+                        a.tabs__tab(
+                            id=`${item.id}-tab`
+                            tabindex=item.active ? "0" : "-1"
+                            href=`#${item.id}`
+                            role='tab'
+                            aria-controls=item.id
+                            aria-selected=String(item.active)
                         )= item.title
-        // /.tabs__nav 
+        // .tabs__nav 
 
-        each item in data
+        each item in props.tabs
             .tabs__panel(
-                class           = item.active && 'tabs__panel_active'
-                id              = item.id
-                role            = 'tabpanel'
-                aria-labelledby = item.id + '-tab'
+                class=item.active && 'tabs__panel_active'
+                id=item.id
+                role='tabpanel'
+                aria-labelledby=`${item.id}-tab`
             )
                 each block in item.blocks
                     +#{block.name}(block.content)
-            // /.tabs__panel 
-    // /.tabs 
+            // .tabs__panel 
+    // .tabs 

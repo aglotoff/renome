@@ -28,24 +28,26 @@ mixin product-single(data = {}, mods = {})
             // /.product-single__info 
         // /.product-single__top
 
-        +tabs([{
-            title  : 'Description',
-            id     : 'description',
-            active : true,
-            blocks : [{
-                name    : 'product-desc',
-                content : data.desc,
-            }],
-        }, {
-            title  : 'Reviews(' + data.reviews.length + ')',
-            id     : 'reviews',
-            blocks : [{
-                name    : 'reviews',
-                content : data.reviews,
+        +tabs({
+            tabs: [{
+                title  : 'Description',
+                id     : 'description',
+                active : true,
+                blocks : [{
+                    name    : 'product-desc',
+                    content : data.desc,
+                }],
             }, {
-                name    : 'review-form',
-            }],
-        }]).product-single__tabs
+                title  : 'Reviews(' + data.reviews.length + ')',
+                id     : 'reviews',
+                blocks : [{
+                    name    : 'reviews',
+                    content : data.reviews,
+                }, {
+                    name    : 'review-form',
+                }],
+            }]
+        }).product-single__tabs
 
         +related-products(data.relatedProducts) 
     // /.product-single 

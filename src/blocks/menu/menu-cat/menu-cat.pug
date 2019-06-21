@@ -1,13 +1,22 @@
-mixin menu-cat(data)
+//-
+    name: menu-cat
+    description: Markup for the menu category block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.sections - list of menu sections
+        - {string} props.sections[].title - section title
+        - {object[]) props.sections[].products - list of products
+
+mixin menu-cat(props = {})
     .menu-cat&attributes(attributes)
         .menu-cat__inner
-            each section in data.sections
+            each section in props.sections
                 section.menu-cat__section&attributes(attributes)
                     h2.menu-cat__section-title= section.title
 
                     ul.menu-cat__product-list
                         each product in section.products
                             +menu-product(product).menu-cat__product
-                // /.menu-cat__section 
-        // /.menu-cat__inner 
-    // /.menu-cat 
+                // .menu-cat__section 
+        // .menu-cat__inner 
+    // .menu-cat 

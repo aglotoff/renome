@@ -36,7 +36,7 @@ function isInViewport($elem) {
  */
 function loadImage($img) {
     if ($img.parent().is('picture')) {
-        $img.siblings('source').forEach(function() {
+        $img.siblings('source').each(function() {
             const $source = $(this);
             $source
                 .attr('srcset', $source.attr('data-srcset'))
