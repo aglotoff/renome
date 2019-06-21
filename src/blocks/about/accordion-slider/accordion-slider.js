@@ -81,8 +81,6 @@ class AccordionSlider {
                 },
             },
         });
-
-        sliders.push(this);
     }
 
     // -------------------------- BEGIN EVENT HANDLERS ------------------------
@@ -143,7 +141,7 @@ class AccordionSlider {
      */
     static initAll() {
         $(Selectors.ROOT).map(function() {
-            new AccordionSlider($(this));
+            sliders.push(new AccordionSlider($(this)));
         });
     }
 
@@ -169,4 +167,3 @@ class AccordionSlider {
 }
 
 export default AccordionSlider;
-
