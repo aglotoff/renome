@@ -68,6 +68,7 @@
     "focus-trap": "^5.0.1",
     "jquery": "^3.4.0",
     "jquery-validation": "^1.19.0",
+    "leaflet": "^1.5.1",
     "magnific-popup": "^1.1.0",
     "moment": "^2.24.0",
     "pikaday": "^1.8.0",

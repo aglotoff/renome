@@ -1,7 +1,7 @@
 /**
- * Styles for the map block
+ * Styles for the location map block
  */
-.map {
+.location-map {
     padding: 0 10px 70px;
 
     @include breakpoint-up(lg) {
@@ -9,6 +9,9 @@
     }
 
     &__container {
+        position: relative;
+        z-index: 0;
+
         margin: 0 auto;
         max-width: 1720px;
         height: 200px;

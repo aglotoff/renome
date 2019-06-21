@@ -1,0 +1,12 @@
+//-
+    name: location-map
+    description: Markup for the location map block
+    arguments:
+        - {object} props - block options
+        - {number[]} props.latlng - latitude and longitude
+        - {number} props.zoom - initial zoom
+
+mixin location-map(props={})
+    .location-map(data-map=JSON.stringify(props))&attributes(attributes)
+        .location-map__container
+    // .location-map 

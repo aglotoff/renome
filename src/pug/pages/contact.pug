@@ -3,12 +3,9 @@ extends ../layouts/inner.pug
 include ../../blocks/contact/contact-bottom/contact-bottom.pug
 include ../../blocks/contact/contact-details/contact-details.pug
 include ../../blocks/contact/contact-form/contact-form.pug
-include ../../blocks/contact/map/map.pug
+include ../../blocks/contact/location-map/location-map.pug
 
 block append page
     +section(data.content.happy)
     +contact-bottom({details: data.content.details})
-    +map()
-
-block prepend scripts
-    script(src=`https://maps.googleapis.com/maps/api/js?key=${data.mapApiKey}`)
+    +location-map(data.content.map)

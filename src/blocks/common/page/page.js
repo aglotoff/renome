@@ -11,8 +11,8 @@ import Nav from '../nav/nav';
 import Tabs from '../tabs/tabs';
 
 import AccordionSlider from '../../about/accordion-slider/accordion-slider';
-import * as ContactForm     from '../../contact/contact-form/contact-form';
-import * as ContactMap      from '../../contact/map/map';
+import * as ContactForm from '../../contact/contact-form/contact-form';
+import LocationMap from '../../contact/location-map/location-map';
 import * as Gallery         from '../../common/gallery/gallery';
 import Menu from '../../menu/menu/menu';
 import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
@@ -119,7 +119,7 @@ function initBlock() {
     // Inner page blocks
     AccordionSlider.initAll();
     ContactForm.initModule();
-    ContactMap.initModule();
+    LocationMap.initAll();
     Gallery.initModule();
     Menu.initAll();
     ReservationForm.initModule();

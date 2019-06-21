@@ -1,8 +1,9 @@
-import focusTrap     from 'focus-trap';
-import jQuery        from 'jquery';
-import moment        from 'moment';
-import Pikaday       from 'pikaday';
-import Shuffle       from 'shufflejs';
+import focusTrap from 'focus-trap';
+import jQuery from 'jquery';
+import L from 'leaflet';
+import moment from 'moment';
+import Pikaday from 'pikaday';
+import Shuffle from 'shufflejs';
 import svg4everybody from 'svg4everybody';
 
 // Import jQuery plugins
@@ -16,9 +17,10 @@ import '@babel/polyfill';
 window.$ = window.jQuery = jQuery;
 
 window.focusTrap = focusTrap;
-window.moment    = moment;
-window.Pikaday   = Pikaday;
-window.Shuffle   = Shuffle;
+window.L = L;
+window.moment = moment;
+window.Pikaday = Pikaday;
+window.Shuffle = Shuffle;
 
 // Manually initialize libraries
 svg4everybody();

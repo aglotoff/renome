@@ -34,7 +34,12 @@
         }, {
             "label": "Email",
             "text": "reservation@renome.com"
-        }]
+        }],
+
+        "map": {
+            "latlng": [ 40.7, -73.6 ],
+            "zoom": 11
+        }
     },
 
     "mapApiKey": ""
