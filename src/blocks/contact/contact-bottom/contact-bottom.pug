@@ -1,7 +1,14 @@
-mixin contact-bottom(data)
+//-
+    name: contact-bottom
+    description: Markup for the contact page bottom block
+    arguments:
+        - {object} props - block options
+        - {object} props.details - contact details data
+
+mixin contact-bottom(props)
     .contact-bottom
         .contact-bottom__inner
-            +contact-details(data.details).contact-bottom__details
+            +contact-details(props.details).contact-bottom__details
             +contact-form().contact-bottom__form
-        // /.contact-bottom__inner 
-    // /.contact-bottom 
+        // .contact-bottom__inner 
+    // .contact-bottom 

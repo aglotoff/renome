@@ -118,7 +118,7 @@ function initBlock() {
 
     // Inner page blocks
     AccordionSlider.initAll();
-    ContactForm.initModule();
+    ContactForm.initAll();
     LocationMap.initAll();
     Gallery.initModule();
     Menu.initAll();

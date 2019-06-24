@@ -1,3 +1,7 @@
+//-
+    name: contact-form
+    description: Markup for the contact form block
+
 mixin contact-form()
     form.contact-form(action="#" method="post")&attributes(attributes)
         h2.contact-form__title Write a message
@@ -5,76 +9,81 @@ mixin contact-form()
         .contact-form__inner
             .contact-form__field
                 label(
-                    for = "contact-first-name"
-                    id  = "label-first-name"
+                    for="contact-first-name"
+                    id="label-first-name"
                 ).contact-form__label First Name
                 +input()(
-                    type            = "text"
-                    id              = "contact-first-name"
-                    name            = "first_name"
-                    placeholder     = "First Name *"
-                    aria-labelledby = "label-first-name"
+                    type="text"
+                    id="contact-first-name"
+                    name="first_name"
+                    placeholder="First Name *"
+                    aria-labelledby="label-first-name"
                     required
                 ).contact-form__input
+            // .contact-form__field 
 
             .contact-form__field
                 label(
-                    for = "contact-last-name"
-                    id  = "label-last-name"
+                    for="contact-last-name"
+                    id="label-last-name"
                 ).contact-form__label Last Name
                 +input()(
-                    type            = "text"
-                    id              = "contact-last-name"
-                    name            = "last_name"
-                    placeholder     = "Last Name *"
-                    aria-labelledby = "label-last-name"
+                    type="text"
+                    id="contact-last-name"
+                    name="last_name"
+                    placeholder="Last Name *"
+                    aria-labelledby="label-last-name"
                     required
                 ).contact-form__input
+            // .contact-form__field 
 
             .contact-form__field
                 label(
-                    for = "contact-email"
-                    id  = "label-email"
+                    for="contact-email"
+                    id="label-email"
                 ).contact-form__label Email
                 +input()(
-                    type            = "email"
-                    id              = "contact-email"
-                    name            = "email"
-                    placeholder     = "Email *"
-                    aria-labelledby = "label-email"
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    placeholder="Email *"
+                    aria-labelledby="label-email"
                     required
                 ).contact-form__input
+            // .contact-form__field 
 
             .contact-form__field
                 label(
-                    for = "contact-subject"
-                    id  = "label-subject"
+                    for="contact-subject"
+                    id="label-subject"
                 ).contact-form__label Subject
                 +input()(
-                    type            = "text"
-                    id              = "contact-subject"
-                    name            = "subject"
-                    placeholder     = "Subject *"
-                    aria-labelledby = "label-subject"
+                    type="text"
+                    id="contact-subject"
+                    name="subject"
+                    placeholder="Subject *"
+                    aria-labelledby="label-subject"
                     required
                 ).contact-form__input
+            // .contact-form__field 
 
             .contact-form__field.contact-form__field_large
                 label(
-                    for = "contact-message"
-                    id  = "label-message"
+                    for="contact-message"
+                    id="label-message"
                 ).contact-form__label Message
                 +text-area()(
-                    id              = "contact-message"
-                    name            = "message"
-                    placeholder     = "Message *"
-                    aria-labelledby = "label-message"
+                    id="contact-message"
+                    name="message"
+                    placeholder="Message *"
+                    aria-labelledby="label-message"
                     required
                 ).contact-form__input.contact-form__input_large
+            // .contact-form__field 
 
-            +btn({title: 'Send'}, 'submit', {
-                theme : 'light',
-                size  : 'small',
+            +btn({ title: 'Send' }, 'submit', {
+                theme: 'light',
+                size: 'small',
             }).contact-form__submit
-        // /.contact-form__fields 
-    // /.contact-form 
+        // .contact-form__inner 
+    // .contact-form 

@@ -1,10 +1,51 @@
-mixin contact-details(data)
-    .contact-details&attributes(attributes)
+//-
+    name: contact-details
+    description: Markup for the contact details block
+    arguments:
+        - {object} props - block options
+        - {object} props.address - address data
+        - {string} props.address.street - street address
+        - {string} props.address.locality - address locality
+        - {string} props.address.postalCode - postal code
+        - {string} props.phone - phone number
+        - {string} props.email - email id
+
+mixin contact-details(props = {})
+    .contact-details(
+        itemscope
+        itemtype="http://schema.org/Organization"
+    )&attributes(attributes)
+        meta(itemprop="name" content=data.siteTitle)
+
         h2.contact-details__title Contact Details
 
         ul.contact-details__list
-            each item in data
+            if props.address
                 li.contact-details__item
-                    .contact-details__label= item.label
-                    .contact-details__text= item.text
-    // /.contact-details 
+                    span.contact-details__label Address
+                    = ' '
+                    span.contact-details__text(
+                        itemprop="address"
+                        itemscope
+                        itemtype="http://schema.org/PostalAddress"
+                    )
+                        span(itemprop="streetAddress")= props.address.street
+                        = ' '
+                        span(itemprop="addressLocality")= props.address.locality
+                        = ' '
+                        span(itemprop="postalCode")= props.address.postalCode
+
+            if props.phone
+                li.contact-details__item
+                    span.contact-details__label Phone
+                    = ' '
+                    span.contact-details__text(itemprop="telephone")
+                        = props.phone
+                
+            if props.email
+                li.contact-details__item
+                    span.contact-details__label Email
+                    = ' '
+                    span.contact-details__text(itemprop="email")
+                        = props.email
+    // .contact-details 

@@ -324,15 +324,14 @@
             "text": "<p>Please feel free to contact us with any questions or to make reservations. If no one is available to take your call, please leave a message. We will contact you as soon as possible.</p>"
         },
 
-        "contactDetails": [{
-            "label": "Address",
-            "text": "355 e 5th st, Manhattan, NY 10003"
-        }, {
-            "label": "Phone",
-            "text": "+1 939 777 55 33"
-        }, {
-            "label": "Email",
-            "text": "reservation@renome.com"
-        }]
+        "contactDetails": {
+            "address": {
+                "street": "355 e 5th st",
+                "locality": "Manhattan, NY",
+                "postalCode": "10003"
+            },
+            "phone": "+1 939 777 55 33",
+            "email": "reservation@renome.com"
+        }
     }
 }
