@@ -6,14 +6,25 @@
         - {object[]} props.timetable - time table
         - {string} props.timetable[].days - week days
         - {string} props.timetable[].time - working hours
+        - {string} props.timetable[].iso8601 - datetime attribute value
 
 mixin opening-hours(props)
-    .opening-hours&attributes(attributes)
+    .opening-hours(
+        itemscope
+        itemtype="http://schema.org/Restaurant"
+    )&attributes(attributes)
+        meta(itemprop="name" content=data.siteTitle)
+
         h2.opening-hours__title Opening hours
 
         ul.opening-hours__list
             each item in props.timetable
                 li.opening-hours__item
-                    span.opening-hours__weekdays= item.days
-                    span.opening-hours__time= item.time
+                    time(
+                        itemprop="openingHours"
+                        datetime=item.iso8601
+                    ).opening-hours__item-inner
+                        span.opening-hours__days= item.days
+                        = ' '
+                        span.opening-hours__time= item.time
     // .opening-hours 

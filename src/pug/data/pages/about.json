@@ -82,10 +82,12 @@
         "openingHours": {
             "timetable": [{
                 "days": "Monday - Friday",
-                "time": "9:00 - 22:00"
+                "time": "9:00 - 22:00",
+                "iso8601": "Mo-Fr 9:00-22:00"
             }, {
                 "days": "Saturday - Sunday",
-                "time": "10:00 - 21:00"
+                "time": "10:00 - 21:00",
+                "iso8601": "Sa-Su 10:00-21:00"
             }]
         }
     }
