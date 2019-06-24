@@ -16,7 +16,7 @@ let popupFocusTrap;
  * Initialize the search block.
  * @return true
  */
-function initBlock() {
+export function initBlock() {
     $search = $('.search');
     const $close = $search.find('.search__close');
 
@@ -37,7 +37,7 @@ function initBlock() {
 /**
  * Show the search modal
  */
-function show() {
+export function show() {
     $search.addClass('search_visible');
 
     // Need to wait 100ms for autofocus to work
@@ -50,14 +50,8 @@ function show() {
 /**
  * Hide the search modal
  */
-function hide() {
+export function hide() {
     popupFocusTrap.deactivate();
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-    show,
-    hide,
-};

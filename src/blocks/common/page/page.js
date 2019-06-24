@@ -3,21 +3,21 @@
  * @author Andrey Glotov
  */
 
-import LazyLoader from '../../../js/utils/lazy-loader';
+import * as LazyLoader from '../../../js/utils/lazy-loader';
 
-import Header from '../header/header';
-
-import Nav from '../nav/nav';
-import Tabs from '../tabs/tabs';
+import * as Header from '../header/header';
+import * as Nav from '../nav/nav';
 
 import AccordionSlider from '../../about/accordion-slider/accordion-slider';
-import * as ContactForm from '../../contact/contact-form/contact-form';
+import ContactForm from '../../contact/contact-form/contact-form';
 import LocationMap from '../../contact/location-map/location-map';
-import * as Gallery         from '../../common/gallery/gallery';
 import Menu from '../../menu/menu/menu';
-import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 import Slider from '../../common/slider/slider';
 import SpecialsSlider from '../../common/specials-slider/specials-slider';
+import Tabs from '../tabs/tabs';
+
+import * as Gallery         from '../../common/gallery/gallery';
+import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
 
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
@@ -103,7 +103,7 @@ function throttleWindowScroll() {
  * Initialize the page block.
  * @return true
  */
-function initBlock() {
+export function initBlock() {
     $(window).on({
         resize: debounceWindowResize,
         scroll: throttleWindowScroll,
@@ -154,7 +154,3 @@ function initBlock() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-};

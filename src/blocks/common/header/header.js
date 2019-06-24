@@ -3,8 +3,8 @@
  * @author Andrey Glotov
  */
 
-import Search from '../search/search';
-import MiniCart from '../mini-cart/mini-cart';
+import * as Search from '../search/search';
+import * as MiniCart from '../mini-cart/mini-cart';
 
 import forceReflow from '../../../js/utils/force-reflow';
 
@@ -81,9 +81,8 @@ function handleSearchToggle() {
 
 /**
  * Initialize the header module.
- * @return true
  */
-function initBlock() {
+export function initBlock() {
     elements.$header = $('.header');
     elements.$searchToggle = $('.header__search-toggle', elements.$header);
 
@@ -93,17 +92,13 @@ function initBlock() {
     MiniCart.initBlock();
 
     elements.$searchToggle.click(handleSearchToggle);
-
-    return true;
 }
 
-function handleScroll() {
+/**
+ * Respond to window scroll event.
+ */
+export function handleScroll() {
     updateHeaderStyles();
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-    handleScroll,
-};

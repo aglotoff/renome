@@ -5,7 +5,7 @@
 
 /* global L */
 
-// -------------------------- BEGIN MODULE VARIABLES --------------------------
+// ------------------------------ BEGIN CONSTANTS -----------------------------
 
 const markerIcon = L.icon({
     iconUrl: 'img/map-marker.png',
@@ -13,54 +13,67 @@ const markerIcon = L.icon({
     iconAnchor: [18, 53],
 });
 
-// --------------------------- END MODULE VARIABLES ---------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// ------------------------------- END CONSTANTS ------------------------------
 
 /**
- * Initialize the the location map module.
- * 
- * @param {JQuery} $root The block root node
+ * Location Map block implementation.
  */
-function initBlock($root) {
-    const { latlng, zoom } = $root.data('map');
+class LocationMap {
 
-    const $container = $('.location-map__container', $root);
+    /**
+     * Create location map
+     * 
+     * @param {JQuery} $root The root element
+     */
+    contsructor($root) {
+        const { latlng, zoom } = $root.data('map');
 
-    const map = L.map($container.get(0), {
-        scrollWheelZoom: false,
-    }).setView(latlng, zoom);
+        const $container = $('.location-map__container', $root);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19,
-    }).addTo(map);
+        const map = L.map($container.get(0), {
+            scrollWheelZoom: false,
+        }).setView(latlng, zoom);
 
-    L.marker(latlng, {
-        icon: markerIcon
-    }).addTo(map);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19,
+        }).addTo(map);
 
-    map.on('focus', function handleMapFocus() {
-        map.scrollWheelZoom.enable();
-    });
-    map.on('blur', function handleMapBlur() {
-        map.scrollWheelZoom.disable();
-    });
+        L.marker(latlng, {
+            icon: markerIcon
+        }).addTo(map);
+
+        map.on('focus', this._handleMapFocus.bind(this));
+        map.on('blur', this._handleMapBlur.bind(this));
+
+        this._map = map;
+    }
+
+    // -------------------------- BEGIN EVENT HANDLERS ------------------------
+
+    _handleMapFocus() {
+        this._map.scrollWheelZoom.enable();
+    }
+
+    _handleMapBlur() {
+        this._map.scrollWheelZoom.disable();
+    }
+
+    // --------------------------- END EVENT HANDLERS -------------------------
+
+    // -------------------------- BEGIN PUBLIC METHODS ------------------------
+
+    /**
+     * Initialize all location map blocks on the page.
+     */
+    static initAll() {
+        $('.location-map').each(function() {
+            new LocationMap($(this));
+        });
+    }
+
+    // --------------------------- END PUBLIC METHODS -------------------------
 }
 
-/**
- * Initialize all location map blocks on the page.
- */
-function initAll() {
-    $('.location-map').each(function() {
-        initBlock($(this));
-    });
-}
-
-// ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-    initAll,
-};
+export default LocationMap;

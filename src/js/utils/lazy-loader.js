@@ -58,14 +58,14 @@ function loadImage($img) {
 /**
  * Initialize the lazy image loader
  */
-function init() {
+export function init() {
     $images = $(LAZY_SELECTOR);
 }
 
 /**
  * Load all images that have been scrolled into the viewport for the first time
  */
-function scanImages() {
+export function scanImages() {
     if ($images.length === 0) {
         return;
     }
@@ -84,8 +84,3 @@ function scanImages() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    init,
-    scanImages,
-};

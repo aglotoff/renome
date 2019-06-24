@@ -11,7 +11,7 @@ import DropdownStrategy from '../../../js/utils/dropdown-strategy';
  * Initialize the mini cart block.
  * @return true
  */
-function initBlock() {
+export function initBlock() {
     const $minicart = $('.mini-cart');
     const $trigger = $('.mini-cart__trigger', $minicart);
     const $drawer = $('.mini-cart__drawer', $minicart);
@@ -34,7 +34,3 @@ function initBlock() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-};

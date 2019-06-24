@@ -3,54 +3,50 @@
  * @author Andrey Glotov
  */
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize a menu block.
- * @param {JQuery} $menu The root element
- * @return true
- */
-function initBlock($menu) {
-    $menu.magnificPopup({
-        delegate: '.menu-product__link',
-        mainClass: 'lightbox',
-        type: 'image',
-
-        closeMarkup: `
-            <button aria-label="Close" type="button" class="mfp-close">
-                &#215;
-            </button>
-        `,
-
-        callbacks: {
-            beforeOpen() {
-                // for web accessibility purposes
-                this.wrap.attr({
-                    'role': 'dialog',
-                    'aria-label': 'View image',
-                });
-            },
-        },
-    });
-
-    return true;
-}
-
-/**
- * Initialize all menu blocks on the page.
- * @return true
- */
-function initAll() {
-    $('.menu').each(function() {
-        initBlock($(this));
-    });
+class Menu {
+    /**
+     * Crate a menu block
+     * 
+     * @param {JQuery} $root The root element
+     */
+    constructor($root) {
+        $root.magnificPopup({
+            delegate: '.menu-product__link',
+            mainClass: 'lightbox',
+            type: 'image',
     
-    return true;
+            closeMarkup: `
+                <button aria-label="Close" type="button" class="mfp-close">
+                    &#215;
+                </button>
+            `,
+    
+            callbacks: {
+                beforeOpen() {
+                    // for web accessibility purposes
+                    this.wrap.attr({
+                        'role': 'dialog',
+                        'aria-label': 'View image',
+                    });
+                },
+            },
+        });
+    }
+
+    // ------------------------- BEGIN PUBLIC METHODS -------------------------
+
+    /**
+     * Initialize all menu blocks on the page.
+     */
+    static initAll() {
+        $('.menu').each(function() {
+            new Menu($(this));
+        });
+        
+        return true;
+    }
+
+    // -------------------------- END PUBLIC METHODS --------------------------
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-    initAll,
-};
+export default Menu;

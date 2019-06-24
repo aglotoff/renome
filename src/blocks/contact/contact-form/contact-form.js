@@ -19,37 +19,46 @@ function getInvalidClassName($element) {
 
 // -------------------------- END UTILITY FUNCTIONS ---------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
 /**
- * Initialize the contact form block.
- * @param {JQuery} $root The block root element
+ * Contact form block implementation
  */
-export function initBlock($root) {
-    $root.validate({
-        errorClass: 'error contact-form__error',
+class ContactForm {
 
-        highlight(element) {
-            $(element).addClass(function() {
-                return getInvalidClassName($(this));
-            });
-        },
+    /**
+     * Create contact form
+     * 
+     * @param {JQuery} $root The block root element
+     */
+    constructor($root) {
+        $root.validate({
+            errorClass: 'error contact-form__error',
+    
+            highlight(element) {
+                $(element).addClass(function() {
+                    return getInvalidClassName($(this));
+                });
+            },
+    
+            unhighlight(element) {
+                $(element).removeClass(function() {
+                    return getInvalidClassName($(this));
+                });
+            }
+        });
+    }
 
-        unhighlight(element) {
-            $(element).removeClass(function() {
-                return getInvalidClassName($(this));
-            });
-        }
-    });
+    // ------------------------- BEGIN PUBLIC METHODS -------------------------
+
+    /**
+     * Initialize all contact form blocks on the page.
+     */
+    static initAll() {
+        $('.contact-form').each(function() {
+            new ContactForm($(this));
+        });
+    }
+
+    // -------------------------- END PUBLIC METHODS --------------------------
 }
 
-/**
- * Initialize all contact form blocks on the page.
- */
-export function initAll() {
-    $('.contact-form').each(function() {
-        initBlock($(this));
-    });
-}
-
-// ---------------------------- END PUBLIC METHODS ----------------------------
+export default ContactForm;

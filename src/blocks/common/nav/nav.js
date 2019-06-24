@@ -114,7 +114,7 @@ function handleInternalLinkClick() {
  * Initialize the navigation block.
  * @return true
  */
-function initBlock() {
+export function initBlock() {
     const $nav = $('.nav');
     const $menuToggle = $('.nav__toggle', $nav);
     const $menu = $('.nav__menu', $nav);
@@ -152,7 +152,7 @@ function initBlock() {
  * Switch between drilldown behavior for submenus on mobile and dropdown 
  * behavior on desktop.
  */
-function handleResize() {
+export function handleResize() {
     if (isDesktop && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
         isDesktop = false;
 
@@ -173,8 +173,3 @@ function handleResize() {
 }
 
 // ----------------------------- END PUBLIC METHODS ---------------------------
-
-export default {
-    initBlock,
-    handleResize,
-};
