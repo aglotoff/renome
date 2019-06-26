@@ -6,7 +6,7 @@
     overflow: hidden;
 
     @include breakpoint-up(md) {
-        padding-left: 29px;
+        padding-left: 32px;
         padding-bottom: 50px;
     }
 
@@ -102,6 +102,12 @@
                     border-color: $color-white;
                 }
             }
+        }
+
+        &:focus {
+            z-index: 2;
+
+            box-shadow: 0 0 0 3px rgba($color-primary, 0.4);
         }
 
         &_dir_prev {

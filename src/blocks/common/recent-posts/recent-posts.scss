@@ -124,8 +124,7 @@
 
         transition: color 0.2s ease;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-secondary;
         }
     }

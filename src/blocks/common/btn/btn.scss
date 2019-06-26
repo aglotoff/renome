@@ -22,9 +22,12 @@
         color: $color-white;
         background: $color-primary;
 
-        &:hover,
-        &:focus {
+        &:hover {
             background: $color-secondary;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($color-primary, 0.5);
         }
     }
 
@@ -32,10 +35,13 @@
         color: $color-primary;
         background: $color-catskill-white;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-catskill-white;
             background: $color-primary;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($color-catskill-white, 0.5);
         }
     }
 
