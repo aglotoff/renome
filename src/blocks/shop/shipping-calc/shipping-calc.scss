@@ -36,9 +36,16 @@
         display: none;
     }
 
-    &__input {
+    &__field {
         margin-top: 10px;
+    }
+
+    &__input {
         width: 100%;
+    }
+
+    &__country {
+        margin-top: 10px;
     }
 
     &__submit {

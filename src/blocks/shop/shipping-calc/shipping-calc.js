@@ -3,6 +3,8 @@
  * @author Andrey Glotov
  */
 
+import Select from '../../common/select/select';
+
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the shipping calculator module.
@@ -26,51 +28,42 @@ export const initModule = function() {
         $toggle.attr('aria-expanded', String(formExpanded));
     });
     
-    $country
-        .select2({
-            theme                   : 'theme--small',
-            width                   : 'style',
-            minimumResultsForSearch : Infinity,
-            placeholder             : 'Select a country',
-        })
-        .data('select2')
-        .$container
-        .addClass('shipping-calc__input');
+    const countrySelect = new Select($country, { theme: 'small' });
 
     $form.validate({
         errorClass     : 'error shipping-calc__error',
-    
-        ignore         : [],
 
-        errorPlacement : function(error, element) {
-            if (element.hasClass('shipping-calc__country')) {
-                error.insertAfter(element.next('.shipping-calc__input'));
-            } else {
-                error.insertAfter(element);
+        rules: {
+            calc_shipping_country: {
+                required: true,
             }
+        },
+
+        errorPlacement : function($error, $element) {
+            $error.appendTo($element.closest('.shipping-calc__field'));
         },
     
         highlight      : function(element) {
             if ($(element).hasClass('input')) {
                 $(element).addClass('input_invalid');
-            } else if ($(element).hasClass('shipping-calc__country')) {
-                $(element)
-                    .next('.shipping-calc__input')
-                    .addClass('select2-container--error');
+            } else if ($(element).is($country)) {
+                countrySelect.setError(true);
             }
         },
     
         unhighlight     : function(element) {
             if ($(element).hasClass('input')) {
                 $(element).removeClass('input_invalid');
-            } else if ($(element).hasClass('shipping-calc__country')) {
-                $(element)
-                    .next('.shipping-calc__input')
-                    .removeClass('select2-container--error');
+            } else if ($(element).is($country)) {
+                countrySelect.setError(false);
             }
         }
     });
-    
+
+    $country.on('change', () => {
+        $form.validate().element('select');
+    });
+
     return true;
 };
 // ---------------------------- END PUBLIC METHODS ----------------------------

@@ -8,42 +8,45 @@ mixin shipping-calc(data = {}, mods = {})
         ).shipping-calc__toggle Calculate Shipping
 
         form(action="#" method="post").shipping-calc__form#shipping-calc
-            label(
-                for = "shipping-country"
-                id  = "label-country"
-            ).shipping-calc__label
-            select(
-                id              = "shipping-country"
-                aria-labelledby = "label-country"
-                name            = "calc_shipping_country"
-            ).shipping-calc__country.required
-                option(value="") &nbsp;
-                option(value="uk") United Kingdom
-                option(value="us") United States
-
-            label(
-                for = "shipping-state"
-                id  = "label-state"
-            ).shipping-calc__label Shipping state
-            +input({theme: 'small'})(
-                id              = "shipping-state"
-                aria-labelledby = "label-state"
-                name            = "state"
-                placeholder     = "State / County"
-                required
-            ).shipping-calc__input
+            .shipping-calc__field
+                label(
+                    for = "shipping-country"
+                    id  = "label-country"
+                ).shipping-calc__label
+                select(
+                    id              = "shipping-country"
+                    aria-labelledby = "label-country"
+                    name            = "calc_shipping_country"
+                ).shipping-calc__country.required
+                    option(value="") Select a country
+                    option(value="uk") United Kingdom
+                    option(value="us") United States
+            
+            .shipping-calc__field
+                label(
+                    for = "shipping-state"
+                    id  = "label-state"
+                ).shipping-calc__label Shipping state
+                +input({theme: 'small'})(
+                    id              = "shipping-state"
+                    aria-labelledby = "label-state"
+                    name            = "state"
+                    placeholder     = "State / County"
+                    required
+                ).shipping-calc__input
     
-            label(
-                for = "shipping-postcode"
-                id  = "label-postcode"
-            ).shipping-calc__label Shipping postcode
-             +input({theme: 'small'})(
-                id              = "shipping-postcode"
-                aria-labelledby = "label-postcode"
-                name            = "postcode"
-                placeholder     = "Postcode / ZIP"
-                required
-            ).shipping-calc__postcode
+            .shipping-calc__field
+                label(
+                    for = "shipping-postcode"
+                    id  = "label-postcode"
+                ).shipping-calc__label Shipping postcode
+                +input({theme: 'small'})(
+                    id              = "shipping-postcode"
+                    aria-labelledby = "label-postcode"
+                    name            = "postcode"
+                    placeholder     = "Postcode / ZIP"
+                    required
+                ).shipping-calc__input
 
             +btn({title: 'Update totals'}, 'submit').shipping-calc__submit(
                 name  = "calc_shipping"

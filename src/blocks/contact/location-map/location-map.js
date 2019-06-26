@@ -25,7 +25,7 @@ class LocationMap {
      * 
      * @param {JQuery} $root The root element
      */
-    contsructor($root) {
+    constructor($root) {
         const { latlng, zoom } = $root.data('map');
 
         const $container = $('.location-map__container', $root);

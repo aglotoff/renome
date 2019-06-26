@@ -1,0 +1,167 @@
+/**
+ * Styles for the select block.
+ */
+.select {
+    // Selector styles
+    position: relative;
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    &__origin {
+        position: absolute;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        width: 1px;
+        border: 0;
+        clip: rect(0 0 0 0); 
+        
+        overflow: hidden;
+    }
+
+    &__button {
+        display: block;
+        padding: 6px 0;
+        width: 100%;
+
+        color: $color-primary;
+        font-family: inherit;
+        @include font-size(15px);
+        font-weight: $font-weight-bold;
+        line-height: 25px;
+        text-align: left;
+
+        background: transparent;
+        border: 0;
+        border-bottom: 3px solid $color-catskill-white;
+        cursor: pointer;
+
+        &:focus {
+            border-bottom-color: $color-focus;
+        }
+
+        &[aria-expanded="true"] {
+            border-bottom-color: $color-focus;
+        }
+
+        &:after {
+            content: "";
+
+            bottom: auto;
+            left: auto;
+            position: absolute;
+            right: 2px;
+            top: 50%;
+
+            height: 8px;
+            width: 8px;
+
+            border: none;
+            border-bottom: 1px solid $color-primary;
+            border-right: 1px solid $color-primary;
+
+            transform: translate(-50%, -75%) rotate(45deg);
+            transform-origin: 70% 70%;
+            transition: transform 0.25s linear;
+        }
+
+        &[aria-expanded="true"]:after {
+            transform: translate(-50%, -75%) rotate(-135deg);
+        }
+    }
+
+    &__list {
+        left: 0;
+        right: 0;
+        position: absolute;
+        z-index: 100;
+        
+        max-height: 260px;
+
+        overflow-y: auto;
+        
+        visibility: hidden;
+
+        background: $color-white;
+        border: 3px solid $color-athens-gray;
+        box-shadow: 1px 1px 3px rgba($color-black, 0.15);
+
+        margin-bottom: 10px;
+        margin-top: 10px;
+
+        &_expanded {
+            visibility: visible;
+        }
+    }
+
+    &__option {
+        padding: 4px 0 4px 20px;
+
+        @include font-size(14px);
+        letter-spacing: 0.1em;
+        text-align: left;
+
+        cursor: pointer;
+
+        &:first-child {
+            padding-top: 8px;
+        }
+
+        &:last-child {
+            padding-bottom: 8px;
+        }
+
+        &_highlighted {
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    // Bem modifiers
+    &_theme_small {
+        text-transform: uppercase;
+
+        .select__button {
+            padding: 11px 0;
+
+            @include font-size(11px);
+            letter-spacing: 0.2em;
+        }
+
+        .select__option {
+            padding: 12px 10px;
+
+            @include font-size(11px);
+            letter-spacing: 0.2em;
+        }
+    }
+
+    &_theme_checkout {
+        .select__button {
+            padding: 11px 0;
+
+            font-weight: $font-weight-regular;
+        }
+    }
+
+    &_error {
+        .select__button {
+            border-bottom-color: $color-error;
+
+            &:focus {
+                border-bottom-color: $color-focus;
+            }
+
+            &[aria-expanded="true"] {
+                border-bottom-color: $color-focus;
+            }
+        }
+    }
+}

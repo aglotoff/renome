@@ -3,13 +3,13 @@ import jQuery from 'jquery';
 import L from 'leaflet';
 import moment from 'moment';
 import Pikaday from 'pikaday';
+import Popper from 'popper.js';
 import Shuffle from 'shufflejs';
 import svg4everybody from 'svg4everybody';
 
 // Import jQuery plugins
 import 'jquery-validation';
 import 'magnific-popup';
-import 'select2';
 import 'slick-carousel';
 import '@babel/polyfill';
 
@@ -20,6 +20,7 @@ window.focusTrap = focusTrap;
 window.L = L;
 window.moment = moment;
 window.Pikaday = Pikaday;
+window.Popper = Popper;
 window.Shuffle = Shuffle;
 
 // Manually initialize libraries

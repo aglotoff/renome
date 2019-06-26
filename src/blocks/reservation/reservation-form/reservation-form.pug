@@ -28,7 +28,7 @@ mixin reservation-form()
                         id              = "reservation-time"
                         name            = "time"
                         aria-labelledby = "label-time"
-                    ).reservation-form__time
+                    ).reservation-form__time.reservation-form__input
                         option(value="") &nbsp;
 
                 .reservation-form__input-group
@@ -41,7 +41,7 @@ mixin reservation-form()
                         id              = "reservation-party"
                         name            = "party"
                         aria-labelledby = "label-party"
-                    ).reservation-form__people
+                    ).reservation-form__people.reservation-form__input
                         option(value="1") 1 Person
                         option(value="2" selected) 2 People
                         - let n = 3;

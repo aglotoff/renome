@@ -6,7 +6,6 @@
 @import "../../node_modules/magnific-popup/src/css/main.scss";
 @import "../../node_modules/slick-carousel/slick/slick.scss";
 @import "../../node_modules/pikaday/scss/pikaday.scss";
-@import '../../node_modules/select2/src/scss/core.scss';
 @import '../../node_modules/leaflet/dist/leaflet';
 
 @import "../blocks/common/page/page";
@@ -40,7 +39,6 @@
 @import "../blocks/common/img-group/img-group";
 @import "../blocks/common/tabs/tabs";
 @import "../blocks/common/lightbox/lightbox";
-@import "../blocks/common/select2/select2";
 @import "../blocks/common/pagination/pagination";
 @import "../blocks/common/title/title";
 @import "../blocks/common/cta/cta";
@@ -51,6 +49,7 @@
 @import "../blocks/common/specials-slider/specials-slider";
 @import "../blocks/common/testimonial/testimonial.scss";
 @import "../blocks/common/gallery/gallery.scss";
+@import "../blocks/common/select/select.scss";
 
 /*
  * ----------------------------------------------------------------------------

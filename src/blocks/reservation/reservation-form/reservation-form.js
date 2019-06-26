@@ -5,6 +5,8 @@
 
 /* global Pikaday, moment */
 
+import Select from '../../common/select/select';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const openingHours = [
     {start: 10, end: 21}, // Sun
@@ -62,7 +64,7 @@ const getAvailableTimes = function(startMoment) {
 
 // ----------------------------- BEGIN DOM METHODS ----------------------------
 const updateTimeSelect = function($time, startMoment) {
-    const timeArray    = getAvailableTimes(startMoment);
+    const timeArray = getAvailableTimes(startMoment);
     const selectedTime = $time.val();
 
     const $options  = timeArray.map(function(time) {
@@ -75,19 +77,11 @@ const updateTimeSelect = function($time, startMoment) {
     $time
         .empty()
         .append($options)
-        .trigger('change');
+        .data('select').update();
 };
 
 const initSelect = function($select) {
-    $select.select2({
-        theme                   : 'theme--default',
-        width                   : 'style',
-        minimumResultsForSearch : Infinity,
-    });
-
-    const data = $select.data('select2');
-    data.$container.addClass('reservation-form__input');
-    data.$selection.attr('aria-labelledby', $select.attr('aria-labelledby'));
+    $select.data('select', new Select($select));
 };
 // ------------------------------ END DOM METHODS -----------------------------
 
