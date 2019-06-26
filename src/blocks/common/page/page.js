@@ -8,7 +8,7 @@ import * as LazyLoader from '../../../js/utils/lazy-loader';
 import * as Header from '../header/header';
 import * as Nav from '../nav/nav';
 
-import AccordionSlider from '../../about/accordion-slider/accordion-slider';
+import AccordionGallery from '../../about/accordion-gallery/accordion-gallery';
 import ContactForm from '../../contact/contact-form/contact-form';
 import LocationMap from '../../contact/location-map/location-map';
 import Menu from '../../menu/menu/menu';
@@ -61,7 +61,7 @@ function handleWindowScroll() {
  */
 function handleWindowResize() {
     Nav.handleResize();
-    AccordionSlider.handleResize();
+    AccordionGallery.handleResize();
     Portfolio.handleResize();
     Tabs.handleResize();
 }
@@ -117,7 +117,7 @@ export function initBlock() {
     Nav.initBlock();
 
     // Inner page blocks
-    AccordionSlider.initAll();
+    AccordionGallery.initAll();
     ContactForm.initAll();
     LocationMap.initAll();
     Gallery.initModule();

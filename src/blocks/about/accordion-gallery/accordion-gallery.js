@@ -1,13 +1,16 @@
 /**
- * @file Implementation of the accordion slider block
+ * @file Implementation of the accordion gallery block
  * @author Andrey Glotov
  */
 
 // -------------------------- BEGIN MODULE VARIABLES -------------------------- 
+
+const BLOCK = 'accordion-gallery';
+
 const Selectors = {
-    ROOT: '.accordion-slider',
-    THUMB: '.accordion-slider__thumb',
-    IMAGE: '.accordion-slider__thumb-img',
+    ROOT: `.${BLOCK}`,
+    THUMB: `.${BLOCK}__thumb`,
+    IMAGE: `.${BLOCK}__thumb-img`,
 };
 
 const MOBILE_BREAKPOINT = 768;
@@ -15,15 +18,16 @@ const THUMB_HEIGHT = 100;
 
 let isMobile = true;
 const sliders = [];
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 /**
- * Accordion slider.
+ * Accordion gallery.
  */
-class AccordionSlider {
+class AccordionGallery {
 
     /**
-     * Create an accordion slider
+     * Create an accordion gallery
      * 
      * @param {JQuery} $root The root element
      */
@@ -46,7 +50,7 @@ class AccordionSlider {
         $root.on('blur', Selectors.THUMB, this._handleThumbCollapse);
 
         /**
-         * Each slide acts as a thumbnail for gallery managed by the
+         * Each image acts as a thumbnail for gallery managed by the
          * magnific-popup jQuery plugin
          */
         $root.magnificPopup({
@@ -141,7 +145,7 @@ class AccordionSlider {
      */
     static initAll() {
         $(Selectors.ROOT).map(function() {
-            sliders.push(new AccordionSlider($(this)));
+            sliders.push(new AccordionGallery($(this)));
         });
     }
 
@@ -166,4 +170,4 @@ class AccordionSlider {
     // --------------------------- END PUBLIC METHODS -------------------------
 }
 
-export default AccordionSlider;
+export default AccordionGallery;

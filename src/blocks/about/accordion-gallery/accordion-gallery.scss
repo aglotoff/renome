@@ -1,7 +1,7 @@
 /**
- * Styles for the accordion slider block
+ * Styles for the accordion gallery block
  */
-.accordion-slider {
+.accordion-gallery {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -62,8 +62,8 @@
         opacity: 0;
         transition: opacity 0.25s ease-out;
 
-        .accordion-slider__thumb:hover &,
-        .accordion-slider__thumb:focus & {
+        .accordion-gallery__thumb:hover &,
+        .accordion-gallery__thumb:focus & {
             opacity: 1;
         }
     }

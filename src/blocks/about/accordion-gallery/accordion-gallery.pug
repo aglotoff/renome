@@ -1,6 +1,6 @@
 //-
-    name: accordion-slider
-    description: Markup for the accordion slider block
+    name: accordion-gallery
+    description: Markup for the accordion gallery block
     arguments:
         - {object} props - block options
         - {object[]} props.items - gallery items
@@ -9,13 +9,13 @@
         - {string} props.items[].thumbAlt - thumbnail alt text
         - {string} props.items[].link - link to full image or video file
 
-mixin accordion-slider(props = {})
-    .accordion-slider&attributes(attributes)
+mixin accordion-gallery(props = {})
+    .accordion-gallery&attributes(attributes)
         each item in props.items
             a(
                 href=item.link
                 class={
-                    'accordion-slider__thumb': true,
+                    'accordion-gallery__thumb': true,
                     'mfp-image': item.type == 'image',
                     'mfp-iframe': item.type == 'video',
                 }
@@ -38,11 +38,11 @@ mixin accordion-slider(props = {})
                     img(
                         src=`${item.thumb}-small.jpg`
                         alt=item.thumbAlt
-                    ).accordion-slider__thumb-img
+                    ).accordion-gallery__thumb-img
 
-                .accordion-slider__thumb-overlay
+                .accordion-gallery__thumb-overlay
                     +icon(
                         item.type == 'video' ? 'play' : 'zoom',
                         item.type == 'video' ? 'Play video' : 'Zoom image'
                     )
-    // .accordion-slider 
+    // .accordion-gallery 
