@@ -2,8 +2,6 @@
  * Styles for the date picker block (override default pikaday styles)
  */
 .date-picker {
-    margin-top: 11px;
-
     color: $color-primary;
     font-family: $font-family-regular;
 
@@ -11,6 +9,10 @@
 
     &.is-bound {
         box-shadow: none;
+    }
+
+    &.bottom-aligned {
+        margin-top: 11px;
     }
 
     .pika-lendar {
