@@ -161,17 +161,19 @@
     &_scroll {
         @include breakpoint-up(lg) {
             position: fixed;
+        }
+    }
 
-            margin-top: 0;
-
-            transition: margin-top 0.25s linear;
+    &_animated {
+        @include breakpoint-up(lg) {
+            transition: transform 0.25s linear;
         }
     }
 
     /* Don't show the header until scrolled to a certain position */
     &_hidden {
         @include breakpoint-up(lg) {
-            margin-top: -100px;
+            transform: translateY(-100%);
         }
     }
 }

@@ -44,12 +44,16 @@ function updateHeaderStyles() {
 
         if (newState === HeaderStates.NORMAL) {
             $header
-                .removeClass('header_scroll header_hidden')
+                .removeClass('header_scroll header_hidden header_animated')
                 .toggleClass('header_transparent', isTransparent);
         } else if (newState === HeaderStates.STICKY) {
             $header
                 .addClass('header_scroll header_hidden')
                 .removeClass('header_transparent');
+                
+            forceReflow($header);
+
+            $header.addClass('header_animated');
         } else {    // HeaderStates.VISIBLE
             if (headerState === HeaderStates.NORMAL) {
                 // Make sure the animation is played
@@ -58,6 +62,8 @@ function updateHeaderStyles() {
                     .removeClass('header_transparent');
 
                 forceReflow($header);
+
+                $header.addClass('header_animated');
             }
             
             $header.removeClass('header_hidden');
