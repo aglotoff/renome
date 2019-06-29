@@ -8,14 +8,24 @@
         - {string} props.slides[].title - product title
         - {string} props.slides[].weekday - day of week
         - {number} props.slides[].price - product price
+        - {string} props.slides[].titleId - ID of the slide title element
 
 mixin specials-slider(props)
-    .specials-slider&attributes(attributes)
+    .specials-slider(
+        role="group"
+        aria-roledescription="carousel"
+    )&attributes(attributes)
         .specials-slider__inner
-            .specials-slider__container
+            .specials-slider__container(
+                aria-atomic="false"
+                aria-live="polite"
+            )
                 each slide, i in props.slides
                     .specials-slider__slide(
                         class=(i == 0) && 'specials-slider__slide_active'
+                        role="group"
+                        aria-roledescription="slide"
+                        aria-labelledby=slide.titleId
                     )
                         -
                             const mobileJpegSrcSet = `
@@ -62,7 +72,9 @@ mixin specials-slider(props)
                                 ).specials-slider__slide-img
 
                             .specials-slider__slide-text
-                                h3.specials-slider__slide-title= slide.title
+                                h3.specials-slider__slide-title(
+                                    id=slide.titleId
+                                )= slide.title
                                 .specials-slider__slide-weekday= slide.weekday
 
                             .specials-slider__slide-price
