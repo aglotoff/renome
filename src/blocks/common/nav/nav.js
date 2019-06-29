@@ -127,12 +127,16 @@ export function initBlock() {
         onCollapse() {
             $menu.removeClass('nav__menu_visible');
             $menuToggle.removeClass('hamburger_open');
+
+            $('.page').removeClass('page_menu-expanded');
         },
 
         onExpand() {
             $menu.addClass('nav__menu_visible');
             $scrollpane.scrollTop(0);
             $menuToggle.addClass('hamburger_open');
+
+            $('.page').addClass('page_menu-expanded');
         },
     });
     mobileMenu.activate();

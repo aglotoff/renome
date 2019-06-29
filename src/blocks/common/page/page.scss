@@ -35,4 +35,12 @@
             padding-top: 100px;
         }
     }
+
+    &_menu-expanded {
+        overflow: hidden;
+
+        @include breakpoint-up(lg) {
+            overflow: auto;
+        }
+    }
 }
