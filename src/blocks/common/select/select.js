@@ -99,6 +99,7 @@ class Select {
             expanded: false,
             selectedIndex: -1,
             highlightedIndex: -1,
+            searchString: '',
 
             popper: new Popper($button.get(0), $list.get(0), {
                 placement: 'bottom-start'
@@ -111,8 +112,10 @@ class Select {
         this._handleButtonClick = this._handleButtonClick.bind(this);
         this._handleOutsideClick = this._handleOutsideClick.bind(this);
         this._handleListKeyDown = this._handleListKeyDown.bind(this);
+        this._handleKeyPress = this._handleKeyPress.bind(this);
         this._handleOptionMouseOver = this._handleOptionMouseOver.bind(this);
 
+        $root.keypress(this._handleKeyPress);
         $list.keydown(this._handleListKeyDown);
         $list.on('mouseover', Selectors.OPTION, this._handleOptionMouseOver);
         $list.on('click', Selectors.OPTION, this._handleOptionClick);
@@ -166,9 +169,75 @@ class Select {
         this._scrollToHighlighted();
     }
 
+    /**
+     * Search the next option starting with the given substring
+     * 
+     * @param {string} str The search string
+     */
+    _findOption(str) {
+        const { selectedIndex } = this._state;
+        const { $options } = this._elements;
+
+        if (selectedIndex === -1) {
+            for (let i = 0; i < $options.length; i++) {
+                if ($($options[i]).text().startsWith(str)) {
+                    return i;
+                }
+            }
+        } else {
+            for (let i = selectedIndex; i < $options.length; i++) {
+                if ($($options[i]).text().startsWith(str)) {
+                    return i;
+                }
+            }
+
+            for (let i = 0; (i < selectedIndex) && (i < $options.length); i++) {
+                if ($($options[i]).text().startsWith(str)) {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Search options
+     * 
+     * @param {string} c The next character to search
+     */
+    _search(c) {
+        const { searchString, expanded } = this._state;
+        let nextIndex = null;
+
+        if (~(nextIndex = this._findOption(searchString + c))) {
+            this._state.searchString += c;
+        } else if (~(nextIndex = this._findOption(c))) {
+            this._state.searchString = c;
+        } else {
+            this._state.searchString = '';
+            return;
+        }
+
+        this.selectOption(nextIndex);
+        if (expanded) {
+            this._highlightOption(nextIndex);
+        }
+    }
+
     // -------------------------- END PRIVATE METHODS -------------------------
 
     // -------------------------- BEGIN EVENT HANDLERS ------------------------
+
+    /**
+     * Handle the keypress event
+     * 
+     * @param {JQuery} e The dispatched event
+     */
+    _handleKeyPress(e) {
+        this._search(String.fromCharCode(e.which));
+        return false;
+    }
 
     /**
      * Handle the option mouseover event
@@ -259,9 +328,6 @@ class Select {
             this.selectOption(highlightedIndex);
             this.collapse();
             $button.focus();
-            return false;
-
-        case Keys.SPACE:
             return false;
             
         case Keys.ESC:
