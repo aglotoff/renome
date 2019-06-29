@@ -58,7 +58,7 @@ class Select {
             : Themes['default'];
 
         // Create the root node
-        const $root = $('<div>', { id }).addClass(`${BLOCK} ${themeClass}`);
+        const $root = $('<div>').addClass(`${BLOCK} ${themeClass}`);
 
         // Wrap original <select> into the root node and then hide
         $origin.before($root).detach();
@@ -136,7 +136,7 @@ class Select {
             const listHeight = $list.innerHeight();
 
             if (offsetTop < 0) {
-                $list.scrollTop(0);
+                $list.scrollTop(scrollTop + offsetTop);
             } else if (offsetBottom > listHeight) {
                 $list.scrollTop(scrollTop + (offsetBottom - listHeight));
             }
@@ -249,14 +249,14 @@ class Select {
         const { which } = e;
         const { $button, $options } = this._elements;
         const { highlightedIndex } = this._state;
-        
+
         switch (which) {
         case Keys.TAB:
             this.collapse();
             break;
             
         case Keys.ENTER:
-            this._selectOption(highlightedIndex);
+            this.selectOption(highlightedIndex);
             this.collapse();
             $button.focus();
             return false;
@@ -272,25 +272,25 @@ class Select {
         case Keys.UP:
             if (highlightedIndex > 0) {
                 this._highlightOption(highlightedIndex - 1);
-                this._selectOption(highlightedIndex - 1);
+                this.selectOption(highlightedIndex - 1);
             }
             return false;
             
         case Keys.DOWN:
             if (highlightedIndex < $options.length - 1) {
                 this._highlightOption(highlightedIndex + 1);
-                this._selectOption(highlightedIndex + 1);
+                this.selectOption(highlightedIndex + 1);
             }
             return false;
             
         case Keys.HOME:
             this._highlightOption(0);
-            this._selectOption(0);
+            this.selectOption(0);
             return false;
             
         case Keys.END:
             this._highlightOption($options.length - 1);
-            this._selectOption($options.length - 1);
+            this.selectOption($options.length - 1);
             return false;
         }
     }
