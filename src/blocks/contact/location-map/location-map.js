@@ -8,7 +8,7 @@
 // ------------------------------ BEGIN CONSTANTS -----------------------------
 
 const markerIcon = L.icon({
-    iconUrl: 'img/map-marker.png',
+    iconUrl: 'img/map-marker.svg',
     iconSize: [35, 53], 
     iconAnchor: [18, 53],
 });
