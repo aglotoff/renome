@@ -1,16 +1,25 @@
-mixin error-page(data)
+//-
+    name: error-page
+    description: Markup for the error page block
+    arguments:
+        - {object} props - block options
+        - {string} bgImage - backgroundimage for the page
+        - {number} code - HTTP error code
+        - {string} message - error message
+
+mixin error-page(props = {})
     .error-page(
-        style=`background-image: url(${data.bgImage})`
+        style=`background-image: url(${props.bgImage})`
     )&attributes(attributes)
         .error-page__inner
             .error-page__text
-                h1.error-page__code= data.code
-                p.error-page__msg= data.message
-            // /.error-page__text 
+                h1.error-page__code= props.code
+                p.error-page__msg= props.message
+            // .error-page__text 
 
             +btn({
                 title: 'On homepage',
                 link: 'index.html',
             }, 'link').error-page__back
-        // /.error-page__inner 
-    // /.error__page 
+        // .error-page__inner 
+    // .error__page 
