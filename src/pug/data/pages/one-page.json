@@ -258,7 +258,7 @@
             "reverse": true
         },
 
-        "reservation": {
+        "reservationIntro": {
             "title": "Reservation",
             "subtitle": "Book your table at our restaurant now!",
             "id": "reservation",
@@ -274,7 +274,11 @@
                 "order": "bottom-right"
             },
 
-            "text": "<p>Call you on the date of your reservation to confirm your table. If you do not receive an email, or do not hear from the restaurant, we would recommend calling to confirm your table and verify your reservation booking (+1 939 777 55 33).</p>"
+            "text": "<p>Call you on the date of your reservation to confirm your table. If you do not receive an email, or do not hear from the restaurant, we would recommend calling to confirm your table and verify your reservation booking (+1&nbsp;939&nbsp;777&nbsp;55&nbsp;33).</p>"
+        },
+
+        "reservation": {
+            
         },
 
         "specials": {

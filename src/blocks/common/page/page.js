@@ -12,12 +12,13 @@ import AccordionGallery from '../../about/accordion-gallery/accordion-gallery';
 import ContactForm from '../../contact/contact-form/contact-form';
 import LocationMap from '../../contact/location-map/location-map';
 import Menu from '../../menu/menu/menu';
+import Reservation from '../../reservation/reservation/reservation';
 import Slider from '../../common/slider/slider';
 import SpecialsSlider from '../../common/specials-slider/specials-slider';
 import Tabs from '../tabs/tabs';
 
 import * as Gallery         from '../../common/gallery/gallery';
-import * as ReservationForm from '../../reservation/reservation-form/reservation-form';
+
 
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
@@ -122,7 +123,7 @@ export function initBlock() {
     LocationMap.initAll();
     Gallery.initModule();
     Menu.initAll();
-    ReservationForm.initModule();
+    Reservation.initAll();
     Slider.initAll();
     SpecialsSlider.initAll();
     Tabs.initAll();

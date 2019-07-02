@@ -426,6 +426,7 @@ class Select {
         this._elements.$options = $('li', $list);
         
         this._state.selectedIndex = selectedIndex;
+        this._state.popper.update();
     }
   
     /**

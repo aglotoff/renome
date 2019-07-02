@@ -10,7 +10,7 @@ include ../../blocks/menu/menu/menu.pug
 include ../../blocks/menu/menu-cat/menu-cat.pug
 include ../../blocks/menu/menu-product/menu-product.pug
 
-include ../../blocks/reservation/reservation-form/reservation-form.pug
+include ../../blocks/reservation/reservation/reservation.pug
 
 include ../../blocks/contact/contact-bottom/contact-bottom.pug
 include ../../blocks/contact/contact-details/contact-details.pug
@@ -23,8 +23,8 @@ block page
     +section(data.content.menuIntro)
     +menu(data.content.menu)
     +testimonial(data.content.testimonial, {reverse: true})
-    +section(data.content.reservation)
-    +reservation-form()
+    +section(data.content.reservationIntro)
+    +reservation(data.content.reservation)
     +specials(data.content.specials)
     +section(data.content.contact)
     +contact-bottom({details: data.content.contactDetails})

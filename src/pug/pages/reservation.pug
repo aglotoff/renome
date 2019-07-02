@@ -1,7 +1,7 @@
 extends ../layouts/inner.pug
 
-include ../../blocks/reservation/reservation-form/reservation-form.pug
+include ../../blocks/reservation/reservation/reservation.pug
 
 block append page
     +section(data.content.online)
-    +reservation-form()
+    +reservation(data.content.reservation)

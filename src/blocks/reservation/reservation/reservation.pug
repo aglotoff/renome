@@ -1,0 +1,77 @@
+//-
+    name: reservation
+    description: Markup for the reservation form block
+    arguments:
+        - {object} props - block properties
+
+mixin reservation(props = {})
+    form.reservation(
+        action="#"
+        method="post"
+        data-reservation=JSON.stringify(props)
+    )&attributes(attrributes)
+        .reservation__inner
+            h2.reservation__title Make a Reservation
+
+            .reservation__fields
+                .reservation__input-group
+                    label.reservation__label(
+                        for="reservation-date"
+                        id="reservation-date-label"
+                    )
+                        +icon('calendar', 'Reservation date')
+                    +input()(
+                        type="text"
+                        id="reservation-date"
+                        name="date"
+                        aria-labelledby="reservation-date-label"
+                        required
+                    ).reservation__input
+                // .reservation__input-group 
+                    
+                .reservation__input-group
+                    label.reservation__label(
+                        for="reservation-time"
+                        id="reservation-time-label"
+                    )
+                        +icon('time', 'Reservation time')
+                    select(
+                        id="reservation-time"
+                        name="time"
+                        aria-labelledby="reservation-time-label"
+                    ).reservation__input
+                        option(value="") &nbsp;
+                // .reservation__input-group 
+
+                .reservation__input-group
+                    label.reservation__label(
+                        for="reservation-party"
+                        id="reservation-party-label"
+                    )
+                        +icon('people', 'Party size')
+                    select(
+                        id="reservation-party"
+                        name="party"
+                        aria-labelledby="reservation-party-label"
+                    ).reservation__input
+                        - let partySize = 1;
+                        while partySize <= 21
+                            option(
+                                value=String(partySize)
+                                selected=(partySize === 2)
+                            )
+                                if partySize === 1
+                                    | 1 Person
+                                else if partySize <= 20
+                                    | #{partySize} People
+                                else
+                                    | Larger party
+                            - partySize++;
+                // .reservation__input-group 
+            // .reservation__fields 
+
+            .reservation__bottom
+                +btn({ title: 'Find a table' }, 'submit').reservation__submit
+            // .reservation__bottom 
+        // .reservation__inner 
+    // .reservation 
