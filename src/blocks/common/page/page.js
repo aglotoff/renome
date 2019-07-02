@@ -10,15 +10,13 @@ import * as Nav from '../nav/nav';
 
 import AccordionGallery from '../../about/accordion-gallery/accordion-gallery';
 import ContactForm from '../../contact/contact-form/contact-form';
+import Gallery from '../../common/gallery/gallery';
 import LocationMap from '../../contact/location-map/location-map';
 import Menu from '../../menu/menu/menu';
 import Reservation from '../../reservation/reservation/reservation';
 import Slider from '../../common/slider/slider';
 import SpecialsSlider from '../../common/specials-slider/specials-slider';
 import Tabs from '../tabs/tabs';
-
-import * as Gallery         from '../../common/gallery/gallery';
-
 
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
@@ -121,7 +119,7 @@ export function initBlock() {
     AccordionGallery.initAll();
     ContactForm.initAll();
     LocationMap.initAll();
-    Gallery.initModule();
+    Gallery.initAll();
     Menu.initAll();
     Reservation.initAll();
     Slider.initAll();

@@ -88,23 +88,29 @@
             "title": "Gallery",
             "subtitle": "More about us via photos",
 
-            "thumbs": [{
-                "image": "img/content/gallery/thumbs/thumb-1.jpg",
+            "items": [{
+                "thumb": "img/content/gallery/thumbs/thumb-1",
+                "thumbAlt": "Gallery",
                 "link": "img/content/gallery/img-1.jpg"
             }, {
-                "image": "img/content/gallery/thumbs/thumb-2.jpg",
+                "thumb": "img/content/gallery/thumbs/thumb-2",
+                "thumbAlt": "Gallery",
                 "link": "img/content/gallery/img-2.jpg"
             }, {
-                "image": "img/content/gallery/thumbs/thumb-3.jpg",
+                "thumb": "img/content/gallery/thumbs/thumb-3",
+                "thumbAlt": "Gallery",
                 "link": "img/content/gallery/img-3.jpg"
             }, {
-                "image": "img/content/gallery/thumbs/thumb-4.jpg",
+                "thumb": "img/content/gallery/thumbs/thumb-4",
+                "thumbAlt": "Gallery",
                 "link": "img/content/gallery/img-4.jpg"
             }, {
-                "image": "img/content/gallery/thumbs/thumb-5.jpg",
+                "thumb": "img/content/gallery/thumbs/thumb-5",
+                "thumbAlt": "Gallery",
                 "link": "img/content/gallery/img-5.jpg"
             }, {
-                "image": "img/content/gallery/thumbs/thumb-6.jpg",
+                "thumb": "img/content/gallery/thumbs/thumb-6",
+                "thumbAlt": "Gallery",
                 "link": "img/content/gallery/img-6.jpg"
             }]
         },

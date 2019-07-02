@@ -1,24 +1,53 @@
+//-
+    name: gallery
+    description: Markup for the gallery block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.items - gallery items
+        - {string} props.items[].thumb - thumbnail image
+        - {string} props.items[].thumbAlt - thumbnail alt text
+        - {string} props.items[].link - link to full image or video file
+
 mixin gallery(data)
     section.gallery&attributes(attributes)
         .gallery__inner
             +heading-group({
-                title    : data.title,
-                subtitle : data.subtitle,
+                title: data.title,
+                subtitle: data.subtitle,
                 level: 2,
             }).gallery__heading
 
             .gallery__wrapper
                 .gallery__grid
-                    each thumb in data.thumbs
+                    each item in data.items
                         .gallery__thumb
                             .gallery__thumb-inner
-                                img(
-                                    src = thumb.image
-                                    alt = ""
-                                ).gallery__thumb-img
-                                a(href=thumb.link).gallery__thumb-link
+                                -
+                                    const jpegSrcSet = `
+                                        ${item.thumb}-small.jpg 1x,
+                                        ${item.thumb}-medium.jpg 1.5x,
+                                        ${item.thumb}-large.jpg 2x
+                                    `;
+                                    const webpSrcSet = `
+                                        ${item.thumb}-small.webp 1x,
+                                        ${item.thumb}-medium.webp 1.5x,
+                                        ${item.thumb}-large.webp 2x
+                                    `;
+                                picture
+                                    source(srcset=webpSrcSet type="image/webp")
+                                    source(srcset=jpegSrcSet type="image/jpeg")
+                                    img(
+                                        src=`${item.thumb}-small.jpg`
+                                        alt=item.thumbAlt
+                                    ).gallery__thumb-img
+                                a(
+                                    href=item.link
+                                    role="button"
+                                ).gallery__thumb-link
                                     +icon('zoom', 'Zoom image')
-                // /.gallery__grid 
-            // /.gallery__wrapper 
-        // /.gallery__inner 
-    // /.gallery 
+                            // .gallery__thumb-inner 
+                        // .gallery__thumb 
+                // .gallery__grid 
+            // .gallery__wrapper 
+        // .gallery__inner 
+    // .gallery 
