@@ -3,6 +3,8 @@
  * @author Andrey Glotov
  */
 
+// ------------------------------ BEGIN CONSTANTS -----------------------------
+
 const BLOCK = 'blog-carousel';
 
 const Selectors = {
@@ -13,8 +15,18 @@ const Selectors = {
     ARROW_NEXT: `.${BLOCK}__arrow_dir_next`,
 };
 
+// ------------------------------- END CONSTANTS ------------------------------
+
+/**
+ * Blog Post Carousel
+ */
 class BlogCarousel {
 
+    /**
+     * Initialize a carousel
+     * 
+     * @param {JQuery} $root The root block element
+     */
     constructor($root) {
         $(Selectors.CONTAINER, $root).slick({
             rows: 0,
@@ -37,12 +49,18 @@ class BlogCarousel {
         });
     }
 
+    // ------------------------- BEGIN PUBLIC METHODS -------------------------
+
+    /**
+     * Initialize all carousel blocks on the page
+     */
     static initAll() {
         $(Selectors.ROOT).each(function() {
             new BlogCarousel($(this));
         });
     }
 
+    // -------------------------- END PUBLIC METHODS --------------------------
 }
 
 export default BlogCarousel;
