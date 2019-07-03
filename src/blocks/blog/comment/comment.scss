@@ -5,6 +5,8 @@
     overflow: hidden;
 
     &__avatar {
+        max-width: 70px;
+
         @include breakpoint-up(sm) {
             float: left;
 

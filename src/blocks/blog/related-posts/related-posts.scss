@@ -35,6 +35,10 @@
         }
     }
 
+    &__item-thumb {
+        display: inline-block;
+    }
+
     &__item-img {
         display: block;
         max-width: 100%;
@@ -53,7 +57,7 @@
         color: $color-black;
         text-decoration: none;
 
-        transition: color 0.25s ease;
+        transition: color 0.2s linear;
 
         &:hover,
         &:focus {

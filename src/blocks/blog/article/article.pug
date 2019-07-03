@@ -15,7 +15,7 @@ mixin article(props = {})
 
             time(datetime=props.date).article__pubdate
                 = moment(props.date).format('MMMM D, YYYY')
-        // /.article__header 
+        // .article__header 
 
         .article__content
             if props.image
@@ -40,7 +40,11 @@ mixin article(props = {})
                     `;
 
                 if (props.link)
-                    a(href=props.link)
+                    a(
+                        href=props.link
+                        aria-hidden="true"
+                        tabindex="-1"
+                    )
                         picture
                             source(
                                 srcset=mobileWebpSrcSet
@@ -94,20 +98,20 @@ mixin article(props = {})
                 +blog-carousel({ slides: props.carousel }).article__carousel
 
             .rich-text.article__text !{props.content}
-            // /.article__text 
+            // .article__text 
 
             if props.link
                 a(href=props.link).article__link Continue Reading...
-        // /.article__content 
+        // .article__content 
 
         if props.tags || props.author || props.relatedPosts || props.comments
             footer.article__footer
                 .article__footer-top
                     if props.tags
-                        +article-tags(props.tags).article__tags
+                        +article-tags({ tags: props.tags }).article__tags
 
                     +share().article__share
-                // /.article__footer-top 
+                // .article__footer-top 
                 
                 if props.author
                     .article__author
@@ -116,19 +120,21 @@ mixin article(props = {})
                 if props.relatedPosts
                     section.article__footer-section
                         +title().article__footer-section-title Read more
-                        +related-posts(props.relatedPosts).article__related-posts
-                    // /.article__footer-section 
+                        +related-posts({
+                            posts: props.relatedPosts
+                        }).article__related-posts
+                    // .article__footer-section 
 
                 if props.comments
                     section.article__footer-section
                         +title().article__footer-section-title
                             | #{props.comments.total} comments
                         +comments(props.comments).article__comments
-                    // /.article__footer-section 
+                    // .article__footer-section 
 
                     section.article__footer-section#comment-form
                         +title().article__footer-section-title Leave a reply
                         +comment-form().article__comment-form
-                    // /.article__footer-section 
-            // /.article__footer 
-    // /.article 
+                    // .article__footer-section 
+            // .article__footer 
+    // .article 

@@ -13,7 +13,11 @@ mixin popular-posts(props = {})
         .popular-posts__list
             each post in props.posts
                 article.popular-posts__item
-                    a(href=post.link).popular-posts__item-thumb
+                    a(
+                        href=post.link
+                        aria-hidden="true"
+                        tabindex="-1"
+                    ).popular-posts__item-thumb
                         -
                             const jpegSrcSet = `
                                 ${post.thumb}.jpg 1x,

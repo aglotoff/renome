@@ -1,4 +1,11 @@
-mixin comments(data)
+//-
+    name: comments
+    description: Markup for the comments block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.comments - list of comments
+
+mixin comments(props = {})
     ol.comments&attributes(attributes)
-        each comment in data.comments
+        each comment in props.comments
             +comment(comment).comments__comment

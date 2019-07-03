@@ -1,32 +1,46 @@
-mixin comment(data)
-    -
-        const formattedDate = function(datestr) {
-            const date = new Date(datestr);
-            const month = date.toLocaleString('en-us', {month: 'short'});
-            const day = date.getDate();
-            const time = date.toLocaleString('en-US', {
-                hour   : 'numeric',
-                minute : 'numeric',
-                hour12 : true,
-            });
-            return `${month} ${day}, ${time}`;
-        };
+//-
+    name: comment
+    description: Markup for the comment block
+    arguments:
+        - {object} props - block options
+        - {string} props.id - comment ID
+        - {string} props.avatar - comment author's avatar
+        - {string} props.author - comment author's name
+        - {string} props.date - publication date
+        - {object[]} props.replies - comment replies
 
-    li.comment(data-id=data.id)&attributes(attributes)
+mixin comment(props = {})
+    li.comment(data-id=props.id)&attributes(attributes)
         .comment__header
-            img(src=data.avatar, alt=data.author).comment__avatar
-            time.comment__date(datetime=data.date)= formattedDate(data.date)
-            .comment__author= data.author
+            -
+                const jpegSrcSet = `
+                    ${props.avatar}.jpg 1x,
+                    ${props.avatar}@2x.jpg 2x
+                `;
+                const webpSrcSet = `
+                    ${props.avatar}.webp 1x,
+                    ${props.avatar}@2x.webp 2x
+                `;
+            picture
+                source(srcset=webpSrcSet type="image/webp")
+                source(srcset=jpegSrcSet type="image/jpeg")
+                img(
+                    src=`${props.avatar}.jpg`
+                    alt=props.author
+                ).comment__avatar
+            time.comment__date(datetime=props.date)
+                = moment(props.date).format('MMM D, h:mm A')
+            .comment__author= props.author
             button(type="button").comment__reply-btn Reply
-        // /.comment__header 
+        // .comment__header 
 
-        .rich-text.comment__body= data.text
-        // /.comment__body 
+        .rich-text.comment__body= props.text
+        // .comment__body 
 
         .comment__replies
-            if data.replies
+            if props.replies
                 ul.comment__reply-list
-                    each reply in data.replies
+                    each reply in props.replies
                         +comment(reply).comment__reply
-        // /.comment__replies 
-    // /.comment 
+        // .comment__replies 
+    // .comment 

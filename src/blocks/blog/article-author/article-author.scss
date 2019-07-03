@@ -9,6 +9,8 @@
     }
 
     &__avatar {
+        max-width: 100px;
+
         @include breakpoint-up(md) {
             float: left;
             margin-right: 25px;

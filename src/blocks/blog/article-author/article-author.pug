@@ -1,11 +1,35 @@
-mixin article-author(data)
+//-
+    name: article-author
+    description: Markup for the article author block
+    arguments:
+        - {object} props - block options
+        - {string} props.avatar - author's avatar
+        - {string} props.name - author's name
+        - {string} props.bio - author's bio
+
+mixin article-author(props = {})
     section.article-author&attributes(attributes)
-        img(src=data.avatar, alt=data.name).article-author__avatar
+        -
+            const jpegSrcSet = `
+                ${props.avatar}.jpg 1x,
+                ${props.avatar}@2x.jpg 2x
+            `;
+            const webpSrcSet = `
+                ${props.avatar}.webp 1x,
+                ${props.avatar}@2x.webp 2x
+            `;
+        picture
+            source(srcset=webpSrcSet type="image/webp")
+            source(srcset=jpegSrcSet type="image/jpeg")
+            img(
+                src=`${props.avatar}.jpg`
+                alt=props.name
+            ).article-author__avatar
 
         .article-author__text
-            h3.article-author__name= data.name
+            h3.article-author__name= props.name
             .rich-text.rich-text_small.article-author__bio
-                p= data.bio
+                p= props.bio
 
             ul.article-author__social
                 li.article-author__social-item
@@ -17,5 +41,5 @@ mixin article-author(data)
                 li.article-author__social-item
                     a(href="javascript:void(0);").article-author__social-link
                         +icon('gplus', 'Google Plus')
-        // /.article-author__text 
-    // /.article-author 
+        // .article-author__text 
+    // .article-author 

@@ -1,15 +1,44 @@
-mixin related-posts(data)
+//-
+    name: related posts
+    description: Markup for the related posts block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.posts - list of posts
+        - {string} props.posts[].thumb - post thumbnail image
+        - {string} props.posts[].title - post title
+        - {string} props.posts[].date - post publication date
+
+mixin related-posts(props = {})
     .related-posts&attributes(attributes)
         .related-posts__list
-            each post in data
+            each post in props.posts
                 article.related-posts__item
-                    a(href=post.link).related-posts__item-thumb
-                        img(src=post.thumb, alt=post.title).related-posts__item-img
+                    a(
+                        href=post.link
+                        aria-hidden="true"
+                        tabindex="-1"
+                    ).related-posts__item-thumb
+                        -
+                            const jpegSrcSet = `
+                                ${post.thumb}.jpg 1x,
+                                ${post.thumb}@2x.jpg 2x
+                            `;
+                            const webpSrcSet = `
+                                ${post.thumb}.webp 1x,
+                                ${post.thumb}@2x.webp 2x
+                            `;
+                        picture
+                            source(srcset=webpSrcSet type="image/webp")
+                            source(srcset=jpegSrcSet type="image/jpeg")
+                            img(
+                                src=`${post.thumb}.jpg`
+                                alt=post.title
+                            ).related-posts__item-img
                     
                     .related-posts__item-body
                         h3.related-posts__item-title
                             a(href=post.link).related-posts__item-link= post.title
                         time.related-posts__item-date(datetime=post.date)
                             = moment(post.date).format('MMMM D, YYYY')
-        // /.related-posts__list 
-    // /.related-posts 
+        // .related-posts__list 
+    // .related-posts 

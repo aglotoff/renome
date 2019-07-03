@@ -1,6 +1,13 @@
-mixin article-tags(data = {}, mods = {})
+//-
+    name: article-tags
+    description: Markup for the article tags block
+    arguments:
+        - {object} props - block options
+        - {string[]} props - list of tags
+
+mixin article-tags(props = {})
     ul.article-tags&attributes(attributes)
-        each tag in data
+        each tag in props.tags
             li.article-tags__item
                 a(href="javascript:void(0);").article-tags__link= tag
-    // /.article-tags 
+    // .article-tags 

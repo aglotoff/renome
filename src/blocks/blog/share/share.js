@@ -11,7 +11,7 @@ import DropdownStrategy from '../../../js/utils/dropdown-strategy';
  * Initialize the share block.
  * @return true
  */
-function initBlock() {
+export function initBlock() {
     const $share = $('.share');
     const $trigger = $('.share__trigger', $share);
     const $drawer = $('.share__drawer', $share);
@@ -34,7 +34,3 @@ function initBlock() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
-
-export default {
-    initBlock,
-};

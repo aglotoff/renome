@@ -21,24 +21,24 @@
 
             "author": {
                 "name": "Richard Miles",
-                "avatar": "img/content/avatars/100x100/richard-miles.jpg",
+                "avatar": "img/content/avatars/richard-miles",
                 "bio": "Praesent pharetra risus velit, a pharetra purus dignissim in. Integer dictum finibus leo, ut vehicula massa cidunt neque pellentesque dictum."
             },
 
             "relatedPosts": [{
                 "title": "Our salad are award winning",
                 "date": "2015-04-25 19:00",
-                "thumb": "img/content/blog/posts/thumbs/480x320/our-salad-are-award-winning.jpg",
+                "thumb": "img/content/blog/posts/thumbs/related/our-salad-are",
                 "link": "blog-single-left-sidebar.html"
             }, {
                 "title": "Homemade pizza",
                 "date": "2015-04-07 19:00",
-                "thumb": "img/content/blog/posts/thumbs/480x320/homemade-pizza.jpg",
+                "thumb": "img/content/blog/posts/thumbs/related/homemade-pizza",
                 "link": "blog-single-left-sidebar.html"
             }, {
                 "title": "Grand opening!",
                 "date": "2015-03-10 19:00",
-                "thumb": "img/content/blog/posts/thumbs/480x320/grand-opening.jpg",
+                "thumb": "img/content/blog/posts/thumbs/related/grand-opening",
                 "link": "blog-single-left-sidebar.html"
             }],
 
@@ -47,13 +47,13 @@
                 "comments": [{
                     "id": 101,
                     "author": "John Doe",
-                    "avatar": "img/content/avatars/70x70/john-doe.jpg",
+                    "avatar": "img/content/avatars/john-doe",
                     "date": "2015-04-25 12:45",
                     "text": "Donec maximus at neque pharetra convallis. Fusce tellus odio, mattis nec nisl sit amet, efficitur congue elit. Mauris tincidunt ex id dignissim tincidunt.",
                     "replies": [{
                         "id": 102,
                         "author": "Jane Doe",
-                        "avatar": "img/content/avatars/70x70/jane-doe.jpg",
+                        "avatar": "img/content/avatars/jane-doe",
                         "date": "2015-04-25 12:45",
                         "text": "Donec maximus at neque pharetra convallis. Fusce tellus odio, mattis nec nisl sit amet, efficitur congue elit. Mauris tincidunt ex id dignissim tincidunt."
                     }]

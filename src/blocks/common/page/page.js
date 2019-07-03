@@ -22,9 +22,8 @@ import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
 
 import BlogCarousel from '../../blog/blog-carousel/blog-carousel';
-import * as Comment         from '../../blog/comment/comment';
-import * as CommentForm     from '../../blog/comment-form/comment-form';
-import Share from '../../blog/share/share';
+import * as CommentForm from '../../blog/comment-form/comment-form';
+import * as Share from '../../blog/share/share';
 import Video from '../../blog/video/video';
 
 import * as Checkout        from '../../shop/checkout/checkout';
@@ -133,8 +132,7 @@ export function initBlock() {
 
     // Blog blocks
     BlogCarousel.initAll();
-    Comment.initModule();
-    CommentForm.initModule();
+    CommentForm.initBlock();
     Share.initBlock();
     Video.initAll();
 
