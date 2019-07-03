@@ -89,7 +89,7 @@ mixin article(props = {})
                             alt=props.title
                         ).article__image
             else if props.video
-                +video(props.video, {format: '16x9'}).article__video
+                +video(props.video).article__video
             else if props.carousel
                 +blog-carousel({ slides: props.carousel }).article__carousel
 

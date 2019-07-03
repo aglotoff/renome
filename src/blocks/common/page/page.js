@@ -25,6 +25,7 @@ import BlogCarousel from '../../blog/blog-carousel/blog-carousel';
 import * as Comment         from '../../blog/comment/comment';
 import * as CommentForm     from '../../blog/comment-form/comment-form';
 import Share from '../../blog/share/share';
+import Video from '../../blog/video/video';
 
 import * as Checkout        from '../../shop/checkout/checkout';
 import * as Payment         from '../../shop/payment/payment';
@@ -135,6 +136,7 @@ export function initBlock() {
     Comment.initModule();
     CommentForm.initModule();
     Share.initBlock();
+    Video.initAll();
 
     // Shop blocks
     Checkout.initModule();

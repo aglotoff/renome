@@ -18,7 +18,12 @@
             "title": "Our salad are award winning",
             "categories": ["Press"],
             "date": "2015-04-25 19:00",
-            "video": "https://www.youtube.com/embed/ScMzIvxBSi4",
+            "video": {
+                "url": "https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1",
+                "format": "16x9",
+                "placeholder": "img/content/blog/posts/our-salad-are",
+                "title": "Our salad are award winning"
+            },
             "content": "<p>Sed viverra bibendum sollicitudin. Praesent interdum porttitor elit molestie convallis. Integer sagittis vitae sem eget euismod. Etiam ut risus ac ligula hendrerit volutpat. Donec at consectetur leo, eu pretium estmauris.</p>",
             "link": "blog-single-left-sidebar.html"
         }, {

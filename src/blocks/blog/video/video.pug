@@ -1,8 +1,51 @@
-mixin video(link, mods={})
-    .video(
-        class='video_format_' + (mods.format || '19x6')
-    )&attributes(attributes)
-        .video__inner
-            iframe(src=link).video__container
-        // /.video__inner 
-    // /.video 
+mixin video(props = {})
+    .video(data-url=props.url, data-format=props.format)&attributes(attributes)
+        .video__placeholder
+            -
+                const mobileJpegSrcSet = `
+                    ${props.placeholder}-small.jpg 1x,
+                    ${props.placeholder}-medium.jpg 2x
+                `;
+                const desktopJpegSrcSet = `
+                    ${props.placeholder}-medium.jpg 1x,
+                    ${props.placeholder}-large.jpg 1.5x,
+                    ${props.placeholder}-xlarge.jpg 2x
+                `;
+                const mobileWebpSrcSet = `
+                    ${props.placeholder}-small.webp 1x,
+                    ${props.placeholder}-medium.webp 2x
+                `;
+                const desktopWebpSrcSet = `
+                    ${props.placeholder}-medium.webp 1x,
+                    ${props.placeholder}-large.webp 1.5x,
+                    ${props.placeholder}-xlarge.webp 2x
+                `;
+            picture
+                source(
+                    srcset=mobileWebpSrcSet
+                    media="(max-width: 480px)"
+                    type="image/webp"
+                )
+                source(
+                    srcset=desktopWebpSrcSet
+                    type="image/webp"
+                )
+                source(
+                    srcset=mobileJpegSrcSet
+                    media="(max-width: 480px)"
+                    type="image/jpeg"
+                )
+                source(
+                    srcset=desktopJpegSrcSet
+                    type="image/jpeg"
+                )
+                img(
+                    src=`${props.placeholder}-small.jpg`
+                    alt=props.title
+                ).video__img
+            .video__overlay
+                button(role="button").video__play-btn
+                    +icon('play', 'Play Video')
+            //. video__overlay 
+        // .video__placeholder 
+    // .video 
