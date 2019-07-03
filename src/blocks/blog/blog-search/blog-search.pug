@@ -1,6 +1,14 @@
+//-
+    name: blog-search
+    description: Markup for the blog sidebar search block
+
 mixin blog-search()
     form.blog-search(action="#" method="post")&attributes(attributes)
-        input(type="text" placeholder="Search" required).blog-search__input
+        input(
+            type="text"
+            name="s"
+            placeholder="Search"
+        ).blog-search__input
         button(type="submit").blog-search__submit
             +icon('search', 'Search')
-    // /.blog-search 
+    // .blog-search 

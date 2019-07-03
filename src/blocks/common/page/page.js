@@ -21,7 +21,7 @@ import Tabs from '../tabs/tabs';
 import * as Portfolio       from '../../portfolio/portfolio/portfolio';
 import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
 
-import * as BlogGallery     from '../../blog/blog-gallery/blog-gallery';
+import BlogCarousel from '../../blog/blog-carousel/blog-carousel';
 import * as Comment         from '../../blog/comment/comment';
 import * as CommentForm     from '../../blog/comment-form/comment-form';
 import Share from '../../blog/share/share';
@@ -131,7 +131,7 @@ export function initBlock() {
     ProjectSlider.initModule();
 
     // Blog blocks
-    BlogGallery.initModule();
+    BlogCarousel.initAll();
     Comment.initModule();
     CommentForm.initModule();
     Share.initBlock();

@@ -1,64 +1,129 @@
-mixin article(data)
+mixin article(props = {})
     article.article&attributes(attributes)
         header.article__header
             ul.article__cats
-                each category in data.categories
+                each category in props.categories
                     li.article__cat-item
                         a(href="javascript:void(0);").article__cat-link
                             | #{category}
 
             h2.article__title
-                if data.link
-                    a(href=data.link).article__title-link= data.title
+                if props.link
+                    a(href=props.link).article__title-link= props.title
                 else
-                    | #{data.title}
+                    | #{props.title}
 
-            time(datetime=data.date).article__pubdate= blogDate(data.date)
+            time(datetime=props.date).article__pubdate
+                = moment(props.date).format('MMMM D, YYYY')
         // /.article__header 
 
         .article__content
-            if data.image
-                if (data.link)
-                    a(href=data.link)
-                        img(src=data.image, alt=data.title).article__image
-                else
-                    img(src=data.image, alt=data.title).article__image
-            else if data.video
-                +video(data.video, {format: '16x9'}).article__video
-            else if data.gallery
-                +blog-gallery(data.gallery).article__gallery
+            if props.image
+                -
+                    const mobileJpegSrcSet = `
+                        ${props.image}-small.jpg 1x,
+                        ${props.image}-medium.jpg 2x
+                    `;
+                    const desktopJpegSrcSet = `
+                        ${props.image}-medium.jpg 1x,
+                        ${props.image}-large.jpg 1.5x,
+                        ${props.image}-xlarge.jpg 2x
+                    `;
+                    const mobileWebpSrcSet = `
+                        ${props.image}-small.webp 1x,
+                        ${props.image}-medium.webp 2x
+                    `;
+                    const desktopWebpSrcSet = `
+                        ${props.image}-medium.webp 1x,
+                        ${props.image}-large.webp 1.5x,
+                        ${props.image}-xlarge.webp 2x
+                    `;
 
-            .rich-text.article__text !{data.content}
+                if (props.link)
+                    a(href=props.link)
+                        picture
+                            source(
+                                srcset=mobileWebpSrcSet
+                                media="(max-width: 480px)"
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=desktopWebpSrcSet
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=mobileJpegSrcSet
+                                media="(max-width: 480px)"
+                                type="image/jpeg"
+                            )
+                            source(
+                                srcset=desktopJpegSrcSet
+                                type="image/jpeg"
+                            )
+                            img(
+                                src=`${props.image}-small.jpg`
+                                alt=props.title
+                            ).article__image
+                else
+                    picture
+                        source(
+                            srcset=mobileWebpSrcSet
+                            media="(max-width: 480px)"
+                            type="image/webp"
+                        )
+                        source(
+                            srcset=desktopWebpSrcSet
+                            type="image/webp"
+                        )
+                        source(
+                            srcset=mobileJpegSrcSet
+                            media="(max-width: 480px)"
+                            type="image/jpeg"
+                        )
+                        source(
+                            srcset=desktopJpegSrcSet
+                            type="image/jpeg"
+                        )
+                        img(
+                            src=`${props.image}-small.jpg`
+                            alt=props.title
+                        ).article__image
+            else if props.video
+                +video(props.video, {format: '16x9'}).article__video
+            else if props.carousel
+                +blog-carousel({ slides: props.carousel }).article__carousel
+
+            .rich-text.article__text !{props.content}
             // /.article__text 
 
-            if data.link
-                a(href=data.link).article__link Continue Reading...
+            if props.link
+                a(href=props.link).article__link Continue Reading...
         // /.article__content 
 
-        if data.tags || data.author || data.relatedPosts || data.comments
+        if props.tags || props.author || props.relatedPosts || props.comments
             footer.article__footer
                 .article__footer-top
-                    if data.tags
-                        +article-tags(data.tags).article__tags
+                    if props.tags
+                        +article-tags(props.tags).article__tags
 
                     +share().article__share
                 // /.article__footer-top 
                 
-                if data.author
+                if props.author
                     .article__author
-                        +article-author(data.author)
+                        +article-author(props.author)
                 
-                if data.relatedPosts
+                if props.relatedPosts
                     section.article__footer-section
                         +title().article__footer-section-title Read more
-                        +related-posts(data.relatedPosts).article__related-posts
+                        +related-posts(props.relatedPosts).article__related-posts
                     // /.article__footer-section 
 
-                if data.comments
+                if props.comments
                     section.article__footer-section
                         +title().article__footer-section-title
-                            | #{data.comments.total} comments
-                        +comments(data.comments).article__comments
+                            | #{props.comments.total} comments
+                        +comments(props.comments).article__comments
                     // /.article__footer-section 
 
                     section.article__footer-section#comment-form

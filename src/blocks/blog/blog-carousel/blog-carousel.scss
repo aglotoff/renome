@@ -1,7 +1,7 @@
 /**
- * Styles for the blog gallery block
+ * Styles for the blog carousel block
  */
-.blog-gallery {
+.blog-carousel {
     &__inner {
         position: relative;
     }
@@ -45,9 +45,8 @@
         background: transparent;
         border: 2px solid $color-white;
         cursor: pointer;
-        opacity: 0.4;
         outline: none;
-        transition: opacity 0.25s ease;
+        transition: opacity 0.2s linear;
 
         &:after {
             content: "";
@@ -63,9 +62,12 @@
             border-bottom: 2px solid $color-white;
         }
 
-        &:hover,
+        &:hover {
+            opacity: 0.7;
+        }
+
         &:focus {
-            opacity: 1;
+            box-shadow: 0 0 0 3px rgba($color-white, 0.4);
         }
 
         &_dir_prev {

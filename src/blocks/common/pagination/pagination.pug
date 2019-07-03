@@ -1,7 +1,16 @@
-mixin pagination(data, mods={})
+//-
+    name: blog-pagination
+    description: Markup for the pagination block
+    arguments:
+        - {object} props - block options
+        - {bool} props.bordered - whether to draw borders around the block
+        - {number} props.pages - total number of pages
+        - {number} props.activePage - number of the active page
+
+mixin pagination(props = {})
     nav.pagination(
-        class      = mods.blog && 'pagination_blog'
-        aria-label = 'Pagination Navigation'
+        class=props.bordered && "pagination_bordered"
+        aria-label="Pagination Navigation"
     )&attributes(attributes)
         .pagination__inner
             a(
@@ -10,21 +19,21 @@ mixin pagination(data, mods={})
 
             ul.pagination__list               
                 - let i = 1;
-                while i <= data.pages
+                while i <= props.pages
                     li.pagination__item
                         a(
-                            href         = "javascript:void(0);"
-                            class        = {
-                                pagination__link        : true,
-                                pagination__link_active : i == data.activePage
+                            href="javascript:void(0);"
+                            class={
+                                pagination__link: true,
+                                pagination__link_active: i == props.activePage
                             }
-                            aria-label   = "Go to Page " + i
-                            aria-current = (i == data.activePage) && "page"
+                            aria-label="Go to Page " + i
+                            aria-current=(i == props.activePage) && "page"
                         )= i
                     - i++;
 
             a(
                 href="javascript:void(0);"
             ).pagination__link.pagination__link_next Go to Next Page
-        // /.pagination__inner 
-    // /.pagination 
+        // .pagination__inner 
+    // .pagination 

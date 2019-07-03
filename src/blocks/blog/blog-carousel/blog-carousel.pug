@@ -1,0 +1,69 @@
+//-
+    name: blog-carousel
+    description: Markup for the post carousel block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.slides - slides
+        - {string} props.slides[].src - slide image
+        - {string} props.slides[].alt - slide alt text
+
+mixin blog-carousel(props)
+    .blog-carousel&attributes(attributes)
+        .blog-carousel__inner
+            .blog-carousel__container
+                each image in props.slides
+                    -
+                        const mobileJpegSrcSet = `
+                            ${image.src}-small.jpg 1x,
+                            ${image.src}-medium.jpg 2x
+                        `;
+                        const desktopJpegSrcSet = `
+                            ${image.src}-medium.jpg 1x,
+                            ${image.src}-large.jpg 1.5x,
+                            ${image.src}-xlarge.jpg 2x
+                        `;
+                        const mobileWebpSrcSet = `
+                            ${image.src}-small.webp 1x,
+                            ${image.src}-medium.webp 2x
+                        `;
+                        const desktopWebpSrcSet = `
+                            ${image.src}-medium.webp 1x,
+                            ${image.src}-large.webp 1.5x,
+                            ${image.src}-xlarge.webp 2x
+                        `;
+                    .blog-carousel__slide
+                        picture
+                            source(
+                                srcset=mobileWebpSrcSet
+                                media="(max-width: 480px)"
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=desktopWebpSrcSet
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=mobileJpegSrcSet
+                                media="(max-width: 480px)"
+                                type="image/jpeg"
+                            )
+                            source(
+                                srcset=desktopJpegSrcSet
+                                type="image/jpeg"
+                            )
+                            img(
+                                src=`${image.src}-small.jpg`
+                                alt=image.alt
+                            ).blog-carousel__img
+            // .blog-carousel__container 
+
+            .blog-carousel__arrows
+                button(
+                    type="button"
+                ).blog-carousel__arrow.blog-carousel__arrow_dir_prev Previous
+                button(
+                    type="button"
+                ).blog-carousel__arrow.blog-carousel__arrow_dir_next Next
+            // .blog-carousel__arrows 
+        // .blog-carousel__inner 
+    // .blog-carousel 

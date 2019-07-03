@@ -1,0 +1,14 @@
+//-
+    name: sidebar-widget
+    description: Markup for the sidebar widget block
+    arguments:
+        - {object} props - block options
+        - {string} props.title - widget title
+
+mixin sidebar-widget(props = {})
+    section.sidebar-widget&attributes(attributes)
+        h2.sidebar-widget__title= props.title
+
+        if block
+            block
+    // .sidebar-widget 

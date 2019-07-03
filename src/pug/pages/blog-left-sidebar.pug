@@ -3,11 +3,11 @@ extends ../layouts/inner.pug
 include ../../blocks/blog/blog-layout/blog-layout.pug
 include ../../blocks/blog/article/article.pug
 include ../../blocks/blog/video/video.pug
-include ../../blocks/blog/blog-gallery/blog-gallery.pug
+include ../../blocks/blog/blog-carousel/blog-carousel.pug
 include ../../blocks/blog/blog-search/blog-search.pug
-include ../../blocks/blog/blog-widget/blog-widget
+include ../../blocks/blog/sidebar-widget/sidebar-widget.pug
 include ../../blocks/blog/blog-cats/blog-cats.pug
 include ../../blocks/blog/popular-posts/popular-posts.pug
 
 block append page
-    +blog-layout(data.content, {sidebar: 'left'})
+    +blog-layout(data.content)

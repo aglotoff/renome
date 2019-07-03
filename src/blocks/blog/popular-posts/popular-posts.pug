@@ -1,17 +1,41 @@
-mixin popular-posts(data)
+//-
+    name: popular posts
+    description: Markup for the popular posts block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.posts - list of posts
+        - {string} props.posts[].thumb - post thumbnail image
+        - {string} props.posts[].title - post title
+        - {string} props.posts[].date - post publication date
+
+mixin popular-posts(props = {})
     .popular-posts&attributes(attributes)
         .popular-posts__list
-            each post in data
+            each post in props.posts
                 article.popular-posts__item
                     a(href=post.link).popular-posts__item-thumb
-                        img(
-                            src=post.thumb
-                            alt=post.title
-                        ).popular-posts__item-img
+                        -
+                            const jpegSrcSet = `
+                                ${post.thumb}.jpg 1x,
+                                ${post.thumb}@2x.jpg 2x
+                            `;
+                            const webpSrcSet = `
+                                ${post.thumb}.webp 1x,
+                                ${post.thumb}@2x.webp 2x
+                            `;
+                        picture
+                            source(srcset=webpSrcSet type="image/webp")
+                            source(srcset=jpegSrcSet type="image/jpeg")
+                            img(
+                                src=`${post.thumb}.jpg`
+                                alt=post.title
+                            ).popular-posts__item-img
                     
                     .popular-posts__item-body
                         h3.popular-posts__item-title
                             a(href=post.link).popular-posts__item-link
                                 | #{post.title}
-                        time.popular-posts__item-pubdate(datetime=post.date)= blogDate(post.date)
-    // /.popular-posts 
+                        time.popular-posts__item-pubdate(datetime=post.date)
+                            = moment(post.date).format('MMMM D, YYYY')
+        // .popular-posts__list 
+    // .popular-posts 

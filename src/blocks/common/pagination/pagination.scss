@@ -1,5 +1,5 @@
 /**
- * Pagination
+ * Styles for the pagination block
  */
 .pagination {
     &__inner {
@@ -34,7 +34,7 @@
         font-weight: $font-weight-bold;
         text-decoration: none;
 
-        transition: color 0.25s ease;
+        transition: color 0.2s linear;
 
         &_active,
         &:hover {
@@ -63,7 +63,7 @@
 
                 border-right: 2px solid $color-primary;
                 border-bottom: 2px solid $color-primary;
-                transition: border-color 0.25s ease;
+                transition: border-color 0.2s linear;
             }
         }
 
@@ -101,7 +101,7 @@
         }
     }
 
-    &_blog {
+    &_bordered {
         border-bottom: 1px solid $color-concrete;
         border-top: 1px solid $color-concrete;
     }

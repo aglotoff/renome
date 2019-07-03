@@ -1,22 +1,39 @@
-mixin blog-layout(data, mods={})
+//-
+    name: blog-layout
+    description: Markup for the blog page main block
+    arguments:
+        - {object} props - block options
+        - {string} props.sidebar - sidebar location (left or right)
+        - {object[]} props.articles - list of articles
+        - {object} props.pagination - pagination data
+        - {object} props.categories - categories data
+        - {object} props.popularPosts - popular posts data
+
+mixin blog-layout(props = {})
     .blog-layout(
-        class='blog-layout_sidebar_' + (mods.sidebar || 'right')
+        class='blog-layout_sidebar_' + (props.sidebar || 'right')
     )&attributes(attributes)
         .blog-layout__articles
-            each article in data.articles
+            each article in props.articles
                 +article(article).blog-layout__article
-        // /.blog-layout__articles 
+        // .blog-layout__articles 
 
-        if data.pagination
-            +pagination(data.pagination, {blog: true}).blog-layout__pagination
+        if props.pagination
+            +pagination({
+                pages: props.pagination.pages,
+                activePage: props.pagination.activePage,
+                bordered: true,
+            }).blog-layout__pagination
 
-        .blog-layout__sidebar
+        aside.blog-layout__sidebar
             +blog-search().blog-layout__search
 
-            +blog-widget({title: 'Categories'}).blog-layout__widget
-                +blog-cats(data.categories)
+            if props.categories
+                +sidebar-widget({ title: 'Categories' }).blog-layout__widget
+                    +blog-cats({ items: props.categories })
 
-            +blog-widget({title: 'Popular posts'}).blog-layout__widget
-                +popular-posts(data.popularPosts)
-        // /.blog-layout__sidebar 
-    // /.blog-layout 
+            if props.popularPosts
+                +sidebar-widget({ title: 'Popular posts' }).blog-layout__widget
+                    +popular-posts({ posts: props.popularPosts })
+        // .blog-layout__sidebar 
+    // .blog-layout 

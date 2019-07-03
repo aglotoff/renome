@@ -1,7 +1,14 @@
-mixin blog-cats(data)
+//-
+    name: blog-cats
+    description: Markup for the blog categories block
+    arguments:
+        - {object} props - block options
+        - {string[]} props.items - list of category names
+
+mixin blog-cats(props)
     .blog-cats
         ul.blog-cats__list
-            each category in data
+            each category in props.items
                 li.blog-cats__item
                     a(href="javascript:void(0);").blog-cats__link= category
-    // /.blog-cats 
+    // .blog-cats 
