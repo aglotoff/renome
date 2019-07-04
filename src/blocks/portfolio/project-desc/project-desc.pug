@@ -1,9 +1,17 @@
-mixin project-desc(data)
+//-
+    name: project-desc
+    description: Markup for the project description block
+    arguments:
+        - {object} props - block properties
+        - {string} props.title - project title
+        - {string} props.text - text
+
+mixin project-desc(props)
     .project-desc&attributes(attributes)
         .project-desc__inner
-            h2.project-desc__title= data.title
+            h2.project-desc__title= props.title
 
-            .rich-text.project-desc__text !{data.text}
-            // /.project-desc__text 
-        // /.project-desc__inner 
-    // /.project-desc 
+            .rich-text.project-desc__text !{props.text}
+            // .project-desc__text 
+        // .project-desc__inner 
+    // .project-desc 

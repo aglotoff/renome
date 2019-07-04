@@ -18,8 +18,8 @@ import Slider from '../../common/slider/slider';
 import SpecialsSlider from '../../common/specials-slider/specials-slider';
 import Tabs from '../tabs/tabs';
 
-import * as Portfolio       from '../../portfolio/portfolio/portfolio';
-import * as ProjectSlider   from '../../portfolio/project-slider/project-slider';
+import * as Portfolio from '../../portfolio/portfolio/portfolio';
+import * as ProjectCarousel from '../../portfolio/project-carousel/project-carousel';
 
 import BlogCarousel from '../../blog/blog-carousel/blog-carousel';
 import * as CommentForm from '../../blog/comment-form/comment-form';
@@ -133,7 +133,7 @@ export function initBlock() {
 
     // Portfolio blocks
     Portfolio.initBlock();
-    ProjectSlider.initModule();
+    ProjectCarousel.initBlock();
 
     // Shop blocks
     Checkout.initModule();

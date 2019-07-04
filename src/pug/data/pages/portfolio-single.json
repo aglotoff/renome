@@ -8,25 +8,20 @@
     "pageHeaderBg": "img/content/portfolio/portfolio-header-bg.jpg",
 
     "content": {
-        "info": [{
-            "title": "Client",
-            "value": "Renome"
-        }, {
-            "title": "Role",
-            "value": "Culinary arts"
-        }, {
-            "title": "Agency",
-            "value": "VBN Themes"
-        }],
+        "info": {
+            "client": "Renome",
+            "role": "Culinary arts",
+            "agency": "VBN Themes"
+        },
 
         "images": [{
-            "src": "img/content/portfolio/projects/beef-with-pineapple.jpg",
+            "src": "img/content/portfolio/projects/beef-with-pineapple",
             "alt": "Beef with pineapple"
         }, {
-            "src": "img/content/portfolio/projects/egg-baguette.jpg",
+            "src": "img/content/portfolio/projects/egg-baguette",
             "alt": "Egg Baguette"
         }, {
-            "src": "img/content/portfolio/projects/beef-steak.jpg",
+            "src": "img/content/portfolio/projects/beef-steak",
             "alt": "Beef Steak"
         }],
 

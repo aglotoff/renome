@@ -1,5 +1,7 @@
-mixin project(data)
+
+
+mixin project(props)
     .project&attributes(attributes)
-        +project-info(data.info).project__info
-        +project-slider(data.images).project__slider
-        +project-desc(data.desc).project__desc
+        +project-info(props.info).project__info
+        +project-carousel({ slides: props.images }).project__carousel
+        +project-desc(props.desc).project__desc

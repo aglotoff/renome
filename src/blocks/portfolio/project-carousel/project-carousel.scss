@@ -1,7 +1,7 @@
 /**
- * Styles for the project slider block
+ * Styles for the project carousel block
  */
-.project-slider {
+.project-carousel {
     &__inner {
         position: relative;
 
@@ -72,11 +72,14 @@
             }
         }
 
-        &:hover,
-        &:focus {
+        &:hover {
             @include breakpoint-up(lg) {
-                background: $color-au-chico;
+                background: $color-secondary;
             }
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($color-primary, 0.6);
         }
 
         &_dir_prev {

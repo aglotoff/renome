@@ -1,0 +1,89 @@
+//-
+    name: project-carousel
+    description: Markup for the project carousel block
+    arguments:
+        - {object} props - block properties
+        - {object} props.slides - slides
+        - {string} props.slides[].src - slide image
+        - {string} props.slides[].alt - slide image alt text
+
+mixin project-carousel(props = {})
+    .project-carousel&attributes(attributes)
+        .project-carousel__inner
+            .project-carousel__container
+                each slide in props.slides
+                    .project-carousel__slide
+                        -
+                            const mobileJpegSrcSet = `
+                                ${slide.src}-small.jpeg 1x,
+                                ${slide.src}-medium.jpeg 2x
+                            `;
+                            const tabletJpegSrcSet = `
+                                ${slide.src}-medium.jpeg 1x,
+                                ${slide.src}-large.jpeg 1.5x
+                                ${slide.src}-xlarge.jpeg 2x
+                            `;
+                            const desktopJpegSrcSet = `
+                                ${slide.src}-large.jpeg 1x,
+                                ${slide.src}-xlarge.jpeg 1.5x
+                            `;
+                            const mobileWebpSrcSet = `
+                                ${slide.src}-small.webp 1x,
+                                ${slide.src}-medium.webp 2x
+                            `;
+                            const tabletWebpSrcSet = `
+                                ${slide.src}-medium.webp 1x,
+                                ${slide.src}-large.webp 1.5x
+                                ${slide.src}-xlarge.webp 2x
+                            `;
+                            const desktopWebpSrcSet = `
+                                ${slide.src}-large.webp 1x,
+                                ${slide.src}-xlarge.webp 1.5x
+                            `;
+                        picture
+                            source(
+                                srcset=mobileWebpSrcSet
+                                media="(max-width: 480px)"
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=tabletWebpSrcSet
+                                media="(max-width: 768px)"
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=desktopWebpSrcSet
+                                type="image/webp"
+                            )
+                            source(
+                                srcset=mobileJpegSrcSet
+                                media="(max-width: 480px)"
+                                type="image/jpeg"
+                            )
+                            source(
+                                srcset=tabletJpegSrcSet
+                                media="(max-width: 768px)"
+                                type="image/jpeg"
+                            )
+                            source(
+                                srcset=desktopJpegSrcSet
+                                type="image/jpeg"
+                            )
+                            img(
+                                src=`${slide.src}-large.jpg`
+                                alt=slide.alt
+                            ).project-carousel__img
+            // .project-carousel__container 
+
+            .project-carousel__arrows
+                button(
+                    type="button"
+                ).project-carousel__arrow.project-carousel__arrow_dir_prev
+                    | Previous slide
+                button(
+                    type="button"
+                ).project-carousel__arrow.project-carousel__arrow_dir_next
+                    | Next slide
+            // .project-carousel__arrows 
+        // .project-carousel__inner 
+    // .project-carousel 

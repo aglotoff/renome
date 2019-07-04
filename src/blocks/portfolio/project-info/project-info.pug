@@ -1,10 +1,24 @@
-mixin project-info(data)
+//-
+    name: project-info
+    description: Markup for the project info block
+    arguments:
+        - {object} props - block properties
+        - {string} props.client - project client
+        - {string} props.role - project role
+        - {string} props.agency - project agency
+
+mixin project-info(props = {})
     .project-info&attributes(attributes)
         .project-info__inner
             dl.project-info__list
-                each item in data
-                    .project-info__item
-                        dt.project-info__label= item.title
-                        dd.project-info__value= item.value
-        // /.project-info__inner 
-    // /.project-info 
+                .project-info__item
+                    dt.project-info__label Client
+                    dd.project-info__value= props.client
+                .project-info__item
+                    dt.project-info__label Role
+                    dd.project-info__value= props.role
+                .project-info__item
+                    dt.project-info__label Agency
+                    dd.project-info__value= props.agency
+        // .project-info__inner 
+    // .project-info 
