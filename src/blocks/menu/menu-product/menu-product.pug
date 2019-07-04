@@ -23,8 +23,16 @@ mixin menu-product(props = {})
                     ${props.thumb}-large.webp 2x
                 `;
             picture
-                source(data-srcset=webpSrcSet type="image/webp")
-                source(data-srcset=jpegSrcSet type="image/jpeg")
+                source(
+                    srcset="img/content/menu/products/thumbs/placeholder.jpg"
+                    data-srcset=webpSrcSet
+                    type="image/webp"
+                )
+                source(
+                    srcset="img/content/menu/products/thumbs/placeholder.jpg"
+                    data-srcset=jpegSrcSet
+                    type="image/jpeg"
+                )
                 img(
                     src="img/content/menu/products/thumbs/placeholder.jpg"
                     data-src=`${props.thumb}-small.jpg`

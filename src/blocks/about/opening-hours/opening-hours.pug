@@ -20,9 +20,9 @@ mixin opening-hours(props)
         ul.opening-hours__list
             each item in props.timetable
                 li.opening-hours__item
-                    time(
+                    data(
                         itemprop="openingHours"
-                        datetime=item.iso8601
+                        value=item.iso8601
                     ).opening-hours__item-inner
                         span.opening-hours__days= item.days
                         = ' '
