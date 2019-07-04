@@ -65,7 +65,7 @@ mixin article(props = {})
                                 type="image/jpeg"
                             )
                             img(
-                                src=`${props.image}-small.jpg`
+                                src=`${props.image}-medium.jpg`
                                 alt=props.title
                             ).article__image
                 else
@@ -89,7 +89,7 @@ mixin article(props = {})
                             type="image/jpeg"
                         )
                         img(
-                            src=`${props.image}-small.jpg`
+                            src=`${props.image}-medium.jpg`
                             alt=props.title
                         ).article__image
             else if props.video
