@@ -7,36 +7,36 @@
     "pageHeaderBg": "img/content/portfolio/portfolio-header-bg.jpg",
 
     "content": {
-        "filters": ["All", "Lunch", "Drinks", "Desserts"],
+        "categories": [ "All", "Lunch", "Drinks", "Desserts" ],
 
         "items": [{
             "title": "Mango cocktail",
-            "image": "img/content/portfolio/projects/thumbs/mango-cocktail.jpg",
+            "image": "img/content/portfolio/projects/thumbs/mango-cocktail",
             "link": "portfolio-single.html",
             "categories": ["drinks"]
         }, {
             "title": "Sandwiches",
-            "image": "img/content/portfolio/projects/thumbs/sandwiches.jpg",
+            "image": "img/content/portfolio/projects/thumbs/sandwiches",
             "link": "portfolio-single.html",
             "categories": ["desserts"]
         }, {
             "title": "Steak with vegetables",
-            "image": "img/content/portfolio/projects/thumbs/steak-with-vegetables.jpg",
+            "image": "img/content/portfolio/projects/thumbs/steak-with-vegetables",
             "link": "portfolio-single.html",
             "categories": ["lunch"]
         }, {
             "title": "Chicken skewers",
-            "image": "img/content/portfolio/projects/thumbs/chicken-skewers.jpg",
+            "image": "img/content/portfolio/projects/thumbs/chicken-skewers",
             "link": "portfolio-single.html",
             "categories": ["lunch"]
         }, {
             "title": "Chicken breast",
-            "image": "img/content/portfolio/projects/thumbs/chicken-breast.jpg",
+            "image": "img/content/portfolio/projects/thumbs/chicken-breast",
             "link": "portfolio-single.html",
             "categories": ["lunch"]
         }, {
             "title": "Berries and coconut",
-            "image": "img/content/portfolio/projects/thumbs/berries-and-coconut.jpg",
+            "image": "img/content/portfolio/projects/thumbs/berries-and-coconut",
             "link": "portfolio-single.html",
             "categories": ["desserts"]
         }]

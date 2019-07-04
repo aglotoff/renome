@@ -1,5 +1,5 @@
 /**
- * Portfolio Filter
+ * Styles for the portfolio filter block
  */
 .portfolio-filter {
     text-align: center;
@@ -58,8 +58,8 @@
         opacity: 0;
 
         transform: translate(-50%, 0);
-        transition: opacity 0.25s ease,
-                    visibility 0s step-start 0.25s;
+        transition: opacity 0.2s ease-out,
+                    visibility 0s step-start 0.2s;
         visibility: hidden;
 
         @include breakpoint-up(md) {
@@ -90,7 +90,7 @@
         }
     }
 
-    &__btn {
+    &__option {
         display: block;
         padding: 13px 39px;
         width: 100%;
@@ -105,7 +105,7 @@
         border: none;
         cursor: pointer;
 
-        transition: color 0.25s ease;
+        transition: color 0.2s linear;
 
         @include breakpoint-up(md) {
             padding: 20px 0;
@@ -128,12 +128,16 @@
                 background: $color-secondary;
                 opacity: 0;
 
-                transition: opacity 0.25s ease;
+                transition: opacity 0.2s linear;
             }
         }
 
-        &:hover,
-        &_active {
+        &_highlighted,
+        &:hover {
+            color: $color-secondary;
+        }
+
+        &[aria-selected="true"] {
             color: $color-secondary;
 
             &:after {

@@ -6,113 +6,166 @@
 /* global Shuffle */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+const BLOCK = 'portfolio-grid';
+
+const ClassNames = {
+    ITEM: `${BLOCK}__item`,
+    ITEM_INNER: `${BLOCK}__item-inner`,
+    IMG: `${BLOCK}__img`,
+    OVERLAY: `${BLOCK}__overlay`,
+    TITLE: `${BLOCK}__title`,
+    LINK: `${BLOCK}__link`,
+    CATS: `${BLOCK}__cats`,
+    CAT_ITEM: `${BLOCK}__cat-item`,
+    CAT_LINK: `${BLOCK}__cat-link`,
+    OVERLAY_FOCUS: `${BLOCK}__overlay_has-focus`,
+};
+
+const Selectors = {
+    ROOT: `.${BLOCK}`,
+    CONTAINER: `.${BLOCK}__container`,
+    LINK: `.${BLOCK}__link`,
+    IMG: `.${BLOCK}__img`,
+    SOURCE_WEBP: 'source[type="image/webp"]',
+    SOURCE_JPEG: 'source[type="image/jpeg"]',
+    CATS: `.${BLOCK}__cats`,
+    ITEM: `.${BLOCK}__item`,
+    SIZER: `.${BLOCK}__sizer`,
+    CAT_LINK: `.${BLOCK}__cat-link`,
+    OVERLAY: `.${BLOCK}__overlay`,
+};
+
+// Template markup for portfolio items
 const itemHtml = `
-<div class="portfolio-grid__item">
-    <div class="portfolio-grid__item-inner">
-        <img class="portfolio-grid__img" />
-        <div class="portfolio-grid__text">
-            <h2 class="portfolio-grid__title">
-                <a class="portfolio-grid__link"></a>
+<article class="${ClassNames.ITEM}">
+    <div class="${ClassNames.ITEM_INNER}">
+        <picture>
+            <source type="image/webp"></source>
+            <source type="image/jpeg"></source>
+            <img class="${ClassNames.IMG}" />
+        </picture>
+        <div class="${ClassNames.OVERLAY}">
+            <h2 class="${ClassNames.TITLE}">
+                <a class="${ClassNames.LINK}"></a>
             </h2>
-            <ul class="portfolio-grid__cats">
-            </ul>
+            <ul class="${ClassNames.CATS}"></ul>
         </div>
     </div>
-</div>
+</article>
 `;
+
+// JQuery elements map
+const elements = {};
 
 let shuffleInstance = null;
 
-let $portfolio, $grid, $container, $sizer;
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// -------------------------- BEGIN UTILITY FUNCTIONS -------------------------
-const createPortfolioItem = function(data) {
+// ----------------------------- BEGIN DOM METHODS ----------------------------
+
+function createPortfolioItem(data) {
     const $item = $(itemHtml);
 
     $item.attr('data-groups', `["${data.categories.join('","')}"]`);
     
-    $item.find('.portfolio-grid__link')
+    $(Selectors.LINK, $item)
         .text(data.title)
         .attr('href', data.link);
 
-    $item.find('.portfolio-grid__img')
+    const $img = $(Selectors.IMG, $item)
         .attr({
-            src : data.image,
+            src : data.images.jpeg.small,
             alt : data.title,
         });
 
-    const $categories = data.categories.map(function(cat) {
-        const $catItem = $('<li></li>')
-            .addClass('portfolio-grid__cat-item');
+    $img.prev(Selectors.SOURCE_WEBP).attr('srcset', `
+        ${data.images.webp.small} 1x,
+        ${data.images.webp.medium} 1.5x,
+        ${data.images.webp.large} 2x
+    `);
 
-        const $catLink = $('<a></a>')
-            .addClass('portfolio-grid__cat-link')
-            .attr({
-                'href'        : 'javascript:void(0)',
-                'role'        : 'button',
-                'data-filter' : cat.toLowerCase(),
-            })
-            .text(cat);
-        
-        $catItem.append($catLink);
-        return $catItem;
+    $img.prev(Selectors.SOURCE_JPEG).attr('srcset', `
+        ${data.images.jpeg.small} 1x,
+        ${data.images.jpeg.medium} 1.5x,
+        ${data.images.jpeg.large} 2x
+    `);
+
+    $(Selectors.CATS, $item).append(data.categories.map((cat) => {
+        return $('<li></li>')
+            .addClass(ClassNames.CAT_ITEM)
+            .append($('<a></a>')
+                .addClass(ClassNames.CAT_LINK)
+                .attr({
+                    'href': 'javascript:void(0)',
+                    'role': 'button',
+                    'data-filter': cat.toLowerCase(),
+                })
+                .text(cat));
+    }));
+
+    const $d = new $.Deferred();
+
+    $img.on('load', function() {
+        $d.resolve($item);
     });
 
-    $item.find('.portfolio-grid__cats').append($categories);
+    return $d.promise();
+}
 
-    return $item;
-};
-// --------------------------- END UTILITY FUNCTIONS --------------------------
+// ------------------------------ END DOM METHODS -----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 /**
  * Initialize the portfolio grid module.
  * @return true
  */
-export const initModule = function() {
-    $portfolio = $('.portfolio');
-
-    $grid      = $('.portfolio-grid');
-    $container = $grid.find('.portfolio-grid__inner');
-    $sizer     = $container.find('.portfolio-grid__sizer');
+export function initBlock({ onCatLinkClick }) {
+    const $grid = $(Selectors.ROOT);
+    const $container = $(Selectors.CONTAINER, $grid);
+    const $sizer = $(Selectors.SIZER, $container);
 
     shuffleInstance = new Shuffle($container.get(0), {
-        itemSelector : '.portfolio-grid__item',
-        sizer        : $sizer.get(0),
+        itemSelector: Selectors.ITEM,
+        sizer: $sizer.get(0),
     });
 
     $container
-        .on('click', '.portfolio-grid__cat-link', function onCatLinkClick() {
-            $portfolio.trigger('filter', $(this).data('filter'));
+        .on('click', Selectors.CAT_LINK, function handleCatLinkClick() {
+            onCatLinkClick($(this).data('filter'));
         })
         // Until all major browsers support the :focus-within CSS pseudo-class
         // apply a class using JavaScript
-        .on('focusin', '.portfolio-grid__text', function onItemFocusin() {
-            $(this).addClass('.portfolio-grid__text_has-focus');
-        })
-        .on('focusout', '.portfolio-grid__text', function onItemFocusout() {
-            $(this).removeClass('.portfolio-grid__text_has-focus');
-        });
-};
+        .on({
+            focusin: function handleItemFocusin() {
+                $(this).addClass(ClassNames.OVERLAY_FOCUS);
+            },
+            focusout: function handleItemFocusout() {
+                $(this).removeClass(ClassNames.OVERLAY_FOCUS);
+            },
+        }, Selectors.OVERLAY);
+
+    elements.$sizer = $sizer;
+}
 
 /**
  * Apply a filter.
  * @param {string} filter - The filter to be applied
  */
-export const setFilter = function(filter) {
+export function setFilter(filter) {
     shuffleInstance.filter(filter);
-};
+}
 
 /**
  * Add new items
  * @param {Array} items - the items to be added
  */
-export const addItems = function(items) {
-    const newItems = $.map(items, createPortfolioItem);
-    
-    newItems.forEach(($item) => $item.insertBefore($sizer));
+export function addItems(items) {
+    $.when(...items.map(createPortfolioItem)).then(function(...items) {
+        elements.$sizer.before(items);
 
-    shuffleInstance.add(newItems.map(($item) => $item.get(0)));
-};
+        shuffleInstance.add(items.map(($item) => $item.get(0)));
+    });
+}
+
 // ---------------------------- END PUBLIC METHODS ----------------------------

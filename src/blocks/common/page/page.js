@@ -100,7 +100,6 @@ function throttleWindowScroll() {
 
 /**
  * Initialize the page block.
- * @return true
  */
 export function initBlock() {
     $(window).on({
@@ -126,15 +125,15 @@ export function initBlock() {
     SpecialsSlider.initAll();
     Tabs.initAll();
 
-    // Portfolio blocks
-    Portfolio.initModule();
-    ProjectSlider.initModule();
-
     // Blog blocks
     BlogCarousel.initAll();
     CommentForm.initBlock();
     Share.initBlock();
     Video.initAll();
+
+    // Portfolio blocks
+    Portfolio.initBlock();
+    ProjectSlider.initModule();
 
     // Shop blocks
     Checkout.initModule();
@@ -148,8 +147,6 @@ export function initBlock() {
     // Process the initial window size and scroll position
     handleWindowResize();
     handleWindowScroll();
-
-    return true;
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------

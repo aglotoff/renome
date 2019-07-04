@@ -1,30 +1,36 @@
-mixin portfolio-filter(data)
+//-
+    name: portfolio-filter
+    description: Markup for the portfolio filter block
+    arguments:
+        - {object} props - block properties
+        - {string[]} props.categories - list of all categories
+
+mixin portfolio-filter(props = {})
     .portfolio-filter&attributes(attributes)
         .portfolio-filter__inner
             button(
-                type          = "button"
-                aria-haspopup = "true"
-                aria-expanded = "false"
-                aria-controls = "portfolio-filter"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="portfolio-filter"
             ).portfolio-filter__toggle Filter
 
             ul.portfolio-filter__list(
-                role                  = "listbox"
-                aria-label            = "Portfolio Filter"
-                aria-orientation      = "vertical"
-                tabindex              = "0"
-                aria-activedescendant = "filter-" + data[0].toLowerCase()
+                role="listbox"
+                aria-label="Portfolio Filter"
+                aria-orientation="vertical"
+                tabindex="0"
+                aria-activedescendant=`filter-${props.categories[0].toLowerCase()}`
             )#portfolio-filter
-                each filter, i in data
-                    li.portfolio-filter__item(role="presentation")
-                        button.portfolio-filter__btn(
-                            type          = "button"
-                            class         = !i && 'portfolio-filter__btn_active'
-                            role          = "option"
-                            tabindex      = "-1"
-                            aria-selected = String(!i)
-                            data-filter   = filter.toLowerCase()
-                            id            = "filter-" + filter.toLowerCase()
-                        )= filter
-        // /.portfolio-filter__inner 
-    // /.portfolio-filter 
+                each cat, i in props.categories
+                    li.portfolio-filter__item
+                        button.portfolio-filter__option(
+                            type="button"
+                            role="option"
+                            tabindex="-1"
+                            aria-selected=String(!i)
+                            data-filter=cat.toLowerCase()
+                            id=`filter-${cat.toLowerCase()}`
+                        )= cat
+        // .portfolio-filter__inner 
+    // .portfolio-filter 

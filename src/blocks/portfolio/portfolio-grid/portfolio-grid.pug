@@ -1,29 +1,57 @@
-mixin portfolio-grid__item(data)
-    .portfolio-grid__item(
-        data-groups=`["${data.categories.join(",")}"]`
-    )&attributes(attributes)
-        .portfolio-grid__item-inner
-            img(src=data.image alt=data.title).portfolio-grid__img
+//-
+    name: portfolio-grid
+    description: Markup for the portfolio grid block
+    arguments:
+        - {object} props - block properties
+        - {object[]} props.items - list of initial items to display
+        - {string[]} props.items[].categories - list of item's categories
+        - {string} props.items[].image - item's thumbnail image
+        - {string} props.items[].link - link to the item's page
+        - {string} props.items[].title - item's title
 
-            .portfolio-grid__text
-                h2.portfolio-grid__title
-                    a(href=data.link).portfolio-grid__link= data.title
-
-                ul.portfolio-grid__cats
-                    each cat in data.categories
-                        li.portfolio-grid__cat-item
-                            a(
-                                href        = "javascript:void(0);"
-                                role        = "button"
-                                data-filter = cat.toLowerCase()
-                            ).portfolio-grid__cat-link= cat
-
-mixin portfolio-grid(data)
+mixin portfolio-grid(props = {})
     .portfolio-grid&attributes(attributes)
-        .portfolio-grid__inner
-            each item in data
-                +portfolio-grid__item(item)
+        .portfolio-grid__container
+            each item in props.items
+                article.portfolio-grid__item(
+                    data-groups=`["${item.categories.join(",")}"]`
+                )
+                    .portfolio-grid__item-inner
+                        -
+                            const jpegSrcSet = `
+                                ${item.image}-small.jpg 1x,
+                                ${item.image}-medium.jpg 1.5x,
+                                ${item.image}-large.jpg 2x
+                            `;
+                            const webpSrcSet = `
+                                ${item.image}-small.webp 1x,
+                                ${item.image}-medium.webp 1.5x,
+                                ${item.image}-large.webp 2x
+                            `;
+                        picture
+                            source(srcset=webpSrcSet type="image/webp")
+                            source(srcset=jpegSrcSet type="image/jpeg")
+                            img(
+                                src=`${item.image}-small.jpg`
+                                alt=item.title
+                            ).portfolio-grid__img
+
+                        .portfolio-grid__overlay
+                            h2.portfolio-grid__title
+                                a(href=item.link).portfolio-grid__link
+                                    = item.title
+
+                            ul.portfolio-grid__cats
+                                each cat in item.categories
+                                    li.portfolio-grid__cat-item
+                                        a(
+                                            href="javascript:void(0);"
+                                            role="button"
+                                            data-filter=cat.toLowerCase()
+                                        ).portfolio-grid__cat-link= cat
+                        // .portfolio-grid__overlay 
+                    // .portfolio-grid__item-inner 
             
-            .portfolio-grid__sizer
-        // /.portfolio-grid__inner 
-    // /.portfolio-grid 
+            .portfolio-grid__sizer(aria-hidden="true")
+        // .portfolio-grid__container 
+    // .portfolio-grid 

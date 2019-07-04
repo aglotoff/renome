@@ -117,8 +117,10 @@ class Select {
 
         $root.keypress(this._handleKeyPress);
         $list.keydown(this._handleListKeyDown);
-        $list.on('mouseover', Selectors.OPTION, this._handleOptionMouseOver);
-        $list.on('click', Selectors.OPTION, this._handleOptionClick);
+        $list.on({
+            mouseover: this._handleOptionMouseOver,
+            click: this._handleOptionClick
+        }, Selectors.OPTION);
         $button.click(this._handleButtonClick);
     }
 
@@ -302,9 +304,7 @@ class Select {
     _handleOutsideClick(e) {
         const { $root } = this._elements;
 
-        if ($.contains($root.get(0), e.target)) {
-            return;
-        } else {
+        if (!$.contains($root.get(0), e.target)) {
             this.collapse();
         }
     }

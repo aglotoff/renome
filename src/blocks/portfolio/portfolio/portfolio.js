@@ -7,154 +7,218 @@ import * as PortfolioFilter from '../portfolio-filter/portfolio-filter';
 import * as PortfolioGrid   from '../portfolio-grid/portfolio-grid';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+
 const MEDIUM_BREAKPOINT = 768;
-const FAKE_LOAD_TIME    = 1000;
+const FAKE_LOAD_TIME = 1000;
 
-let $portfolio, $grid, $moreBtn;
+const BLOCK = 'portfolio';
 
-let activeFilter   = 'all';
-let verticalLayout = true;
+const Selectors = {
+    ROOT: `.${BLOCK}`,
+    GRID: `.${BLOCK}__grid`,
+    MORE: `.${BLOCK}__more-btn`,
+};
+
+const ClassNames = {
+    LOADER: `loader loader_size_l ${BLOCK}__loader`,
+    ERROR: `error ${BLOCK}__error`,
+    MORE_HIDDEN: `${BLOCK}__more-btn_hidden`,
+};
+
+const elements = {};
+
+let activeFilter = 'all';
+let isMobile = true;
 
 const fakeItems = [{
     title: 'Apple pie',
-    image: 'img/content/portfolio/projects/thumbs/apple-pie.jpg',
+    images: {
+        jpeg: {
+            small: 'img/content/portfolio/projects/thumbs/apple-pie-small.jpg',
+            medium: 'img/content/portfolio/projects/thumbs/apple-pie-medium.jpg',
+            large: 'img/content/portfolio/projects/thumbs/apple-pie-large.jpg',
+        },
+        webp: {
+            small: 'img/content/portfolio/projects/thumbs/apple-pie-small.webp',
+            medium: 'img/content/portfolio/projects/thumbs/apple-pie-medium.webp',
+            large: 'img/content/portfolio/projects/thumbs/apple-pie-large.webp',
+        },
+    },
     link: 'portfolio-single.html',
-    categories: ['desserts'],
+    categories: [ 'desserts' ],
 }, {
     title: 'Fresh fruit cocktail',
-    image: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail.jpg',
+    images: {
+        jpeg: {
+            small: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail-small.jpg',
+            medium: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail-medium.jpg',
+            large: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail-large.jpg',
+        },
+        webp: {
+            small: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail-small.webp',
+            medium: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail-medium.webp',
+            large: 'img/content/portfolio/projects/thumbs/fresh-fruit-cocktail-large.webp',
+        },
+    },
     link: 'portfolio-single.html',
-    categories: ['drinks'],
+    categories: [ 'drinks' ],
 }, {
     title: 'Green tea',
-    image: 'img/content/portfolio/projects/thumbs/green-tea.jpg',
+    images: {
+        jpeg: {
+            small: 'img/content/portfolio/projects/thumbs/green-tea-small.jpg',
+            medium: 'img/content/portfolio/projects/thumbs/green-tea-medium.jpg',
+            large: 'img/content/portfolio/projects/thumbs/green-tea-large.jpg',
+        },
+        webp: {
+            small: 'img/content/portfolio/projects/thumbs/green-tea-small.webp',
+            medium: 'img/content/portfolio/projects/thumbs/green-tea-medium.webp',
+            large: 'img/content/portfolio/projects/thumbs/green-tea-large.webp',
+        },
+    },
     link: 'portfolio-single.html',
-    categories: ['drinks'],
+    categories: [ 'drinks' ],
 }, {
     title: 'Waffles with coffee',
-    image: 'img/content/portfolio/projects/thumbs/waffles-with-coffee.jpg',
+    images: {
+        jpeg: {
+            small: 'img/content/portfolio/projects/thumbs/waffles-with-coffee-small.jpg',
+            medium: 'img/content/portfolio/projects/thumbs/waffles-with-coffee-medium.jpg',
+            large: 'img/content/portfolio/projects/thumbs/waffles-with-coffee-large.jpg',
+        },
+        webp: {
+            small: 'img/content/portfolio/projects/thumbs/waffles-with-coffee-small.webp',
+            medium: 'img/content/portfolio/projects/thumbs/waffles-with-coffee-medium.webp',
+            large: 'img/content/portfolio/projects/thumbs/waffles-with-coffee-large.webp',
+        }
+    },
     link: 'portfolio-single.html',
-    categories: ['desserts', 'drinks'],
+    categories: [ 'desserts', 'drinks' ],
 }, {
     title: 'Chicken livers',
-    image: 'img/content/portfolio/projects/thumbs/chicken-livers.jpg',
+    images: {
+        jpeg: {
+            small: 'img/content/portfolio/projects/thumbs/chicken-livers-small.jpg',
+            medium: 'img/content/portfolio/projects/thumbs/chicken-livers-medium.jpg',
+            large: 'img/content/portfolio/projects/thumbs/chicken-livers-large.jpg',
+        },
+        webp: {
+            small: 'img/content/portfolio/projects/thumbs/chicken-livers-small.webp',
+            medium: 'img/content/portfolio/projects/thumbs/chicken-livers-medium.webp',
+            large: 'img/content/portfolio/projects/thumbs/chicken-livers-large.webp',
+        },
+    },
     link: 'portfolio-single.html',
-    categories: ['lunch'],
+    categories: [ 'lunch' ],
 }];
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // -------------------------- BEGIN UTILITY FUNCTIONS -------------------------
-const loadFakeItems = function() {
+
+/**
+ * Simulate AJAX request to retrieve more items.
+ * Replace this function with actual code.
+ * 
+ * @return {JQuery.Promise} The promise which resolves when the items are loaded
+ */
+function loadFakeItems() {
     const $d = new $.Deferred();
 
     setTimeout(() => {
         $d.resolve({
-            items : fakeItems,
-            more  : false,
+            items: fakeItems,
+            more: false,
         }); 
     }, FAKE_LOAD_TIME);
 
     return $d.promise();
-};
+}
 
-const loadImage = function(src) {
-    const $d = new $.Deferred();
-
-    const image = new Image();
-    $(image).on('load', function() {
-        $d.resolve();
-    });
-    image.src = src;
-
-    return $d.promise();
-};
 // --------------------------- END UTILITY FUNCTIONS --------------------------
 
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const onFilterChange = function(event, filter) {
+
+/**
+ * Handle the filter change event.
+ * 
+ * @param {JQuery.Event} e The event object
+ * @param {string} filter The name of the selected category
+ */
+function handleFilterChange(filter) {
     if (activeFilter !== filter) {
         activeFilter = filter;
 
         PortfolioFilter.setFilter(filter);
         PortfolioGrid.setFilter(filter);
     }
-};
+}
 
-const onMoreBtnClick = function() {
+/**
+ * Handle more button click event.
+ */
+function handleMoreBtnClick() {
+    const { $grid, $moreBtn } = elements;
+
     $grid.attr('aria-busy', 'true');
 
     // Show a loader
     const $loader = $('<div></div>')
-        .addClass('loader loader_size_l portfolio__loader')
+        .addClass(ClassNames.LOADER)
         .insertAfter($moreBtn);
 
     // Hide the button
-    $moreBtn.addClass('portfolio__more-btn_hidden');
-
-    let data;
+    $moreBtn.addClass(ClassNames.MORE_HIDDEN);
 
     loadFakeItems()
-        .then(function onItemsLoaded(response) {
-            data = response;
-
-            // Wait until all images are loaded 
-            return $.when(...response.items.map(function(item) {
-                return loadImage(item.image);
-            }));
-        })
-        .then(function onImagesLoaded() {
-            $grid.attr('aria-busy', 'false');
-
+        .then((data) => {
             PortfolioGrid.addItems(data.items);
 
             // If there are more items available, show the button again
             if (data.more) {
-                $moreBtn.removeClass('portfolio__more-btn_hidden');
+                $moreBtn.removeClass(ClassNames.MORE_HIDDEN);
             }
         })
-        .fail(function onFail() {
+        .fail(() => {
             // Display an error message
-            const $error = $('<div></div>')
-                .addClass('error portfolio__error')
-                .text('An error occured');
-            $error.insertAfter($loader);
+            $('<div></div>')
+                .addClass(ClassNames.ERROR)
+                .text('An error occured')
+                .insertAfter($loader);
         })
-        .always(function onLoadFail() {
-            // Hide the loader
+        .always(() => {
+            $grid.attr('aria-busy', 'false');
             $loader.remove();
         });
-};
+}
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
 /**
- * Initialize the portfolio module.
- * @return true if the portfolio block is present, false otherwise
+ * Initialize the portfolio block.
  */
-export const initModule = function() {
-    $portfolio = $('.portfolio');
+export function initBlock() {
+    const $portfolio = $(Selectors.ROOT);
     if ($portfolio.length === 0) {
-        return false;
+        return;
     }
 
-    $grid    = $portfolio.find('.portfolio__grid');
-    $moreBtn = $portfolio.find('.portfolio__more-btn');
+    elements.$portfolio = $portfolio;
+    elements.$grid = $(Selectors.GRID, $portfolio);
+    elements.$moreBtn = $(Selectors.MORE, $portfolio);
 
-    PortfolioFilter.initModule();
-    PortfolioGrid.initModule();
+    PortfolioFilter.initBlock({ onChange: handleFilterChange });
+    PortfolioGrid.initBlock({ onCatLinkClick: handleFilterChange });
 
-    $portfolio.on('filter', onFilterChange);
-
-    $moreBtn.click(onMoreBtnClick);
-
-    return true;
-};
+    elements.$moreBtn.click(handleMoreBtnClick);
+}
 
 /**
  * Respond to window resize event.
  */
-export const handleResize = function() {
-    if ($portfolio.length === 0) {
+export function handleResize() {
+    if (!('$portfolio' in elements)) {
         return;
     }
 
@@ -162,14 +226,15 @@ export const handleResize = function() {
     
     // Switch listbox orientation to vertical on mobile and to horizontal on
     // larger screens.
-    if (!verticalLayout && (screenWidth < MEDIUM_BREAKPOINT)) {
-        verticalLayout = true;
+    if (!isMobile && (screenWidth < MEDIUM_BREAKPOINT)) {
+        isMobile = true;
 
-        PortfolioFilter.setOrientation('vertical');
-    } else if (verticalLayout && (screenWidth >= MEDIUM_BREAKPOINT)) {
-        verticalLayout = false;
+        PortfolioFilter.setDropdownMode(true);
+    } else if (isMobile && (screenWidth >= MEDIUM_BREAKPOINT)) {
+        isMobile = false;
 
-        PortfolioFilter.setOrientation('horizontal');
+        PortfolioFilter.setDropdownMode(false);
     }
-};
+}
+
 // ---------------------------- END PUBLIC METHODS ----------------------------

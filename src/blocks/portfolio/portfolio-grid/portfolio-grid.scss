@@ -4,7 +4,7 @@
 .portfolio-grid {
     overflow: hidden;
 
-    &__inner {
+    &__container {
         @include breakpoint-up(sm) {
             display: flex;
             flex-flow: row wrap;
@@ -43,7 +43,7 @@
         max-width: 100%;
     }
 
-    &__text {
+    &__overlay {
         bottom: 0;
         left: 0;
         position: absolute;

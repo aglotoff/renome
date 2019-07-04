@@ -1,17 +1,27 @@
-mixin portfolio(data)
+//-
+    name: portfolio
+    description: Markup for the portfolio block
+    arguments:
+        - {object} props - block properties
+        - {string[]} props.categories - list of all categories
+        - {object[]} props.items - list of initial items to display
+
+mixin portfolio(props = {})
     .portfolio&attributes(attributes)
-        +portfolio-filter(data.filters).portfolio__filter
+        +portfolio-filter({ categories: props.categories }).portfolio__filter
+        
         .portfolio__container
-            +portfolio-grid(data.items).portfolio__grid#portfolio(
-                aria-live     = "polite"
-                aria-relevant = "additions"
-                aria-busy     = "false"
+            +portfolio-grid({ items: props.items }).portfolio__grid#portfolio(
+                aria-live="polite"
+                aria-relevant="additions"
+                aria-busy="false"
             )
+
             .portfolio__more
                 button(
-                    type          = "button"
-                    aria-controls = "portfolio"
+                    type="button"
+                    aria-controls="portfolio"
                 ).portfolio__more-btn Load more projects
-            // /.portfolio__more 
-        // /.portfolio__container 
-    // /.portfolio 
+            // .portfolio__more 
+        // .portfolio__container 
+    // .portfolio 
