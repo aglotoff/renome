@@ -1,7 +1,7 @@
 /**
- * Styles for the products block
+ * Styles for the product list block
  */
-.products {
+.product-list {
     &__inner {
         margin: 0 auto;
         max-width: 1200px;
@@ -10,21 +10,21 @@
         overflow: hidden;
     }
 
-    &__list {
+    &__items {
         @include breakpoint-up(sm) {
             display: flex;
             flex-wrap: wrap;
             margin: 0 -18px;
         }
 
-        .products_center & {
+        .product-list_center & {
             @include breakpoint-up(sm) {
                 justify-content: center;
             }
         }
     }
 
-    &__product {
+    &__item {
         margin-bottom: 50px;
 
         @include breakpoint-up(sm) {

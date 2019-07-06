@@ -1,0 +1,15 @@
+//-
+    name: shop-main
+    description: Markup for the shop main page block
+    arguments:
+        - {object} props - block options
+        - {string[]} props.categories - product categories
+        - {object[]} props.products - products
+        - {object} props.pagination - pagination data
+
+mixin shop-main(props)
+    .shop-main&attributes(attributes)
+        +shop-filter({ categories: props.categories }).shop-main__filter
+        +product-list({ items: props.products }).shop-main__product-list
+        +pagination(props.pagination).shop-main__pagination
+    // .shop-main 

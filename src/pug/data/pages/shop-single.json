@@ -42,16 +42,14 @@
         }],
 
         "relatedProducts": [{
-            "id": 1001,
             "title": "Beef with pineapple",
             "price": 18.20,
-            "thumb": "img/content/shop/products/thumbs/480x480/beef-with-pineapple.jpg",
+            "thumb": "img/content/shop/products/thumbs/archive/beef-with-pineapple",
             "link": "shop-single.html"
         }, {
-            "id": 1002,
             "title": "Egg baguette",
             "price": 8.10,
-            "thumb": "img/content/shop/products/thumbs/480x480/egg-baguette.jpg",
+            "thumb": "img/content/shop/products/thumbs/archive/egg-baguette",
             "link": "shop-single.html"
         }]
     }

@@ -3,37 +3,38 @@
  * @author Andrey Glotov
  */
 
-import {makeDropdown} from '../../../js/utils';
+import DropdownStrategy from '../../../js/utils/dropdown-strategy';
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
 /**
- * Initialize the shop filter module.
- * @return true if the filter block is present, false otherwise
+ * Initialize the shop filter block.
  */
-export const initModule = function() {
+export function initBlock() {
     const $filter = $('.shop-filter');
     if ($filter.length === 0) {
-        return false;
+        return;
     }
 
-    const $inner  = $filter.find('.shop-filter__inner');
-    const $toggle = $inner.find('.shop-filter__toggle');
-    const $list   = $inner.find('.shop-filter__list');
+    const $inner = $('.shop-filter__inner', $filter);
+    const $toggle = $('.shop-filter__toggle', $inner);
+    const $list = $('.shop-filter__list', $inner);
 
-    makeDropdown($inner, $toggle, {
-        hoverToggles : true,
+    const filter = new DropdownStrategy({
+        $root: $inner,
+        $trigger: $toggle,
+        $drawer: $list,
 
-        onToggle     : function onShopFilterToggle(open) {
-            $list.toggleClass('shop-filter__list_visible', open);
-
-            if (open) {
-                $toggle.attr('aria-expanded', 'true');
-            } else {
-                $toggle.removeAttr('aria-expanded');
-            }
+        onExpand() {
+            $list.addClass('shop-filter__list_visible');
         },
+        onCollapse() {
+            $list.removeClass('shop-filter__list_visible');
+        }
     });
+    filter.activate();
 
     return true;
-};
+}
+
 // ---------------------------- END PUBLIC METHODS ----------------------------

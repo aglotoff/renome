@@ -129,12 +129,12 @@
             }
         }
 
+        &:hover,
+        &:focus,
         &_active {
             color: $color-secondary;
         }
 
-        &:hover,
-        &:focus,
         &_active {
             &:after {
                 @include breakpoint-up(md) {

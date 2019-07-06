@@ -1,19 +1,40 @@
-mixin product(data)
-    .product(data-product-id=data.id)&attributes(attributes)
-        a(href=data.link).product__thumb
-            img(src=data.thumb, alt=data.title).product__img
+//-
+    name: product
+    description: Markup for the product block
+    arguments:
+        - {object} props - block options
+        - {string} props.thumb - thumbnail image
+        - {string} props.title - product title
+        - {string} props.link - product page link
+        - {number} props.price - product price
+
+mixin product(props)
+    .product&attributes(attributes)
+        a(href=props.link tabindex="-1" aria-hidden="true").product__thumb
+            -
+                const jpegSrcSet = `
+                    ${props.thumb}-small.jpg 1x,
+                    ${props.thumb}-medium.jpg 1.5x,
+                    ${props.thumb}-large.jpg 2x
+                `;
+                const webpSrcSet = `
+                    ${props.thumb}-small.webp 1x,
+                    ${props.thumb}-medium.webp 1.5x,
+                    ${props.thumb}-large.webp 2x
+                `;
+            picture
+                source(srcset=webpSrcSet type="image/webp")
+                source(srcset=jpegSrcSet type="image/jpeg")
+                img(
+                    src=`${props.thumb}-small.jpg`
+                    alt=props.title
+                ).product__img
         
         h2.product__title
-            a(href=data.link).product__link= data.title
+            a(href=props.link).product__link= props.title
 
-        .product__price $#{data.price.toFixed(2)}
+        .product__price $#{props.price.toFixed(2)}
     
         .product__add-wrapper
-            a(
-                role            = "button"
-                data-quantity   = "1"
-                data-product-id = data.id
-                href            = "javascript:void(0);"
-                rel             = "nofollow"
-            ).product__add-btn Add to cart
-    // /.product 
+            button.product__add-btn Add to cart
+    // .product 

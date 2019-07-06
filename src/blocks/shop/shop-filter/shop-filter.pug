@@ -1,19 +1,26 @@
-mixin shop-filter(data)
+//-
+    name: shop-filter
+    description: Markup for the shop filter block
+    arguments:
+        - {object} props - block options
+        - {string[]} props.categories - list of product categories
+
+mixin shop-filter(props = {})
     .shop-filter&attributes(attributes)
         .shop-filter__inner
             button(
-                type          = "button"
-                aria-haspopup = "true"
-                aria-expanded = "false"
-                aria-controls = "shop-filter"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="shop-filter"
             ).shop-filter__toggle Filter
 
             ul.shop-filter__list#shop-filter
-                each cat, i in data
+                each cat, i in props.categories
                     li.shop-filter__item
                         a.shop-filter__link(
-                            href  = "shop.html"
-                            class = (i == 0) && 'shop-filter__link_active'
+                            href="shop.html"
+                            class=(i == 0) && 'shop-filter__link_active'
                         )= cat
-        // /.shop-filter__inner 
-    // /.shop-filter 
+        // .shop-filter__inner 
+    // .shop-filter 

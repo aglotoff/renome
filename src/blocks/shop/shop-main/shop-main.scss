@@ -1,14 +1,14 @@
 /**
- * Styles for the shop page block
+ * Styles for the shop main page block
  */
-.shop-layout {
+.shop-main {
     padding-top: 50px;
 
     @include breakpoint-up(md) {
         padding-top: 75px;
     }
 
-    &__products {
+    &__product-list {
         margin-top: 40px;
 
         @include breakpoint-up(lg) {
