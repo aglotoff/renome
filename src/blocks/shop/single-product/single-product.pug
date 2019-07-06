@@ -1,0 +1,82 @@
+//-
+    name: single-product
+    description: Markup for the single product page block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.images - product gallery images
+        - {string} props.category - product category
+        - {string} props.title - product title
+        - {object[]} props.reviews - product reviews
+        - {number} props.avgRating - average product rating
+        - {number} props.price - product price
+        - {string} props.shortDesc - short description
+        - {string} props.desc - product description
+        - {object[]} props.relatedProducts - list of related products
+
+mixin single-product(props = {})
+    .single-product&attributes(attributes)
+        .single-product__notice
+            +notice()
+
+        .single-product__top
+            +product-gallery({ items: props.images }).single-product__gallery
+
+            .single-product__info(
+                itemscope
+                itemtype="http://schema.org/Product"
+            )
+                +product-breadcrumb({
+                    category: props.category,
+                    title: props.title,
+                }).single-product__breadcrumb
+
+                h2.single-product__title(itemprop="name")= props.title
+
+                .single-product__reviews
+                    .single-product__reviews-total 
+                        | #{props.reviews.length} customer reviews
+                    +rating({ value: props.avgRating }).single-product__rating
+
+                .single-product__price(
+                    itemprop="offers"
+                    itemscope
+                    itemtype="http://schema.org/Offer"
+                )
+                    meta(itemprop="priceCurrency" content="USD")
+                    | $<span itemprop="price">#{props.price.toFixed(2)}</span>
+
+                meta(
+                    itemprop="image"
+                    content=`${props.images[0].image}-large.jpg`
+                )
+
+                .rich-text.single-product__short-desc(itemprop="description")
+                    p= props.shortDesc
+                
+                +add-to-cart().single-product__add-to-cart
+            // .single-product__info 
+        // .single-product__top
+
+        +tabs({
+            tabs: [{
+                title: 'Description',
+                id: 'description',
+                active: true,
+                blocks: [{
+                    name: 'product-desc',
+                    content: { text: props.desc },
+                }],
+            }, {
+                title: 'Reviews(' + props.reviews.length + ')',
+                id: 'reviews',
+                blocks: [{
+                    name: 'reviews',
+                    content: { reviews: props.reviews },
+                }, {
+                    name: 'review-form',
+                }],
+            }]
+        }).single-product__tabs
+
+        +related-products({ items: props.relatedProducts }) 
+    // .single-product 

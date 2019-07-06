@@ -1,4 +1,12 @@
-mixin product-breadcrumb(data = {})
+//-
+    name: product-breadcrumb
+    description: Markup for the product breadcrumb block
+    arguments:
+        - {object} props - block options
+        - {string} props.category - product category
+        - {string} props.title - product title
+
+mixin product-breadcrumb(props = {})
     nav(aria-label="Product Category").product-breadcrumb&attributes(attributes)
         ol.product-breadcrumb__list
             li.product-breadcrumb__item
@@ -6,10 +14,10 @@ mixin product-breadcrumb(data = {})
                     | shop
             li.product-breadcrumb__item
                 a(href="javascript:void(0);").product-breadcrumb__link
-                    | #{data.category}
+                    | #{props.category}
             li.product-breadcrumb__item
                 a(
-                    href         = "javascript:void(0);"
-                    aria-current = "page"
+                    href="javascript:void(0);"
+                    aria-current="page"
                 ).product-breadcrumb__link.product-breadcrumb__link_current
-                    | #{data.title}
+                    | #{props.title}

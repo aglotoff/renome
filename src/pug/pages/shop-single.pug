@@ -1,6 +1,6 @@
 extends ../layouts/inner.pug
 
-include ../../blocks/shop/product-single/product-single.pug
+include ../../blocks/shop/single-product/single-product.pug
 include ../../blocks/shop/notice/notice.pug
 include ../../blocks/shop/product-gallery/product-gallery.pug
 include ../../blocks/shop/product-breadcrumb/product-breadcrumb.pug
@@ -10,9 +10,10 @@ include ../../blocks/shop/product-desc/product-desc.pug
 include ../../blocks/shop/reviews/reviews.pug
 include ../../blocks/shop/review/review.pug
 include ../../blocks/shop/review-form/review-form.pug
-include ../../blocks/shop/star-rating/star-rating.pug
+include ../../blocks/shop/rating-input/rating-input.pug
 include ../../blocks/shop/related-products/related-products.pug
+include ../../blocks/shop/product-list/product-list.pug
 include ../../blocks/shop/product/product.pug
 
 block append page
-    +product-single(data.content)
+    +single-product(data.content)

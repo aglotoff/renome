@@ -4,62 +4,88 @@
  */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-let $gallery, $slider, $links;
+
+const BLOCK = 'product-gallery';
+
+const Selectors = {
+    ROOT: `.${BLOCK}`,
+    CONTAINER: `.${BLOCK}__container`,
+    NAV: `.${BLOCK}__nav`,
+    SLIDE: `.${BLOCK}__slide`,
+    THUMB: `.${BLOCK}__thumb`,
+};
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const onSliderBeforechange = function(event, slick, currentSlide, nextSlide) {
-    $links.each(function() {
-        const $link = $(this);
-        $link.toggleClass(
-            'product-gallery__thumb-link_active',
-            $link.attr('data-slide') == nextSlide
-        );
-    });
-};
-
-const onLinkClick = function(event) {
-    event.preventDefault();
-    $slider.slick('slickGoTo', $(this).attr('data-slide'));
-};
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
 /**
  * Initialize the product gallery module.
- * @return true if the product gallery block is present, false otherwise
  */
-export const initModule = function() {
-    $gallery = $('.product-gallery');
+export function initBlock() {
+    const $gallery = $('.product-gallery');
     if ($gallery.length === 0) {
         return false;
     }
 
-    $links = $gallery.find('.product-gallery__thumb-link');
+    const $container = $(Selectors.CONTAINER, $gallery);
+    const $nav = $(Selectors.NAV, $gallery);
 
-    $slider = $gallery.find('.product-gallery__container');
-    $slider.slick({
-        rows      : 0,
-        slide      : '.product-gallery__slide',
+    $container.slick({
+        rows: 0,
+        slide: Selectors.SLIDE,
 
-        arrows    : false,
-        dots      : false,
+        arrows: false,
+        dots: false,
 
-        fade       : true,
-        speed      : 400,
-        zIndex     : 1,
+        fade: true,
+        speed: 400,
+        zIndex: 1,
 
-        responsive : [{
-            breakpoint : 768,
-            settings   : {
+        responsive: [{
+            breakpoint: 480,
+            settings: {
                 dots: true
             }
-        }]
+        }],
+
+        asNavFor: $nav,
     });
 
-    $slider.on('beforeChange', onSliderBeforechange);
-    $gallery.on('click', '.product-gallery__thumb-link', onLinkClick);
+    $nav.slick({
+        rows: 0,
+        slide: Selectors.THUMB,
 
-    return false;
-};
+        focusOnSelect: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        vertical: true,
+        verticalSwiping: true,
+
+        zIndex: 1,
+
+        arrows: false,
+        dots: false,
+
+        responsive: [{
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 3,
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4,
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 3,
+            }
+        }],
+
+        asNavFor: $container,
+    });
+}
+
 // ---------------------------- END PUBLIC METHODS ----------------------------

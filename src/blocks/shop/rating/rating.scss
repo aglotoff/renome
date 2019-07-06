@@ -8,7 +8,7 @@
         height: 12px;
 
         background: {
-            image: url('../img/rating-stars.png');
+            image: url('../img/star-rating.svg');
             position: 0 0;
             repeat: no-repeat;
         }
@@ -25,10 +25,10 @@
         position: absolute;
         top: 0;
 
-        background-position-y: -12px;
-    }
+        text-indent: -999px;
 
-    &__value {
-        display: none;
+        background-position-y: -12px;
+
+        overflow: hidden;
     }
 }

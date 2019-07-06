@@ -22,23 +22,6 @@
     }
 
     &__list {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 20px;
-
-        @include breakpoint-up(md) {
-            justify-content: center;
-            margin-left: -18px;
-            margin-right: -18px;
-        }
-    }
-
-    &__item {
-        flex: 0 1 370px;
-        margin-top: 50px;
-
-        @include breakpoint-up(md) {
-            padding: 0 18px;
-        }
+        margin-top: 70px;
     }
 }

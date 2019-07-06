@@ -2,7 +2,6 @@
  * Styles for the notice block
  */
 .notice {
-    display: none;
     padding: 30px 10px;
 
     letter-spacing: 0.15em;
@@ -13,6 +12,7 @@
     transition: opacity 0.25s ease;
 
     @include breakpoint-up(lg) {
+        display: flex;
         justify-content: space-between;
         padding: 25px;
     }
@@ -28,7 +28,7 @@
 
         border-bottom: 2px solid $color-primary;
 
-        transition: all 0.25s ease;
+        transition: all 0.2s linear;
 
         @include breakpoint-up(lg) {
             margin-top: 0;
@@ -38,16 +38,6 @@
             color: $color-secondary;
 
             border-color: $color-secondary;
-        }
-    }
-
-    &_visible {
-        display: block;
-
-        opacity: 1;
-
-        @include breakpoint-up(lg) {
-            display: flex;
         }
     }
 }

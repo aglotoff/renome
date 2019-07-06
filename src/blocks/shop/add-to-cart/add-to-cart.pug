@@ -1,17 +1,24 @@
-mixin add-to-cart(data)
+//-
+    name: add-to-cart
+    description: Markup for the add to cart block
+
+//-
+    name: add-to-cart
+    description: Markup for the add to cart block
+
+mixin add-to-cart()
     form(action="#" method="post").add-to-cart&attributes(attributes)
-        +input({theme: 'number'})(
-            name       = "quantity"
-            value      = "1"
-            type       = "number"
-            min        = "1"
-            size       = "4"
-            step       = "1"
-            aria-label = "Quantity"
+        +input({ theme: 'number' })(
+            name="quantity"
+            value="1"
+            type="number"
+            min="1"
+            size="4"
+            step="1"
+            aria-label="Quantity"
             required
         ).add-to-cart__qty
 
-        +btn({title: 'Add to cart'}, 'submit').add-to-cart__btn(
-            name  = "add-to-cart"
-            value = data
+        +btn({ title: 'Add to cart' }, 'submit').add-to-cart__btn(
+            name="add-to-cart"
         )

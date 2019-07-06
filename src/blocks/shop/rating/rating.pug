@@ -1,8 +1,13 @@
-mixin rating(value)
-    .rating&attributes(attributes)
-        span.rating__value Rated: #{value} out of 5
+//-
+    name: rating
+    description: Markup for the star rating block
+    arguments:
+        - {object} props - block options
+        - {number} props.value - rating value (from 0 to 5)
 
+mixin rating(props = {})
+    .rating&attributes(attributes)
         span.rating__stars
             span.rating__highlighted(style={
-                width: (value / 5 * 100) + '%',
-            })
+                width: (props.value / 5 * 100) + '%',
+            }) Rated: #{props.value} out of 5

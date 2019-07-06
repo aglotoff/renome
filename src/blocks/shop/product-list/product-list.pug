@@ -4,9 +4,12 @@
     arguments:
         - {object} props - block options
         - {object[]} props.items - products
+        - {boolean} props.center - align items to center
 
 mixin product-list(props)
-    .product-list&attributes(attributes)
+    .product-list(
+        class=props.center && "product-list_center"
+    )&attributes(attributes)
         .product-list__inner
             ul.product-list__items
                 each product in props.items

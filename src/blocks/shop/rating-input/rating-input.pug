@@ -1,17 +1,24 @@
-mixin star-rating(data)
-    .star-rating&attributes(attributes)
+//-
+    name: rating-input
+    description: Markup for the rating input block
+    arguments:
+        - {object} props - block options
+        - {string} props.name - radio group name
+        - {boolean} props.required - is this field required
+
+mixin rating-input(props = {})
+    .rating-input&attributes(attributes)
         - let i = 1;
         while i <= 5
             input(
-                type       = "radio"
-                id         = "star-rating-" + i
-                name       = data.name
-                aria-label = i + " out of 5"
-                value      = i
-                required   = (i == 1) && !!data.required
-            ).star-rating__radio
-            label.star-rating__label(
-                class = "star-rating__label_value_" + i
-                for   = "star-rating-" + i
-            )= i
+                type="radio"
+                id="rating-input-" + i
+                name=props.name
+                value=i
+                required=(i == 1) && !!props.required
+            ).rating-input__radio
+            label.rating-input__label(
+                class="rating-input__label_value_" + i
+                for="rating-input-" + i
+            ) #{i} out of 5
             - i++;

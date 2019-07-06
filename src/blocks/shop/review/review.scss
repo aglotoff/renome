@@ -1,5 +1,5 @@
 /**
- * Styles for the review block
+ * Styles for the product review block
  */
 .review {
     overflow: hidden;
@@ -11,6 +11,10 @@
         @include breakpoint-up(lg) {
             margin-right: 160px;
         }
+    }
+
+    &__avatar {
+        max-width: 70px;
     }
 
     &__title {

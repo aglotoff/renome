@@ -1,6 +1,13 @@
-mixin product-desc(data)
+//-
+    name: product-desc
+    description: Markup for the product description block
+    arguments:
+        - {object} props - block options
+        - {string} props.text - text content
+
+mixin product-desc(props = {})
     .product-desc&attributes(attributes)
         .product-desc__inner
-            .rich-text !{data}
-        // /.product-desc__inner 
-    // /.product-desc 
+            .rich-text !{props.text}
+        // .product-desc__inner 
+    // .product-desc 

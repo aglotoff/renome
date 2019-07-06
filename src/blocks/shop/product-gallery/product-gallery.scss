@@ -2,38 +2,39 @@
  * Styles for the product gallery block
  */
 .product-gallery {
-    @include breakpoint-up(md) {
+    @include breakpoint-up(sm) {
         display: flex;
     }
 
-    &__thumbs {
+    &__nav {
         display: none;
 
-        @include breakpoint-up(md) {
+        @include breakpoint-up(sm) {
             display: block;
+            flex: 0 0 100px;
         }
-    }
 
-    &__thumb:not(:first-child) {
-        margin-top: 25px;
-    }
+        .slick-slide {
+            opacity: 0.15;
 
-    &__thumb-link {
-        display: block;
+            margin-bottom: 15px;
 
-        opacity: 0.15;
+            @include breakpoint-up(md) {
+                margin-bottom: 25px;
+            }
 
-        transition: opacity 0.25s ease;
+            @include breakpoint-up(lg) {
+                margin-bottom: 15px;
+            }
 
-        &:hover,
-        &:focus,
-        &_active {
+            @include breakpoint-up(xl) {
+                margin-bottom: 25px;
+            }
+        }
+
+        .slick-current {
             opacity: 1;
         }
-    }
-
-    &__thumb-img {
-        display: block;
     }
 
     &__slide-img {
@@ -43,9 +44,20 @@
     &__container {
         overflow: hidden;
 
+        @include breakpoint-up(sm) {
+            margin-left: 15px;
+        }
+
         @include breakpoint-up(md) {
             margin-left: 25px;
-            max-width: 450px;
+        }
+
+        @include breakpoint-up(lg) {
+            margin-left: 15px;
+        }
+
+        @include breakpoint-up(xl) {
+            margin-left: 25px;
         }
     }
 

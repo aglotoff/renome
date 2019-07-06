@@ -1,4 +1,8 @@
-mixin notice(data)
-    .notice(role="alert")&attributes(attributes)
+//-
+    name: notice
+    description: Markup for the notice block
+
+mixin notice()
+    .notice&attributes(attributes)
         .notice__msg "Korean bibimbap" was successfully added to your cart.
         a(href="shop-cart.html").notice__link View cart

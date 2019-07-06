@@ -1,7 +1,7 @@
 /**
- * Styles for the star rating block
+ * Styles for the rating input block
  */
-.star-rating {
+.rating-input {
     display: flex;
 
     &__radio {
@@ -16,7 +16,7 @@
         text-indent: -9999px;
 
         background: {
-            image: url('../img/rating-stars.png');
+            image: url('../img/star-rating.svg');
             position: 0 0;
             repeat: no-repeat;
         }
@@ -47,12 +47,12 @@
         }
     }
 
-    &__radio:checked + .star-rating__label,
-    &__radio:focus + .star-rating__label {
+    &__radio:checked + .rating-input__label,
+    &__radio:focus + .rating-input__label {
         background-position-y: -12px;
     }
 
-    &__radio:first-child + .star-rating__label {
+    &__radio:first-child + .rating-input__label {
         margin-left: 0;
     }
 }

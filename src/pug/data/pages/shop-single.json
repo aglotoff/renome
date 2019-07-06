@@ -16,12 +16,12 @@
         "shortDesc": "Sed porta efficitur enim, sed feugiat purus aliquam in. Proin vehicula sollicitudin tincidunt. Suspendisse vel ligula a orci viverra congue. Aenean felis odio, dictum eget volutpat eu, lacinia vitae mauris liquam convallis vulputate augue accumsan.",
         
         "images": [{
-            "thumb": "img/content/shop/products/thumbs/100x100/korean-bibimbap-1.jpg",
-            "image": "img/content/shop/products/korean-bibimbap-1.jpg",
+            "thumb": "img/content/shop/gallery/thumbs/korean-bibimbap-1",
+            "image": "img/content/shop/gallery/korean-bibimbap-1",
             "alt": "Korean bibimbap"
         }, {
-            "thumb": "img/content/shop/products/thumbs/100x100/korean-bibimbap-2.jpg",
-            "image": "img/content/shop/products/korean-bibimbap-2.jpg",
+            "thumb": "img/content/shop/gallery/thumbs/korean-bibimbap-2",
+            "image": "img/content/shop/gallery/korean-bibimbap-2",
             "alt": "Korean bibimbap"
         }],
 
@@ -29,13 +29,13 @@
 
         "reviews": [{
             "author": "John Doe",
-            "avatar": "img/content/avatars/john-doe.jpg",
+            "avatar": "img/content/avatars/john-doe",
             "date": "2015-04-25 12:45",
             "rating": 4,
             "text": "Donec maximus at neque pharetra convallis. Fusce tellus odio, mattis nec nisl sit amet, efficitur congue elit. Mauris tincidunt ex id dignissim tincidunt."
         }, {
             "author": "Jane Doe",
-            "avatar": "img/content/avatars/jane-doe.jpg",
+            "avatar": "img/content/avatars/jane-doe",
             "date": "2015-04-25 12:45",
             "rating": 3,
             "text": "Morbi lobortis enim auctor pharetra auctor. Vestibulum quis lorem a ante aliquet fringilla."

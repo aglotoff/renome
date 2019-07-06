@@ -6,53 +6,60 @@ mixin review-form()
             .review-form__fields
                 .review-form__field
                     label(
-                        for = "review-author"
-                        id  = "label-author"
+                        for="review-author"
+                        id="review-author-label"
                     ).review-form__label Author
                     +input({theme: 'small'})(
-                        type            = "text"
-                        id              = "review-author"
-                        aria-labelledby = "label-author"
-                        name            = "author"
-                        placeholder     = "Name"
+                        type="text"
+                        id="review-author"
+                        aria-labelledby="review-author-label"
+                        name="author"
+                        placeholder="Name"
                         required
                     ).review-form__input
+                // .review-form__field 
 
                 .review-form__field
                     label(
-                        for = "review-email"
-                        id  = "label-email"
+                        for="review-email"
+                        id="review-email-label"
                     ).review-form__label Email
                     +input({theme: 'small'})(
-                        type            = "email"
-                        id              = "review-email"
-                        aria-labelledby = "label-email"
-                        name            = "email"
-                        placeholder     = "Email"
+                        type="email"
+                        id="review-email"
+                        aria-labelledby="review-email-label"
+                        name="email"
+                        placeholder="Email"
                         required
                     ).review-form__input
+                // .review-form__field 
 
                 fieldset.review-form__field.review-form__field_radio-group
-                    legend.review-form__legend Your rating
+                    legend.review-form__label.review-form__label_visible
+                        | Your rating
                     
-                    +star-rating({
-                        name     : 'rating',
-                        required : true,
+                    +rating-input({
+                        name: 'rating',
+                        required: true,
                     }).review-form__rating
+                // .review-form__field 
 
                 .review-form__field.review-form__field_wide
                     label(
-                        for = "review-comment"
-                        id  = "label-comment"
+                        for="review-comment"
+                        id="review-comment-label"
                     ).review-form__label Your review
                     +text-area({theme: 'small'})(
-                        id              = "review-comment"
-                        aria-labelledby = "label-comment"
-                        name            = "comment"
-                        placeholder     = "Message"
+                        id="review-comment"
+                        aria-labelledby="review-comment-label"
+                        name="comment"
+                        placeholder="Message"
                         required
                     ).review-form__input
+                // .review-form__field 
+            // .review-form__fields 
 
             .review-form__bottom
-                +btn({title: 'Submit'}, 'submit').review-form__submit
-        // /.review-form__inner 
+                +btn({ title: 'Submit' }, 'submit').review-form__submit
+            // .review-form__bottom 
+        // .review-form__inner 

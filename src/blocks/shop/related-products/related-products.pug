@@ -1,11 +1,18 @@
-mixin related-products(data)
+//-
+    name: related-products
+    description: Markup for the related products block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.items - product list
+
+mixin related-products(props = {})
     section.related-products&attributes(attributes)
         .related-products__inner
             +title().related-products__title Related products
+        // .related-products__inner 
 
-            ul.related-products__list
-                each product in data
-                    li.related-products__item
-                        +product(product)
-        // /.related-products__inner 
-    // /.related-products 
+        +product-list({
+            items: props.items,
+            center: true,
+        }).related-products__list
+    // .related-products 

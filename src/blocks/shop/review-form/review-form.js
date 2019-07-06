@@ -3,41 +3,48 @@
  * @author Andrey Glotov
  */
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// ------------------------- BEGIN UTILITY FUNCTIONS --------------------------
+
 /**
- * Initialize the review form module.
- * @return true if the block is present, false otherwise
+ * Given the input element, get a classname containing the invalid modifier
+ * @param {JQuery} $element The input element
  */
-export const initModule = function() {
+function getInvalidClassName($element) {
+    if ($element.hasClass('input')) {
+        return 'input_invalid';
+    } else if ($element.hasClass('text-area')) {
+        return 'text-area_invalid';
+    }
+}
+
+// -------------------------- END UTILITY FUNCTIONS ---------------------------
+
+// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
+/**
+ * Initialize the review form block.
+ */
+export function initBlock() {
     const $form = $('.review-form');
     if ($form.length === 0) {
         return false;
     }
 
     $form.validate({
-        errorClass     : 'error review-form__error',
+        errorClass: 'error review-form__error',
     
-        errorPlacement : function(error, element) {
-            element.closest('.review-form__field').append(error);
+        errorPlacement: function($error, $element) {
+            $element.closest('.review-form__field').append($error);
         },
     
-        highlight      : function(element) {
-            if ($(element).hasClass('input')) {
-                $(element).addClass('input_invalid');
-            } else if ($(element).hasClass('text-area')) {
-                $(element).addClass('text-area_invalid');
-            }
+        highlight(element) {
+            $(element).addClass(getInvalidClassName($(element)));
         },
     
-        unhighlight    : function(element) {
-            if ($(element).hasClass('input')) {
-                $(element).removeClass('input_invalid');
-            } else if ($(element).hasClass('text-area')) {
-                $(element).removeClass('text-area_invalid');
-            }
+        unhighlight(element) {
+            $(element).removeClass(getInvalidClassName($(element)));
         },
     });
+}
 
-    return true;
-};
 // ---------------------------- END PUBLIC METHODS ----------------------------

@@ -1,7 +1,7 @@
 /**
- * Styles for the product single block.
+ * Styles for the single product page block.
  */
-.product-single {
+.single-product {
     position: relative;
 
     padding-top: 70px;
@@ -35,9 +35,6 @@
     }
 
     &__gallery {
-        margin: 0 auto;
-        max-width: 450px;
-
         @include breakpoint-up(lg) {
             margin: 0;
             max-width: none;

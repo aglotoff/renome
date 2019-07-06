@@ -1,7 +1,13 @@
-mixin reviews(data)
+//-
+    name: reviews
+    description: Markup for the product reviews block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.reviews - reviews
+
+mixin reviews(props = {})
     .reviews&attributes(attributes)
         ol.reviews__list
-            each review in data
+            each review in props.reviews
                 +review(review).reviews__review
-        // /.reviews__inner 
-    // /.reviews 
+    // .reviews 

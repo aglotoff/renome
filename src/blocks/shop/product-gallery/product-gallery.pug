@@ -1,22 +1,56 @@
-mixin product-gallery(data)
+//-
+    name: product-gallery
+    description: Markup for the product gallery block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.items - gallery items
+        - {string} props.items[].thumb - product thumbnail
+        - {string} props.items[].image - product image
+        - {string} props.items[].alt - alt text
+
+mixin product-gallery(props = {})
     .product-gallery&attributes(attributes)
-        ul.product-gallery__thumbs
-            each item, i in data
-                li.product-gallery__thumb
-                    a.product-gallery__thumb-link(
-                        href       = item.image
-                        role       = "button"
-                        class      = (i == 0) && 'product-gallery__thumb-link_active'
-                        data-slide = i
-                    )
+        .product-gallery__nav
+            each item, i in props.items
+                .product-gallery__thumb
+                    -
+                        const jpegSrcSet = `
+                            ${item.thumb}-small.jpg 1x,
+                            ${item.thumb}-large.jpg 2x
+                        `;
+                        const webpSrcSet = `
+                            ${item.thumb}-small.webp 1x,
+                            ${item.thumb}-large.webp 2x
+                        `;
+                    picture
+                        source(srcset=webpSrcSet type="image/webp")
+                        source(srcset=jpegSrcSet type="image/jpeg")
                         img(
-                            src = item.thumb
-                            alt = item.alt
+                            src=`${item.thumb}-small.jpg`
+                            alt=item.alt
                         ).product-gallery__thumb-img
+        // .product-gallery__nav 
 
         .product-gallery__container
-            each item in data
+            each item in props.items
                 .product-gallery__slide
-                    img(src=item.image, alt=item.alt).product-gallery__slide-img
-        // /.product-gallery__container 
-    // /.product-gallery 
+                    -
+                        const jpegSrcSet = `
+                            ${item.image}-small.jpg 1x,
+                            ${item.image}-medium.jpg 1.5x,
+                            ${item.image}-large.jpg 2x
+                        `;
+                        const webpSrcSet = `
+                            ${item.image}-small.webp 1x,
+                            ${item.image}-medium.webp 1.5x,
+                            ${item.image}-large.webp 2x
+                        `;
+                    picture
+                        source(srcset=webpSrcSet type="image/webp")
+                        source(srcset=jpegSrcSet type="image/jpeg")
+                        img(
+                            src=`${item.image}-small.jpg`
+                            alt=item.alt
+                        ).product-gallery__slide-img
+        // .product-gallery__container 
+    // .product-gallery 

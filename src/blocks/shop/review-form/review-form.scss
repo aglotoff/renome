@@ -55,15 +55,15 @@
 
     &__label {
         display: none;
-    }
-        
-    &__legend {
-        display: block;
 
-        @include font-size(11px);
-        font-weight: $font-weight-bold;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
+        &_visible {
+            display: block;
+
+            @include font-size(11px);
+            font-weight: $font-weight-bold;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
     }
 
     &__rating {

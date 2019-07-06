@@ -28,7 +28,7 @@ import Video from '../../blog/video/video';
 
 import * as Checkout        from '../../shop/checkout/checkout';
 import * as Payment         from '../../shop/payment/payment';
-import * as ProductGallery  from '../../shop/product-gallery/product-gallery';
+import * as ProductGallery from '../../shop/product-gallery/product-gallery';
 import * as ReviewForm      from '../../shop/review-form/review-form';
 import * as ShippingCalc    from '../../shop/shipping-calc/shipping-calc';
 import * as ShopFilter      from '../../shop/shop-filter/shop-filter';
@@ -137,8 +137,8 @@ export function initBlock() {
     // Shop blocks
     Checkout.initModule();
     Payment.initModule();
-    ProductGallery.initModule();
-    ReviewForm.initModule();
+    ProductGallery.initBlock();
+    ReviewForm.initBlock();
     ShippingCalc.initModule();
     ShopFilter.initBlock();
 
