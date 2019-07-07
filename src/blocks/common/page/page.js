@@ -139,7 +139,7 @@ export function initBlock() {
     Payment.initModule();
     ProductGallery.initBlock();
     ReviewForm.initBlock();
-    ShippingCalc.initModule();
+    ShippingCalc.initBlock();
     ShopFilter.initBlock();
 
     // Process the initial window size and scroll position

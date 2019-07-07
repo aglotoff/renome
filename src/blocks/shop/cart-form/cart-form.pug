@@ -1,4 +1,16 @@
-mixin cart-form(data)
+//-
+    name: cart-form
+    description: Markup for the shopping cart form block
+    arguments:
+        - {object} props - block options
+        - {object[]} props.items - cart items
+        - {string} props.items[].image - product image
+        - {string} props.items[].title - product title
+        - {number} props.items[].price - product price
+        - {string} props.items[].id - product id
+        - {number} props.items[].quantity - product quantity
+
+mixin cart-form(props = {})
     form(action="#" method="post").cart-form&attributes(attributes)
         .cart-form__inner
             table.cart-form__table
@@ -18,15 +30,27 @@ mixin cart-form(data)
                         th.cart-form__header(scope="col") &nbsp;
 
                 tbody
-                    each item in data
+                    each item in props.items
                         tr.cart-form__item
                             td.cart-form__cell
                                 .cart-form__product
                                     a(href=item.link).cart-form__product-thumb
-                                        img(
-                                            src=item.image
-                                            alt=item.title
-                                        ).cart-form__product-img
+                                        -
+                                            const jpegSrcSet = `
+                                                ${item.image}-small.jpg 1x,
+                                                ${item.image}-large.jpg 2x
+                                            `;
+                                            const webpSrcSet = `
+                                                ${item.image}-small.webp 1x,
+                                                ${item.image}-large.webp 2x
+                                            `;
+                                        picture
+                                            source(srcset=webpSrcSet type="image/webp")
+                                            source(srcset=jpegSrcSet type="image/jpeg")
+                                            img(
+                                                src=`${item.image}-small.jpg`
+                                                alt=item.title
+                                            ).cart-form__product-img
 
                                     .cart-form__product-body
                                         a(
@@ -37,13 +61,13 @@ mixin cart-form(data)
 
                             td.cart-form__cell
                                 +input({theme: 'number'})(
-                                    type       = "number"
-                                    value      = item.quantity
-                                    name       = `[${item.id}][qty]`
-                                    min        = "0"
-                                    size       = "4"
-                                    step       = "1"
-                                    aria-label = "Quantity"
+                                    type="number"
+                                    value=item.quantity
+                                    name=`[${item.id}][qty]`
+                                    min="0"
+                                    size="4"
+                                    step="1"
+                                    aria-label="Quantity"
                                 ).cart-form__qty
 
                             td.cart-form__cell
@@ -52,37 +76,37 @@ mixin cart-form(data)
 
                             td.cart-form__cell
                                 a(
-                                    href            = "javascript:void(0);"
-                                    data-product-id = item.id
-                                    role            = "button"
+                                    href="javascript:void(0);"
+                                    data-product-id=item.id
+                                    role="button"
                                 ).cart-form__remove Remove this item
 
             .cart-form__actions
                 .cart-form__coupon
                     label.cart-form__coupon-label(
-                        for = "cart-coupon-code"
-                        id  = "label-coupon-code"
+                        for="cart-coupon-code"
+                        id="cart-coupon-code-label"
                     ) Coupon code
                     +input({theme: 'coupon'})(
-                        type            = "text"
-                        name            = "coupon_code"
-                        placeholder     = "Coupon code"
-                        id              = "cart-coupon-code"
-                        aria-labelledby = "label-coupon-code"
+                        type="text"
+                        name="coupon_code"
+                        placeholder="Coupon code"
+                        id="cart-coupon-code"
+                        aria-labelledby="cart-coupon-code-label"
                     ).cart-form__coupon-input
                     +btn({
                         title: 'Apply coupon'
                     }, 'button').cart-form__coupon-apply(
-                        name  = "apply_coupon"
-                        value = "Apply coupon"
+                        name="apply_coupon"
+                        value="Apply coupon"
                     )
-                // /.cart-form__coupon 
+                // .cart-form__coupon 
 
                 +btn({
                     title: 'Update Cart'
                 }, 'submit').cart-form__submit(
-                    name  = "update_cart"
-                    value = "Update Cart"
+                    name="update_cart"
+                    value="Update Cart"
                 )
-            // /.cart-form__actions 
-        // /.cart-form__inner 
+            // .cart-form__actions 
+        // .cart-form__inner 

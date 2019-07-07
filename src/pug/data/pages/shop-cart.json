@@ -10,14 +10,14 @@
         "items": [{
             "id": 10001,
             "title": "Beef with pineapple",
-            "image": "img/content/shop/products/thumbs/80x80/beef-with-pineapple.jpg",
+            "image": "img/content/shop/products/thumbs/cart/beef-with-pineapple",
             "price": 18.20,
             "quantity": 2,
             "link": "shop-single.html"
         }, {
             "id": 10002,
             "title": "Egg baguette",
-            "image": "img/content/shop/products/thumbs/80x80/egg-baguette.jpg",
+            "image": "img/content/shop/products/thumbs/cart/egg-baguette",
             "price": 8.10,
             "quantity": 1,
             "link": "shop-single.html"

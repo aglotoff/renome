@@ -469,6 +469,8 @@ class Select {
         $button.attr('aria-expanded', 'true');
         $list.scrollTop(0);
 
+        this._state.popper.update();
+
         if (selectedIndex !== -1) {
             $options.eq(selectedIndex).addClass(ClassNames.OPTION_HIGHLIGHTED);
             this._state.highlightedIndex = selectedIndex;

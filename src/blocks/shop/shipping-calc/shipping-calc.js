@@ -5,33 +5,65 @@
 
 import Select from '../../common/select/select';
 
+import forceReflow from '../../../js/utils/force-reflow';
+
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
 /**
  * Initialize the shipping calculator module.
- * @return true if the block is present, false otherwise
  */
-export const initModule = function() {
+export function initBlock() {
     const $calc = $('.shipping-calc');
     if ($calc.length === 0) {
         return false;
     }
 
-    const $toggle  = $calc.find('.shipping-calc__toggle');
-    const $form    = $calc.find('.shipping-calc__form');
-    const $country = $calc.find('.shipping-calc__country');
+    const $toggle = $('.shipping-calc__toggle', $calc);
+    const $form = $('.shipping-calc__form', $calc);
+    const $country = $('.shipping-calc__country', $calc);
 
     let formExpanded = false;
-    $toggle.click(function onShippingCalcToggle() {
+    $toggle.click(function handleShippingCalcToggle() {
         formExpanded = !formExpanded;
 
-        $form.slideToggle();
+        if (!formExpanded) {
+            $form.addClass('shipping-calc__form_animated');
+
+            const startHeight = $form.innerHeight();
+            $form.css('height', startHeight);
+            forceReflow($form);
+            $form.css('height', 0);
+
+            setTimeout(() => {
+                $form
+                    .css('height', '')
+                    .removeClass('shipping-calc__form_animated')
+                    .removeClass('shipping-calc__form_expanded');
+            }, 250);
+        } else {
+            $form
+                .addClass('shipping-calc__form_expanded')
+                .addClass('shipping-calc__form_animated');
+            
+            const targetHeight = $form.innerHeight();
+            $form.css('height', 0);
+            forceReflow($form);
+            $form.css('height', targetHeight);
+
+            setTimeout(() => {
+                $form
+                    .css('height', '')
+                    .removeClass('shipping-calc__form_animated');
+            }, 250);
+        }
+
         $toggle.attr('aria-expanded', String(formExpanded));
     });
     
     const countrySelect = new Select($country, { theme: 'small' });
 
     $form.validate({
-        errorClass     : 'error shipping-calc__error',
+        errorClass: 'error shipping-calc__error',
 
         rules: {
             calc_shipping_country: {
@@ -39,11 +71,11 @@ export const initModule = function() {
             }
         },
 
-        errorPlacement : function($error, $element) {
+        errorPlacement($error, $element) {
             $error.appendTo($element.closest('.shipping-calc__field'));
         },
     
-        highlight      : function(element) {
+        highlight(element) {
             if ($(element).hasClass('input')) {
                 $(element).addClass('input_invalid');
             } else if ($(element).is($country)) {
@@ -51,7 +83,7 @@ export const initModule = function() {
             }
         },
     
-        unhighlight     : function(element) {
+        unhighlight(element) {
             if ($(element).hasClass('input')) {
                 $(element).removeClass('input_invalid');
             } else if ($(element).is($country)) {
@@ -60,10 +92,9 @@ export const initModule = function() {
         }
     });
 
-    $country.on('change', () => {
+    $country.on('change', function handleCountryChange() {
         $form.validate().element('select');
     });
+}
 
-    return true;
-};
 // ---------------------------- END PUBLIC METHODS ----------------------------

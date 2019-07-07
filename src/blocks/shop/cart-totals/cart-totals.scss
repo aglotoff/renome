@@ -1,5 +1,5 @@
 /**
- * Styles for the cart totals block
+ * Styles for the shopping cart totals block
  */
 .cart-totals {
     position: relative;
@@ -58,6 +58,14 @@
 
     &__order-total {
         @include font-size(20px);
+    }
+
+    &__shipping-method {
+        text-transform: uppercase;
+    }
+
+    &__shipping-calc {
+        margin-top: 30px;
     }
 
     &__checkout {

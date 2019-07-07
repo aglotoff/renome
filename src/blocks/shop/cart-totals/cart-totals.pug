@@ -1,24 +1,36 @@
-mixin cart-totals(data)
+//-
+    name: cart-totals
+    description: Markup for the shopping cart totals block
+    arguments:
+        - {object} props - block options
+        - {number} props.subtotal - subtotal cart value
+        - {number} props.total - total cart value
+
+mixin cart-totals(props)
     .cart-totals&attributes(attributes)
         .cart-totals__inner
             table.cart-totals__table
                 tr
                     th.cart-totals__table-header Subtotal
-                    td.cart-totals__table-cell $#{data.subtotal.toFixed(2)}
+                    td.cart-totals__table-cell $#{props.subtotal.toFixed(2)}
                 tr
                     th.cart-totals__table-header Shipping
                     td.cart-totals__table-cell
-                        +cart-shipping().cart-totals__shipping
+                        .cart-totals__shipping
+                            ul.cart-totals__shipping-methods
+                                li.cart-totals__shipping-method Free shipping
+
+                            +shipping-calc().cart-totals__shipping-calc
                 tr
                     th.cart-totals__table-header Total
                     td.cart-totals__table-cell
                         strong.cart-totals__order-total
-                            | $#{data.total.toFixed(2)}
+                            | $#{props.total.toFixed(2)}
 
             .cart-totals__checkout
                 +btn({
-                    title : 'Proceed to checkout',
-                    link  : 'shop-checkout.html',
+                    title: 'Proceed to checkout',
+                    link: 'shop-checkout.html',
                 }, 'link').cart-totals__checkout-btn
-        // /.cart-totals__inner 
-    // /.cart-totals 
+        // .cart-totals__inner 
+    // .cart-totals 
