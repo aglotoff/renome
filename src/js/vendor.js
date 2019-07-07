@@ -11,7 +11,6 @@ import svg4everybody from 'svg4everybody';
 import 'jquery-validation';
 import 'magnific-popup';
 import 'slick-carousel';
-import '@babel/polyfill';
 
 // Expose libraries to the global Window object
 window.$ = window.jQuery = jQuery;

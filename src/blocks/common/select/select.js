@@ -466,10 +466,9 @@ class Select {
         }
 
         $list.addClass(ClassNames.LIST_EXPANDED);
+
         $button.attr('aria-expanded', 'true');
         $list.scrollTop(0);
-
-        this._state.popper.update();
 
         if (selectedIndex !== -1) {
             $options.eq(selectedIndex).addClass(ClassNames.OPTION_HIGHLIGHTED);
@@ -480,8 +479,9 @@ class Select {
         
         this._state.expanded = true;
         
+        this._state.popper.update();
         $list.focus();
-        
+
         $(document).on('click', this._handleOutsideClick);
     }
 
