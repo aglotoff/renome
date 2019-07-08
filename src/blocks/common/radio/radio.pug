@@ -1,0 +1,22 @@
+//-
+    name: radio
+    description: Markup for the radio block
+    arguments:
+        - {object} props - block properties
+        - {string} props.name - radio input name
+        - {string} props.value - radio input value
+        - {string} props.labelledBy - value for the aria-labelledby attribute
+        - {string} props.id - input id
+        - {boolean} props.checked - is this radio checked
+
+mixin radio(props = {})
+    label.radio&attributes(attributes)
+        input(
+            type="radio"
+            name=props.name
+            value=props.value
+            aria-labelledby=props.labelledBy
+            id=props.id
+            checked=props.checked
+        ).radio__input
+        span.radio__mark(aria-hidden="true")

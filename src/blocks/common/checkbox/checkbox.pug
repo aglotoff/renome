@@ -1,0 +1,20 @@
+//-
+    name: checkbox
+    description: Markup for the checkbox block
+    arguments:
+        - {object} props - block properties
+        - {string} props.name - checkbox input name
+        - {string} props.value - checkbox input value
+        - {string} props.labelledBy - value for the aria-labelledby attribute
+        - {string} props.id - input id
+
+mixin checkbox(props = {})
+    label.checkbox&attributes(attributes)
+        input(
+            type="checkbox"
+            name=props.name
+            value=props.value
+            aria-labelledby=props.labelledBy
+            id=props.id
+        ).checkbox__input
+        span.checkbox__mark(aria-hidden="true")

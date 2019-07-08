@@ -3,9 +3,9 @@
 @import "fonts";
 @import "base";
 
-@import "../../node_modules/magnific-popup/src/css/main.scss";
+@import "../../node_modules/magnific-popup/src/css/main";
 @import "../../node_modules/slick-carousel/slick/slick.scss";
-@import "../../node_modules/pikaday/scss/pikaday.scss";
+@import "../../node_modules/pikaday/scss/pikaday";
 @import '../../node_modules/leaflet/dist/leaflet';
 
 @import "../blocks/common/page/page";
@@ -47,9 +47,11 @@
 @import "../blocks/common/slider/slider";
 @import "../blocks/common/specials/specials";
 @import "../blocks/common/specials-slider/specials-slider";
-@import "../blocks/common/testimonial/testimonial.scss";
-@import "../blocks/common/gallery/gallery.scss";
-@import "../blocks/common/select/select.scss";
+@import "../blocks/common/testimonial/testimonial";
+@import "../blocks/common/gallery/gallery";
+@import "../blocks/common/select/select";
+@import "../blocks/common/checkbox/checkbox";
+@import "../blocks/common/radio/radio";
 
 /*
  * ----------------------------------------------------------------------------
@@ -141,8 +143,8 @@
 @import "../blocks/shop/cart-totals/cart-totals";
 @import "../blocks/shop/shipping-calc/shipping-calc";
 @import "../blocks/shop/checkout/checkout";
-@import "../blocks/shop/review-order/review-order";
-@import "../blocks/shop/payment/payment";
+@import "../blocks/shop/checkout-order/checkout-order";
+@import "../blocks/shop/payments/payments";
 
 /*
  * ----------------------------------------------------------------------------

@@ -1,0 +1,42 @@
+//-
+    name: checkout-order
+    description: Markup for the checkout order block
+    arguments:
+        - {object} props - block properties
+        - {object[]} props.items - order items
+        - {string} props.items[].title - item title
+        - {number} props.items[].quantity - item quantity
+        - {number} props.items[].total - item total price
+        - {number} props.total - order total value
+
+mixin checkout-order(props)
+    table.checkout-order&attributes(attributes)
+        thead
+            tr
+                th(scope="col").checkout-order__header Product
+                th(scope="col").checkout-order__header Total
+
+        tbody
+            each item in props.items
+                tr
+                    td.checkout-order__cell
+                        span.checkout-order__product-name
+                            | #{item.title} x #{item.quantity}
+                    td.checkout-order__cell
+                        span.checkout-order__product-total
+                            | $#{item.total.toFixed(2)}
+        tfoot
+            tr
+                th(scope="row").checkout-order__header Subtotal
+                td.checkout-order__cell
+                    span.checkout-order__subtotal
+                        | $#{props.total.toFixed(2)}
+            tr
+                th(scope="row").checkout-order__header Shipping
+                td.checkout-order__cell
+                    span.checkout-order__shipping Free shipping
+            tr
+                th(scope="row").checkout-order__header Total
+                td.checkout-order__cell
+                    span.checkout-order__total
+                        | $#{props.total.toFixed(2)}

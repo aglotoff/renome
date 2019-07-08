@@ -1,71 +1,84 @@
 /**
- * @file Implementation of the checkout block
+ * @file Implementation of the checkout page block
  * @author Andrey Glotov
  */
 
 import Select from '../../common/select/select';
 
+// ------------------------- BEGIN UTILITY FUNCTIONS --------------------------
+
+/**
+ * Given the input element, get a classname containing the invalid modifier
+ * @param {JQuery} $element The input element
+ */
+function getInvalidClassName($element) {
+    if ($element.hasClass('input')) {
+        return 'input_invalid';
+    } else if ($element.hasClass('text-area')) {
+        return 'text-area_invalid';
+    }
+}
+
+// -------------------------- END UTILITY FUNCTIONS ---------------------------
+
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
-const onCheckboxChange = function() {
+
+/**
+ * Handle change events on checkboxes.
+ * Toggle the corresponding form section.
+ */
+const handleCheckboxChange = function() {
     const $target = $('#' + $(this).data('toggle'));
     $target.slideToggle();
 };
+
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
+
 /**
- * Initialize the checkout module.
- * @return true if the block is present; false otherwise
+ * Initialize the checkout block.
  */
-export const initModule = function() {
+export function initBlock() {
     const $form = $('.checkout');
     if ($form.length === 0) {
         return false;
     }
 
-    const $selects  = $form.find('.checkout__select');
-    $selects.each(function() {
+    $('.checkout__select', $form).each(function() {
         new Select($(this), { theme: 'checkout' });
     });
 
-    const $shipping = $form.find('#shipping-fields');
-    $shipping.hide();
+    $('#shipping-fields', $form).hide();
 
-    const $checkboxes = $form.find('.checkout__check-input');
-    $checkboxes.change(onCheckboxChange);
+    $('.checkout__checkbox', $form).change(handleCheckboxChange);
 
     $form.validate({
-        errorClass     : 'error checkout__error',
+        errorClass: 'error checkout__error',
+        ignore: '.checkout__input:hidden',
     
-        ignore         : '.checkout__input:hidden',
-    
-        highlight: function(element) {
-            if ($(element).hasClass('input')) {
-                $(element).addClass('input_invalid');
-            }
+        highlight(element) {
+            $(element).addClass(getInvalidClassName($(element)));
         },
     
-        unhighlight    : function(element) {
-            if ($(element).hasClass('input')) {
-                $(element).removeClass('input_invalid');
-            }
+        unhighlight(element) {
+            $(element).removeClass(getInvalidClassName($(element)));
         },
     
-        errorPlacement : function(error, element) {
-            if (element.attr('name') === 'payment') {
-                element
+        errorPlacement($error, $element) {
+            if ($element.attr('name') === 'payment') {
+                $element
                     .closest('.checkout__payments')
-                    .prepend(error);
+                    .prepend($error);
             } else {
-                error.insertAfter(element);
+                $error.insertAfter($element);
             }
         },
     
-        // messages       : {
-        //     payment: 'Please select a payment method',
-        // },
+        messages: {
+            payment: 'Please select a payment method',
+        },
     });
+}
 
-    return true;
-};
 // ---------------------------- END PUBLIC METHODS ----------------------------

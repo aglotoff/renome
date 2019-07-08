@@ -1,8 +1,11 @@
 extends ../layouts/inner.pug
 
+include ../../blocks/common/checkbox/checkbox.pug
+include ../../blocks/common/radio/radio.pug
+
 include ../../blocks/shop/checkout/checkout.pug
-include ../../blocks/shop/review-order/review-order.pug
-include ../../blocks/shop/payment/payment.pug
+include ../../blocks/shop/checkout-order/checkout-order.pug
+include ../../blocks/shop/payments/payments.pug
 
 block append page
     +checkout(data.content)

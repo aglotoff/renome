@@ -26,12 +26,12 @@ import * as CommentForm from '../../blog/comment-form/comment-form';
 import * as Share from '../../blog/share/share';
 import Video from '../../blog/video/video';
 
-import * as Checkout        from '../../shop/checkout/checkout';
-import * as Payment         from '../../shop/payment/payment';
+import * as Checkout from '../../shop/checkout/checkout';
+import * as Payments from '../../shop/payments/payments';
 import * as ProductGallery from '../../shop/product-gallery/product-gallery';
-import * as ReviewForm      from '../../shop/review-form/review-form';
-import * as ShippingCalc    from '../../shop/shipping-calc/shipping-calc';
-import * as ShopFilter      from '../../shop/shop-filter/shop-filter';
+import * as ReviewForm from '../../shop/review-form/review-form';
+import * as ShippingCalc from '../../shop/shipping-calc/shipping-calc';
+import * as ShopFilter from '../../shop/shop-filter/shop-filter';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
@@ -135,12 +135,12 @@ export function initBlock() {
     ProjectCarousel.initBlock();
 
     // Shop blocks
-    Checkout.initModule();
-    Payment.initModule();
+    ShopFilter.initBlock();
     ProductGallery.initBlock();
     ReviewForm.initBlock();
     ShippingCalc.initBlock();
-    ShopFilter.initBlock();
+    Checkout.initBlock();
+    Payments.initBlock();
 
     // Process the initial window size and scroll position
     handleWindowResize();

@@ -1,345 +1,381 @@
-mixin checkout(data)
+//-
+    name: checkout
+    description: Markup for the checkout page block
+    arguments:
+        - {object} props - block properties
+        - {object} prps.order - order details
+
+mixin checkout(props)
     form(action="#" method="post").checkout&attributes(attributes)
         .checkout__customer-details
             .checkout__section
                 .checkout__section-inner
                     .checkout__section-header
                         h2.checkout__section-title Billing address
+                    // .checkout__section-header 
 
                     .checkout__fields-wrap
                         .checkout__fields
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "billing-country"
-                                    id  = "label-billing-country"
+                                    for="billing-country"
+                                    id="label-billing-country"
                                 ).checkout__label Country*
                                 select(
-                                    id              = "billing-country"
-                                    name            = "billing_country"
-                                    aria-labelledby = "label-billing-country"
+                                    id="billing-country"
+                                    name="billing_country"
+                                    aria-labelledby="label-billing-country"
                                 ).checkout__select
                                     option(value="uk") United Kingdom (UK)
+                            // .checkout__group 
                             
                             .checkout__group
                                 label(
-                                    for = "billing-first-name"
-                                    id  = "label-billing-first-name"
+                                    for="billing-first-name"
+                                    id="label-billing-first-name"
                                 ).checkout__label First Name*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-first-name"
-                                    name            = "billing_first_name"
-                                    aria-labelledby = "label-billing-first-name"
+                                    type="text"
+                                    id="billing-first-name"
+                                    name="billing_first_name"
+                                    aria-labelledby="label-billing-first-name"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "billing-last-name"
-                                    id  = "label-billing-last-name"
+                                    for="billing-last-name"
+                                    id="label-billing-last-name"
                                 ).checkout__label Last Name*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-last-name"
-                                    name            = "billing_last_name"
-                                    aria-labelledby = "label-billing-last-name"
+                                    type="text"
+                                    id="billing-last-name"
+                                    name="billing_last_name"
+                                    aria-labelledby="label-billing-last-name"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "billing-company"
-                                    id  = "label-billing-company"
+                                    for="billing-company"
+                                    id="label-billing-company"
                                 ).checkout__label Company Name
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-company"
-                                    name            = "billing_company"
-                                    aria-labelledby = "label-billing-company"
+                                    type="text"
+                                    id="billing-company"
+                                    name="billing_company"
+                                    aria-labelledby="label-billing-company"
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "billing-address1"
-                                    id  = "label-billing-address1"
+                                    for="billing-address1"
+                                    id="label-billing-address1"
                                 ).checkout__label Address*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-address1"
-                                    name            = "billing_address1"
-                                    aria-labelledby = "label-billing-address1"
-                                    placeholder     = "Street address"
+                                    type="text"
+                                    id="billing-address1"
+                                    name="billing_address1"
+                                    aria-labelledby="label-billing-address1"
+                                    placeholder="Street address"
                                     required
                                 ).checkout__input
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id          = "billing-address2"
-                                    name        = "billing_address2"
-                                    aria-label  = "Apartment, Suite, Unite etc. (optional)"
-                                    placeholder = "Apartment, Suite, Unite etc. (optional)"
+                                    type="text"
+                                    id="billing-address2"
+                                    name="billing_address2"
+                                    aria-label="Apartment, Suite, Unite etc. (optional)"
+                                    placeholder="Apartment, Suite, Unite etc. (optional)"
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "billing-city"
-                                    id  = "label-billing-city"
+                                    for="billing-city"
+                                    id="label-billing-city"
                                 ).checkout__label Town / City*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-city"
-                                    name            = "billing_city"
-                                    aria-labelledby = "label-billing-city"
-                                    placeholder     = "Town / City"
+                                    type="text"
+                                    id="billing-city"
+                                    name="billing_city"
+                                    aria-labelledby="label-billing-city"
+                                    placeholder="Town / City"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "billing-county"
-                                    id  = "label-billing-county"
+                                    for="billing-county"
+                                    id="label-billing-county"
                                 ).checkout__label County
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-county"
-                                    name            = "billing_county"
-                                    aria-labelledby = "label-billing-county"
+                                    type="text"
+                                    id="billing-county"
+                                    name="billing_county"
+                                    aria-labelledby="label-billing-county"
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "billing-postcode"
-                                    id  = "label-billing-postcode"
+                                    for="billing-postcode"
+                                    id="label-billing-postcode"
                                 ).checkout__label Postcode*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "billing-postcode"
-                                    name            = "billing_postcode"
-                                    aria-labelledby = "label-billing-postcode"
-                                    placeholder     = "Postcode"
+                                    type="text"
+                                    id="billing-postcode"
+                                    name="billing_postcode"
+                                    aria-labelledby="label-billing-postcode"
+                                    placeholder="Postcode"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "billing-email"
-                                    id  = "label-billing-email"
+                                    for="billing-email"
+                                    id="label-billing-email"
                                 ).checkout__label Email address*
                                 +input({theme: 'checkout'})(
-                                    type            = "email"
-                                    id              = "billing-email"
-                                    name            = "billing_email"
-                                    aria-labelledby = "label-billing-email"
+                                    type="email"
+                                    id="billing-email"
+                                    name="billing_email"
+                                    aria-labelledby="label-billing-email"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
                             
                             .checkout__group
                                 label(
-                                    for = "billing-phone"
-                                    id  = "label-billing-phone"
+                                    for="billing-phone"
+                                    id="label-billing-phone"
                                 ).checkout__label Phone*
                                 +input({theme: 'checkout'})(
-                                    type            = "tel"
-                                    id              = "billing-phone"
-                                    name            = "billing_phone"
-                                    aria-labelledby = "label-billing-phone"
+                                    type="tel"
+                                    id="billing-phone"
+                                    name="billing_phone"
+                                    aria-labelledby="label-billing-phone"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
-                        label.checkout__check
-                            input(
-                                type        = "checkbox"
-                                name        = "create_account"
-                                value       = "1"
-                                data-toggle = "create-account"
-                            ).checkout__check-input
-                            span.checkout__check-mark(aria-hidden="true")
-                            | Create an account?
+                        .checkout__account-header
+                            +checkbox({
+                                name: 'create_account',
+                                value: 1,
+                                id: 'create-account',
+                                labelledBy: 'label-create-account',
+                            })(data-toggle="account-fields").checkout__checkbox
+                            label(
+                                id="label-create-account"
+                                for="create-account"
+                            ).checkout__check-label Create an account?
+                        // .checkout__account-checkbox 
 
-                        .checkout__account-fields#create-account
-                            .text.checkout__account-text
+                        .checkout__account-fields#account-fields
+                            .rich-text.checkout__account-text
                                 p Create an account by entering the information below. If you are a returning customer please login at the top of the page.
                             .checkout__fields
                                 .checkout__group.checkout__group_large
                                     label(
-                                        for = "account-password"
-                                        id  = "label-account-password"
+                                        for="account-password"
+                                        id="label-account-password"
                                     ).checkout__label Account Password*
                                     +input({theme: 'checkout'})(
-                                        type            = "password"
-                                        id              = "account-password"
-                                        name            = "account-password"
-                                        aria-labelledby = "label-account-password"
-                                        placeholder     = "Password"
+                                        type="password"
+                                        id="account-password"
+                                        name="account-password"
+                                        aria-labelledby="label-account-password"
+                                        placeholder="Password"
                                         required
                                     ).checkout__input
-                        // /.checkout__fields 
-                    // /.checkout__fields-wrap 
-                // /.checkout__section__inner 
-            // /.checkout__section 
+                                // .checkout__group 
+                        // .checkout__fields 
+                    // .checkout__fields-wrap 
+                // .checkout__section__inner 
+            // .checkout__section 
 
             .checkout__section
                 .checkout__section-inner
                     .checkout__section-header
                         h2.checkout__section-title Shipping address
-                        label.checkout__check.checkout__check_inline
-                            input(
-                                type        = "checkbox"
-                                name        = "ship_to_different_address"
-                                value       = "1"
-                                data-toggle = "shipping-fields"
-                            ).checkout__check-input
-                            span.checkout__check-mark(aria-hidden="true")
-                            | Ship to a different address?
+
+                        +checkbox({
+                            name: 'ship_to_different_address',
+                            value: 1,
+                            id: 'ship-to-different-address',
+                            labelledBy: 'label-ship-to-different-address'
+                        })(
+                            data-toggle="shipping-fields"
+                        ).checkout__checkbox.checkout__shipping-checkbox
+                        label(
+                            id="label-ship-to-different-address"
+                            for="ship-to-different-address"
+                        ).checkout__check-label Ship to a different address?
+                    // .checkout__section-header 
 
                     .checkout__fields-wrap
                         .checkout__fields#shipping-fields
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "shipping-country"
-                                    id  = "label-shipping-country"
+                                    for="shipping-country"
+                                    id="label-shipping-country"
                                 ).checkout__label Country*
                                 select(
-                                    id              = "shipping-country"
-                                    name            = "shipping_country"
-                                    aria-labelledby = "label-shipping-country"
+                                    id="shipping-country"
+                                    name="shipping_country"
+                                    aria-labelledby="label-shipping-country"
                                 ).checkout__select
                                     option(value="uk") United Kingdom (UK)
+                            // .checkout__group 
                             
                             .checkout__group
                                 label(
-                                    for = "shipping-first-name"
-                                    id  = "label-shipping-first-name"
+                                    for="shipping-first-name"
+                                    id="label-shipping-first-name"
                                 ).checkout__label First Name*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-first-name"
-                                    name            = "shipping_first_name"
-                                    aria-labelledby = "label-shipping-first-name"
+                                    type="text"
+                                    id="shipping-first-name"
+                                    name="shipping_first_name"
+                                    aria-labelledby="label-shipping-first-name"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "shipping-last-name"
-                                    id  = "label-shipping-last-name"
+                                    for="shipping-last-name"
+                                    id="label-shipping-last-name"
                                 ).checkout__label Last Name*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-last-name"
-                                    name            = "shipping_last_name"
-                                    aria-labelledby = "label-shipping-last-name"
+                                    type="text"
+                                    id="shipping-last-name"
+                                    name="shipping_last_name"
+                                    aria-labelledby="label-shipping-last-name"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "shipping-company"
-                                    id  = "label-shipping-company"
+                                    for="shipping-company"
+                                    id="label-shipping-company"
                                 ).checkout__label Company Name
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-company"
-                                    name            = "shipping_company"
-                                    aria-labelledby = "label-shipping-company"
+                                    type="text"
+                                    id="shipping-company"
+                                    name="shipping_company"
+                                    aria-labelledby="label-shipping-company"
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "shipping-address1"
-                                    id  = "label-shipping-address1"
+                                    for="shipping-address1"
+                                    id="label-shipping-address1"
                                 ).checkout__label Address*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-address1"
-                                    name            = "shipping_address1"
-                                    aria-labelledby = "label-shipping-address1"
-                                    placeholder     = "Street address"
+                                    type="text"
+                                    id="shipping-address1"
+                                    name="shipping_address1"
+                                    aria-labelledby="label-shipping-address1"
+                                    placeholder="Street address"
                                     required
                                 ).checkout__input
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id          = "shipping-address2"
-                                    name        = "shipping_address2"
-                                    aria-label  = "Apartment, Suite, Unite etc. (optional)"
-                                    placeholder = "Apartment, Suite, Unite etc. (optional)"
+                                    type="text"
+                                    id="shipping-address2"
+                                    name="shipping_address2"
+                                    aria-label="Apartment, Suite, Unite etc. (optional)"
+                                    placeholder="Apartment, Suite, Unite etc. (optional)"
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "shipping-city"
-                                    id  = "label-shipping-city"
+                                    for="shipping-city"
+                                    id="label-shipping-city"
                                 ).checkout__label Town / City*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-city"
-                                    name            = "shipping_city"
-                                    aria-labelledby = "label-shipping-city"
-                                    placeholder     = "Town / City"
+                                    type="text"
+                                    id="shipping-city"
+                                    name="shipping_city"
+                                    aria-labelledby="label-shipping-city"
+                                    placeholder="Town / City"
                                     required
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "shipping-county"
-                                    id  = "label-shipping-county"
+                                    for="shipping-county"
+                                    id="label-shipping-county"
                                 ).checkout__label County
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-county"
-                                    name            = "shipping_county"
-                                    aria-labelledby = "label-shipping-county"
+                                    type="text"
+                                    id="shipping-county"
+                                    name="shipping_county"
+                                    aria-labelledby="label-shipping-county"
                                 ).checkout__input
+                            // .checkout__group 
 
                             .checkout__group
                                 label(
-                                    for = "shipping-postcode"
-                                    id  = "label-shipping-postcode"
+                                    for="shipping-postcode"
+                                    id="label-shipping-postcode"
                                 ).checkout__label Postcode*
                                 +input({theme: 'checkout'})(
-                                    type            = "text"
-                                    id              = "shipping-postcode"
-                                    name            = "shipping_postcode"
-                                    aria-labelledby = "label-shipping-postcode"
-                                    placeholder     = "Postcode"
+                                    type="text"
+                                    id="shipping-postcode"
+                                    name="shipping_postcode"
+                                    aria-labelledby="label-shipping-postcode"
+                                    placeholder="Postcode"
                                     required
                                 ).checkout__input
-                        // /.checkout__fields 
+                            // .checkout__group 
+                        // .checkout__fields 
 
                         .checkout__fields
                             .checkout__group.checkout__group_large
                                 label(
-                                    for = "shipping-notes"
-                                    id  = "label-shipping-notes"
+                                    for="shipping-notes"
+                                    id="label-shipping-notes"
                                 ).checkout__label Order notes
                                 +text-area({theme: 'checkout'})(
-                                    id              = "shipping-notes"
-                                    name            = "shipping_notes"
-                                    aria-labelledby = "label-shipping-notes"
-                                    placeholder     = "Notes about you order, e.g. special notes for delivery."
+                                    id="shipping-notes"
+                                    name="shipping_notes"
+                                    aria-labelledby="label-shipping-notes"
+                                    placeholder="Notes about you order, e.g. special notes for delivery."
                                 ).checkout__input
-                        // /.checkout__fields 
-                    // /.checkout__fields-wrap 
-                // /.checkout__section__inner 
-            // /.checkout__section 
-        // /.checkout__customer-details 
+                            // .checkout__group 
+                        // .checkout__fields 
+                    // .checkout__fields-wrap 
+                // .checkout__section__inner 
+            // .checkout__section 
+        // .checkout__customer-details 
 
         .checkout__section
             .checkout__section-inner
                 .checkout__section-heading
                     h2.checkout__section-title Your order
 
-                .checkout__review-order
-                    +review-order(data.order)
-            // /.checkout__section__inner 
-        // /.checkout__section 
+                .checkout__order
+                    +checkout-order(props.order)
+            // .checkout__section__inner 
+        // .checkout__section 
 
         .checkout__payment
-            +payment()
-        // /.checkout__payment 
+            +payments()
+        // .checkout__payment 
 
         .checkout__place-order
             +btn({title: 'Place order'}, 'submit').checkout__order-btn(
-                name  = "place_order"
-                value = "Place order"
+                name="place_order"
+                value="Place order"
             )
-        // /.checkout__place-order 
+        // .checkout__place-order 
