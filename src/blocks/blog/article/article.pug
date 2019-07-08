@@ -95,7 +95,7 @@ mixin article(props = {})
                 
                 if props.relatedPosts
                     section.article__footer-section
-                        +title().article__footer-section-title Read more
+                        h3.title.article__footer-section-title Read more
                         +related-posts({
                             posts: props.relatedPosts
                         }).article__related-posts
@@ -103,13 +103,13 @@ mixin article(props = {})
 
                 if props.comments
                     section.article__footer-section
-                        +title().article__footer-section-title
+                        h3.title.article__footer-section-title
                             | #{props.comments.total} comments
                         +comments(props.comments).article__comments
                     // .article__footer-section 
 
                     section.article__footer-section#comment-form
-                        +title().article__footer-section-title Leave a reply
+                        h3.title.article__footer-section-title Leave a reply
                         +comment-form().article__comment-form
                     // .article__footer-section 
             // .article__footer 
