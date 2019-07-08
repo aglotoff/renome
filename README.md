@@ -24,7 +24,6 @@ Resources
 * [Magnific Popup](dimsemenov.com/plugins/magnific-popup/)
 * [Moment.js](https://momentjs.com/)
 * [Pikaday](https://github.com/Pikaday/Pikaday)
-* [Select2](https://select2.org/)
 * [Shuffle.js](https://vestride.github.io/Shuffle/)
 * [slick](http://kenwheeler.github.io/slick/)
 * [svg4everybody](https://github.com/jonathantneal/svg4everybody)
