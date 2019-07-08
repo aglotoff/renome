@@ -70,6 +70,7 @@
             "id": "about",
 
             "imgGroup": {
+                "lazy": true,
                 "images": [{
                     "src": "img/content/about/history-1",
                     "alt": "About"
@@ -122,6 +123,7 @@
             "id": "menu",
 
             "imgGroup": {
+                "lazy": true,
                 "images": [{
                     "src": "img/content/menu/menu-1",
                     "alt": "Menu"
@@ -270,6 +272,7 @@
             "id": "reservation",
             
             "imgGroup": {
+                "lazy": true,
                 "images": [{
                     "src": "img/content/reservation/reservation-1",
                     "alt": "Reservation"
@@ -291,6 +294,7 @@
             "title": "Lunch",
             "subtitle": "of the day",
 
+            "lazy": true,
             "slides": [{
                 "title": "Homemade baguette",
                 "img": "img/content/specials/homemade-baguette",
@@ -325,6 +329,7 @@
             "id": "contact",
 
             "imgGroup": {
+                "lazy": true,
                 "images": [{
                     "src": "img/content/contact/contact-1",
                     "alt": "Contact"

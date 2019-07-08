@@ -13,43 +13,28 @@ mixin blog-carousel(props)
             .blog-carousel__container
                 each image in props.slides
                     -
-                        const mobileJpegSrcSet = `
-                            ${image.src}-small.jpg 1x,
-                            ${image.src}-medium.jpg 2x
-                        `;
-                        const desktopJpegSrcSet = `
-                            ${image.src}-medium.jpg 1x,
-                            ${image.src}-large.jpg 1.5x,
-                            ${image.src}-xlarge.jpg 2x
-                        `;
-                        const mobileWebpSrcSet = `
-                            ${image.src}-small.webp 1x,
-                            ${image.src}-medium.webp 2x
-                        `;
-                        const desktopWebpSrcSet = `
-                            ${image.src}-medium.webp 1x,
-                            ${image.src}-large.webp 1.5x,
-                            ${image.src}-xlarge.webp 2x
-                        `;
+                        const jpegSrcSet =
+                            image.src + '-small.jpg 480w, ' +
+                            image.src + '-medium.jpg 768w, ' +
+                            image.src + '-large.jpg 1152w, ' +
+                            image.src + '-xlarge.jpg 1536w';
+                        const webpSrcSet =
+                            image.src + '-small.webp 480w, ' +
+                            image.src + '-medium.webp 768w, ' +
+                            image.src + '-large.webp 1152w, ' +
+                            image.src + '-xlarge.webp 1536w';
+                        const sizes = '(min-width: 992px) 700px, calc(100vw - 20px)';
                     .blog-carousel__slide
                         picture
                             source(
-                                srcset=mobileWebpSrcSet
-                                media="(max-width: 480px)"
+                                srcset=webpSrcSet
                                 type="image/webp"
+                                sizes=sizes
                             )
                             source(
-                                srcset=desktopWebpSrcSet
-                                type="image/webp"
-                            )
-                            source(
-                                srcset=mobileJpegSrcSet
-                                media="(max-width: 480px)"
+                                srcset=jpegSrcSet
                                 type="image/jpeg"
-                            )
-                            source(
-                                srcset=desktopJpegSrcSet
-                                type="image/jpeg"
+                                sizes=sizes
                             )
                             img(
                                 src=`${image.src}-medium.jpg`

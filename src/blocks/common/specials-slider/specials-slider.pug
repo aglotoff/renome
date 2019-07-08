@@ -9,6 +9,7 @@
         - {string} props.slides[].weekday - day of week
         - {number} props.slides[].price - product price
         - {string} props.slides[].titleId - ID of the slide title element
+        - {boolean} props.lazy - lazy-load the images
 
 mixin specials-slider(props)
     .specials-slider(
@@ -28,48 +29,49 @@ mixin specials-slider(props)
                         aria-labelledby=slide.titleId
                     )
                         -
-                            const mobileJpegSrcSet = `
-                                ${slide.img}-small.jpg 1x,
-                                ${slide.img}-medium.jpg 2x
-                            `;
-                            const desktopJpegSrcSet = `
-                                ${slide.img}-small.jpg 1x,
-                                ${slide.img}-medium.jpg 1.5x,
-                                ${slide.img}-large.jpg 2x
-                            `;
-                            const mobileWebpSrcSet = `
-                                ${slide.img}-small.webp 1x,
-                                ${slide.img}-medium.webp 2x
-                            `;
-                            const desktopWebpSrcSet = `
-                                ${slide.img}-small.webp 1x,
-                                ${slide.img}-medium.webp 1.5x,
-                                ${slide.img}-large.webp 2x
-                            `;
+                            const jpegSrcSet = 
+                                slide.img + '-small.jpg 600w, ' +
+                                slide.img + '-medium.jpg 900w, ' +
+                                slide.img + '-large.jpg 1200w';
+                            const webpimgSet = 
+                                slide.img + '-small.webp 600w, ' +
+                                slide.img + '-medium.webp 900w, ' +
+                                slide.img + '-large.webp 1200w';
+                            const sizes = '(min-width: 750px) 600px, calc(100vw - 20px)';
                         .specials-slider__slide-inner
-                            picture
-                                source(
-                                    srcset=mobileWebpSrcSet
-                                    media="(max-width: 480px)"
-                                    type="image/webp"
-                                )
-                                source(
-                                    srcset=desktopWebpSrcSet
-                                    type="image/webp"
-                                )
-                                source(
-                                    srcset=mobileJpegSrcSet
-                                    media="(max-width: 480px)"
-                                    type="image/jpeg"
-                                )
-                                source(
-                                    srcset=desktopJpegSrcSet
-                                    type="image/jpeg"
-                                )
-                                img(
-                                    src=`${slide.img}-small.jpg`
-                                    alt=slide.title
-                                ).specials-slider__slide-img
+                            if props.lazy
+                                picture
+                                    source(
+                                        data-srcset=webpSrcSet
+                                        type="image/webp"
+                                        sizes=sizes
+                                    )
+                                    source(
+                                        data-srcset=jpegSrcSet
+                                        type="image/jpeg"
+                                        sizes=sizes
+                                    )
+                                    img(
+                                        src='img/content/specials/specials-placeholder'
+                                        data-src=`${slide.img}-small.jpg`
+                                        alt=slide.title
+                                    ).specials-slider__slide-img.lazy
+                            else
+                                picture
+                                    source(
+                                        srcset=webpSrcSet
+                                        type="image/webp"
+                                        sizes=sizes
+                                    )
+                                    source(
+                                        srcset=jpegSrcSet
+                                        type="image/jpeg"
+                                        sizes=sizes
+                                    )
+                                    img(
+                                        src=`${slide.img}-small.jpg`
+                                        alt=slide.title
+                                    ).specials-slider__slide-img
 
                             .specials-slider__slide-text
                                 h3.specials-slider__slide-title(

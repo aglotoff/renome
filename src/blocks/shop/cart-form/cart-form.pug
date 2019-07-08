@@ -36,14 +36,12 @@ mixin cart-form(props = {})
                                 .cart-form__product
                                     a(href=item.link).cart-form__product-thumb
                                         -
-                                            const jpegSrcSet = `
-                                                ${item.image}-small.jpg 1x,
-                                                ${item.image}-large.jpg 2x
-                                            `;
-                                            const webpSrcSet = `
-                                                ${item.image}-small.webp 1x,
-                                                ${item.image}-large.webp 2x
-                                            `;
+                                            const jpegSrcSet =
+                                                item.image + '-small.jpg 1x, ' +
+                                                item.image + '-large.jpg 2x';
+                                            const webpSrcSet =
+                                                item.image + '-small.webp 1x, ' +
+                                                item.image + '-large.webp 2x';
                                         picture
                                             source(srcset=webpSrcSet type="image/webp")
                                             source(srcset=jpegSrcSet type="image/jpeg")

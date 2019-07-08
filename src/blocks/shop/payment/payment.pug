@@ -49,19 +49,11 @@ mixin payment(data = {}, mods = {})
 
                 span.payment__title PayPal
         
-            .payment__cards
-                img(
-                    src = "img/payments/visa.jpg"
-                    alt = "Visa"
-                ).payment__card
-                img(
-                    src = "img/payments/mastercard.jpg"
-                    alt = "Mastercard"
-                ).payment__card
-                img(
-                    src = "img/payments/paypal.jpg"
-                    alt = "PayPal"
-                ).payment__card
+            img(
+                srcset="img/payments.jpg 1x, img/payments@2x.jpg 2x"
+                src="img/payments.jpg"
+                alt="Visa Mastercard PayPal"
+            ).payment__cards
 
             a(href="javascript:void(0);").payment__link What is PayPal?
                 

@@ -14,14 +14,12 @@ mixin product-gallery(props = {})
             each item, i in props.items
                 .product-gallery__thumb
                     -
-                        const jpegSrcSet = `
-                            ${item.thumb}-small.jpg 1x,
-                            ${item.thumb}-large.jpg 2x
-                        `;
-                        const webpSrcSet = `
-                            ${item.thumb}-small.webp 1x,
-                            ${item.thumb}-large.webp 2x
-                        `;
+                        const jpegSrcSet =
+                            item.thumb + '-small.jpg 1x, ' +
+                            item.thumb + '-large.jpg 2x';
+                        const webpSrcSet =
+                            item.thumb + '-small.webp 1x, ' +
+                            item.thumb + '-large.webp 2x';
                     picture
                         source(srcset=webpSrcSet type="image/webp")
                         source(srcset=jpegSrcSet type="image/jpeg")
@@ -35,16 +33,14 @@ mixin product-gallery(props = {})
             each item in props.items
                 .product-gallery__slide
                     -
-                        const jpegSrcSet = `
-                            ${item.image}-small.jpg 1x,
-                            ${item.image}-medium.jpg 1.5x,
-                            ${item.image}-large.jpg 2x
-                        `;
-                        const webpSrcSet = `
-                            ${item.image}-small.webp 1x,
-                            ${item.image}-medium.webp 1.5x,
-                            ${item.image}-large.webp 2x
-                        `;
+                        const jpegSrcSet =
+                            item.image + '-small.jpg 1x, ' +
+                            item.image + '-medium.jpg 1.5x, ' +
+                            item.image + '-large.jpg 2x';
+                        const webpSrcSet =
+                            item.image + '-small.webp 1x, ' +
+                            item.image + '-medium.webp 1.5x, ' +
+                            item.image + '-large.webp 2x';
                     picture
                         source(srcset=webpSrcSet type="image/webp")
                         source(srcset=jpegSrcSet type="image/jpeg")

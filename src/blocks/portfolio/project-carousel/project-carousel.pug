@@ -14,60 +14,27 @@ mixin project-carousel(props = {})
                 each slide in props.slides
                     .project-carousel__slide
                         -
-                            const mobileJpegSrcSet = `
-                                ${slide.src}-small.jpeg 1x,
-                                ${slide.src}-medium.jpeg 2x
-                            `;
-                            const tabletJpegSrcSet = `
-                                ${slide.src}-medium.jpeg 1x,
-                                ${slide.src}-large.jpeg 1.5x
-                                ${slide.src}-xlarge.jpeg 2x
-                            `;
-                            const desktopJpegSrcSet = `
-                                ${slide.src}-large.jpeg 1x,
-                                ${slide.src}-xlarge.jpeg 1.5x
-                            `;
-                            const mobileWebpSrcSet = `
-                                ${slide.src}-small.webp 1x,
-                                ${slide.src}-medium.webp 2x
-                            `;
-                            const tabletWebpSrcSet = `
-                                ${slide.src}-medium.webp 1x,
-                                ${slide.src}-large.webp 1.5x
-                                ${slide.src}-xlarge.webp 2x
-                            `;
-                            const desktopWebpSrcSet = `
-                                ${slide.src}-large.webp 1x,
-                                ${slide.src}-xlarge.webp 1.5x
-                            `;
+                            const jpegSrcSet =
+                                slide.src + '-small.jpg 600vw, ' +
+                                slide.src + '-medium.jpg 900vw, ' +
+                                slide.src + '-large.jpg 1200vw, ' +
+                                slide.src + '-xlarge.jpg 1800vw';
+                            const webpSrcSet =
+                                slide.src + '-small.webp 600vw, ' +
+                                slide.src + '-medium.webp 900vw, ' +
+                                slide.src + '-large.webp 1200vw, ' +
+                                slide.src + '-xlarge.webp 1800vw';
+                            const sizes = '(min-width: 1200px) 1180px, 100vw';
                         picture
                             source(
-                                srcset=mobileWebpSrcSet
-                                media="(max-width: 480px)"
+                                srcset=webpSrcSet
                                 type="image/webp"
+                                sizes=sizes
                             )
                             source(
-                                srcset=tabletWebpSrcSet
-                                media="(max-width: 768px)"
-                                type="image/webp"
-                            )
-                            source(
-                                srcset=desktopWebpSrcSet
-                                type="image/webp"
-                            )
-                            source(
-                                srcset=mobileJpegSrcSet
-                                media="(max-width: 480px)"
+                                srcset=jpegSrcSet
                                 type="image/jpeg"
-                            )
-                            source(
-                                srcset=tabletJpegSrcSet
-                                media="(max-width: 768px)"
-                                type="image/jpeg"
-                            )
-                            source(
-                                srcset=desktopJpegSrcSet
-                                type="image/jpeg"
+                                sizes=sizes
                             )
                             img(
                                 src=`${slide.src}-large.jpg`

@@ -16,14 +16,12 @@ mixin testimonial(props = {})
             .testimonial__inner
                 .testimonial__img-wrapper
                     -
-                        const jpegSrcSet = `
-                            ${props.img}-small.jpg 1x,
-                            ${props.img}-large.jpg 2x
-                        `;
-                        const webpSrcSet = `
-                            ${props.img}-small.webp 1x,
-                            ${props.img}-large.webp 2x
-                        `;
+                        const jpegSrcSet =
+                            props.img + '-small.jpg 1x, ' +
+                            props.img + '-large.jpg 2x';
+                        const webpSrcSet =
+                            props.img + '-small.webp 1x, ' + 
+                            props.img + '-large.webp 2x';
                     picture
                         source(srcset=webpSrcSet type="image/webp")
                         source(srcset=jpegSrcSet type="image/jpeg")

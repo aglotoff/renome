@@ -23,23 +23,22 @@ mixin gallery(data)
                         .gallery__thumb
                             .gallery__thumb-inner
                                 -
-                                    const jpegSrcSet = `
-                                        ${item.thumb}-small.jpg 1x,
-                                        ${item.thumb}-medium.jpg 1.5x,
-                                        ${item.thumb}-large.jpg 2x
-                                    `;
-                                    const webpSrcSet = `
-                                        ${item.thumb}-small.webp 1x,
-                                        ${item.thumb}-medium.webp 1.5x,
-                                        ${item.thumb}-large.webp 2x
-                                    `;
+                                    const jpegSrcSet =
+                                        item.thumb + '-small.jpg 1x, ' +
+                                        item.thumb + '-medium.jpg 1.5x, ' +
+                                        item.thumb + '-large.jpg 2x';
+                                    const webpSrcSet =
+                                        item.thumb + '-small.webp 1x, ' +
+                                        item.thumb + '-medium.webp 1.5x, ' +
+                                        item.thumb + '-large.webp 2x';
                                 picture
-                                    source(srcset=webpSrcSet type="image/webp")
-                                    source(srcset=jpegSrcSet type="image/jpeg")
+                                    source(data-srcset=webpSrcSet type="image/webp")
+                                    source(data-srcset=jpegSrcSet type="image/jpeg")
                                     img(
-                                        src=`${item.thumb}-small.jpg`
+                                        src='img/content/gallery/thumbs/thumb-placeholder.jpg'
+                                        data-src=`${item.thumb}-small.jpg`
                                         alt=item.thumbAlt
-                                    ).gallery__thumb-img
+                                    ).gallery__thumb-img.lazy
                                 a(
                                     href=item.link
                                     role="button"

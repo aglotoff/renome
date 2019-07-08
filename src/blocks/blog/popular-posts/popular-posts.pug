@@ -19,14 +19,12 @@ mixin popular-posts(props = {})
                         tabindex="-1"
                     ).popular-posts__item-thumb
                         -
-                            const jpegSrcSet = `
-                                ${post.thumb}.jpg 1x,
-                                ${post.thumb}@2x.jpg 2x
-                            `;
-                            const webpSrcSet = `
-                                ${post.thumb}.webp 1x,
-                                ${post.thumb}@2x.webp 2x
-                            `;
+                            const jpegSrcSet =
+                                post.thumb + '.jpg 1x, ' +
+                                post.thumb + '@2x.jpg 2x';
+                            const webpSrcSet = 
+                                post.thumb + '.webp 1x, ' +
+                                post.thumb + '@2x.webp 2x';
                         picture
                             source(srcset=webpSrcSet type="image/webp")
                             source(srcset=jpegSrcSet type="image/jpeg")

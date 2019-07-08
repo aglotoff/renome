@@ -8,52 +8,38 @@
         - {object} props.images[] - images
         - {string} props.images[].src - image URL
         - {string} props.images[].alt - image alt text
+        - {boolean} props.lazy - lazy-load the images
 
 mixin img-group(props = {})
     .img-group(class=`img-group_order_${props.order}`)&attributes(attributes)
         each image in props.images
             .img-group__wrapper(class=props.wide && 'img-group__wrapper_wide')
                 -
-                    const mobileJpegSrcSet = `
-                        ${image.src}-small.jpg 1x,
-                        ${image.src}-medium.jpg 2x
-                    `;
-                    const desktopJpegSrcSet = `
-                        ${image.src}-small.jpg 1x,
-                        ${image.src}-medium.jpg 1.5x,
-                        ${image.src}-large.jpg 2x
-                    `;
-                    const mobileWebpSrcSet = `
-                        ${image.src}-small.webp 1x,
-                        ${image.src}-medium.webp 2x
-                    `;
-                    const desktopWebpSrcSet = `
-                        ${image.src}-small.webp 1x,
-                        ${image.src}-medium.webp 1.5x,
-                        ${image.src}-large.webp 2x
-                    `;
-                picture
-                    source(
-                        srcset=mobileWebpSrcSet
-                        media="(max-width: 480px)"
-                        type="image/webp"
-                    )
-                    source(
-                        srcset=desktopWebpSrcSet
-                        type="image/webp"
-                    )
-                    source(
-                        srcset=mobileJpegSrcSet
-                        media="(max-width: 480px)"
-                        type="image/jpeg"
-                    )
-                    source(
-                        srcset=desktopJpegSrcSet
-                        type="image/jpeg"
-                    )
-                    img(
-                        src=`${image.src}-small.jpg`
-                        alt=image.alt
-                    ).img-group__img
+                    const jpegSrcSet = 
+                        image.src + '-small.jpg 450w, ' +
+                        image.src + '-medium.jpg 625w, ' +
+                        image.src + '-large.jpg 800w';
+                    const webpSrcSet = 
+                        image.src + '-small.webp 450w, ' +
+                        image.src + '-medium.webp 625w, ' +
+                        image.src + '-large.webp 800w';
+                    const sizes = '(min-width: 470px) 450px, calc(100vh - 20px)';
+                if props.lazy
+                    picture
+                        source(data-srcset=webpSrcSet type="image/webp" sizes=sizes)
+                        source(data-srcset=jpegSrcSet type="image/jpeg" sizes=sizes)
+                        img(
+                            data-src=`${image.src}-small.jpg`
+                            src='img/img-placeholder.jpg'
+                            alt=image.alt
+                        ).img-group__img.lazy
+                else
+                    picture
+                        source(srcset=webpSrcSet type="image/webp" sizes=sizes)
+                        source(srcset=jpegSrcSet type="image/jpeg" sizes=sizes)
+                        img(
+                            src=`${image.src}-small.jpg`
+                            alt=image.alt
+                        ).img-group__img
             // .img-group__wrapper 
     // .img-group 

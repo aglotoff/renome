@@ -139,17 +139,17 @@
             "posts": [{
                 "title": "Grand opening!",
                 "date": "2015-10-03 19:00",
-                "thumb": "img/content/blog/posts/thumbs/326x326/grand-opening.jpg",
+                "thumb": "img/content/blog/posts/thumbs/home/grand-opening.jpg",
                 "link": "blog-single-left-sidebar.html"
             }, {
                 "title": "Mini chilli pretzels",
                 "date": "2015-07-03 19:00",
-                "thumb": "img/content/blog/posts/thumbs/326x326/mini-chilli-pretzels.jpg",
+                "thumb": "img/content/blog/posts/thumbs/home/mini-chilli-pretzels.jpg",
                 "link": "blog-single-left-sidebar.html"
             }, {
                 "title": "Summer specials",
                 "date": "2015-05-06 19:00",
-                "thumb": "img/content/blog/posts/thumbs/326x326/summer-specials.jpg",
+                "thumb": "img/content/blog/posts/thumbs/home/summer-specials.jpg",
                 "link": "blog-single-left-sidebar.html"
             }]
         },

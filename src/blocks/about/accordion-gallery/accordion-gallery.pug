@@ -22,16 +22,14 @@ mixin accordion-gallery(props = {})
                 role="button"
             )
                 -
-                    const jpegSrcSet = `
-                        ${item.thumb}-small.jpg 1x,
-                        ${item.thumb}-medium.jpg 1.5x,
-                        ${item.thumb}-large.jpg 2x
-                    `;
-                    const webpSrcSet = `
-                        ${item.thumb}-small.webp 1x,
-                        ${item.thumb}-medium.webp 1.5x,
-                        ${item.thumb}-large.webp 2x
-                    `;
+                    const jpegSrcSet = 
+                        item.thumb + '-small.jpg 1x, ' +
+                        item.thumb + '-medium.jpg 1.5x, ' +
+                        item.thumb + '-large.jpg 2x';
+                    const webpSrcSet = 
+                        item.thumb + '-small.webp 1x, ' +
+                        item.thumb + '-medium.webp 1.5x, ' +
+                        item.thumb + '-large.webp 2x';
                 picture
                     source(srcset=webpSrcSet type="image/webp")
                     source(srcset=jpegSrcSet type="image/jpeg")

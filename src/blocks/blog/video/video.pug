@@ -2,42 +2,27 @@ mixin video(props = {})
     .video(data-url=props.url, data-format=props.format)&attributes(attributes)
         .video__placeholder
             -
-                const mobileJpegSrcSet = `
-                    ${props.placeholder}-small.jpg 1x,
-                    ${props.placeholder}-medium.jpg 2x
-                `;
-                const desktopJpegSrcSet = `
-                    ${props.placeholder}-medium.jpg 1x,
-                    ${props.placeholder}-large.jpg 1.5x,
-                    ${props.placeholder}-xlarge.jpg 2x
-                `;
-                const mobileWebpSrcSet = `
-                    ${props.placeholder}-small.webp 1x,
-                    ${props.placeholder}-medium.webp 2x
-                `;
-                const desktopWebpSrcSet = `
-                    ${props.placeholder}-medium.webp 1x,
-                    ${props.placeholder}-large.webp 1.5x,
-                    ${props.placeholder}-xlarge.webp 2x
-                `;
+                const jpegSrcSet =
+                    props.placeholder + '-small.jpg 480w, ' +
+                    props.placeholder + '-medium.jpg 768w, ' +
+                    props.placeholder + '-large.jpg 1152w, ' +
+                    props.placeholder + '-xlarge.jpg 1536w';
+                const webpSrcSet =
+                    props.placeholder + '-small.webp 480w, ' +
+                    props.placeholder + '-medium.webp 768w, ' +
+                    props.placeholder + '-large.webp 1152w, ' +
+                    props.placeholder + '-xlarge.webp 1536w';
+                const sizes = '(min-width: 992px) 700px, calc(100vw - 20px)';
             picture
                 source(
-                    srcset=mobileWebpSrcSet
-                    media="(max-width: 480px)"
+                    srcset=webpSrcSet
                     type="image/webp"
+                    sizes=sizes
                 )
                 source(
-                    srcset=desktopWebpSrcSet
-                    type="image/webp"
-                )
-                source(
-                    srcset=mobileJpegSrcSet
-                    media="(max-width: 480px)"
+                    srcset=jpegSrcSet
                     type="image/jpeg"
-                )
-                source(
-                    srcset=desktopJpegSrcSet
-                    type="image/jpeg"
+                    sizes=sizes
                 )
                 img(
                     src=`${props.placeholder}-medium.jpg`

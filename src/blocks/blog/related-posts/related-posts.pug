@@ -19,17 +19,28 @@ mixin related-posts(props = {})
                         tabindex="-1"
                     ).related-posts__item-thumb
                         -
-                            const jpegSrcSet = `
-                                ${post.thumb}.jpg 1x,
-                                ${post.thumb}@2x.jpg 2x
-                            `;
-                            const webpSrcSet = `
-                                ${post.thumb}.webp 1x,
-                                ${post.thumb}@2x.webp 2x
-                            `;
+                            const jpegSrcSet =
+                                post.thumb + '.jpg 320w, ' +
+                                post.thumb + '@2x.jpg 640w';
+                            const webpSrcSet =
+                                post.thumb + '.webp 320w, ' +
+                                post.thumb + '@2x.webp 640w';
+                            const sizes = 
+                                '(min-width: 992px) 200x, ' +
+                                '(min-width: 768px) 33vw, ' +
+                                '(min-width: 480px) 50vw, ' +
+                                '100vw';
                         picture
-                            source(srcset=webpSrcSet type="image/webp")
-                            source(srcset=jpegSrcSet type="image/jpeg")
+                            source(
+                                srcset=webpSrcSet
+                                type="image/webp"
+                                sizes=sizes
+                            )
+                            source(
+                                srcset=jpegSrcSet
+                                type="image/webp"
+                                sizes=sizes
+                            )
                             img(
                                 src=`${post.thumb}.jpg`
                                 alt=post.title

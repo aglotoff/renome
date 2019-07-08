@@ -12,14 +12,12 @@ mixin review(props)
     li.review&attributes(attributes)
         .review__header
             -
-                const jpegSrcSet = `
-                    ${props.avatar}.jpg 1x,
-                    ${props.avatar}@2x.jpg 2x
-                `;
-                const webpSrcSet = `
-                    ${props.avatar}.webp 1x,
-                    ${props.avatar}@2x.webp 2x
-                `;
+                const jpegSrcSet =
+                    props.avatar + '.jpg 1x, ' +
+                    props.avatar + '@2x.jpg 2x';
+                const webpSrcSet =
+                    props.avatar + '.webp 1x, ' +
+                    props.avatar + '@2x.webp 2x';
             picture
                 source(srcset=webpSrcSet type="image/webp")
                 source(srcset=jpegSrcSet type="image/jpeg")

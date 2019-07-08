@@ -14,14 +14,12 @@ mixin menu-product(props = {})
     li.menu-product&attributes(attributes)
         .menu-product__thumb
             -
-                const jpegSrcSet = `
-                    ${props.thumb}-small.jpg 1x,
-                    ${props.thumb}-large.jpg 2x
-                `;
-                const webpSrcSet = `
-                    ${props.thumb}-small.webp 1x,
-                    ${props.thumb}-large.webp 2x
-                `;
+                const jpegSrcSet =
+                    props.thumb + '-small.jpg 1x, ' +
+                    props.thumb + '-large.jpg 2x';
+                const webpSrcSet =
+                    props.thumb + '-small.webp 1x, ' +
+                    props.thumb + '-large.webp 2x';
             picture
                 source(
                     srcset="img/content/menu/products/thumbs/placeholder.jpg"

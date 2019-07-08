@@ -20,25 +20,17 @@ mixin article(props = {})
         .article__content
             if props.image
                 -
-                    const mobileJpegSrcSet = `
-                        ${props.image}-small.jpg 1x,
-                        ${props.image}-medium.jpg 2x
-                    `;
-                    const desktopJpegSrcSet = `
-                        ${props.image}-medium.jpg 1x,
-                        ${props.image}-large.jpg 1.5x,
-                        ${props.image}-xlarge.jpg 2x
-                    `;
-                    const mobileWebpSrcSet = `
-                        ${props.image}-small.webp 1x,
-                        ${props.image}-medium.webp 2x
-                    `;
-                    const desktopWebpSrcSet = `
-                        ${props.image}-medium.webp 1x,
-                        ${props.image}-large.webp 1.5x,
-                        ${props.image}-xlarge.webp 2x
-                    `;
-
+                    const jpegSrcSet =
+                        props.image + '-small.jpg 480w, ' +
+                        props.image + '-medium.jpg 768w, ' +
+                        props.image + '-large.jpg 1152w, ' +
+                        props.image + '-xlarge.jpg 1536w';
+                    const webpSrcSet =
+                        props.image + '-small.webp 480w, ' +
+                        props.image + '-medium.webp 768w, ' +
+                        props.image + '-large.webp 1152w, ' +
+                        props.image + '-xlarge.webp 1536w';
+                    const sizes = '(min-width: 992px) 700px, calc(100vw - 20px)';
                 if (props.link)
                     a(
                         href=props.link
@@ -47,22 +39,14 @@ mixin article(props = {})
                     )
                         picture
                             source(
-                                srcset=mobileWebpSrcSet
-                                media="(max-width: 480px)"
+                                srcset=webpSrcSet
                                 type="image/webp"
+                                sizes=sizes
                             )
                             source(
-                                srcset=desktopWebpSrcSet
-                                type="image/webp"
-                            )
-                            source(
-                                srcset=mobileJpegSrcSet
-                                media="(max-width: 480px)"
+                                srcset=jpegSrcSet
                                 type="image/jpeg"
-                            )
-                            source(
-                                srcset=desktopJpegSrcSet
-                                type="image/jpeg"
+                                sizes=sizes
                             )
                             img(
                                 src=`${props.image}-medium.jpg`
@@ -71,22 +55,14 @@ mixin article(props = {})
                 else
                     picture
                         source(
-                            srcset=mobileWebpSrcSet
-                            media="(max-width: 480px)"
+                            srcset=webpSrcSet
                             type="image/webp"
+                            sizes=sizes
                         )
                         source(
-                            srcset=desktopWebpSrcSet
-                            type="image/webp"
-                        )
-                        source(
-                            srcset=mobileJpegSrcSet
-                            media="(max-width: 480px)"
+                            srcset=jpegSrcSet
                             type="image/jpeg"
-                        )
-                        source(
-                            srcset=desktopJpegSrcSet
-                            type="image/jpeg"
+                            sizes=sizes
                         )
                         img(
                             src=`${props.image}-medium.jpg`

@@ -12,16 +12,14 @@ mixin product(props)
     .product&attributes(attributes)
         a(href=props.link tabindex="-1" aria-hidden="true").product__thumb
             -
-                const jpegSrcSet = `
-                    ${props.thumb}-small.jpg 1x,
-                    ${props.thumb}-medium.jpg 1.5x,
-                    ${props.thumb}-large.jpg 2x
-                `;
-                const webpSrcSet = `
-                    ${props.thumb}-small.webp 1x,
-                    ${props.thumb}-medium.webp 1.5x,
-                    ${props.thumb}-large.webp 2x
-                `;
+                const jpegSrcSet =
+                    props.thumb + '-small.jpg 1x, ' +
+                    props.thumb + '-medium.jpg 1.5x, ' +
+                    props.thumb + '-large.jpg 2x';
+                const webpSrcSet =
+                    props.thumb + '-small.webp 1x, ' +
+                    props.thumb + '-medium.webp 1.5x, ' +
+                    props.thumb + '-large.webp 2x';
             picture
                 source(srcset=webpSrcSet type="image/webp")
                 source(srcset=jpegSrcSet type="image/jpeg")

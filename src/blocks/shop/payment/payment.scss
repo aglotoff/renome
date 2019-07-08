@@ -54,7 +54,7 @@
     }
 
     &__cards {
-        display: flex;
+        display: block;
         margin-left: 35px;
         margin-top: 15px;
 
@@ -63,10 +63,6 @@
             margin-left: 50px;
             margin-top: -5px;
         }
-    }
-
-    &__card:not(:first-child) {
-        margin-left: 20px;
     }
 
     &__link {
