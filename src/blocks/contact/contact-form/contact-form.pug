@@ -3,15 +3,15 @@
     description: Markup for the contact form block
 
 mixin contact-form()
-    form.contact-form(action="#" method="post")&attributes(attributes)
+    form.contact-form.form(action="#" method="post")&attributes(attributes)
         h2.contact-form__title Write a message
 
-        .contact-form__inner
-            .contact-form__field
+        .form__fields
+            .form__field
                 label(
                     for="contact-first-name"
                     id="label-first-name"
-                ).contact-form__label First Name
+                ).form__label First Name
                 +input()(
                     type="text"
                     id="contact-first-name"
@@ -19,14 +19,14 @@ mixin contact-form()
                     placeholder="First Name *"
                     aria-labelledby="label-first-name"
                     required
-                ).contact-form__input
-            // .contact-form__field 
+                ).form__input
+            // .form__field 
 
-            .contact-form__field
+            .form__field
                 label(
                     for="contact-last-name"
                     id="label-last-name"
-                ).contact-form__label Last Name
+                ).form__label Last Name
                 +input()(
                     type="text"
                     id="contact-last-name"
@@ -34,14 +34,14 @@ mixin contact-form()
                     placeholder="Last Name *"
                     aria-labelledby="label-last-name"
                     required
-                ).contact-form__input
-            // .contact-form__field 
+                ).form__input
+            // .form__field 
 
-            .contact-form__field
+            .form__field
                 label(
                     for="contact-email"
                     id="label-email"
-                ).contact-form__label Email
+                ).form__label Email
                 +input()(
                     type="email"
                     id="contact-email"
@@ -49,14 +49,14 @@ mixin contact-form()
                     placeholder="Email *"
                     aria-labelledby="label-email"
                     required
-                ).contact-form__input
-            // .contact-form__field 
+                ).form__input
+            // .form__field 
 
-            .contact-form__field
+            .form__field
                 label(
                     for="contact-subject"
                     id="label-subject"
-                ).contact-form__label Subject
+                ).form__label Subject
                 +input()(
                     type="text"
                     id="contact-subject"
@@ -64,26 +64,28 @@ mixin contact-form()
                     placeholder="Subject *"
                     aria-labelledby="label-subject"
                     required
-                ).contact-form__input
-            // .contact-form__field 
+                ).form__input
+            // .form__field 
 
-            .contact-form__field.contact-form__field_large
+            .form__field.form__field_wide
                 label(
                     for="contact-message"
                     id="label-message"
-                ).contact-form__label Message
+                ).form__label Message
                 +text-area()(
                     id="contact-message"
                     name="message"
                     placeholder="Message *"
                     aria-labelledby="label-message"
                     required
-                ).contact-form__input.contact-form__input_large
-            // .contact-form__field 
+                ).form__input
+            // .form__field 
+        // .form__fields 
 
+        .contact-form__submit
             +btn({ title: 'Send' }, 'submit', {
                 theme: 'light',
                 size: 'small',
-            }).contact-form__submit
-        // .contact-form__inner 
+            })
+        // .contact-form__submit 
     // .contact-form 

@@ -31,10 +31,10 @@ export function initBlock() {
     }
 
     $form.validate({
-        errorClass: 'error review-form__error',
+        errorClass: 'error form__error',
     
         errorPlacement: function($error, $element) {
-            $element.closest('.review-form__field').append($error);
+            $element.closest('.form__field').append($error);
         },
     
         highlight(element) {

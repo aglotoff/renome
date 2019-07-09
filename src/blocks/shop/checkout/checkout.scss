@@ -54,48 +54,6 @@
         }
     }
 
-    &__fields {
-        @include breakpoint-up(md) {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -25px;
-
-            overflow: hidden;
-        }
-    }
-
-    &__group {
-        @include breakpoint-up(md) {
-            padding: 0 25px;
-            width: 50%;
-        }
-
-        &_large {
-            width: 100%;
-        }
-    }
-
-    &__label {
-        display: block;
-        margin-top: 20px;
-
-        @include font-size(11px);
-        font-weight: $font-weight-bold;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-    }
-
-    &__input {
-        width: 100%;
-    }
-
-    &__error {
-        display: block;
-        margin-top: 10px;
-
-        text-transform: none;
-    }
-
     &__shipping-checkbox {
         margin-right: 15px;
 
@@ -108,13 +66,15 @@
     &__account-header {
         align-items: center;
         display: flex;
-
-        margin-top: 20px;
     }
 
     &__account-fields {
         display: none;
         margin-top: 25px;
+    }
+
+    &__account-text {
+        margin-bottom: 20px;
     }
 
     &__check-label {

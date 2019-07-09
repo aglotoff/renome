@@ -31,7 +31,7 @@ class ContactForm {
      */
     constructor($root) {
         $root.validate({
-            errorClass: 'error contact-form__error',
+            errorClass: 'error form__error',
     
             highlight(element) {
                 $(element).addClass(function() {

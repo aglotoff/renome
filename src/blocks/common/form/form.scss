@@ -1,0 +1,56 @@
+/**
+ * Styles for the form block.
+ */
+.form {
+    &__error {
+        display: block;
+        margin-top: 10px;
+
+        text-align: left;
+        text-transform: none;
+    }
+
+    &__input {
+        width: 100%;
+    }
+
+    &__rating {
+        margin-top: 15px;
+    }
+
+    &__label {
+        display: none;
+
+        &_visible {
+            display: block;
+
+            @include font-size(11px);
+            font-weight: $font-weight-bold;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+    }
+
+    &__field {
+        margin-bottom: 25px;
+
+        @include breakpoint-up(md) {
+            padding: 0 25px;
+            width: 50%;
+        }
+
+        &_wide {
+            width: 100%;
+        }
+    }
+
+    &__fields {
+        @include breakpoint-up(md) {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -25px;
+
+            overflow: hidden;
+        }
+    }
+}

@@ -3,16 +3,16 @@
     description: Markup for the review form block
 
 mixin review-form()
-    form(action="#" method="post").review-form&attributes(attributes)
+    form(action="#" method="post").review-form.form&attributes(attributes)
         .review-form__inner
             h3.title.review-form__title Add a review
 
-            .review-form__fields
-                .review-form__field
+            .form__fields
+                .form__field
                     label(
                         for="review-author"
                         id="review-author-label"
-                    ).review-form__label Author
+                    ).form__label Author
                     +input({theme: 'small'})(
                         type="text"
                         id="review-author"
@@ -20,14 +20,14 @@ mixin review-form()
                         name="author"
                         placeholder="Name"
                         required
-                    ).review-form__input
-                // .review-form__field 
+                    ).form__input
+                // .form__field 
 
-                .review-form__field
+                .form__field
                     label(
                         for="review-email"
                         id="review-email-label"
-                    ).review-form__label Email
+                    ).form__label Email
                     +input({theme: 'small'})(
                         type="email"
                         id="review-email"
@@ -35,33 +35,33 @@ mixin review-form()
                         name="email"
                         placeholder="Email"
                         required
-                    ).review-form__input
-                // .review-form__field 
+                    ).form__input
+                // .form__field 
 
-                fieldset.review-form__field.review-form__field_radio-group
-                    legend.review-form__label.review-form__label_visible
+                fieldset.form__field.form__field_radio-group
+                    legend.form__label.form__label_visible
                         | Your rating
                     
                     +rating-input({
                         name: 'rating',
                         required: true,
-                    }).review-form__rating
-                // .review-form__field 
+                    }).form__rating
+                // .form__field 
 
-                .review-form__field.review-form__field_wide
+                .form__field.form__field_wide
                     label(
                         for="review-comment"
                         id="review-comment-label"
-                    ).review-form__label Your review
+                    ).form__label Your review
                     +text-area({theme: 'small'})(
                         id="review-comment"
                         aria-labelledby="review-comment-label"
                         name="comment"
                         placeholder="Message"
                         required
-                    ).review-form__input
-                // .review-form__field 
-            // .review-form__fields 
+                    ).form__input
+                // .form__field 
+            // .form__fields 
 
             .review-form__bottom
                 +btn({ title: 'Submit' }, 'submit').review-form__submit

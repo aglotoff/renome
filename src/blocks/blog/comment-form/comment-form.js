@@ -26,7 +26,7 @@ function getInvalidClassName($element) {
  */
 export function initBlock() {
     $('.comment-form').validate({
-        errorClass: 'error comment-form__error',
+        errorClass: 'error form__error',
     
         highlight(element) {
             $(element).addClass(getInvalidClassName($(element)));

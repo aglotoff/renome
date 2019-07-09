@@ -18,70 +18,21 @@
         overflow: hidden;
     }
 
-    &__fields {
-        margin-top: 50px;
-
-        @include breakpoint-up(md) {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: -26px;
-            margin-right: -26px;
-        }
-    }
-
-    &__field {
-        margin-top: 20px;
-
-        @include breakpoint-up(md) {
-            padding: 0 26px;
-            width: 50%;
-        }
-
-        &_wide {
-            @include breakpoint-up(md) {
-                width: 100%;
-            }
-        }
-
-        &_radio-group {
-            margin-bottom: 30px;
-            margin-top: 50px;
-        }
-    }
-
-    &__input {
-        width: 100%;
-    }
-
-    &__label {
-        display: none;
-
-        &_visible {
-            display: block;
-
-            @include font-size(11px);
-            font-weight: $font-weight-bold;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-    }
-
-    &__rating {
-        margin-top: 20px;
+    &__title {
+        margin-bottom: 50px;
     }
 
     &__bottom {
         margin-top: 50px;
 
         text-align: center;
+
+        @include breakpoint-up(md) {
+            margin-top: 25px;
+        }
     }
 
     &__submit {
         width: 180px;
-    }
-
-    &__error {
-        display: block;
-        margin-top: 10px;
     }
 }

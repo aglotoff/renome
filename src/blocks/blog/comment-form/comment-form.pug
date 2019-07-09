@@ -3,15 +3,15 @@
     description: Markup for the comment form block
 
 mixin comment-form()
-    form.comment-form(action="#" method="post")&attributes(attributes)
-        .comment-form__fields
+    form.comment-form.form(action="#" method="post")&attributes(attributes)
+        .form__fields
             input(type="hidden" name="reply-to")
 
-            .comment-form__input-group
+            .form__field
                 label(
                     for="comment-name"
                     id="comment-name-label"
-                ).comment-form__label
+                ).form__label
                 +input({theme: 'small'})(
                     type="text"
                     name="name"
@@ -19,14 +19,14 @@ mixin comment-form()
                     aria-labelledby="comment-name-label"
                     placeholder="Name"
                     required
-                ).comment-form__input Name
-            // .comment-form__input-group 
+                ).form__input Name
+            // .form__field 
 
-            .comment-form__input-group
+            .form__field
                 label(
                     for="comment-email"
                     id="comment-email-label"
-                ).comment-form__label Email
+                ).form__label Email
                 +input({theme: 'small'})(
                     type="email"
                     name="email"
@@ -34,23 +34,23 @@ mixin comment-form()
                     aria-labelledby="comment-email-label"
                     placeholder="Email"
                     required
-                ).comment-form__input
-            // .comment-form__input-group 
+                ).form__input
+            // .form__field 
 
-            .comment-form__input-group.comment-form__input-group_wide
+            .form__field.form__field_wide
                 label(
                     for="comment-message"
                     id="comment-message-label"
-                ).comment-form__label Message
+                ).form__label Message
                 +text-area({theme: 'small'})(
                     name="message"
                     placeholder="Message"
                     id="comment-message"
                     aria-labelledby="comment-message-label"
                     required
-                ).comment-form__input
-            // .comment-form__input-group 
-        // .comment-form__fields 
+                ).form__input
+            // .form__field 
+        // .form__fields 
 
         +btn({title: 'Post comment'}, 'submit').comment-form__submit
     // .comment-form 

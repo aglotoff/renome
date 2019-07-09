@@ -54,8 +54,8 @@ export function initBlock() {
     $('.checkout__checkbox', $form).change(handleCheckboxChange);
 
     $form.validate({
-        errorClass: 'error checkout__error',
-        ignore: '.checkout__input:hidden',
+        errorClass: 'error form__error',
+        ignore: '.form__input:hidden',
     
         highlight(element) {
             $(element).addClass(getInvalidClassName($(element)));
