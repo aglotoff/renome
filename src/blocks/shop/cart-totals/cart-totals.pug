@@ -28,9 +28,7 @@ mixin cart-totals(props)
                             | $#{props.total.toFixed(2)}
 
             .cart-totals__checkout
-                +btn({
-                    title: 'Proceed to checkout',
-                    link: 'shop-checkout.html',
-                }, 'link').cart-totals__checkout-btn
+                +btn({ link: 'shop-checkout.html'}).cart-totals__checkout-btn
+                    | Proceed to checkout
         // .cart-totals__inner 
     // .cart-totals 

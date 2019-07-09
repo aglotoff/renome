@@ -9,9 +9,6 @@
 mixin cta(props = {})
     .cta&attributes(attributes)
         .cta__inner
-            +btn({
-                title: props.title,
-                link: props.link,
-            }, 'link').cta__btn
+            +btn({ link: props.link }).cta__btn= props.title
         // .cta__inner 
     // .cta 

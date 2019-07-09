@@ -1,3 +1,10 @@
-mixin input(mods={})
-    - const theme = mods.theme || 'default';
+//-
+    name: input
+    description: Markup for the input block
+    arguments:
+        - {object} props - block properties
+        - {string} props.theme - block theme
+
+mixin input(props={})
+    - const theme = props.theme || 'default';
     input.input(class=`input_theme_${theme}`)&attributes(attributes)

@@ -1,16 +1,30 @@
-mixin btn(data, type = 'button', mods = {})
+//-
+    name: btn
+    description: Markup for the button block
+    arguments:
+        - {object} props - block properties
+        - {string} props.theme - button theme
+        - {string} props.size - button size (default, small)
+        - {string} props.link - URL (if this is a link)
+        - {string} props.type - button type (if this is not a link)
+
+mixin btn(props = {})
     -
         const classObj = {
-            ['btn_theme_' + (mods.theme || 'default')]: true,
-            ['btn_size_'  + (mods.size  || 'default')]: true,
+            ['btn_theme_' + (props.theme || 'default')]: true,
+            ['btn_size_'  + (props.size  || 'default')]: true,
         };
-    if type == 'link'
+    if props.link
         a.btn(
-            href  = data.link
-            class = classObj
-        )&attributes(attributes)= data.title
+            href=props.link
+            class=classObj
+        )&attributes(attributes)
+            if block
+                block
     else
         button.btn(
-            type  = type
-            class = classObj
-        )&attributes(attributes)= data.title
+            type=props.type || 'button'
+            class=classObj
+        )&attributes(attributes)
+            if block
+                block

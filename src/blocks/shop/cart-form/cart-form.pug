@@ -92,19 +92,15 @@ mixin cart-form(props = {})
                         id="cart-coupon-code"
                         aria-labelledby="cart-coupon-code-label"
                     ).cart-form__coupon-input
-                    +btn({
-                        title: 'Apply coupon'
-                    }, 'button').cart-form__coupon-apply(
+                    +btn().cart-form__coupon-apply(
                         name="apply_coupon"
                         value="Apply coupon"
-                    )
+                    ) Apply coupon
                 // .cart-form__coupon 
 
-                +btn({
-                    title: 'Update Cart'
-                }, 'submit').cart-form__submit(
+                +btn({ type: 'submit' }).cart-form__submit(
                     name="update_cart"
                     value="Update Cart"
-                )
+                ) Update Cart
             // .cart-form__actions 
         // .cart-form__inner 

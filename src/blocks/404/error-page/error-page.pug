@@ -17,9 +17,6 @@ mixin error-page(props = {})
                 p.error-page__msg= props.message
             // .error-page__text 
 
-            +btn({
-                title: 'On homepage',
-                link: 'index.html',
-            }, 'link').error-page__back
+            +btn({ link: 'index.html' }).error-page__back On homepage
         // .error-page__inner 
     // .error__page 
