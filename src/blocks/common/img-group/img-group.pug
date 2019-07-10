@@ -26,8 +26,18 @@ mixin img-group(props = {})
                     const sizes = '(min-width: 470px) 450px, calc(100vh - 20px)';
                 if props.lazy
                     picture
-                        source(data-srcset=webpSrcSet type="image/webp" sizes=sizes)
-                        source(data-srcset=jpegSrcSet type="image/jpeg" sizes=sizes)
+                        source(
+                            srcset="img/img-placeholder.webp 450w"
+                            data-srcset=webpSrcSet
+                            type="image/webp"
+                            sizes=sizes
+                        )
+                        source(
+                            srcset="img/img-placeholder.jpg 450w"
+                            data-srcset=jpegSrcSet
+                            type="image/jpeg"
+                            sizes=sizes
+                        )
                         img(
                             data-src=`${image.src}-small.jpg`
                             src='img/img-placeholder.jpg'

@@ -32,8 +32,16 @@ mixin gallery(data)
                                         item.thumb + '-medium.webp 1.5x, ' +
                                         item.thumb + '-large.webp 2x';
                                 picture
-                                    source(data-srcset=webpSrcSet type="image/webp")
-                                    source(data-srcset=jpegSrcSet type="image/jpeg")
+                                    source(
+                                        srcset="img/content/gallery/thumbs/thumb-placeholder.webp"
+                                        data-srcset=webpSrcSet
+                                        type="image/webp"
+                                    )
+                                    source(
+                                        srcset="img/content/gallery/thumbs/thumb-placeholder.jpg"
+                                        data-srcset=jpegSrcSet
+                                        type="image/jpeg"
+                                    )
                                     img(
                                         src='img/content/gallery/thumbs/thumb-placeholder.jpg'
                                         data-src=`${item.thumb}-small.jpg`

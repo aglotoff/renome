@@ -15,15 +15,15 @@ mixin project-carousel(props = {})
                     .project-carousel__slide
                         -
                             const jpegSrcSet =
-                                slide.src + '-small.jpg 600vw, ' +
-                                slide.src + '-medium.jpg 900vw, ' +
-                                slide.src + '-large.jpg 1200vw, ' +
-                                slide.src + '-xlarge.jpg 1800vw';
+                                slide.src + '-small.jpg 600w, ' +
+                                slide.src + '-medium.jpg 900w, ' +
+                                slide.src + '-large.jpg 1200w, ' +
+                                slide.src + '-xlarge.jpg 1800w';
                             const webpSrcSet =
-                                slide.src + '-small.webp 600vw, ' +
-                                slide.src + '-medium.webp 900vw, ' +
-                                slide.src + '-large.webp 1200vw, ' +
-                                slide.src + '-xlarge.webp 1800vw';
+                                slide.src + '-small.webp 600w, ' +
+                                slide.src + '-medium.webp 900w, ' +
+                                slide.src + '-large.webp 1200w, ' +
+                                slide.src + '-xlarge.webp 1800w';
                             const sizes = '(min-width: 1200px) 1180px, 100vw';
                         picture
                             source(
