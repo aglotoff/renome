@@ -12,8 +12,10 @@ Features
 * Fully responsive
 * BEM code organization methodology
 * W3C validated, clean code
-* Crossbrowser compatible (Chrome, Opera, Firefox, Safari, IE10+, Edge)
+* Crossbrowser compatible (Chrome, Opera, Firefox, Safari, IE11, Edge)
 * Accessibility-ready
+* Speed optimized
+* SEO and microdata optimized
 
 Resources
 ---------
