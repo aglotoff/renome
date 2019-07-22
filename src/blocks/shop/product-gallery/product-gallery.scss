@@ -42,6 +42,7 @@
     }
 
     &__container {
+        flex: 1 1;
         overflow: hidden;
 
         @include breakpoint-up(sm) {
