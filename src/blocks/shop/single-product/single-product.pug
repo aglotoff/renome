@@ -54,8 +54,6 @@ mixin single-product(props = {})
                     p= props.shortDesc
                 
                 +add-to-cart().single-product__add-to-cart
-            // .single-product__info 
-        // .single-product__top
 
         +tabs({
             tabs: [{
@@ -79,4 +77,3 @@ mixin single-product(props = {})
         }).single-product__tabs
 
         +related-products({ items: props.relatedProducts }) 
-    // .single-product 

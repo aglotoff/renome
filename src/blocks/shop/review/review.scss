@@ -2,29 +2,40 @@
  * Styles for the product review block
  */
 .review {
+    // Selector styles
     overflow: hidden;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__header {
         float: left;
-        margin-right: 20px;
+        margin-right: 1.25em;
 
         @include breakpoint-up(lg) {
-            margin-right: 160px;
+            margin-right: 10em;
         }
     }
 
     &__avatar {
-        max-width: 70px;
+        max-width: 4.375em;
     }
 
     &__title {
-        margin-top: 7px;
-        padding-left: 10px;
+        margin-top: 0.5em;
+        padding-left: 0.625em;
     }
 
     &__author {
         font-family: $font-family-title;
-        @include font-size(11px);
+        font-size: 0.6875rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.2em;
         text-transform: uppercase;
@@ -32,17 +43,17 @@
 
     &__rating {
         display: inline-block;
-        margin-top: 8px;
-        padding-top: 9px;
+        margin-top: 0.5em;
+        padding-top: 0.5em;
 
         border-top: 1px solid $color-iron;
     }
 
     &__time {
         float: right;
-        margin-bottom: 15px;
+        margin-bottom: 1.365em;
 
-        @include font-size(11px);
+        font-size: 0.6875rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.1em;
         text-align: right;
@@ -51,8 +62,11 @@
 
     &__body {
         clear: right;
-        max-width: 450px;
+        max-width: 28.125em;
 
         overflow: hidden;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

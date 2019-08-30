@@ -2,14 +2,28 @@
  * Styles for the project description block
  */
 .project-desc {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1050px;
-        padding: 0 10px;
+        max-width: 65.625em;
+        padding: 0 0.625em;
     }
 
     &__title {
         color: $color-black;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -18,4 +32,7 @@
     &__text {
         margin-top: 1.25em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

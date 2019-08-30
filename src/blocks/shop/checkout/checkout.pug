@@ -3,7 +3,7 @@
     description: Markup for the checkout page block
     arguments:
         - {object} props - block properties
-        - {object} prps.order - order details
+        - {object} props.order - order details
 
 mixin checkout(props)
     form(action="#" method="post").checkout.form&attributes(attributes)
@@ -12,7 +12,6 @@ mixin checkout(props)
                 .checkout__section-inner
                     .checkout__section-header
                         h2.checkout__section-title Billing address
-                    // .checkout__section-header 
 
                     .checkout__fields-wrap
                         .form__fields
@@ -27,7 +26,6 @@ mixin checkout(props)
                                     aria-labelledby="label-billing-country"
                                 ).checkout__select
                                     option(value="uk") United Kingdom (UK)
-                            // .form__field 
                             
                             .form__field
                                 label(
@@ -41,7 +39,6 @@ mixin checkout(props)
                                     aria-labelledby="label-billing-first-name"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -55,7 +52,6 @@ mixin checkout(props)
                                     aria-labelledby="label-billing-last-name"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field.form__field_wide
                                 label(
@@ -68,7 +64,6 @@ mixin checkout(props)
                                     name="billing_company"
                                     aria-labelledby="label-billing-company"
                                 ).form__input
-                            // .form__field 
 
                             .form__field.form__field_wide
                                 label(
@@ -90,7 +85,6 @@ mixin checkout(props)
                                     aria-label="Apartment, Suite, Unite etc. (optional)"
                                     placeholder="Apartment, Suite, Unite etc. (optional)"
                                 ).form__input
-                            // .form__field 
 
                             .form__field.form__field_wide
                                 label(
@@ -105,7 +99,6 @@ mixin checkout(props)
                                     placeholder="Town / City"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -118,7 +111,6 @@ mixin checkout(props)
                                     name="billing_county"
                                     aria-labelledby="label-billing-county"
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -133,7 +125,6 @@ mixin checkout(props)
                                     placeholder="Postcode"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -147,7 +138,6 @@ mixin checkout(props)
                                     aria-labelledby="label-billing-email"
                                     required
                                 ).form__input
-                            // .form__field 
                             
                             .form__field
                                 label(
@@ -161,8 +151,6 @@ mixin checkout(props)
                                     aria-labelledby="label-billing-phone"
                                     required
                                 ).form__input
-                            // .form__field 
-                        // .form__fields 
 
                         .checkout__account-header
                             +checkbox({
@@ -175,7 +163,6 @@ mixin checkout(props)
                                 id="label-create-account"
                                 for="create-account"
                             ).checkout__check-label Create an account?
-                        // .checkout__account-checkbox 
 
                         .checkout__account-fields#account-fields
                             .rich-text.checkout__account-text
@@ -195,31 +182,25 @@ mixin checkout(props)
                                         placeholder="Password"
                                         required
                                     ).form__input
-                                // .form__field 
-                            // .form__fields 
-                        // .checkout__fields 
-                    // .checkout__fields-wrap 
-                // .checkout__section__inner 
-            // .checkout__section 
 
             .checkout__section
                 .checkout__section-inner
                     .checkout__section-header
                         h2.checkout__section-title Shipping address
 
-                        +checkbox({
-                            name: 'ship_to_different_address',
-                            value: 1,
-                            id: 'ship-to-different-address',
-                            labelledBy: 'label-ship-to-different-address'
-                        })(
-                            data-toggle="shipping-fields"
-                        ).checkout__checkbox.checkout__shipping-checkbox
-                        label(
-                            id="label-ship-to-different-address"
-                            for="ship-to-different-address"
-                        ).checkout__check-label Ship to a different address?
-                    // .checkout__section-header 
+                        .checkout__shipping-checkbox
+                            +checkbox({
+                                name: 'ship_to_different_address',
+                                value: 1,
+                                id: 'ship-to-different-address',
+                                labelledBy: 'label-ship-to-different-address'
+                            })(
+                                data-toggle="shipping-fields"
+                            ).checkout__checkbox
+                            label(
+                                id="label-ship-to-different-address"
+                                for="ship-to-different-address"
+                            ).checkout__check-label Ship to a different address?
 
                     .checkout__fields-wrap
                         .form__fields#shipping-fields
@@ -234,7 +215,6 @@ mixin checkout(props)
                                     aria-labelledby="label-shipping-country"
                                 ).checkout__select
                                     option(value="uk") United Kingdom (UK)
-                            // .form__field 
                             
                             .form__field
                                 label(
@@ -248,7 +228,6 @@ mixin checkout(props)
                                     aria-labelledby="label-shipping-first-name"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -262,7 +241,6 @@ mixin checkout(props)
                                     aria-labelledby="label-shipping-last-name"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field.form__field_wide
                                 label(
@@ -275,7 +253,6 @@ mixin checkout(props)
                                     name="shipping_company"
                                     aria-labelledby="label-shipping-company"
                                 ).form__input
-                            // .form__field 
 
                             .form__field.form__field_wide
                                 label(
@@ -297,7 +274,6 @@ mixin checkout(props)
                                     aria-label="Apartment, Suite, Unite etc. (optional)"
                                     placeholder="Apartment, Suite, Unite etc. (optional)"
                                 ).form__input
-                            // .form__field 
 
                             .form__field.form__field_wide
                                 label(
@@ -312,7 +288,6 @@ mixin checkout(props)
                                     placeholder="Town / City"
                                     required
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -325,7 +300,6 @@ mixin checkout(props)
                                     name="shipping_county"
                                     aria-labelledby="label-shipping-county"
                                 ).form__input
-                            // .form__field 
 
                             .form__field
                                 label(
@@ -340,8 +314,6 @@ mixin checkout(props)
                                     placeholder="Postcode"
                                     required
                                 ).form__input
-                            // .form__field 
-                        // .form__fields 
 
                         .form__fields
                             .form__field.form__field_wide
@@ -355,32 +327,20 @@ mixin checkout(props)
                                     aria-labelledby="label-shipping-notes"
                                     placeholder="Notes about you order, e.g. special notes for delivery."
                                 ).form__input
-                            // .form__field 
-                        // .form__fields 
-                    // .checkout__fields-wrap 
-                // .checkout__section__inner 
-            // .checkout__section 
-        // .checkout__customer-details 
 
         .checkout__section
             .checkout__section-inner
                 .checkout__section-heading
                     h2.checkout__section-title Your order
-                // .checkout__section-heading 
 
                 .checkout__order
                     +checkout-order(props.order)
-                // .checkout__order 
-            // .checkout__section__inner 
-        // .checkout__section 
 
         .checkout__payment
             +payments()
-        // .checkout__payment 
 
         .checkout__place-order
             +btn({ type: 'submit' }).checkout__order-btn(
                 name="place_order"
                 value="Place order"
             ) Place order
-        // .checkout__place-order 

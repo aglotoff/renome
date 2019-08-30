@@ -21,7 +21,6 @@ mixin review-form()
                         placeholder="Name"
                         required
                     ).form__input
-                // .form__field 
 
                 .form__field
                     label(
@@ -36,7 +35,6 @@ mixin review-form()
                         placeholder="Email"
                         required
                     ).form__input
-                // .form__field 
 
                 fieldset.form__field.form__field_radio-group
                     legend.form__label.form__label_visible
@@ -46,7 +44,6 @@ mixin review-form()
                         name: 'rating',
                         required: true,
                     }).form__rating
-                // .form__field 
 
                 .form__field.form__field_wide
                     label(
@@ -60,10 +57,6 @@ mixin review-form()
                         placeholder="Message"
                         required
                     ).form__input
-                // .form__field 
-            // .form__fields 
 
             .review-form__bottom
                 +btn({ type: 'submit' }).review-form__submit Submit
-            // .review-form__bottom 
-        // .review-form__inner 

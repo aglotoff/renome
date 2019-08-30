@@ -2,6 +2,10 @@
  * Styles for the blog page main block
  */
 .blog-layout {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
     @include breakpoint-up(lg) {
         display: flex;
         flex-wrap: wrap;
@@ -12,24 +16,31 @@
         }
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__articles {
-        padding: 65px 0;
+        padding: 4em 0;
 
         @include breakpoint-up(lg) {
-            padding: 95px 10px;
+            padding: 6em 0.625em;
             width: 60%;
         }
 
         @include breakpoint-up(xl) {
-            max-width: 720px;
+            max-width: 45em;
         }
     }
 
     &__article:not(:first-child) {
-        margin-top: 65px;
+        margin-top: 4em;
 
         @include breakpoint-up(lg) {
-            margin-top: 95px;
+            margin-top: 6em;
         }
     }
 
@@ -41,24 +52,21 @@
     }
 
     &__sidebar {
-        padding: 60px 10px 70px;
+        padding: 3.75em 0.625em 4.375em;
 
         @include breakpoint-up(lg) {
-            max-width: 400px;
-            padding-bottom: 100px;
-            padding-top: 90px;
+            max-width: 25em;
+            padding-bottom: 6.25em;
+            padding-top: 5.625em;
             width: 33.3333%;
-        }
-
-        @include breakpoint-up(xl) {
-            max-width: 400px;
         }
     }
 
     &__widget {
-        margin-top: 65px;
+        margin-top: 4em;
     }
 
+    // BEM modifiers
     &_sidebar_left {
         .blog-layout__articles {
             @include breakpoint-up(lg) {
@@ -66,7 +74,7 @@
             }
 
             @include breakpoint-up(xl) {
-                margin-left: 80px;
+                margin-left: 5em;
             }
         }
 
@@ -90,7 +98,7 @@
             }
 
             @include breakpoint-up(xl) {
-                margin-left: 80px;
+                margin-left: 5em;
             }
         }
     }

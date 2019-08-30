@@ -2,27 +2,36 @@
  * Styles for the testimonial block
  */
 .testimonial {
-    padding-top: 70px;
+    // Selector styles
+    padding-top: 4.375em;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-top: 100px;
+        padding-top: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__content {
         background: $color-alabaster;
 
-        padding: 70px 0;
+        padding: 4.375em 0;
 
         @include breakpoint-up(lg) {
-            padding-bottom: 100px;
-            padding-top: 100px;
+            padding-bottom: 6.25em;
+            padding-top: 6.25em;
         }
     }
 
     &__inner {
         margin: 0 auto;
-        max-width: 990px;
-        padding: 0 10px;
+        max-width: 61.875em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(md) {
             align-items: center;
@@ -32,7 +41,7 @@
     }
 
     &__img-wrapper {
-        margin: -140px auto 0;
+        margin: -8.75em auto 0;
 
         text-align: center;
 
@@ -43,7 +52,7 @@
         }
 
         @include breakpoint-up(lg) {
-            margin-top: -200px;
+            margin-top: -12.5em;
         }
     }
 
@@ -53,26 +62,26 @@
     }
 
     &__quote {
-        margin: 28px auto 0;
-        max-width: 420px;
-        padding: 0 10px;
+        margin: 1.75em auto 0;
+        max-width: 26.25em;
+        padding: 0 0.625em;
 
         letter-spacing: 0.2em;
         text-align: center;
 
         @include breakpoint-up(md) {
-            margin-left: 60px;
+            margin-left: 3.75em;
             margin-right: 0;
             margin-top: 0;
         }
     }
 
     &__quote-text {
-        @include font-size(20px);
+        font-size: 1.25rem;
         line-height: 1.6;
 
         @include breakpoint-up(lg) {
-            @include font-size(25px);
+            font-size: 1.5625rem;
             line-height: 1.52;
         }
 
@@ -90,6 +99,7 @@
         text-transform: uppercase;
     }
 
+    // BEM modifiers
     &_reverse {
         .testimonial__inner {
             @include breakpoint-up(md) {
@@ -100,7 +110,7 @@
         .testimonial__quote {
             @include breakpoint-up(md) {
                 margin-left: 0;
-                margin-right: 60px;
+                margin-right: 3.75em;
             }
         }
     }

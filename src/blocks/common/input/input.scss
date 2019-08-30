@@ -2,58 +2,75 @@
  * Styles for the input block.
  */
 .input {
+    // Selector styles
     display: block;
-    height: 40px;
+    height: 2.625em;
     min-width: 0;
 
     color: $color-primary;
     font-family: $font-family-regular;
-    @include font-size(15px);
+    font-size: 0.9375rem;
     font-weight: $font-weight-bold;
-    line-height: 40px;
+    line-height: 2.625em;
 
     background: $color-white;
     border: none;
     border-bottom: 3px solid $color-catskill-white;
     outline: none;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
     &::placeholder {
         color: $color-primary;
         font-weight: $font-weight-regular;
-        line-height: 40px;
+        line-height: 2.625em;
 
         opacity: 1;
     }
 
+    &:focus {
+        border-bottom-color: $color-focus;
+    }
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
     &_theme_small,
     &_theme_quantity {
-        height: 50px;
+        height: 4.5em;
 
-        @include font-size(11px);
+        font-size: 0.6875rem;
         letter-spacing: 0.2em;
 
         &::placeholder {
-            line-height: 50px;
+            line-height: 4.5em;
             text-transform: uppercase;
         }
     }
 
     &_theme_coupon {
-        height: 50px;
+        height: 3.3333em;
 
+        font-size: 0.9375rem;
         text-align: center;
 
         &::placeholder {
-            line-height: 50px;
+            line-height: 3.3;
         }
     }
 
     &_theme_number {
-        height: 50px;
+        height: 2em;
 
-        @include font-size(25px);
+        font-size: 1.5625rem;
         font-weight: $font-weight-regular;
-        line-height: 50px;
+        line-height: 2em;
         text-align: center;
 
         /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -66,27 +83,24 @@
         }
 
         &::placeholder {
-            line-height: 50px;
+            line-height: 2em;
         }
     }
 
     &_theme_checkout {
-        height: 50px;
+        height: 3.3333em;
 
+        font-size: 0.9375rem;;
         font-weight: $font-weight-regular;
-        line-height: 50px;
+        line-height: 4.125em;
 
         &::placeholder {
             color: $color-silver-sand;
-            line-height: 50px;
+            line-height: 3.3333;
         }
     }
 
     &_invalid {
         border-bottom-color: $color-error;
-    }
-
-    &:focus {
-        border-bottom-color: $color-focus;
     }
 }

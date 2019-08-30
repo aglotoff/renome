@@ -2,37 +2,49 @@
  * Styles for the review form block
  */
 .review-form {
-    padding: 25px 0 70px;
+    // Selector styles
+    padding: 1.5em 0 4.375em;
 
     border-top: 1px solid $color-gallery;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
+        padding-bottom: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 950px;
-        padding: 0 10px;
+        max-width: 59.375em;
+        padding: 0 0.625em;
 
         overflow: hidden;
     }
 
     &__title {
-        margin-bottom: 50px;
+        margin-bottom: 4.125em;
     }
 
     &__bottom {
-        margin-top: 50px;
+        margin-top: 3.125em;
 
         text-align: center;
 
         @include breakpoint-up(md) {
-            margin-top: 25px;
+            margin-top: 1.5em;
         }
     }
 
     &__submit {
-        width: 180px;
+        width: 16.375em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

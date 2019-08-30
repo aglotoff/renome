@@ -2,15 +2,24 @@
  * Styles for the shopping cart form block
  */
 .cart-form {
+    // Selector styles
     position: relative;
 
-    padding: 70px 0 50px;
+    padding: 4.375em 0 3.125em;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 70px;
-        padding-top: 100px;
+        padding-bottom: 4.375em;
+        padding-top: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__alert {
         left: 0;
         position: absolute;
@@ -19,9 +28,9 @@
         z-index: 1;
 
         @include breakpoint-up(lg) {
-            max-width: 1200px;
+            max-width: 75em;
             margin: 0 auto;
-            padding: 0 10px;
+            padding: 0 0.625em;
         }
     }
 
@@ -29,8 +38,8 @@
         position: relative;
 
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         &_processing {
             opacity: 0.6;
@@ -62,9 +71,10 @@
     }
 
     &__header {
-        padding: 18px 5px;
+        padding: 1.5em 0.4em;
 
         font-weight: $font-weight-bold;
+        font-size: 0.75rem;
         letter-spacing: .2em;
         text-align: left;
         text-transform: uppercase;
@@ -95,7 +105,7 @@
     }
 
     &__cell {
-        padding: 35px 5px;
+        padding: 2.25em 0.3125em;
 
         vertical-align: middle;
 
@@ -122,7 +132,7 @@
 
         @include breakpoint-up(md) {
             display: block;
-            width: 80px;
+            width: 5em;
         }
     }
 
@@ -132,13 +142,13 @@
     }
 
     &__product-body {
-        @include breakpoint-up(md) {
-            margin-left: 24px;
-        }
-
-        @include font-size(14px);
+        font-size: 0.875rem;
         letter-spacing: 0.05em;
         line-height: 1.71;
+
+        @include breakpoint-up(md) {
+            margin-left: 1.75em;
+        }
     }
 
     &__product-title {
@@ -154,16 +164,18 @@
     }
 
     &__product-price {
-        margin-top: 5px;
+        margin-top: 0.4em;
+
+        font-size: 0.75rem;
     }
 
     &__qty {
-        min-width: 45px;
-        max-width: 55px;
+        min-width: 1.8em;
+        max-width: 2.2em;
     }
 
     &__subtotal {
-        @include font-size(20px);
+        font-size: 1.25rem;
         letter-spacing: 0.05em;
     }
 
@@ -171,11 +183,12 @@
         position: relative;
 
         display: block;
-        height: 14px;
-        padding: 5px 0 5px 5px;
-        width: 12px;
+        height: 0.875em;
+        padding: 0.3125em 0 0.3125em 0.3125em;
+        width: 0.75em;
 
-        text-indent: 100px;
+        font-size: 1rem;
+        text-indent: 100em;
 
         background: transparent;
         border: none;
@@ -193,8 +206,8 @@
             position: absolute;
             top: 50%;
 
-            height: 3px;
-            width: 12px;
+            height: 0.1875em;
+            width: 0.75em;
 
             background-color: $color-primary;
 
@@ -219,8 +232,8 @@
     }
 
     &__actions {
-        margin: 35px auto 0;
-        max-width: 300px;
+        margin: 2.25em auto 0;
+        max-width: 18.75em;
 
         @include breakpoint-up(md) {
             display: flex;
@@ -241,40 +254,39 @@
 
         @include breakpoint-up(md) {
             display: inline-block;
-            width: 150px;
+            width: 10em;
         }
     }
 
     &__coupon-apply {
         display: block;
-        margin-top: 20px;
+        margin-top: 1.8em;
         width: 100%;
 
         @include breakpoint-up(md) {
             display: inline-block;
-            margin-left: 25px;
+            margin-left: 2.25em;
             margin-top: 0;
-            width: 180px;
+            width: 16.4em;
         }
     }
 
     &__submit {
         display: block;
-        margin-top: 40px;
+        margin-top: 3.625em;
         width: 100%;
 
         @include breakpoint-up(md) {
             margin-top: 0;
-            width: 180px;
+            width: 16.4em;
         }
     }
 
     &__empty-msg {
-        @include font-size(14px);
+        font-size: 0.875rem;
         letter-spacing: 0.05em;
     }
 
-    &__return {
-        margin-top: 20px;
-    }
+    // BEM modifiers
+    // TODO: add code
 }

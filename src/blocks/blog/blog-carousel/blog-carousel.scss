@@ -2,13 +2,64 @@
  * Styles for the blog carousel block
  */
 .blog-carousel {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    .slick-dots {
+        bottom: 1.5em;
+        left: 0;
+        position: absolute;
+        right: 0;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .slick-dots button {
+        display: block;
+        height: 1em;
+        margin: 0 0.8em;
+        padding: 0;
+        width: 1em;
+
+        text-indent: -100em;
+
+        background: transparent;
+        border: 2px solid $color-white;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.25s ease;
+
+        &:not(:first-child) {
+            margin-left: 1em;
+        }
+
+        &:hover,
+        &:focus {
+            background: $color-white;
+        }
+    }
+
+    .slick-dots .slick-active button {
+        background: $color-white;
+    }
+
+    // BEM elements
     &__inner {
         position: relative;
     }
 
     &__container {
         margin: 0 auto;
-        max-width: 1180px;
+        max-width: 73.75em;
     }
 
     &__img {
@@ -27,7 +78,7 @@
 
             display: flex;
             justify-content: space-between;
-            padding: 0 25px;
+            padding: 0 1.5em;
 
             transform: translateY(-50%);
         }
@@ -36,30 +87,33 @@
     &__arrow {
         position: relative;
 
-        height: 55px;
-        margin-top: -26px;
-        width: 55px;
+        height: 3.5em;
+        margin-top: -1.625em;
+        width: 3.5em;
 
-        text-indent: -9999px;
+        font-size: 1rem;
+        text-indent: -100em;
 
         background: transparent;
         border: 2px solid $color-white;
         cursor: pointer;
         outline: none;
+
+        overflow: hidden;
         transition: opacity 0.2s linear;
 
         &:after {
             content: "";
 
             position: absolute;
-            top: 18px;
+            top: 1.125em;
 
             display: block;
-            height: 16px;
-            width: 16px;
+            height: 1em;
+            width: 1em;
 
-            border-left: 2px solid $color-white;
-            border-bottom: 2px solid $color-white;
+            border-left: 0.125em solid $color-white;
+            border-bottom: 0.125em solid $color-white;
         }
 
         &:hover {
@@ -72,56 +126,19 @@
 
         &_dir_prev {
             &:after {
-                right: 14px;
+                right: 0.875em;
                 transform: rotate(45deg);
             }
         }
 
         &_dir_next {
             &:after {
-                left: 14px;
+                left: 0.875em;
                 transform: rotate(225deg);
             }
         }
     }
 
-    .slick-dots {
-        bottom: 25px;
-        left: 0;
-        position: absolute;
-        right: 0;
-
-        display: flex;
-        justify-content: center;
-    }
-
-    .slick-dots button {
-        display: block;
-        height: 15px;
-        margin: 0 7px;
-        padding: 0;
-        width: 15px;
-
-        text-indent: -9999px;
-
-        background: transparent;
-        border: 2px solid $color-white;
-        border-radius: 50%;
-        cursor: pointer;
-        outline: none;
-        transition: background-color 0.25s ease;
-
-        &:not(:first-child) {
-            margin-left: 15px;
-        }
-
-        &:hover,
-        &:focus {
-            background: $color-white;
-        }
-    }
-
-    .slick-dots .slick-active button {
-        background: $color-white;
-    }
+    // BEM modifiers
+    // TODO: add code
 }

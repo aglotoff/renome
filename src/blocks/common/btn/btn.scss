@@ -2,6 +2,7 @@
  * Styles for the button block
  */
 .btn {
+    // Selector styles
     display: inline-block;
     margin: 0;
 
@@ -18,6 +19,19 @@
     outline: none;
     transition: background-color 0.2s ease-in;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
     &_theme_default {
         color: $color-white;
         background: $color-primary;
@@ -46,12 +60,12 @@
     }
 
     &_size_default {
-        padding: 18px 25px;
-        @include font-size(11px);
+        padding: 1.625em 2.25em;
+        font-size: 0.6875rem;
     }
 
     &_size_small {
-        padding: 12px 25px;
-        @include font-size(12px);
+        padding: 1em 2em;
+        font-size: 0.75rem;
     }
 }

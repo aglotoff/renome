@@ -2,26 +2,38 @@
  * Styles for the project block
  */
 .project {
-    padding: 70px 0;
+    // Selector styles
+    padding: 4.375em 0;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
-        padding-top: 100px;
+        padding-bottom: 6.25em;
+        padding-top: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__carousel {
-        margin-top: 50px;
+        margin-top: 3.125em;
 
         @include breakpoint-up(lg) {
-            margin-top: 100px;
+            margin-top: 6.25em;
         }
     }
 
     &__desc {
-        margin-top: 65px;
+        margin-top: 4em;
 
         @include breakpoint-up(lg) {
-            margin-top: 100px;
+            margin-top: 6.25em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

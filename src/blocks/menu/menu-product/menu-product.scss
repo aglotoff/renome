@@ -2,42 +2,53 @@
  * Menu Product
  */
 .menu-product {
+    // Selector styles
     @include clearfix();
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__thumb {
         float: left;
         position: relative;
 
-        height: 70px;
-        margin-right: 30px;
-        width: 70px;
+        height: 4.375em;
+        margin-right: 1.875em;
+        width: 4.375em;
 
         @include breakpoint-up(lg) {
-            height: 85px;
-            margin-right: 52px;
-            width: 85px;
+            height: 5.375em;
+            margin-right: 3.25em;
+            width: 5.375em;
         }
     }
 
     &__price {
         clear: left;
         float: left;
-        margin-left: 10px;
-        margin-top: 20px;
+        margin-left: 0.5em;
+        margin-top: 1em;
 
-        @include font-size(21px);
+        font-size: 1.3125rem;
 
         @include breakpoint-up(md) {
             clear: none;
             float: right;
-            margin-left: 30px;
-            margin-top: 15px;
+            margin-left: 1.425em;
+            margin-top: 0.7em;
         }
 
         @include breakpoint-up(lg) {
-            margin-left: 200px;
+            margin-left: 8em;
 
-            @include font-size(25px);
+            font-size: 1.5625rem;
         }
     }
 
@@ -45,25 +56,25 @@
         overflow: hidden;
 
         @include breakpoint-up(md) {
-            margin-top: 15px;
+            margin-top: 1em;
         }
     }
 
     &__label {
         left: 0;
         position: absolute;
-        top: -20px;
+        top: -2.25em;
         z-index: 1;
 
         display: block;
-        height: 40px;
-        width: 40px;
+        height: 4.45em;
+        width: 4.45em;
 
         font-family: $font-family-title;
-        @include font-size(9px);
+        font-size: 0.5625rem;
         font-weight: $font-weight-bold;
         color: $color-white;
-        line-height: 40px;
+        line-height: 4.45em;
         letter-spacing: 0.3em;
         text-align: center;
         text-transform: uppercase;
@@ -74,13 +85,13 @@
         pointer-events: none;
 
         @include breakpoint-up(lg) {
-            top: -25px;
+            top: -2.5em;
 
-            height: 50px;
-            width: 50px;
+            height: 5em;
+            width: 5em;
 
-            @include font-size(10px);
-            line-height: 50px;
+            font-size: 0.625rem;
+            line-height: 5em;
         }
     }
 
@@ -103,7 +114,7 @@
         width: 100%;
 
         color: $color-white;
-        @include font-size(30px);
+        font-size: 1.875rem;
 
         background: rgba($color-secondary, 0.9);
         border-radius: 50%;
@@ -117,7 +128,7 @@
     }
 
     &__title {
-        @include font-size(14px);
+        font-size: 0.875rem;
         font-weight: $font-weight-bold;
         line-height: 1.7;
         letter-spacing: 0.05em;
@@ -130,4 +141,7 @@
     &__price-decimals {
         color: $color-iron;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

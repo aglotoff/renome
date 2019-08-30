@@ -2,7 +2,8 @@
  * Styles for the notice block
  */
 .notice {
-    padding: 30px 10px;
+    // Selector styles
+    padding: 1.875rem 0.625rem;
 
     letter-spacing: 0.15em;
 
@@ -11,17 +12,30 @@
 
     transition: opacity 0.25s ease;
 
+    // @media queries
     @include breakpoint-up(lg) {
         display: flex;
         justify-content: space-between;
-        padding: 25px;
+        padding: 1.5em;
+    }
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    &__msg {
+        font-size: 0.75rem;
     }
 
     &__link {
         display: inline-block;
-        margin-top: 20px;
+        margin-top: 1.6667em;
 
         color: $color-primary;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         text-decoration: none;
         text-transform: uppercase;
@@ -40,4 +54,7 @@
             border-color: $color-secondary;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

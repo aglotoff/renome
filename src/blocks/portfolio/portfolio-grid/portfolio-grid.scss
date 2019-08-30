@@ -2,13 +2,24 @@
  * Styles for the portfolio grid block
  */
 .portfolio-grid {
+    // Selector styles
     overflow: hidden;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__container {
         @include breakpoint-up(sm) {
             display: flex;
             flex-flow: row wrap;
-            margin: -5px;
+            margin: -0.3125em;
         }
     }
 
@@ -23,7 +34,7 @@
     }
 
     &__item {
-        padding: 5px;
+        padding: 0.3125em;
 
         @include breakpoint-up(sm) {
             width: 50%;
@@ -54,7 +65,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 10px;
+        padding: 0.625em;
 
         letter-spacing: 0.3em;
         text-decoration: none;
@@ -71,6 +82,10 @@
         }
     }
 
+    &__title {
+        font-size: 0.75rem;
+    }
+
     &__link {
         color: $color-white;
         text-decoration: none;
@@ -84,7 +99,7 @@
     }
 
     &__cats {
-        margin-top: 7px;
+        margin-top: 0.4375em;
     }
 
     &__cat-item {
@@ -93,10 +108,10 @@
 
     &__cat-link {
         display: block;
-        padding: 0 10px;
+        padding: 0 1em;
 
         color: $color-white;
-        @include font-size(10px);
+        font-size: 0.625rem;
         font-weight: $font-weight-bold;
         text-decoration: none;
 
@@ -109,4 +124,7 @@
             color: $color-secondary;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

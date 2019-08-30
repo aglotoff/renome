@@ -2,10 +2,23 @@
  * Styles for the popular posts block
  */
 .popular-posts {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__item {
         align-items: center;
         display: flex;
-        margin-top: 30px;
+        margin-top: 1.875em;
     }
 
     &__thumb {
@@ -14,17 +27,17 @@
 
     &__item-img {
         display: block;
-        max-width: 90px;
+        max-width: 5.625em;
     }
 
     &__item-body {
         flex: 1 1 auto;
-        margin-left: 20px;
+        margin-left: 1.25em;
     }
 
     &__item-link {
         color: $color-primary;
-        @include font-size(13px);
+        font-size: 0.8125rem;
         letter-spacing: 0.05em;
         text-decoration: none;
 
@@ -38,10 +51,13 @@
 
     &__item-pubdate {
         display: block;
-        margin-top: 10px;
+        margin-top: 0.9em;
 
         color: $color-silver-sand;
-        @include font-size(11px);
+        font-size: 0.6875rem;
         letter-spacing: 0.1em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

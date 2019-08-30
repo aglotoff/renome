@@ -2,48 +2,64 @@
  * Styles for the menu category block
  */
 .menu-cat {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 70px 10px;
+        max-width: 75em;
+        padding: 4.375em 0.625em;
 
         @include breakpoint-up(lg) {
-            padding-bottom: 100px;
-            padding-top: 100px;
+            padding-bottom: 6.25em;
+            padding-top: 6.25em;
         }
     }
 
     &__section {
         &:not(:first-child) {
-            margin-top: 60px;
+            margin-top: 3.75em;
 
             @include breakpoint-up(lg) {
-                margin-top: 70px;
+                margin-top: 4.375em;
             }
         }
     }
 
     &__section-title {
         font-family: $font-family-cursive;
-        @include font-size(22px);
+        font-size: 1.375rem;
         text-align: center;
 
         @include breakpoint-up(md) {
-            padding-left: 100px;
+            padding-left: 4.5em;
 
             text-align: left;
         }
 
         @include breakpoint-up(lg) {
-            padding-left: 140px;
+            padding-left: 6.375em;
         }
     }
 
     &__product {
-        margin-top: 45px;
+        margin-top: 2.875em;
 
         @include breakpoint-up(lg) {
-            margin-top: 50px;
+            margin-top: 3.125em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

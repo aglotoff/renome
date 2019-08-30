@@ -2,8 +2,19 @@
  * Styles for the services block
  */
 .services {
+    // Selector styles
     text-align: center;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__list-wrapper {
         background: $color-alabaster;
         margin-top: 2.5em;
@@ -18,20 +29,20 @@
             display: flex;
             justify-content: center;
             margin: 0 auto;
-            max-width: 1200px;
+            max-width: 75em;
         }
     }
 
     &__item {
-        padding: 50px 10px;
+        padding: 2.5em 0.5em;
 
-        @include font-size(20px);
+        font-size: 1.25rem;
         line-height: 1.9;
         letter-spacing: 0.1em;
 
         @include breakpoint-up(md) {
-            flex: 0 1 354px;
-            padding: 120px 15px;
+            flex: 0 1 17.7em;
+            padding: 6em 0.75em;
         }
 
         &:not(:first-child) {
@@ -43,4 +54,7 @@
             }
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

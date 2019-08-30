@@ -2,18 +2,27 @@
  * Styles for the about page bottom block
  */
 .about-bottom {
-    padding: 70px 0;
+    // Selector styles
+    padding: 4.375em 0;
     border-top: 1px solid $color-gallery;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
-        padding-top: 100px;
+        padding-bottom: 6.25em;
+        padding-top: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(lg) {
             align-items: flex-start;
@@ -26,18 +35,21 @@
     }
 
     &__opening-hours {
-        margin: 70px auto 0;
-        max-width: 300px;
+        margin: 4.375em auto 0;
+        max-width: 18.75em;
 
         @include breakpoint-up(lg) {
             flex: 0 0 auto;
             margin: 0;
-            margin-left: 60px;
+            margin-left: 3.75em;
         }
 
         @include breakpoint-up(xl) {
-            flex-basis: 262px;
-            margin-left: 100px;
+            flex-basis: 16.375em;
+            margin-left: 6.25em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

@@ -2,25 +2,33 @@
  * Styles for the date picker block (override default pikaday styles)
  */
 .date-picker {
+    // Selector styles
     color: $color-primary;
     font-family: $font-family-regular;
 
     border: 3px solid $color-athens-gray;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
     &.is-bound {
         box-shadow: none;
     }
 
     &.bottom-aligned {
-        margin-top: 11px;
+        margin-top: 0.6875em;
     }
 
     .pika-lendar {
-        margin: 10px;
+        margin: 0.625em;
     }
 
     .pika-label {
-        @include font-size(14px);
+        font-size: 0.875rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.1em;
     }
@@ -41,8 +49,8 @@
             top: 50%;
 
             display: block;
-            height: 8px;
-            width: 8px;
+            height: 0.6em;
+            width: 0.6em;
 
             border-left: 1px solid $color-primary;
             border-top: 1px solid $color-primary;
@@ -51,7 +59,7 @@
     }
 
     .pika-prev {
-        margin-left: 10px;
+        margin-left: 0.75em;
 
         &:before {
             transform: translate(-50%, -50%) rotate(-45deg);
@@ -59,7 +67,7 @@
     }
 
     .pika-next {
-        margin-right: 10px;
+        margin-right: 0.75em;
 
         &:before {
             transform: translate(-50%, -50%) rotate(135deg);
@@ -68,13 +76,13 @@
 
     .pika-table {
         th {
-            padding: 12px 0;
+            padding: 1em 0;
 
             line-height: 1.2;
 
             abbr {
                 color: $color-silver-chalice;
-                @include font-size(12px);
+                font-size: 0.75rem;
                 font-weight: $font-weight-regular;
                 letter-spacing: 0.1em;
                 text-decoration: none;
@@ -83,11 +91,11 @@
     }
 
     .pika-day {
-        padding: 6px 0;
+        padding: 0.425em 0;
 
         color: $color-primary;
         font-family: $font-family-regular;
-        @include font-size(14px);
+        font-size: 0.875rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.05em;
         text-align: center;
@@ -111,4 +119,10 @@
 
         opacity: 1;
     }
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
+    // TODO: add code
 }

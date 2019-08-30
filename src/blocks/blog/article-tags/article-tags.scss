@@ -2,17 +2,29 @@
  * Styles for the article tags block.
  */
 .article-tags {
+    // Selector styles
     display: flex;
     flex-flow: row wrap;
     flex-wrap: wrap;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__item {
-        margin-right: 30px;
-        margin-top: 15px;
+        margin-right: 1.875em;
+        margin-top: 1em;
     }
 
     &__link {
         color: $color-silver-sand;
+        font-size: 0.75rem;
         letter-spacing: 0.15em;
         text-decoration: none;
         text-transform: uppercase;
@@ -24,4 +36,7 @@
             color: $color-black;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

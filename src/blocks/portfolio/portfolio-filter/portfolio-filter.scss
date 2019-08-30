@@ -2,12 +2,21 @@
  * Styles for the portfolio filter block
  */
 .portfolio-filter {
+    // Selector styles
     text-align: center;
 
+    // @media queries
     @include breakpoint-up(md) {
         border-bottom: 1px solid $color-gallery;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         position: relative;
 
@@ -16,17 +25,17 @@
         @include breakpoint-up(md) {
             display: block;
             margin: 0 auto;
-            max-width: 1200px;
-            padding: 0 10px;
+            max-width: 75em;
+            padding: 0 0.625em;
         }
     }
 
     &__toggle {
-        padding: 16px 0;
+        padding: 1.3333em 0;
 
         color: $color-secondary;
         font-family: $font-family-regular;
-        @include font-size(12px);
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -51,7 +60,7 @@
         top: 100%;
         z-index: 100;
 
-        padding: 5px 0;
+        padding: 0.3125em 0;
 
         background: $color-white;
         border: 1px solid $color-athens-gray;
@@ -86,17 +95,18 @@
 
     &__item {
         @include breakpoint-up(md) {
-            padding: 0 50px;
+            padding: 0 3.125em;
         }
     }
 
     &__option {
         display: block;
-        padding: 13px 39px;
+        padding: 1em 3.25em;
         width: 100%;
 
         color: $color-primary;
         font-family: $font-family-regular;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -108,7 +118,7 @@
         transition: color 0.2s linear;
 
         @include breakpoint-up(md) {
-            padding: 20px 0;
+            padding: 1.625em 0;
 
             position: relative;
         }
@@ -147,4 +157,7 @@
             }
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

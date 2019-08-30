@@ -2,13 +2,24 @@
  * Styles for the contact details block
  */
 .contact-details {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
     @include breakpoint-up(lg) {
-        padding: 0 25px;
+        padding: 0 1.5em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__title {
         color: $color-secondary;
-        @include font-size(20px);
+        font-size: 1.25rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.085em;
         text-transform: uppercase;
@@ -16,12 +27,12 @@
 
     &__list {
         @include breakpoint-up(lg) {
-            margin-top: 35px;
+            margin-top: 2.25em;
         }
     }
 
     &__item {
-        margin-top: 25px;
+        margin-top: 1.5em;
 
         font-weight: $font-weight-bold;
         text-transform: uppercase;
@@ -32,11 +43,16 @@
 
         color: $color-secondary;
         font-family: $font-family-title;
-        @include font-size(15px);
+        font-size: 0.9375rem;
     }
 
     &__text {
         display: block;
-        margin-top: 10px;
+        margin-top: 0.825em;
+
+        font-size: 0.75rem;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

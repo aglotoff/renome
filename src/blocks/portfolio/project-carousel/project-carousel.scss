@@ -2,17 +2,74 @@
  * Styles for the project carousel block
  */
 .project-carousel {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    .slick-dots {
+        bottom: 1.5em;
+        left: 0;
+        position: absolute;
+        right: 0;
+
+        display: flex;
+        justify-content: center;
+
+        @include breakpoint-up(lg) {
+            bottom: 3.125em;
+        }
+    }
+
+    .slick-dots button {
+        display: block;
+        height: 1.125em;
+        margin: 0 0.5em;
+        padding: 0;
+        width: 1.125em;
+
+        text-indent: -100em;
+
+        background: transparent;
+        border: 2px solid $color-white;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+
+        overflow: hidden;
+        transition: background-color 0.25s ease;
+
+        &:not(:first-child) {
+            margin-left: 1.125em;
+        }
+
+        &:hover,
+        &:focus {
+            background: $color-white;
+        }
+    }
+
+    .slick-dots .slick-active button {
+        background: $color-white;
+    }
+
+    // BEM elements
     &__inner {
         position: relative;
 
         margin: 0 auto;
-        max-width: 1244px;
-        padding: 0 10px;
+        max-width: 77.75em;
+        padding: 0 0.625em;
     }
 
     &__container {
         margin: 0 auto;
-        max-width: 1180px;
+        max-width: 73.75em;
     }
 
     &__img {
@@ -32,7 +89,7 @@
             display: flex;
             justify-content: space-between;
             margin: 0 auto;
-            padding: 0 5px;
+            padding: 0 0.625em;
 
             transform: translateY(-50%);
         }
@@ -43,11 +100,12 @@
             position: relative;
 
             display: inline-block;
-            height: 55px;
-            margin-top: -26px;
-            width: 55px;
+            height: 3.5em;
+            margin-top: 1.75em;
+            width: 3.5em;
 
-            text-indent: -9999px;
+            font-size: 1rem;
+            text-indent: -100em;
 
             background: $color-ebony-clay;
             border: none;
@@ -61,14 +119,14 @@
                 content: "";
 
                 position: absolute;
-                top: 22px;
+                top: 1.375em;
 
                 display: block;
-                height: 13px;
-                width: 13px;
+                height: 0.8125em;
+                width: 0.8125em;
 
-                border-left: 2px solid $color-white;
-                border-bottom: 2px solid $color-white;
+                border-left: 0.125em solid $color-white;
+                border-bottom: 0.125em solid $color-white;
             }
         }
 
@@ -85,7 +143,7 @@
         &_dir_prev {
             &:after {
                 @include breakpoint-up(lg) {
-                    right: 18px;
+                    right: 1.125em;
                     transform: rotate(45deg);
                 }
             }
@@ -94,54 +152,13 @@
         &_dir_next {
             &:after {
                 @include breakpoint-up(lg) {
-                    left: 18px;
+                    left: 1.125em;
                     transform: rotate(225deg);
                 }
             }
         }
     }
 
-    .slick-dots {
-        bottom: 25px;
-        left: 0;
-        position: absolute;
-        right: 0;
-
-        display: flex;
-        justify-content: center;
-
-        @include breakpoint-up(lg) {
-            bottom: 50px;
-        }
-    }
-
-    .slick-dots button {
-        display: block;
-        height: 15px;
-        margin: 0 7px;
-        padding: 0;
-        width: 15px;
-
-        text-indent: -9999px;
-
-        background: transparent;
-        border: 2px solid $color-white;
-        border-radius: 50%;
-        cursor: pointer;
-        outline: none;
-        transition: background-color 0.25s ease;
-
-        &:not(:first-child) {
-            margin-left: 15px;
-        }
-
-        &:hover,
-        &:focus {
-            background: $color-white;
-        }
-    }
-
-    .slick-dots .slick-active button {
-        background: $color-white;
-    }
+    // BEM modifiers
+    // TODO: add code
 }

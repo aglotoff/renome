@@ -2,25 +2,41 @@
  * Styles for the contact form block
  */
 .contact-form {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__title {
-        margin-bottom: 25px;
+        margin-bottom: 1.25em;
 
         color: $color-secondary;
-        @include font-size(20px);
+        font-size: 1.25rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.085em;
         text-transform: uppercase;
     }
 
     &__submit {
-        margin-top: 50px;
+        margin-top: 3.125em;
 
         text-align: center;
 
         @include breakpoint-up(md) {
-            margin-top: 5px;
+            margin-top: 0.3125em;
 
             text-align: right;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }
