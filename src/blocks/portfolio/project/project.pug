@@ -1,4 +1,11 @@
-
+//-
+    name: project
+    description: Markup for the project block
+    arguments:
+        - {object} props - block properties
+        - {object} props.info - project info data
+        - {object[]} props.images - project gallery images
+        - {object} props.desc - project description data
 
 mixin project(props)
     .project&attributes(attributes)

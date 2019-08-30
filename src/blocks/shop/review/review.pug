@@ -30,13 +30,9 @@ mixin review(props)
                 h3.review__author= props.author
                 .review__rating
                     +rating({ value: props.rating })
-            // .review__title 
-        // .review__header 
         
         time.review__time(datetime=props.date)
             = moment(props.date).format('MMM D, h:mm A')
 
         .review__body
             .rich-text.review__text !{props.text}
-        // .review__body
-    // .review 

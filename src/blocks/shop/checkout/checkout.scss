@@ -2,31 +2,40 @@
  * Checkout Page
  */
 .checkout {
-    padding: 70px 0;
+    // Selector styles
+    padding: 4.375em 0;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
-        padding-top: 100px;
+        padding-bottom: 6.25em;
+        padding-top: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__section {
         border-top: 1px solid $color-gallery;
 
         &:not(:first-child) {
-            margin-top: 70px;
+            margin-top: 4.375em;
 
             @include breakpoint-up(lg) {
-                margin-top: 100px;
+                margin-top: 6.25em;
             }
         }
     }
 
     &__section-inner {
-        padding: 20px 10px 0;
+        padding: 1.25em 0.625em 0;
 
         @include breakpoint-up(xl) {
             margin: 0 auto;
-            max-width: 1200px;
+            max-width: 75em;
         }
     }
 
@@ -46,20 +55,25 @@
     }
 
     &__fields-wrap {
-        margin-top: 50px;
+        margin-top: 3.125em;
+
+        overflow: hidden;
 
         @include breakpoint-up(md) {
-            margin: 70px auto 0;
-            max-width: 930px;
+            margin: 4.375em auto 0;
+            max-width: 58.125em;
         }
     }
 
     &__shipping-checkbox {
-        margin-right: 15px;
+        align-items: center;
+        display: flex;
+        margin-right: 1em;
+        margin-top: 1em;
 
         @include breakpoint-up(md) {
             margin-top: 0;
-            margin-left: 18px;
+            margin-left: 1.125em;
         }
     }
 
@@ -70,34 +84,36 @@
 
     &__account-fields {
         display: none;
-        margin-top: 25px;
+        margin-top: 1.5em;
     }
 
     &__account-text {
-        margin-bottom: 20px;
+        margin-bottom: 1.6667em;
     }
 
     &__check-label {
-        @include font-size(15px);
+        font-size: 0.9375rem;
+
+        cursor: pointer;
     }
 
     &__order {
-        margin-top: 25px;
+        margin-top: 1.5em;
 
         @include breakpoint-up(xl) {
-            margin: 45px auto 0;
-            max-width: 930px;
+            margin: 2.75em auto 0;
+            max-width: 58.125em;
         }
     }
 
     &__checkbox {
-        margin-right: 15px;
+        margin-right: 1em;
     }
 
     &__place-order {
-        margin: 50px auto 0;
-        max-width: 950px;
-        padding: 0 10px;
+        margin: 3.125em auto 0;
+        max-width: 59.375em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(md) {
             text-align: right;
@@ -110,17 +126,20 @@
 
         @include breakpoint-up(md) {
             display: inline;
-            max-width: 170px;
+            max-width: 15.45em;
         }
     }
 
     &__payment {
-        margin-top: 30px;
-        padding: 0 10px;
+        margin-top: 1.875em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(lg) {
-            margin: 50px auto 0;
-            max-width: 950px;
+            margin: 3.125em auto 0;
+            max-width: 59.375em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

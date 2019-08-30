@@ -9,10 +9,8 @@ mixin related-products(props = {})
     section.related-products&attributes(attributes)
         .related-products__inner
             h3.title.related-products__title Related products
-        // .related-products__inner 
 
         +product-list({
             items: props.items,
             center: true,
         }).related-products__list
-    // .related-products 

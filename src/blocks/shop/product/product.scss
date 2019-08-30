@@ -2,10 +2,21 @@
  * Styles for the product block
  */
 .product {
+    // Selector styles
     position: relative;
 
     text-align: center;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__thumb {
         display: block;
 
@@ -27,9 +38,9 @@
     }
 
     &__title {
-        margin-top: 25px;
+        margin-top: 1.785em;
 
-        @include font-size(14px);
+        font-size: 0.875rem;
         font-weight: $font-weight-bold;
     }
 
@@ -46,9 +57,9 @@
     }
 
     &__price {
-        margin-top: 25px;
+        margin-top: 1.785em;
 
-        @include font-size(14px);
+        font-size: 0.875rem;
     }
 
     &__add-wrapper {
@@ -63,6 +74,11 @@
         opacity: 0;
 
         transition: opacity 0.25s ease;
+
+        .product_has-focus &,
+        .product:hover & {
+            opacity: 1;
+        }
     }
 
     &__add-btn {
@@ -70,7 +86,7 @@
 
         color: $color-secondary;
         font-family: $font-family-regular;
-        @include font-size(14px);
+        font-size: 0.875rem;
         line-height: 1.2;
         text-transform: uppercase;
         white-space: nowrap;
@@ -94,7 +110,7 @@
 
     &__cart-link {
         color: $color-secondary;
-        @include font-size(14px);
+        font-size: 0.875rem;
         text-decoration: none;
         text-transform: uppercase;
 
@@ -106,10 +122,6 @@
         }
     }
 
-    &_has-focus,
-    &:hover {
-        .product__add-wrapper {
-            opacity: 1;
-        }
-    }
+    // BEM modifiers
+    // TODO: add code
 }

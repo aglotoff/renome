@@ -2,23 +2,32 @@
  * Styles for the accordion gallery block
  */
 .accordion-gallery {
+    // Selector styles
     align-items: center;
     display: flex;
     flex-direction: column;
 
     overflow: hidden;
 
+    // @media queries
     @include breakpoint-up(md) {
         align-items: stretch;
         flex-direction: row;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__thumb {
         position: relative;
 
         display: block;
         flex: 0 1 auto;
-        height: 100px;
+        height: 5.25em;
 
         overflow: hidden;
         transition: height 0.2s linear;
@@ -55,7 +64,7 @@
         justify-content: center;
 
         color: $color-white;
-        @include font-size(50px);
+        font-size: 3.125rem;
         text-decoration: none;
 
         background: rgba($color-primary, 0.4);
@@ -67,4 +76,7 @@
             opacity: 1;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

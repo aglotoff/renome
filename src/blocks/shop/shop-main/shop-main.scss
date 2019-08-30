@@ -2,25 +2,37 @@
  * Styles for the shop main page block
  */
 .shop-main {
-    padding-top: 50px;
+    // Selector styles
+    padding-top: 3.125em;
 
+    // @media queries
     @include breakpoint-up(md) {
-        padding-top: 75px;
+        padding-top: 4.75em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__product-list {
-        margin-top: 40px;
+        margin-top: 2.5em;
 
         @include breakpoint-up(lg) {
-            margin-top: 100px;
+            margin-top: 6.25em;
         }
     }
 
     &__pagination {
-        margin-top: 20px;
+        margin-top: 1.25em;
 
         @include breakpoint-up(lg) {
-            margin-top: 30px;
+            margin-top: 1.875em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

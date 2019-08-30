@@ -2,9 +2,10 @@
  * Styles for the loader block
  */
 .loader {
+    // Selector styles
     overflow: hidden;
 
-    text-indent: -999px;
+    text-indent: -100em;
 
     border-color: $color-gallery;
     border-radius: 50%;
@@ -13,16 +14,29 @@
 
     animation: loader-spin 1s linear infinite;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
     &_size_s {
-        height: 15px;
-        width: 15px;
+        height: 1em;
+        width: 1em;
 
         border-width: 2px;
     }
 
     &_size_l {
-        height: 50px;
-        width: 50px;
+        height: 3.125em;
+        width: 3.125em;
 
         border-width: 5px;
     }

@@ -30,15 +30,11 @@ mixin comment(props = {})
                 = moment(props.date).format('MMM D, h:mm A')
             .comment__author= props.author
             button(type="button").comment__reply-btn Reply
-        // .comment__header 
 
         .rich-text.comment__body= props.text
-        // .comment__body 
 
         .comment__replies
             if props.replies
                 ul.comment__reply-list
                     each reply in props.replies
                         +comment(reply).comment__reply
-        // .comment__replies 
-    // .comment 

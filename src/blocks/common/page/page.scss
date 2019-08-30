@@ -2,7 +2,8 @@
  * Styles for the page block
  */
 .page {
-    padding-top: 85px;
+    // Selector styles
+    padding-top: 5.25em;
 
     font: {
         family: $font-family-regular;
@@ -13,10 +14,18 @@
 
     background: $color-white;
 
+    // @media queries
     @include breakpoint-up(lg) {
         padding-top: 0;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__skip-link {
         left: 0;
         position: fixed;
@@ -30,9 +39,10 @@
         }
     }
 
+    // BEM modifiers
     &_home {
         @include breakpoint-up(lg) {
-            padding-top: 100px;
+            padding-top: 6.25em;
         }
     }
 

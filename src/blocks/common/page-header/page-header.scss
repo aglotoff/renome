@@ -2,6 +2,7 @@
  * Styles for the page header block
  */
 .page-header {
+    // Selector styles
     background: {
         color: $color-tundora;
         position: center;
@@ -9,6 +10,16 @@
         size: cover;
     }
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         display: flex;
         flex-direction: column;
@@ -25,4 +36,7 @@
             padding-bottom: 85px;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

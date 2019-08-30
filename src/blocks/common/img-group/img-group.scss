@@ -2,9 +2,20 @@
  * Styles for the image group block
  */
 .img-group {
+    // Selector styles
     display: flex;
     overflow: hidden;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__wrapper {
         overflow: hidden;
         width: 80%;
@@ -19,6 +30,7 @@
         max-width: 100%;
     }
 
+    // BEM modifiers
     $vertical-directions: top, bottom;
     $horizontal-directions: left, right;
 

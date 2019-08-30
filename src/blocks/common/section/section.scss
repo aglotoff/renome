@@ -2,52 +2,63 @@
  * Styles for the section block
  */
 .section {
-    padding: 70px 0;
+    // Selector styles
+    padding: 4.375em 0;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
-        padding-top: 100px;
+        padding-bottom: 6.25em;
+        padding-top: 6.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    + .section {
+        border-top: 1px solid $color-gallery;
+    }
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 520px;
-        padding: 0 10px;
+        max-width: 32.5em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(md) {
             align-items: center;
             display: flex;
             justify-content: space-between;
-            max-width: 920px;
+            max-width: 57.5em;
         }
     }
 
     &__images {
         @include breakpoint-up(md) {
-            flex: 0 1 500px;
+            flex: 0 1 31.25em;
         }
     }
 
     &__content {
-        margin-top: 65px;
+        margin-top: 4em;
 
         @include breakpoint-up(md) {
-            flex: 1 0 310px;
-            margin-left: 40px;
+            flex: 1 0 19.375em;
+            margin-left: 2.5em;
             margin-top: 0;
         }
 
         @include breakpoint-up(lg) {
-            margin-left: 60px;
+            margin-left: 3.75em;
         }
 
         @include breakpoint-up(xl) {
-            margin-left: 80px;
+            margin-left: 5em;
         }
     }
 
     &__text {
-        margin-top: 25px;
+        margin-top: 2em;
     }
 
     &__read-more {
@@ -68,6 +79,7 @@
         }
     }
 
+    // BEM modifiers
     &_reverse {
         .section__inner {
             @include breakpoint-up(md) {
@@ -80,16 +92,12 @@
 
             @include breakpoint-up(md) {
                 margin-left: 0;
-                margin-right: 60px;
+                margin-right: 3.75em;
             }
 
             @include breakpoint-up(lg) {
-                margin-right: 80px;
+                margin-right: 5em;
             }
         }
-    }
-
-    + .section {
-        border-top: 1px solid $color-gallery;
     }
 }

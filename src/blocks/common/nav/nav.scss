@@ -2,6 +2,19 @@
  * Styles for the navigation block
  */
 .nav {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__toggle {
         @include breakpoint-up(lg) {
             display: none;
@@ -13,7 +26,7 @@
         left: 0;
         position: fixed;
         right: 0;
-        top: 75px;
+        top: 4.75em;
 
         max-height: 0;
 
@@ -79,9 +92,10 @@
         position: relative;
 
         display: block;
-        padding: 22px 10px;
+        padding: 1.825em 0.825em;
 
         color: inherit;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.2em;
         text-decoration: none;
@@ -89,8 +103,8 @@
         white-space: nowrap;
 
         @include breakpoint-up(lg) {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 1.25em;
+            padding-right: 1.25em;
         }
 
         &_submenu {
@@ -98,8 +112,8 @@
             text-transform: none;
 
             @include breakpoint-up(lg) {
-                padding-bottom: 13px;
-                padding-top: 13px;
+                padding-bottom: 1.075em;
+                padding-top: 1.075em;
 
                 letter-spacing: 0.05em;
                 text-align: center;
@@ -127,8 +141,8 @@
         top: 50%;
 
         display: block;
-        width: 42px;
-        height: 42px;
+        width: 3.5em;
+        height: 3.5em;
 
         border: 1px solid $color-gallery;
 
@@ -142,14 +156,14 @@
             content: "";
 
             position: absolute;
-            top: 15px;
+            top: 1.25em;
 
             display: block;
-            width: 9px;
-            height: 9px;
+            width: 0.75em;
+            height: 0.75em;
 
-            border-right: 2px solid $color-primary;
-            border-top: 2px solid $color-primary;
+            border-right: 0.175em solid $color-primary;
+            border-top: 0.175em solid $color-primary;
         }
 
         .nav__link:hover &,
@@ -163,20 +177,20 @@
         }
 
         &_open {
-            right: 10px;
+            right: 0.825em;
 
             &:after {
-                left: 14px;
+                left: 1.175em;
 
                 transform: rotate(45deg);
             }
         }
 
         &_close {
-            left: 10px;
+            left: 0.825em;
 
             &:after {
-                right: 14px;
+                right: 1.175em;
 
                 transform: rotate(-135deg);
             }
@@ -205,7 +219,7 @@
             top: 100%;
 
             min-width: 100%;
-            padding: 5px 0;
+            padding: 0.3125em 0;
             width: auto;
 
             box-shadow: 0 0 5px rgba($color-black, 0.1);
@@ -236,11 +250,15 @@
     &__submenu-top-text {
         display: block;
         margin-left: auto;
-        padding: 22px 0;
+        padding: 1.825em 0;
 
         color: $color-black;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.2em;
         text-transform: uppercase;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

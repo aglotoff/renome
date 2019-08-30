@@ -2,16 +2,30 @@
  * Styles for the skip-link block.
  */
 .skip-link {
+    // Selector styles
     display: block;
-    padding: 15px 20px;
+    padding: 1em 1.425em;
 
     color: $color-white;
-    @include font-size(14px);
+    font-size: 0.875rem;
     text-decoration: none;
 
     background: $color-primary;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
     &:hover {
         text-decoration: underline;
     }
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
+    // TODO: add code
 }

@@ -2,7 +2,8 @@
  * Styles for the call to action block
  */
 .cta {
-    padding: 100px 0;
+    // Selector styles
+    padding: 6.25em 0;
 
     background: {
         color: $color-tundora;
@@ -12,20 +13,31 @@
         size: cover;
     }
 
+    // @media queries
     @include breakpoint-up(md) {
-        padding-bottom: 75px;
-        padding-top: 75px;
+        padding-bottom: 4.75em;
+        padding-top: 4.75em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         text-align: center;
     }
 
     &__btn {
-        width: 170px;
+        width: 15.5em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

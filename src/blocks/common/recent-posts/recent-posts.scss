@@ -2,29 +2,38 @@
  * Styles for the recent posts block
  */
 .recent-posts {
-    padding: 70px 0;
+    // Selector styles
+    padding: 4.375em 0;
     text-align: center;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
-        padding-top: 100px;
+        padding-bottom: 6.25em;
+        padding-top: 6.25em;
 
         background-image: linear-gradient(
             to top,
             $color-alabaster 0,
-            $color-alabaster 260px,
-            $color-white 260px
+            $color-alabaster 16.25em,
+            $color-white 16.25em
         );
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
     }
 
     &__list {
-        margin: 45px -10px 0;
+        margin: 2.825em -0.625em 0;
         overflow: hidden;
 
         @include breakpoint-up(md) {
@@ -33,23 +42,23 @@
         }
 
         @include breakpoint-up(lg) {
-            margin-top: 55px;
+            margin-top: 3.45em;
         }
     }
 
     &__item {
         display: block;
         margin: 0 auto;
-        max-width: 345px;
-        padding: 0 10px;
+        max-width: 21.5em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(md) {
-            flex: 0 1 345px;
+            flex: 0 1 21.5em;
             margin: 0;
         }
 
         &:not(:first-child) {
-            margin-top: 70px;
+            margin-top: 4.375em;
 
             @include breakpoint-up(md) {
                 margin-top: 0;
@@ -85,7 +94,7 @@
         align-items: center;
         display: flex;
         flex-direction: column;
-        margin: 12px;
+        margin: 0.75em;
 
         background: $color-white;
     }
@@ -94,17 +103,18 @@
         margin-top: 25%;
 
         color: $color-iron;
+        font-size: 1.25rem;
         font-weight: $font-weight-bold;
-        @include font-size(20px);
         letter-spacing: 0.3em;
     }
 
     &__title {
-        max-width: 150px;
+        max-width: 12.5em;
         margin-top: 12%;
 
         color: $color-black;
         font-family: $font-family-title;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.2em;
         line-height: 1.67;
@@ -128,4 +138,7 @@
             color: $color-secondary;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

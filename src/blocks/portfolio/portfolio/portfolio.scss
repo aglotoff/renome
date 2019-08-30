@@ -2,25 +2,34 @@
  * Styles for the portfolio block
  */
 .portfolio {
-    padding: 65px 0;
+    // Selector styles
+    padding: 4em 0;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 85px;
-        padding-top: 85px;
+        padding-bottom: 5.25em;
+        padding-top: 5.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__container {
-        margin: 50px auto 0;
-        padding: 0 10px;
+        margin: 3.125em auto 0;
+        padding: 0 0.625em;
 
         text-align: center;
 
         @include breakpoint-up(sm) {
-            max-width: 1200px;
+            max-width: 75em;
         }
 
         @include breakpoint-up(lg) {
-            margin-top: 70px;
+            margin-top: 4.375em;
         }
     }
 
@@ -30,10 +39,10 @@
 
     &__more-btn {
         display: inline-block;
-        margin-top: 30px;
+        margin-top: 2.5em;
 
         font-family: $font-family-regular;
-        @include font-size(12px);
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         color: $color-primary;
         letter-spacing: 0.1em;
@@ -47,16 +56,16 @@
         transition: color 0.25s ease;
 
         @include breakpoint-up(lg) {
-            margin-top: 36px;
+            margin-top: 3em;
         }
 
         &:after {
             content: "...";
 
             display: block;
-            margin-top: -10px;
+            margin-top: -0.3333em;
 
-            @include font-size(30px);
+            font-size: 1.875rem;
         }
 
         &:hover {
@@ -74,10 +83,13 @@
 
     &__loader {
         display: inline-block;
-        margin-top: 30px;
+        margin-top: 1.875em;
     }
 
     &__error {
-        margin-top: 20px;
+        margin-top: 1.8em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

@@ -3,18 +3,28 @@
  * This block is used purely to override the default Magnific Popup styles
  */
 .lightbox {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
     .mfp-container {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 0.625em;
+        padding-right: 0.625em;
     }
 
     .mfp-close {
         right: 0;
 
-        width: 28px;
+        width: 1em;
 
         text-align: left;
-        text-indent: -999px;
+        text-indent: -100em;
 
         overflow: hidden;
 
@@ -58,16 +68,14 @@
         position: absolute;
 
         display: block;
-        height: 28px;
-        margin-left: 31px;
-        margin-top: 41px;
-        width: 28px;
+        height: 2em;
+        margin-left: 2.25em;
+        margin-top: 2.85em;
+        width: 2em;
 
         border: none;
         border-left: 3px solid $color-white;
         border-bottom: 3px solid $color-white;
-
-        
     }
 
     .mfp-arrow-left:before {
@@ -82,4 +90,10 @@
     .mfp-arrow-right:after {
         content: none;
     }
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
+    // TODO: add code
 }

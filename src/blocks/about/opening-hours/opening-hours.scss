@@ -2,7 +2,8 @@
  * Styles for the opening hours block
  */
 .opening-hours {
-    padding: 45px 25px;
+    // Selector styles
+    padding: 2.875em 1.5em;
 
     font-weight: $font-weight-bold;
     letter-spacing: 0.1em;
@@ -11,20 +12,29 @@
 
     border: 3px solid $color-athens-gray;
 
+    // @media queries
     @include breakpoint-up(md) {
-        padding-bottom: 35px;
-        padding-top: 35px;
+        padding-bottom: 2.25em;
+        padding-top: 2.25em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__title {
         color: $color-secondary;
-        @include font-size(14px);
+        font-size: 0.875rem;
     }
 
     &__list {
         margin-top: 1.25em;
 
         color: $color-primary;
+        font-size: 0.75rem;
         line-height: 2;
     }
 
@@ -39,4 +49,7 @@
     &__time {
         display: block;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

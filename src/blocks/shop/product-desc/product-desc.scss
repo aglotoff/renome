@@ -1,9 +1,26 @@
+/**
+ * Styles for the product description block
+ */
 .product-desc {
-    padding: 65px 0;
+    // Selector styles
+    padding: 4em 0;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 950px;
-        padding: 0 10px;
+        max-width: 59.375em;
+        padding: 0 0.625em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

@@ -2,10 +2,16 @@
  * Styles for the rich text block
  */
 .rich-text {
+    // Selector styles
     color: $color-tundora;
+    font-size: 0.75rem;
     line-height: 2.5;
     letter-spacing: .15em;
 
+    // @media queries
+    // TODO: add code
+
+    // Nested selectors
     * + * {
         margin-top: 2em;
     }
@@ -30,8 +36,12 @@
         border-left: 3px solid $color-athens-gray;
     }
 
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
     &_small-size {
-        @include font-size(11px);
+        font-size: 0.6875rem;
     }
 
     &_small-spacing {

@@ -2,20 +2,30 @@
  * Styles for the mobile search block
  */
 .mobile-search {
+    // Selector styles
     align-items: center;
     display: flex;
-    padding: 0 10px;
+    padding: 0 0.625em;
 
+    // @media queries
     @include breakpoint-up(lg) {
         display: none;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__input {
         display: block;
         flex: 1;
-        padding: 22px 0;
+        padding: 1.825em 0;
 
         color: $color-primary;
+        font-size: 0.75rem;
         font-weight: $font-weight-bold;
         letter-spacing: .2em;
 
@@ -47,4 +57,7 @@
             outline: 1px dotted;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

@@ -2,24 +2,33 @@
  * Styles for the article author block
  */
 .article-author {
+    // Selector styles
     text-align: center;
 
+    // @media queries
     @include breakpoint-up(md) {
         text-align: left;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__avatar {
-        max-width: 100px;
+        max-width: 6.25em;
 
         @include breakpoint-up(md) {
             float: left;
-            margin-right: 25px;
-            margin-top: 7px;
+            margin-right: 1.5em;
+            margin-top: 0.4375em;
         }
     }
 
     &__text {
-        margin-top: 15px;       
+        margin-top: 0.9375em;       
 
         @include breakpoint-up(md) {
             overflow: hidden;
@@ -27,24 +36,24 @@
     }
 
     &__name {
-        margin-bottom: 8px;
-        margin-top: 8px;
+        margin-bottom: 0.725em;
+        margin-top: 0.725em;
 
         font-weight: $font-weight-bold;
         color: $color-black;
-        @include font-size(11px);
+        font-size: 0.6875rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
     }
 
     &__bio {
-        margin-top: 5px;
+        margin-top: 0.4em;
     }
 
     &__social {
         display: flex;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: 0.625em;
 
         @include breakpoint-up(md) {
             justify-content: flex-start;
@@ -52,11 +61,12 @@
     }
 
     &__social-item:not(:first-child) {
-        margin-left: 20px;
+        margin-left: 1.25em;
     }
 
     &__social-link {
         color: $color-silver-sand;
+        font-size: 0.75rem;
         text-decoration: none;
 
         transition: color 0.25s ease;
@@ -66,4 +76,7 @@
             color: $color-primary;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

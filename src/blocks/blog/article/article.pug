@@ -1,3 +1,21 @@
+//-
+    name: article
+    description: Markup for the article block
+    arguments:
+        - {object} props - block options
+        - {string[]} props.categories - list of categories
+        - {string} props.link - article link (if not single page)
+        - {string} props.title - article title
+        - {string} props.pubdate - publication date
+        - {string} props.image - post thumbnail image (optional)
+        - {object} props.video - video data (optional)
+        - {object} props.carousel - carousel data (optional)
+        - {string} props.content - article content
+        - {string[]} props.tags - list of tags (optional)
+        - {object} props.author - author data (optional)
+        - {object} props.relatedPosts - related posts (optional)
+        - {objects} props.comments - list of comments (optional)
+
 mixin article(props = {})
     article.article&attributes(attributes)
         header.article__header
@@ -15,7 +33,6 @@ mixin article(props = {})
 
             time(datetime=props.date).article__pubdate
                 = moment(props.date).format('MMMM D, YYYY')
-        // .article__header 
 
         .article__content
             if props.image
@@ -74,11 +91,9 @@ mixin article(props = {})
                 +blog-carousel({ slides: props.carousel }).article__carousel
 
             .rich-text.article__text !{props.content}
-            // .article__text 
 
             if props.link
                 a(href=props.link).article__link Continue Reading...
-        // .article__content 
 
         if props.tags || props.author || props.relatedPosts || props.comments
             footer.article__footer
@@ -87,7 +102,6 @@ mixin article(props = {})
                         +article-tags({ tags: props.tags }).article__tags
 
                     +share().article__share
-                // .article__footer-top 
                 
                 if props.author
                     .article__author
@@ -99,18 +113,13 @@ mixin article(props = {})
                         +related-posts({
                             posts: props.relatedPosts
                         }).article__related-posts
-                    // .article__footer-section 
 
                 if props.comments
                     section.article__footer-section
                         h3.title.article__footer-section-title
                             | #{props.comments.total} comments
                         +comments(props.comments).article__comments
-                    // .article__footer-section 
 
                     section.article__footer-section#comment-form
                         h3.title.article__footer-section-title Leave a reply
                         +comment-form().article__comment-form
-                    // .article__footer-section 
-            // .article__footer 
-    // .article 

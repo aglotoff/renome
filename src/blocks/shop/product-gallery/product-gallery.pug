@@ -27,8 +27,7 @@ mixin product-gallery(props = {})
                             src=`${item.thumb}-small.jpg`
                             alt=item.alt
                         ).product-gallery__thumb-img
-        // .product-gallery__nav 
-
+ 
         .product-gallery__container
             each item in props.items
                 .product-gallery__slide
@@ -48,5 +47,3 @@ mixin product-gallery(props = {})
                             src=`${item.image}-small.jpg`
                             alt=item.alt
                         ).product-gallery__slide-img
-        // .product-gallery__container 
-    // .product-gallery 
