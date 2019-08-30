@@ -2,26 +2,37 @@
  * Styles for the related posts block
  */
 .related-posts {
+    // Selector styles
     overflow: hidden;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__list {
         @include breakpoint-up(sm) {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 -10px;
+            margin: 0 -0.625em;
         }
 
         @include breakpoint-up(xl) {
-            margin-left: -15px;
-            margin-right: -15px;
+            margin-left: -1em;
+            margin-right: -1em;
         }
     }
 
     &__item {
-        margin-bottom: 25px;
+        margin-bottom: 1.5em;
 
         @include breakpoint-up(sm) {
-            padding: 0 10px;
+            padding: 0 0.625em;
             width: 50%;
         }
 
@@ -30,8 +41,8 @@
         }
 
         @include breakpoint-up(xl) {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 1em;
+            padding-right: 1em;
         }
     }
 
@@ -50,7 +61,7 @@
     }
 
     &__item-title {
-        @include font-size(13px);
+        font-size: 0.8125rem;
         letter-spacing: 0.05em;
     }
 
@@ -68,10 +79,13 @@
 
     &__item-date {
         display: block;
-        margin-top: 10px;
+        margin-top: 0.9em;
 
         color: $color-silver-sand;
-        @include font-size(11px);
+        font-size: 0.6875rem;
         letter-spacing: 0.1em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

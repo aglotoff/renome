@@ -2,17 +2,26 @@
  * Styles for the contact bottom block
  */
 .contact-bottom {
-    padding-bottom: 70px;
+    // Selector styles
+    padding-bottom: 4.375em;
 
+    // @media queries
     @include breakpoint-up(lg) {
-        padding-bottom: 100px;
-        padding-top: 30px;
+        padding-bottom: 6.25em;
+        padding-top: 1.875em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(lg) {
             display: flex;
@@ -21,10 +30,10 @@
     }
 
     &__form {
-        margin-top: 45px;
+        margin-top: 2.875em;
 
         @include breakpoint-up(lg) {
-            flex: 0 1 830px;
+            flex: 0 1 51.875em;
             margin-top: 0;
         }
     }
@@ -32,8 +41,11 @@
     &__details {
         @include breakpoint-up(lg) {
             flex: 1 0 auto;
-            margin-left: 45px;
+            margin-left: 2.8125em;
             margin-right: 0;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

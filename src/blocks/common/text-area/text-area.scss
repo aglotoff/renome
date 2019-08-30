@@ -2,17 +2,18 @@
  * Styles for the text area block
  */
 .text-area {
+    // Selector styles
     display: block;
-    height: 90px;
+    height: 6em;
     min-width: 0;
-    padding: 6px 0;
+    padding: 0.4em 0;
     width: 100%;
 
     color: $color-primary;
     font-family: $font-family-regular;
-    @include font-size(15px);
+    font-size: 0.9375rem;
     font-weight: $font-weight-bold;
-    line-height: 25px;
+    line-height: 1.6667em;
 
     background: $color-white;
     border: none;
@@ -21,17 +22,32 @@
 
     overflow: auto;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
     &::placeholder {
         color: $color-primary;
         font-weight: $font-weight-regular;
         opacity: 1;
     }
 
-    &_theme_small {
-        height: 100px;
-        padding: 11px 0;
+    &:focus {
+        border-bottom-color: $color-focus;
+    }
 
-        @include font-size(11px);
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
+    &_theme_small {
+        height: 9em;
+        padding: 1em 0;
+
+        font-size: 0.6875rem;
         letter-spacing: 0.2em;
 
         &::placeholder {
@@ -40,8 +56,8 @@
     }
 
     &_theme_checkout {
-        height: 100px;
-        padding: 11px 0;
+        height: 6.6667em;
+        padding: 0.75em 0;
 
         font-weight: $font-weight-regular;
 
@@ -52,9 +68,5 @@
 
     &_invalid {
         border-bottom-color: $color-error;
-    }
-
-    &:focus {
-        border-bottom-color: $color-focus;
     }
 }

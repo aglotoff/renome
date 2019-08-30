@@ -2,11 +2,27 @@
  * Styles for the comments block
  */
 .comments {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__comment {
-        margin-top: 60px;
+        margin-top: 3.75em;
 
         @include breakpoint-up(lg) {
-            margin-top: 70px;
+            margin-top: 4.375em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

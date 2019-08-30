@@ -2,15 +2,26 @@
  * Styles for the blog sidebar search block
  */
  .blog-search {
+    // Selector styles
     position: relative;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__input {
-        padding: 10px 0 10px 0;
+        padding: 0.7em 0;
         width: 100%;
 
         color: $color-primary;
         font-family: $font-family-regular;
-        @include font-size(14px);
+        font-size: 0.875rem;
 
         border: none;
         border-bottom: 3px solid #f5f7fa;
@@ -32,7 +43,7 @@
 
         padding: 0;
 
-        @include font-size(13px);
+        font-size: 0.8125rem;
 
         background: transparent;
         border: none;
@@ -51,4 +62,7 @@
             outline: 1px dotted;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

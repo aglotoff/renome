@@ -2,14 +2,25 @@
  * Styles for the mini cart block
  */
 .mini-cart {
+    // Selector styles
     position: relative;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__trigger {
         display: block;
-        padding: 25px 5px;
+        padding: 2em 0.4em;
 
         color: inherit;
-        @include font-size(12px);
+        font-size: 0.75rem;
         white-space: nowrap;
 
         background: transparent;
@@ -25,7 +36,7 @@
 
     &__item-count {
         display: inline-block;
-        margin-left: 6px;
+        margin-left: 0.5em;
 
         font-weight: $font-weight-bold;
         line-height: 1;
@@ -37,7 +48,7 @@
         right: 0;
         top: 100%;
 
-        padding: 5px;
+        padding: 0.3125em;
 
         font-weight: $font-weight-bold;
         text-align: center;
@@ -61,9 +72,10 @@
     &__total,
     &__action {
         display: block;
-        padding: 13px 22px;
+        padding: 1.075em 1.825em;
 
         color: $color-primary;
+        font-size: 0.75rem;
         white-space: nowrap;
     }
 
@@ -75,4 +87,7 @@
             color: $color-secondary;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

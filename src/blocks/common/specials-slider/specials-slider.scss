@@ -2,14 +2,23 @@
  * Styles for the specials slider block
  */
 .specials-slider {
-    padding-bottom: 80px;
+    // Selector styles
+    padding-bottom: 5em;
     overflow: hidden;
 
+    // @media queries
     @include breakpoint-up(md) {
-        padding-left: 32px;
-        padding-bottom: 50px;
+        padding-left: 2em;
+        padding-bottom: 3.125em;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         position: relative;
         z-index: 1;
@@ -47,26 +56,28 @@
 
     &__arrows {
         position: absolute;
-        left: -29px;
+        left: -1.75em;
         top: 50%;
         z-index: 100;
 
         display: block;
-        margin-top: -57px;
+        margin-top: -3.5em;
     }
 
     &__arrow {
         display: none;
 
+        font-size: 1rem;
+
         @include breakpoint-up(md) {
             position: relative;
 
             display: block;
-            height: 56px;
+            height: 3.5em;
             padding: 0;
-            width: 56px;
+            width: 3.5em;
 
-            text-indent: -9999px;
+            text-indent: -100em;
 
             background: $color-athens-gray;
             border: none;
@@ -80,14 +91,14 @@
                 content: "";
 
                 position: absolute;
-                top: 22px;
+                top: 1.375em;
 
                 display: block;
-                width: 12px;
-                height: 12px;
+                width: 0.75em;
+                height: 0.75em;
 
-                border-top: 2px solid $color-primary;
-                border-right: 2px solid $color-primary;
+                border-top: 0.125em solid $color-primary;
+                border-right: 0.125em solid $color-primary;
                 transition: border-color .2s ease;
             }
         }
@@ -113,7 +124,7 @@
         &_dir_prev {
             &:after {
                 @include breakpoint-up(md) {
-                    right: 20px;
+                    right: 1.25em;
 
                     transform: rotate(-135deg);
                 }
@@ -122,12 +133,12 @@
 
         &_dir_next {
             @include breakpoint-up(md) {
-                margin-top: 2px;
+                margin-top: 0.125em;
             }
 
             &:after {
                 @include breakpoint-up(md) {
-                    left: 20px;
+                    left: 1.25em;
 
                     transform: rotate(45deg);
                 }
@@ -168,33 +179,33 @@
     }
 
     &__slide-title {
-        margin-top: 22px;
+        margin-top: 1.475em;
 
-        @include font-size(15px);
+        font-size: 0.9375rem;
         font-weight: $font-weight-bold;
         letter-spacing: 0.05em;
     }
 
     &__slide-weekday {
-        margin-top: 18px;
+        margin-top: 0.9em;
 
         color: $color-iron;
         font-family: $font-family-cursive;
-        @include font-size(20px);
+        font-size: 1.25rem;
         letter-spacing: 0.1em;
     }
 
     &__slide-price {
         position: absolute;
-        right: 20px;
-        top: 20px;
+        right: 1.325em;
+        top: 1.325em;
 
-        height: 40px;
-        padding: 0 19px;
+        height: 2.675em;
+        padding: 0 1.325em;
 
-        @include font-size(15px);
+        font-size: 0.9375rem;
         letter-spacing: 0.1em;
-        line-height: 40px;
+        line-height: 2.675em;
 
         background: $color-athens-gray;
 
@@ -202,16 +213,19 @@
         transition: opacity 0.3s ease;
 
         @include breakpoint-up(md) {
-            height: 50px;
-            padding-left: 23px;
-            padding-right: 23px;
+            height: 2.95em;
+            padding-left: 1.35em;
+            padding-right: 1.35em;
 
-            @include font-size(17px);
-            line-height: 50px;
+            font-size: 1.0625rem;
+            line-height: 2.95em;
         }
 
         .specials-slider__slide_active & {
             opacity: 1;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

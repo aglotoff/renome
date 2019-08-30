@@ -1,9 +1,25 @@
 /**
- * Error Messages
+ * Styles for the error message block
  */
 .error {
+    // Selector styles
     color: $color-error;
     font-weight: $font-weight-bold;
-    @include font-size(11px);
+    font-size: 0.6875rem;
     letter-spacing: 0.1em;
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
+
+    // BEM modifiers
+    // TODO: add code
 }

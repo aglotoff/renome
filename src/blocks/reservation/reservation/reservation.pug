@@ -1,10 +1,8 @@
 //-
     name: reservation
     description: Markup for the reservation form block
-    arguments:
-        - {object} props - block properties
 
-mixin reservation(props = {})
+mixin reservation()
     form.reservation(
         action="#"
         method="post"
@@ -27,7 +25,6 @@ mixin reservation(props = {})
                         aria-labelledby="reservation-date-label"
                         required
                     ).reservation__input
-                // .reservation__input-group 
                     
                 .reservation__input-group
                     label.reservation__label(
@@ -41,7 +38,6 @@ mixin reservation(props = {})
                         aria-labelledby="reservation-time-label"
                     ).reservation__input
                         option(value="") &nbsp;
-                // .reservation__input-group 
 
                 .reservation__input-group
                     label.reservation__label(
@@ -67,11 +63,6 @@ mixin reservation(props = {})
                                 else
                                     | Larger party
                             - partySize++;
-                // .reservation__input-group 
-            // .reservation__fields 
 
             .reservation__bottom
                 +btn({type: 'submit' }).reservation__submit Find a table
-            // .reservation__bottom 
-        // .reservation__inner 
-    // .reservation 

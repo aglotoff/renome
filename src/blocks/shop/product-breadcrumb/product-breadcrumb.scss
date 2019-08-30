@@ -2,12 +2,25 @@
  * Styles for the product breadcrumb block
  */
 .product-breadcrumb {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__list {
         display: flex;
     }
     
     &__item {
-        @include font-size(10px);
+        font-size: 0.625rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
     }
@@ -32,4 +45,7 @@
             color: $color-silver-sand;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

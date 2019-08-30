@@ -1,3 +1,13 @@
+//-
+    name: video
+    description: Markup for the video block
+    arguments:
+        - {object} props - block options
+        - {string} props.url - video url
+        - {string} props.format - video format ("16x9" or "4x3")
+        - {string} props.placeholder - placeholder image
+        - {string} props.title - title
+
 mixin video(props = {})
     .video(data-url=props.url, data-format=props.format)&attributes(attributes)
         .video__placeholder
@@ -31,6 +41,3 @@ mixin video(props = {})
             .video__overlay
                 button(type="button").video__play-btn
                     +icon('play', 'Play Video')
-            //. video__overlay 
-        // .video__placeholder 
-    // .video 

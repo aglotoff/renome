@@ -2,18 +2,29 @@
  * Styles for the rating input block
  */
 .rating-input {
+    // Selector styles
     display: flex;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__radio {
         @include visually-hidden();
     }
 
     &__label {
         display: block;
-        height: 12px;
-        margin-left: 15px;
+        height: 0.75em;
+        margin-left: 1em;
 
-        text-indent: -9999px;
+        text-indent: -100em;
 
         background: {
             image: url('../img/star-rating.svg');
@@ -22,37 +33,42 @@
         }
         cursor: pointer;
 
+        overflow: hidden;
+
         &_value_1 {
-            width: 12px;
+            width: 0.75em;
         }
 
         &_value_2 {
-            width: 24px;
+            width: 1.5em;
         }
 
         &_value_3 {
-            width: 36px;
+            width: 2.25em;
         }
 
         &_value_4 {
-            width: 48px;
+            width: 3em;
         }
 
         &_value_5 {
-            width: 60px;
+            width: 3.75em;
         }
 
         &:hover {
-            background-position-y: -12px;
+            background-position-y: -0.75em;
         }
     }
 
     &__radio:checked + .rating-input__label,
     &__radio:focus + .rating-input__label {
-        background-position-y: -12px;
+        background-position-y: -0.75em;
     }
 
     &__radio:first-child + .rating-input__label {
         margin-left: 0;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

@@ -1,10 +1,24 @@
 /**
- * Styles for the form block.
+ * Styles for the generic form block
  */
 .form {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
+    // TODO: add code
     &__error {
         display: block;
-        margin-top: 10px;
+        margin-top: 1em;
 
         text-align: left;
         text-transform: none;
@@ -15,7 +29,7 @@
     }
 
     &__rating {
-        margin-top: 15px;
+        margin-top: 1em;
     }
 
     &__label {
@@ -24,7 +38,7 @@
         &_visible {
             display: block;
 
-            @include font-size(11px);
+            font-size: 0.6875rem;
             font-weight: $font-weight-bold;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -32,10 +46,10 @@
     }
 
     &__field {
-        margin-bottom: 25px;
+        margin-bottom: 1.5em;
 
         @include breakpoint-up(md) {
-            padding: 0 25px;
+            padding: 0 1.5em;
             width: 50%;
         }
 
@@ -48,9 +62,12 @@
         @include breakpoint-up(md) {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 -25px;
+            margin: 0 -1.5em;
 
             overflow: hidden;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

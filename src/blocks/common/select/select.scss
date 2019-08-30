@@ -29,14 +29,14 @@
 
     &__button {
         display: block;
-        padding: 6px 0;
+        padding: 0.4em 0;
         width: 100%;
 
         color: $color-primary;
         font-family: inherit;
-        @include font-size(15px);
+        font-size: 0.9375rem;
         font-weight: $font-weight-bold;
-        line-height: 25px;
+        line-height: 1.675em;
         text-align: left;
 
         background: transparent;
@@ -58,11 +58,11 @@
             bottom: auto;
             left: auto;
             position: absolute;
-            right: 2px;
+            right: 0.125em;
             top: 50%;
 
-            height: 8px;
-            width: 8px;
+            height: 0.5em;
+            width: 0.5em;
 
             border: none;
             border-bottom: 1px solid $color-primary;
@@ -84,7 +84,7 @@
         position: absolute;
         z-index: 100;
         
-        max-height: 260px;
+        max-height: 16.25em;
 
         overflow-y: auto;
         
@@ -94,8 +94,8 @@
         border: 3px solid $color-athens-gray;
         box-shadow: 1px 1px 3px rgba($color-black, 0.15);
 
-        margin-bottom: 10px;
-        margin-top: 10px;
+        margin-bottom: 0.625em;
+        margin-top: 0.625em;
 
         &_expanded {
             visibility: visible;
@@ -103,20 +103,20 @@
     }
 
     &__option {
-        padding: 4px 0 4px 20px;
+        padding: 0.3em 0 0.3em 1.425em;
 
-        @include font-size(14px);
+        font-size: 0.875rem;
         letter-spacing: 0.1em;
         text-align: left;
 
         cursor: pointer;
 
         &:first-child {
-            padding-top: 8px;
+            padding-top: 0.525em;
         }
 
         &:last-child {
-            padding-bottom: 8px;
+            padding-bottom: 0.525em;
         }
 
         &_highlighted {
@@ -124,28 +124,28 @@
         }
     }
 
-    // Bem modifiers
+    // BEM modifiers
     &_theme_small {
         text-transform: uppercase;
 
         .select__button {
-            padding: 11px 0;
+            padding: 1em 0;
 
-            @include font-size(11px);
+            font-size: 0.9375em;
             letter-spacing: 0.2em;
         }
 
         .select__option {
-            padding: 12px 10px;
+            padding: 1.025em 0.9em;
 
-            @include font-size(11px);
+            font-size: 0.9375em;
             letter-spacing: 0.2em;
         }
     }
 
     &_theme_checkout {
         .select__button {
-            padding: 11px 0;
+            padding: 0.725em 0;
 
             font-weight: $font-weight-regular;
         }

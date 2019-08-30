@@ -1,7 +1,8 @@
 /**
- * Styles for the header block
+ * Styles for the site header block
  */
 .header {
+    // Selector styles
     left: 0;
     position: fixed;
     right: 0;
@@ -13,22 +14,30 @@
     color: $color-black;
 
     background: $color-white;
-    box-shadow: 0 2px 5px rgba($color-black, 0.1);
+    box-shadow: 0 0.125em 0.3125em rgba($color-black, 0.1);
 
+    // @media queries
     @include breakpoint-up(lg) {
         position: absolute;
     }
 
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         align-items: center;
         display: flex;
-        height: 85px;
+        height: 5.25em;
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         @include breakpoint-up(lg) {
-            height: 100px;
+            height: 6.25em;
         }
     }
 
@@ -37,7 +46,7 @@
         text-decoration: none;
 
         margin-right: auto;
-        padding: 10px 0;
+        padding: 0.625em 0;
     }
 
     &__logo-img {
@@ -59,7 +68,7 @@
         order: 1;
 
         @include breakpoint-up(lg) {
-            margin-left: 8px;
+            margin-left: 0.5em;
             order: initial;
         }
 
@@ -68,8 +77,8 @@
                 content: "";
 
                 display: block;
-                height: 9px;
-                margin-top: -2px;
+                height: 0.6em;
+                margin-top: -0.125em;
                 width: 1px;
 
                 background-color: $color-black;
@@ -80,9 +89,9 @@
             content: "";
 
             display: block;
-            height: 15px;
-            margin-left: 15px;
-            margin-top: -2px;
+            height: 1em;
+            margin-left: 1em;
+            margin-top: -0.125em;
             width: 1px;
 
             background-color: $color-black;
@@ -98,11 +107,11 @@
 
         @include breakpoint-up(lg) {
             display: block;
-            margin-left: 15px;
-            padding: 25px 5px;
+            margin-left: 1.25em;
+            padding: 2em 0.5em;
 
             color: inherit;
-            @include font-size(12px);
+            font-size: 0.75rem;
 
             background: transparent;
             border: none;
@@ -118,12 +127,12 @@
 
     &__mini-cart {
         @include breakpoint-up(lg) {
-            margin-left: 14px;
+            margin-left: 0.875em;
         }
     }
 
     &__nav {
-        margin-left: 15px;
+        margin-left: 1em;
         order: 2;
 
         @include breakpoint-up(lg) {
@@ -132,6 +141,7 @@
         }
     }
 
+    // BEM modifiers
     &_transparent {
         box-shadow: none;
 

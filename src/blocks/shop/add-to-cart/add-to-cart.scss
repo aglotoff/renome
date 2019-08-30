@@ -2,15 +2,29 @@
  * Styles for the add to cart block
  */
 .add-to-cart {
+    // Selector styles
     display: flex;
     flex-wrap: wrap;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__qty {
-        width: 60px;
+        width: 3.75em;
     }
 
     &__btn {
-        margin-left: 22px;
-        width: 180px;
+        margin-left: 2em;
+        width: 16em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

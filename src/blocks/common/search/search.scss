@@ -2,13 +2,14 @@
  * Styles for the search block
  */
 .search {
+    // Selector styles
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 1;
     
-    height: 100px;
+    height: 6.25em;
 
     background: $color-primary;
     opacity: 0;
@@ -17,13 +18,23 @@
                 visibility 0.25s ease 0.25s;
     visibility: hidden;
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__form {
         align-items: center;
         display: flex;
         height: 100%;
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
     }
 
     &__input {
@@ -31,7 +42,7 @@
 
         color: $color-concrete;
         font-family: $font-family-regular;
-        @include font-size(12px);
+        font-size: 0.75rem;
         letter-spacing: 0.2em;
 
         background: transparent;
@@ -46,7 +57,7 @@
 
     &__submit {
         color: $color-white;
-        @include font-size(16px);
+        font-size: 1rem;
 
         background: transparent;
         border: none;
@@ -70,13 +81,13 @@
         position: relative;
 
         display: block;
-        height: 22px;
-        margin-left: 20px;
-        padding: 3px;
-        width: 22px;
+        height: 1.375em;
+        margin-left: 1.25em;
+        padding: 0.175em;
+        width: 1.375em;
 
         color: $color-white;
-        text-indent: -9999px;
+        text-indent: -100em;
 
         background: transparent;
         border: none;
@@ -95,9 +106,9 @@
             position: absolute;
 
             display: block;
-            margin-top: -2px;
+            margin-top: -0.125em;
             height: 1px;
-            width: 22px;
+            width: 1.375em;
 
             background: $color-white;
         }
@@ -120,6 +131,7 @@
         }
     }
 
+    // BEM modifiers
     &_visible {
         opacity: 1;
 

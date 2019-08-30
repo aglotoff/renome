@@ -16,7 +16,6 @@ mixin blog-layout(props = {})
         .blog-layout__articles
             each article in props.articles
                 +article(article).blog-layout__article
-        // .blog-layout__articles 
 
         if props.pagination
             +pagination({
@@ -35,5 +34,3 @@ mixin blog-layout(props = {})
             if props.popularPosts
                 +sidebar-widget({ title: 'Popular posts' }).blog-layout__widget
                     +popular-posts({ posts: props.popularPosts })
-        // .blog-layout__sidebar 
-    // .blog-layout 

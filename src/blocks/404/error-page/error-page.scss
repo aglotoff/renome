@@ -2,6 +2,7 @@
  * Styles for the error page block
  */
 .error-page {
+    // Selector styles
     background: {
         color: $color-primary;
         position: center;
@@ -9,15 +10,25 @@
         size: cover;
     }
 
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin: 0 auto;
-        max-width: 1200px;
-        min-height: calc(100vh - 100px);
-        padding: 85px 10px 85px;
+        max-width: 75em;
+        min-height: calc(100vh - 6.25em);
+        padding: 5.25em 0.625em;
 
         @include breakpoint-up(md) {
             text-align: center;
@@ -33,29 +44,32 @@
     &__code {
         color: $color-white;
         font-family: $font-family-title;
-        @include font-size(134px);
+        font-size: 8.375rem;
 
         @include breakpoint-up(lg) {
-            @include font-size(300px);
+            font-size: 18.75rem;
         }
     }
 
     &__msg {
         color: $color-secondary;
-        @include font-size(24px);
+        font-size: 1.5rem;
 
         @include breakpoint-up(lg) {
             margin-top: -0.5em;
-            @include font-size(30px);
+            font-size: 1.875rem;
         }
     }
 
     &__back {
-        margin-top: 50px;
-        width: 180px;
+        margin-top: 4em;
+        width: 16.25em;
 
         @include breakpoint-up(lg) {
-            margin-top: 100px;
+            margin-top: 9em;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

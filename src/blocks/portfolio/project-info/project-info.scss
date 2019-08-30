@@ -2,42 +2,56 @@
  * Styles for the project info block
  */
 .project-info {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         display: flex;
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         color: $color-black;
-        @include font-size(15px);
 
         &:before {
             content: "";
 
             display: block;
-            max-width: 510px;
+            max-width: 31.875em;
             width: 50%;
             background: $color-catskill-white;
         }
     }
 
     &__list {
-        margin-left: -70px;
-        padding: 40px 0;
+        margin-left: -4.375em;
+        padding: 2.5em 0;
 
         @include breakpoint-up(lg) {
-            margin-left: -85px;
-            padding-bottom: 80px;
-            padding-top: 80px;
+            margin-left: -5.25em;
+            padding-bottom: 5em;
+            padding-top: 5em;
         }
     }
 
     &__item {
         display: flex;
+
+        font-size: 0.9375rem;
         letter-spacing: 0.15em;
 
         &:not(:first-child) {
-            margin-top: 15px;
+            margin-top: 1em;
         }
     }
 
@@ -53,4 +67,7 @@
     &__value {
         margin-left: 0.5em;
     }
+
+    // BEM modifiers
+    // TODO: add code
 }

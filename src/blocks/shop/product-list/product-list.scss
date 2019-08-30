@@ -2,10 +2,23 @@
  * Styles for the product list block
  */
 .product-list {
+    // Selector styles
+    // TODO: add code
+
+    // @media queries
+    // TODO: add code
+
+    // Pseudo-classes and pseudo-elements
+    // TODO: add code
+
+    // Nested selectors
+    // TODO: add code
+
+    // BEM elements
     &__inner {
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 0 10px;
+        max-width: 75em;
+        padding: 0 0.625em;
 
         overflow: hidden;
     }
@@ -14,7 +27,7 @@
         @include breakpoint-up(sm) {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 -18px;
+            margin: 0 -1.125em;
         }
 
         .product-list_center & {
@@ -25,16 +38,19 @@
     }
 
     &__item {
-        margin-bottom: 50px;
+        margin-bottom: 3.125em;
 
         @include breakpoint-up(sm) {
-            padding: 0 18px;
+            padding: 0 1.125em;
             width: 50%;
         }
 
         @include breakpoint-up(md) {
-            margin-bottom: 70px;
+            margin-bottom: 4.375em;
             width: 33.3333%;
         }
     }
+
+    // BEM modifiers
+    // TODO: add code
 }
