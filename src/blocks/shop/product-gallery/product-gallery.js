@@ -3,6 +3,8 @@
  * @author Andrey Glotov
  */
 
+import getEmSize from '../../../js/utils/get-em-size';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 const BLOCK = 'product-gallery';
@@ -28,6 +30,8 @@ export function initBlock() {
         return false;
     }
 
+    const pageEmSize = getEmSize($('.page'));
+
     const $container = $(Selectors.CONTAINER, $gallery);
     const $nav = $(Selectors.NAV, $gallery);
 
@@ -43,7 +47,7 @@ export function initBlock() {
         zIndex: 1,
 
         responsive: [{
-            breakpoint: 480,
+            breakpoint: 30 * pageEmSize,
             settings: {
                 dots: true
             }
@@ -68,17 +72,17 @@ export function initBlock() {
         dots: false,
 
         responsive: [{
-            breakpoint: 992,
+            breakpoint: 62 * pageEmSize,
             settings: {
                 slidesToShow: 3,
             }
         }, {
-            breakpoint: 768,
+            breakpoint: 48 * pageEmSize,
             settings: {
                 slidesToShow: 4,
             }
         }, {
-            breakpoint: 480,
+            breakpoint: 30 * pageEmSize,
             settings: {
                 slidesToShow: 3,
             }

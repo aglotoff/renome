@@ -7,11 +7,12 @@ import * as Search from '../search/search';
 import * as MiniCart from '../mini-cart/mini-cart';
 
 import forceReflow from '../../../js/utils/force-reflow';
+import getEmSize from '../../../js/utils/get-em-size';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const STICKY_HEADER_OFFSET  = 100;  // Scroll offset to make the header "sticky"
-const VISIBLE_HEADER_OFFSET = 500;  // Scroll offset to show the "sticky" header
+const STICKY_HEADER_OFFSET  = 6;    // Scroll offset to make the header "sticky"
+const VISIBLE_HEADER_OFFSET = 32;   // Scroll offset to show the "sticky" header
 
 const elements = {};
 let isTransparent;
@@ -28,7 +29,7 @@ let headerState = HeaderStates.NORMAL;
  * animated sticky header effect.
  */
 function updateHeaderStyles() {
-    const currentOffset = $(window).scrollTop();
+    const currentOffset = $(window).scrollTop() / getEmSize($('.page'));
 
     let newState = null;
     if (currentOffset < STICKY_HEADER_OFFSET) {

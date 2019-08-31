@@ -3,6 +3,8 @@
  * @author Andrey Glotov
  */
 
+import getEmSize from '../../../js/utils/get-em-size';
+
 // ------------------------------ BEGIN CONSTANTS -----------------------------
 
 const BLOCK = 'blog-carousel';
@@ -28,6 +30,8 @@ class BlogCarousel {
      * @param {JQuery} $root The root block element
      */
     constructor($root) {
+        const pageEmSize = getEmSize($('.page'));
+
         $(Selectors.CONTAINER, $root).slick({
             rows: 0,
             slide: Selectors.SLIDE,
@@ -41,7 +45,7 @@ class BlogCarousel {
             zIndex: 1,
 
             responsive: [{
-                breakpoint: 970,
+                breakpoint: 62 * pageEmSize,
                 settings: {
                     dots: true
                 },

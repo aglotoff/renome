@@ -6,10 +6,12 @@
 import DropdownStrategy from '../../../js/utils/dropdown-strategy';
 import DrilldownStrategy from '../../../js/utils/drilldown-strategy';
 
-// -------------------------- BEGIN MODULE VARIABLES --------------------------
-const DESKTOP_BREAKPOINT = 992;  // Minimum desktop screen width
+import getEmSize from '../../../js/utils/get-em-size';
 
-const SCROLL_BUFFER = 100;  // Offset from window top to scroll target
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+const DESKTOP_BREAKPOINT = 62;  // Minimum desktop screen width (in ems)
+
+const SCROLL_BUFFER = 6.25;  // Offset from window top to scroll target
 const SCROLL_SPEED = 1000;
 
 let submenus;
@@ -98,7 +100,10 @@ function handleInternalLinkClick() {
     }
 
     $('html, body').animate({
-        scrollTop: Math.max(0, $targetElem.offset().top - SCROLL_BUFFER),
+        scrollTop: Math.max(
+            0,
+            $targetElem.offset().top - SCROLL_BUFFER * getEmSize($('.page'))
+        ),
     }, SCROLL_SPEED, 'swing', function() {
         $targetElem.focus();
     });
@@ -157,14 +162,16 @@ export function initBlock() {
  * behavior on desktop.
  */
 export function handleResize() {
-    if (isDesktop && ($(window).outerWidth() < DESKTOP_BREAKPOINT)) {
+    const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
+
+    if (isDesktop && (screenWidth < DESKTOP_BREAKPOINT)) {
         isDesktop = false;
 
         submenus.forEach((submenu) => {
             submenu.dropdownStrategy.deactivate();
             submenu.drilldownStrategy.activate();
         });
-    } else if (!isDesktop && ($(window).outerWidth() >= DESKTOP_BREAKPOINT)) {
+    } else if (!isDesktop && (screenWidth >= DESKTOP_BREAKPOINT)) {
         isDesktop = true;
 
         submenus.forEach((submenu) => {
