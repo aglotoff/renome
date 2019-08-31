@@ -3,6 +3,8 @@
  * @author Andrey Glotov
  */
 
+import getEmSize from '../../../js/utils/get-em-size';
+
 // -------------------------- BEGIN MODULE VARIABLES -------------------------- 
 
 const BLOCK = 'accordion-gallery';
@@ -13,7 +15,7 @@ const Selectors = {
     IMAGE: `.${BLOCK}__thumb-img`,
 };
 
-const MOBILE_BREAKPOINT = 768;
+const MOBILE_BREAKPOINT = 48;   // Mobile breakpoint (in ems)
 const THUMB_HEIGHT = 100;
 
 let isMobile = true;
@@ -156,11 +158,13 @@ class AccordionGallery {
      * orientation on larger screens.
      */
     static handleResize() {
-        if (!isMobile && ($(window).outerWidth() < MOBILE_BREAKPOINT)) {
+        const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
+
+        if (!isMobile && (screenWidth < MOBILE_BREAKPOINT)) {
             isMobile = true;
     
             sliders.forEach((slider) => slider.setVertical(true));
-        } else if (isMobile && ($(window).outerWidth() >= MOBILE_BREAKPOINT)) {
+        } else if (isMobile && (screenWidth >= MOBILE_BREAKPOINT)) {
             isMobile = false;
     
             sliders.forEach((slider) => slider.setVertical(false));

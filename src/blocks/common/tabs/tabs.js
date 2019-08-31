@@ -4,10 +4,11 @@
  */
 
 import forceReflow from '../../../js/utils/force-reflow';
+import getEmSize from '../../../js/utils/get-em-size';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const TRANSITION_DURATION = 200;
-const MOBILE_BREAKPOINT = 768;
+const MOBILE_BREAKPOINT = 48;   // Mobile breakpoint in ems
 
 const ClassNames = {
     PANEL_ACTIVE: 'tabs__panel_active',
@@ -261,11 +262,13 @@ class Tabs {
      * orientation on larger screens.
      */
     static handleResize() {
-        if (!isMobile && ($(window).outerWidth() < MOBILE_BREAKPOINT)) {
+        const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
+
+        if (!isMobile && (screenWidth < MOBILE_BREAKPOINT)) {
             isMobile = true;
     
             tabs.forEach((tab) => tab.setOrientation('vertical'));
-        } else if (isMobile && ($(window).outerWidth() >= MOBILE_BREAKPOINT)) {
+        } else if (isMobile && (screenWidth >= MOBILE_BREAKPOINT)) {
             isMobile = false;
     
             tabs.forEach((tab) => tab.setOrientation('horizontal'));
