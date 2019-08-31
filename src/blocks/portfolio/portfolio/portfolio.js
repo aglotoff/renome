@@ -6,9 +6,11 @@
 import * as PortfolioFilter from '../portfolio-filter/portfolio-filter';
 import * as PortfolioGrid   from '../portfolio-grid/portfolio-grid';
 
+import getEmSize from '../../../js/utils/get-em-size';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const MEDIUM_BREAKPOINT = 768;
+const MEDIUM_BREAKPOINT = 48;   // Mobile breakpoint in ems
 const FAKE_LOAD_TIME = 1000;
 
 const BLOCK = 'portfolio';
@@ -222,7 +224,7 @@ export function handleResize() {
         return;
     }
 
-    const screenWidth = $(window).outerWidth();
+    const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
     
     // Switch listbox orientation to vertical on mobile and to horizontal on
     // larger screens.
