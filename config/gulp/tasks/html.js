@@ -6,12 +6,13 @@ const del = require('del');
 const gulp = require('gulp');
 const data = require('gulp-data');
 const filter = require('gulp-filter');
-const htmlBeautify = require('gulp-html-beautify');
+const beautify = require('gulp-beautify');
 const plumber = require('gulp-plumber');
 const pug = require('gulp-pug');
 const pugInheritance = require('gulp-pug-inheritance');
 const tap = require('gulp-tap');
 const lazypipe = require('lazypipe');
+const moment = require('moment');
 
 const config = require('../config');
 
@@ -29,11 +30,11 @@ const htmlTasks = lazypipe()
             data: fs.existsSync(dataFile)
                 ? {...globalData, ...JSON.parse(fs.readFileSync(dataFile))}
                 : globalData,
-            moment: require('moment'),
+            moment,
         };
     })
     .pipe(pug, config.plugins.pug)
-    .pipe(htmlBeautify)
+    .pipe(beautify.html, config.plugins.beautify)
     .pipe(gulp.dest, config.paths.html.dest)
     .pipe(browserSync.reload, {stream: true});
 
