@@ -32,8 +32,8 @@ gulp.task('build:css', () => {
         .pipe(sourcemaps.init())
         .pipe(sass.sync(config.plugins.sass))
         .pipe(postCss(config.run.css.cssnano
-            ? [autoprefixer, cssnano]
-            : [autoprefixer]))
+            ? [autoprefixer(config.plugins.autoprefixer), cssnano]
+            : [autoprefixer(config.plugins.autoprefixer)]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.css.dest))
         .pipe(browserSync.reload({

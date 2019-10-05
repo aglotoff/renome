@@ -11,27 +11,29 @@
 
 mixin comment(props = {})
     li.comment(data-id=props.id)&attributes(attributes)
-        .comment__header
-            -
-                const jpegSrcSet =
-                    props.avatar + '.jpg 1x, ' + 
-                    props.avatar + '@2x.jpg 2x';
-                const webpSrcSet =
-                    props.avatar + '.webp 1x, ' +
-                    props.avatar + '@2x.webp 2x';
-            picture
-                source(srcset=webpSrcSet type="image/webp")
-                source(srcset=jpegSrcSet type="image/jpeg")
-                img(
-                    src=`${props.avatar}.jpg`
-                    alt=props.author
-                ).comment__avatar
+        .comment__content
+            .comment__avatar
+                -
+                    const jpegSrcSet =
+                        props.avatar + '.jpg 1x, ' + 
+                        props.avatar + '@2x.jpg 2x';
+                    const webpSrcSet =
+                        props.avatar + '.webp 1x, ' +
+                        props.avatar + '@2x.webp 2x';
+                picture
+                    source(srcset=webpSrcSet type="image/webp")
+                    source(srcset=jpegSrcSet type="image/jpeg")
+                    img(
+                        src=`${props.avatar}.jpg`
+                        alt=props.author
+                    ).comment__img
             time.comment__date(datetime=props.date)
                 = moment(props.date).format('MMM D, h:mm A')
             .comment__author= props.author
-            button(type="button").comment__reply-btn Reply
+            .comment__reply-wrap
+                button(type="button").comment__reply-btn Reply
 
-        .rich-text.comment__body= props.text
+            .rich-text.comment__body= props.text
 
         .comment__replies
             if props.replies

@@ -91,6 +91,9 @@ module.exports = {
      * Plugin options
      */
     plugins: {
+        autoprefixer: {
+            grid: true,
+        },
         browserSync: {
             server: DIST
         },
@@ -100,7 +103,7 @@ module.exports = {
                 plugins: [
                     { removeXMLProcInst: false },
                     { cleanupIDs: false },
-                    { removeAttrs: { attrs: '(fill|stroke|style)' } }
+                    { removeAttrs: { attrs: '(style)' } }
                 ]
             },
         },
