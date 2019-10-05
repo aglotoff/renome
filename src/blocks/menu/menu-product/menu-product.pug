@@ -41,15 +41,15 @@ mixin menu-product(props = {})
                 .menu-product__label New
             a(href=props.img role="button").menu-product__link
                 +icon('zoom', 'View full size image')
-        
+
+        .menu-product__text
+            h3.menu-product__title= props.title
+            .rich-text.rich-text_small-spacing.menu-product__desc
+                p= props.desc
+
         .menu-product__price
             -
                 const units = Math.floor(props.price);
                 const decimals = (props.price - units).toFixed(2).substring(1);
             | $#{units}
             span.menu-product__price-decimals= decimals
-
-        .menu-product__text
-            h3.menu-product__title= props.title
-            .rich-text.rich-text_small-spacing.menu-product__desc
-                p= props.desc

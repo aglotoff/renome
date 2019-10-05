@@ -3,10 +3,15 @@
  */
 .menu-product {
     // Selector styles
-    @include clearfix();
+    display: grid;
+    grid-template-areas: "thumb text"
+                         "price text";
+    grid-template-columns: auto 1fr;
 
     // @media queries
-    // TODO: add code
+    @include breakpoint-up(md) {
+        display: flex;
+    }
 
     // Pseudo-classes and pseudo-elements
     // TODO: add code
@@ -16,47 +21,49 @@
 
     // BEM elements
     &__thumb {
-        float: left;
         position: relative;
 
+        grid-area: thumb;
         height: 4.375em;
-        margin-right: 1.875em;
         width: 4.375em;
 
         @include breakpoint-up(lg) {
             height: 5.375em;
-            margin-right: 3.25em;
             width: 5.375em;
         }
     }
 
     &__price {
-        clear: left;
-        float: left;
-        margin-left: 0.5em;
-        margin-top: 1em;
+        grid-area: price;
+        padding-left: 0.5em;
+        padding-top: 1em;
 
         font-size: 1.3125rem;
 
         @include breakpoint-up(md) {
-            clear: none;
-            float: right;
-            margin-left: 1.425em;
-            margin-top: 0.7em;
+            margin-left: auto;
+            padding-left: 0;
+            padding-top: 0.7em;
         }
 
         @include breakpoint-up(lg) {
-            margin-left: 8em;
-
             font-size: 1.5625rem;
         }
     }
 
     &__text {
-        overflow: hidden;
+        grid-area: text;
+        padding-left: 1.875em;
 
         @include breakpoint-up(md) {
-            margin-top: 1em;
+            flex: 1 1;
+            padding-top: 1em;
+            padding-left: 3.25em;
+            padding-right: 1.425em;
+        }
+
+        @include breakpoint-up(lg) {
+            padding-right: 8em;
         }
     }
 
