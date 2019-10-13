@@ -6,8 +6,7 @@
 import * as Search from '../search/search';
 import * as MiniCart from '../mini-cart/mini-cart';
 
-import forceReflow from '../../../js/utils/force-reflow';
-import getEmSize from '../../../js/utils/get-em-size';
+import { getEmSize, forceReflow } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 

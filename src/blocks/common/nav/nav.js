@@ -3,10 +3,10 @@
  * @author Andrey Glotov
  */
 
-import DropdownStrategy from '../../../js/utils/dropdown-strategy';
-import DrilldownStrategy from '../../../js/utils/drilldown-strategy';
+import DropdownStrategy from '../../../js/util/dropdown-strategy';
+import DrilldownStrategy from '../../../js/util/drilldown-strategy';
 
-import getEmSize from '../../../js/utils/get-em-size';
+import { getEmSize } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const DESKTOP_BREAKPOINT = 62;  // Minimum desktop screen width (in ems)

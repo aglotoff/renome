@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import getEmSize from '../../../js/utils/get-em-size';
+import { getEmSize } from '../../../js/util/index';
 
 // ------------------------------ BEGIN CONSTANTS -----------------------------
 

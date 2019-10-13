@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import DropdownStrategy from '../../../js/utils/dropdown-strategy';
+import DropdownStrategy from '../../../js/util/dropdown-strategy';
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 

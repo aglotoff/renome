@@ -3,7 +3,8 @@
  * @author Andrey Glotov
  */
 
-import * as LazyLoader from '../../../js/utils/lazy-loader';
+import * as LazyLoader from '../../../js/util/lazy-loader';
+import { debounce, throttle } from '../../../js/util/index';
 
 import * as Header from '../header/header';
 import * as Nav from '../nav/nav';
@@ -38,10 +39,6 @@ import * as ShopFilter from '../../shop/shop-filter/shop-filter';
 const RESIZE_INTERVAL       = 200;  // Resize debouncing interval
 const SCROLL_INTERVAL       = 200;  // Scroll throttling interval
 
-let resizeTimer = null;
-let scrollTimer = null;
-let wasScrolled = false;
-
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
@@ -64,35 +61,6 @@ function handleWindowResize() {
     Tabs.handleResize();
 }
 
-/**
- * Debounce the window resize event
- */
-function debounceWindowResize() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(handleWindowResize, RESIZE_INTERVAL);
-}
-
-/**
- * Throttle the window scroll event
- */
-function throttleWindowScroll() {
-    if (scrollTimer) {
-        // Ensure that we catch and execute that last invocation.
-        wasScrolled = true;
-        return;
-    }
-
-    handleWindowScroll();
-
-    scrollTimer = this.setTimeout(function() {
-        scrollTimer = null;
-        if (wasScrolled) {
-            handleWindowScroll();
-            wasScrolled = false;
-        }
-    }, SCROLL_INTERVAL);
-}
-
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
@@ -102,8 +70,8 @@ function throttleWindowScroll() {
  */
 export function initBlock() {
     $(window).on({
-        resize: debounceWindowResize,
-        scroll: throttleWindowScroll,
+        resize: debounce(handleWindowResize, RESIZE_INTERVAL),
+        scroll: throttle(handleWindowScroll, SCROLL_INTERVAL),
     });
 
     // Lazy image loader

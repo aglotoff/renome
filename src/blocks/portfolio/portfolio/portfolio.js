@@ -6,7 +6,7 @@
 import * as PortfolioFilter from '../portfolio-filter/portfolio-filter';
 import * as PortfolioGrid   from '../portfolio-grid/portfolio-grid';
 
-import getEmSize from '../../../js/utils/get-em-size';
+import { getEmSize } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 

@@ -5,7 +5,7 @@
 
 import Select from '../../common/select/select';
 
-import forceReflow from '../../../js/utils/force-reflow';
+import { forceReflow } from '../../../js/util/index';
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 

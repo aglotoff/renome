@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import forceReflow from '../../../js/utils/force-reflow';
+import { forceReflow } from '../../../js/util/index';
 
 // ----------------------------- BEGIN CONSTANTS ------------------------------
 
