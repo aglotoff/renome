@@ -19,17 +19,8 @@ const Selectors = {
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the product gallery module.
- */
-export function initBlock() {
-    const $gallery = $('.product-gallery');
-    if ($gallery.length === 0) {
-        return false;
-    }
-
+const $gallery = $('.product-gallery');
+if ($gallery.length !== 0) {
     const pageEmSize = getEmSize($('.page'));
 
     const $container = $(Selectors.CONTAINER, $gallery);
@@ -91,5 +82,3 @@ export function initBlock() {
         asNavFor: $container,
     });
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

@@ -192,4 +192,6 @@ class Reservation {
     // -------------------------- END PUBLIC METHODS --------------------------
 }
 
+Reservation.initAll();
+
 export default Reservation;

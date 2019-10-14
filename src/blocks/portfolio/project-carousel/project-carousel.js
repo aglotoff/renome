@@ -3,24 +3,15 @@
  * @author Andrey Glotov
  */
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+$('.project-carousel__container').slick({
+    rows: 0,
+    slide: '.project-carousel__slide',
 
-/**
- * Initialize the project carousel block.
- */
-export function initBlock() {
-    $('.project-carousel__container').slick({
-        rows: 0,
-        slide: '.project-carousel__slide',
+    prevArrow: '.project-carousel__arrow_dir_prev',
+    nextArrow: '.project-carousel__arrow_dir_next',
+    dots: true,
 
-        prevArrow: '.project-carousel__arrow_dir_prev',
-        nextArrow: '.project-carousel__arrow_dir_next',
-        dots: true,
-
-        cssEase: 'linear',
-        speed: 250,
-        zIndex: 1,
-    });
-}
-
-// ---------------------------- END PUBLIC METHODS ----------------------------
+    cssEase: 'linear',
+    speed: 250,
+    zIndex: 1,
+});

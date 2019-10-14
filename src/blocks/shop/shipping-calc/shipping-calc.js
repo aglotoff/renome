@@ -7,17 +7,8 @@ import Select from '../../common/select/select';
 
 import { forceReflow } from '../../../js/util/index';
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the shipping calculator module.
- */
-export function initBlock() {
-    const $calc = $('.shipping-calc');
-    if ($calc.length === 0) {
-        return false;
-    }
-
+const $calc = $('.shipping-calc');
+if ($calc.length !== 0) {
     const $toggle = $('.shipping-calc__toggle', $calc);
     const $form = $('.shipping-calc__form', $calc);
     const $country = $('.shipping-calc__country', $calc);
@@ -96,5 +87,3 @@ export function initBlock() {
         $form.validate().element('select');
     });
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

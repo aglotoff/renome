@@ -2,12 +2,15 @@
  * @file Lazy loader for images
  */
 
+import { throttle } from './index';
+
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 const BUFFER_HEIGHT = 50;
 const LAZY_SELECTOR = '.lazy';
+const SCROLL_INTERVAL = 200;  // Scroll throttling interval
 
-let $images;
+let $images = $(LAZY_SELECTOR);
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
@@ -56,13 +59,6 @@ function loadImage($img) {
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
- * Initialize the lazy image loader
- */
-export function init() {
-    $images = $(LAZY_SELECTOR);
-}
-
-/**
  * Load all images that have been scrolled into the viewport for the first time
  */
 export function scanImages() {
@@ -82,5 +78,12 @@ export function scanImages() {
         return false;
     });
 }
+
+window.addEventListener(
+    'scroll',
+    throttle(scanImages, SCROLL_INTERVAL)
+);
+
+scanImages();
 
 // ---------------------------- END PUBLIC METHODS ----------------------------

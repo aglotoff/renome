@@ -74,4 +74,6 @@ class Slider {
     // --------------------------- END PUBLIC METHODS -------------------------
 }
 
+Slider.initAll();
+
 export default Slider;

@@ -61,4 +61,6 @@ class ContactForm {
     // -------------------------- END PUBLIC METHODS --------------------------
 }
 
+ContactForm.initAll();
+
 export default ContactForm;

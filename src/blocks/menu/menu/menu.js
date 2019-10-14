@@ -49,4 +49,6 @@ class Menu {
     // -------------------------- END PUBLIC METHODS --------------------------
 }
 
+Menu.initAll();
+
 export default Menu;

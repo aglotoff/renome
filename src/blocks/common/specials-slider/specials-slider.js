@@ -196,4 +196,6 @@ class SpecialsSlider {
     // --------------------------- END PUBLIC METHODS -------------------------
 }
 
+SpecialsSlider.initAll();
+
 export default SpecialsSlider;

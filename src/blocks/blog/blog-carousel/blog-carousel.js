@@ -67,4 +67,6 @@ class BlogCarousel {
     // -------------------------- END PUBLIC METHODS --------------------------
 }
 
+BlogCarousel.initAll();
+
 export default BlogCarousel;

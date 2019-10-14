@@ -3,18 +3,20 @@
  * @author Andrey Glotov
  */
 
-import * as Search from '../search/search';
-import * as MiniCart from '../mini-cart/mini-cart';
-
-import { getEmSize, forceReflow } from '../../../js/util/index';
+import { show as showSearch } from '../search/search';
+import { getEmSize, forceReflow, throttle } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 const STICKY_HEADER_OFFSET  = 6;    // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 32;   // Scroll offset to show the "sticky" header
+const SCROLL_INTERVAL       = 200;  // Scroll throttling interval
 
 const elements = {};
-let isTransparent;
+elements.$header = $('.header');
+elements.$searchToggle = $('.header__search-toggle', elements.$header);
+
+const isTransparent = elements.$header.hasClass('header_transparent');
 
 const HeaderStates = { NORMAL: 0, STICKY: 1, VISIBLE: 2 };
 let headerState = HeaderStates.NORMAL;
@@ -78,33 +80,20 @@ function updateHeaderStyles() {
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
 
 function handleSearchToggle() {
-    Search.show();
-}
-
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the header module.
- */
-export function initBlock() {
-    elements.$header = $('.header');
-    elements.$searchToggle = $('.header__search-toggle', elements.$header);
-
-    isTransparent = elements.$header.hasClass('header_transparent');
-
-    Search.initBlock();
-    MiniCart.initBlock();
-
-    elements.$searchToggle.click(handleSearchToggle);
+    showSearch();
 }
 
 /**
  * Respond to window scroll event.
  */
-export function handleScroll() {
+function handleWindowScroll() {
     updateHeaderStyles();
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
+elements.$searchToggle.click(handleSearchToggle);
+
+$(window).scroll(throttle(handleWindowScroll, SCROLL_INTERVAL));
+
+handleWindowScroll();

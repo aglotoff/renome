@@ -3,11 +3,12 @@
  * @author Andrey Glotov
  */
 
-import { forceReflow, getEmSize } from '../../../js/util/index';
+import { debounce, forceReflow, getEmSize } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 const TRANSITION_DURATION = 200;
 const MOBILE_BREAKPOINT = 48;   // Mobile breakpoint in ems
+const RESIZE_INTERVAL = 200;  // Resize debouncing interval
 
 const ClassNames = {
     PANEL_ACTIVE: 'tabs__panel_active',
@@ -276,5 +277,11 @@ class Tabs {
 
     // ---------------------------- END PUBLIC METHODS ---------------------------
 }
+
+Tabs.initAll();
+
+$(window).resize(debounce(Tabs.handleResize, RESIZE_INTERVAL));
+
+Tabs.handleResize();
 
 export default Tabs;

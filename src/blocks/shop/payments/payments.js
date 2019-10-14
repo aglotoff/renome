@@ -3,17 +3,8 @@
  * @author Andrey Glotov
  */
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the payments block.
- */
-export function initBlock() {
-    const $payments = $('.payments');
-    if ($payments.length === 0) {
-        return false;
-    }
-
+const $payments = $('.payments');
+if ($payments.length !== 0) {
     const $radios = $('.payments__radio', $payments);
     const $desc   = $('.payments__desc', $payments);
     $radios.change(function handleRadioChange() {
@@ -25,5 +16,3 @@ export function initBlock() {
             .slideDown();
     });
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

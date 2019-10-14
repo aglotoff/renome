@@ -19,23 +19,14 @@ function getInvalidClassName($element) {
 
 // -------------------------- END UTILITY FUNCTIONS ---------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+$('.comment-form').validate({
+    errorClass: 'error form__error',
 
-/**
- * Initialize the comment form block.
- */
-export function initBlock() {
-    $('.comment-form').validate({
-        errorClass: 'error form__error',
-    
-        highlight(element) {
-            $(element).addClass(getInvalidClassName($(element)));
-        },
-    
-        unhighlight(element) {
-            $(element).removeClass(getInvalidClassName($(element)));
-        },
-    });
-}
+    highlight(element) {
+        $(element).addClass(getInvalidClassName($(element)));
+    },
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+    unhighlight(element) {
+        $(element).removeClass(getInvalidClassName($(element)));
+    },
+});

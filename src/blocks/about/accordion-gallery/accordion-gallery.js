@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import { getEmSize } from '../../../js/util/index';
+import { getEmSize, debounce } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES -------------------------- 
 
@@ -17,6 +17,7 @@ const Selectors = {
 
 const MOBILE_BREAKPOINT = 48;   // Mobile breakpoint (in ems)
 const THUMB_HEIGHT = 100;
+const RESIZE_INTERVAL = 200;
 
 let isMobile = true;
 const sliders = [];
@@ -173,5 +174,10 @@ class AccordionGallery {
 
     // --------------------------- END PUBLIC METHODS -------------------------
 }
+
+AccordionGallery.initAll();
+AccordionGallery.handleResize();
+
+$(window).resize(debounce(AccordionGallery.handleResize, RESIZE_INTERVAL));
 
 export default AccordionGallery;

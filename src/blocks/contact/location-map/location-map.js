@@ -76,4 +76,6 @@ class LocationMap {
     // --------------------------- END PUBLIC METHODS -------------------------
 }
 
+LocationMap.initAll();
+
 export default LocationMap;

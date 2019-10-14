@@ -34,17 +34,8 @@ const handleCheckboxChange = function() {
 
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the checkout block.
- */
-export function initBlock() {
-    const $form = $('.checkout');
-    if ($form.length === 0) {
-        return false;
-    }
-
+const $form = $('.checkout');
+if ($form.length !== 0) {
     $('.checkout__select', $form).each(function() {
         new Select($(this), { theme: 'checkout' });
     });
@@ -80,5 +71,3 @@ export function initBlock() {
         },
     });
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

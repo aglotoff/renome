@@ -61,4 +61,6 @@ class Gallery {
     // -------------------------- END PUBLIC METHODS --------------------------
 }
 
+Gallery.initAll();
+
 export default Gallery;

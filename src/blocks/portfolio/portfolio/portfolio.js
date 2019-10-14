@@ -6,10 +6,11 @@
 import * as PortfolioFilter from '../portfolio-filter/portfolio-filter';
 import * as PortfolioGrid   from '../portfolio-grid/portfolio-grid';
 
-import { getEmSize } from '../../../js/util/index';
+import { debounce, getEmSize } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
+const RESIZE_INTERVAL = 200;
 const MEDIUM_BREAKPOINT = 48;   // Mobile breakpoint in ems
 const FAKE_LOAD_TIME = 1000;
 
@@ -28,6 +29,17 @@ const ClassNames = {
 };
 
 const elements = {};
+const $portfolio = $(Selectors.ROOT);
+if ($portfolio.length !== 0) {
+    elements.$portfolio = $portfolio;
+    elements.$grid = $(Selectors.GRID, $portfolio);
+    elements.$moreBtn = $(Selectors.MORE, $portfolio);
+
+    PortfolioFilter.initBlock({ onChange: handleFilterChange });
+    PortfolioGrid.initBlock({ onCatLinkClick: handleFilterChange });
+
+    elements.$moreBtn.click(handleMoreBtnClick);
+}
 
 let activeFilter = 'all';
 let isMobile = true;
@@ -193,37 +205,11 @@ function handleMoreBtnClick() {
             $loader.remove();
         });
 }
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the portfolio block.
- */
-export function initBlock() {
-    const $portfolio = $(Selectors.ROOT);
-    if ($portfolio.length === 0) {
-        return;
-    }
-
-    elements.$portfolio = $portfolio;
-    elements.$grid = $(Selectors.GRID, $portfolio);
-    elements.$moreBtn = $(Selectors.MORE, $portfolio);
-
-    PortfolioFilter.initBlock({ onChange: handleFilterChange });
-    PortfolioGrid.initBlock({ onCatLinkClick: handleFilterChange });
-
-    elements.$moreBtn.click(handleMoreBtnClick);
-}
 
 /**
  * Respond to window resize event.
  */
-export function handleResize() {
-    if (!('$portfolio' in elements)) {
-        return;
-    }
-
+function handleWindowResize() {
     const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
     
     // Switch listbox orientation to vertical on mobile and to horizontal on
@@ -239,4 +225,10 @@ export function handleResize() {
     }
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
+if ($portfolio.length !== 0) {
+    $(window).resize(debounce(handleWindowResize, RESIZE_INTERVAL));
+
+    handleWindowResize();
+}

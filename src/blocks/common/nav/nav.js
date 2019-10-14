@@ -6,19 +6,7 @@
 import DropdownStrategy from '../../../js/util/dropdown-strategy';
 import DrilldownStrategy from '../../../js/util/drilldown-strategy';
 
-import { getEmSize } from '../../../js/util/index';
-
-// -------------------------- BEGIN MODULE VARIABLES --------------------------
-const DESKTOP_BREAKPOINT = 62;  // Minimum desktop screen width (in ems)
-
-const SCROLL_BUFFER = 6.25;  // Offset from window top to scroll target
-const SCROLL_SPEED = 1000;
-
-let submenus;
-let mobileMenu;
-
-let isDesktop = false;
-// --------------------------- END MODULE VARIABLES ---------------------------
+import { debounce, getEmSize } from '../../../js/util/index';
 
 /**
  * Implementation of submenus.
@@ -80,6 +68,48 @@ class NavSubmenu {
     }
 }
 
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+const DESKTOP_BREAKPOINT = 62;  // Minimum desktop screen width (in ems)
+const RESIZE_INTERVAL = 200;
+const SCROLL_BUFFER = 6.25;  // Offset from window top to scroll target
+const SCROLL_SPEED = 1000;
+
+const $nav = $('.nav');
+const $menuToggle = $('.nav__toggle', $nav);
+const $menu = $('.nav__menu', $nav);
+const $scrollpane = $('.nav__scrollpane', $nav);
+
+const mobileMenu = new DrilldownStrategy({
+    $trigger: $menuToggle,
+    $drawer: $nav,
+
+    onCollapse() {
+        $menu.removeClass('nav__menu_visible');
+        $menuToggle.removeClass('hamburger_open');
+
+        $('.page').removeClass('page_menu-expanded');
+    },
+
+    onExpand() {
+        $menu.addClass('nav__menu_visible');
+        $scrollpane.scrollTop(0);
+        $menuToggle.addClass('hamburger_open');
+
+        $('.page').addClass('page_menu-expanded');
+    },
+});
+
+const submenus = $('.nav__submenu', $nav)
+    .map(function() {
+        return new NavSubmenu($(this));
+    })
+    .toArray();
+
+let isDesktop = false;
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
 
 /**
@@ -111,57 +141,13 @@ function handleInternalLinkClick() {
     return false;
 }
 
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// ---------------------------- BEGIN PUBLIC METHODS --------------------------
-
-/**
- * Initialize the navigation block.
- * @return true
- */
-export function initBlock() {
-    const $nav = $('.nav');
-    const $menuToggle = $('.nav__toggle', $nav);
-    const $menu = $('.nav__menu', $nav);
-    const $scrollpane = $('.nav__scrollpane', $nav);
-
-    mobileMenu = new DrilldownStrategy({
-        $trigger: $menuToggle,
-        $drawer: $nav,
-
-        onCollapse() {
-            $menu.removeClass('nav__menu_visible');
-            $menuToggle.removeClass('hamburger_open');
-
-            $('.page').removeClass('page_menu-expanded');
-        },
-
-        onExpand() {
-            $menu.addClass('nav__menu_visible');
-            $scrollpane.scrollTop(0);
-            $menuToggle.addClass('hamburger_open');
-
-            $('.page').addClass('page_menu-expanded');
-        },
-    });
-    mobileMenu.activate();
-
-    submenus = $('.nav__submenu', $nav)
-        .map(function() {
-            return new NavSubmenu($(this));
-        })
-        .toArray();
-
-    $nav.on('click', '.nav__link[href^="#"]', handleInternalLinkClick);
-}
-
 /**
  * Respond to window resize event.
  * 
  * Switch between drilldown behavior for submenus on mobile and dropdown 
  * behavior on desktop.
  */
-export function handleResize() {
+function handleWindowResize() {
     const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
 
     if (isDesktop && (screenWidth < DESKTOP_BREAKPOINT)) {
@@ -183,4 +169,12 @@ export function handleResize() {
     }
 }
 
-// ----------------------------- END PUBLIC METHODS ---------------------------
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
+mobileMenu.activate();
+
+$nav.on('click', '.nav__link[href^="#"]', handleInternalLinkClick);
+
+$(window).resize(debounce(handleWindowResize, RESIZE_INTERVAL));
+
+handleWindowResize();

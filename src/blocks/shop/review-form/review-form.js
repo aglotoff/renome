@@ -19,17 +19,8 @@ function getInvalidClassName($element) {
 
 // -------------------------- END UTILITY FUNCTIONS ---------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the review form block.
- */
-export function initBlock() {
-    const $form = $('.review-form');
-    if ($form.length === 0) {
-        return false;
-    }
-
+const $form = $('.review-form');
+if ($form.length !== 0) {
     $form.validate({
         errorClass: 'error form__error',
     
@@ -46,5 +37,3 @@ export function initBlock() {
         },
     });
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

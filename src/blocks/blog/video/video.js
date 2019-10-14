@@ -78,4 +78,6 @@ class Video {
     // -------------------------- END PUBLIC METHODS --------------------------
 }
 
+Video.initAll();
+
 export default Video;

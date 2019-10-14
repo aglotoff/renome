@@ -5,17 +5,8 @@
 
 import DropdownStrategy from '../../../js/util/dropdown-strategy';
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the shop filter block.
- */
-export function initBlock() {
-    const $filter = $('.shop-filter');
-    if ($filter.length === 0) {
-        return;
-    }
-
+const $filter = $('.shop-filter');
+if ($filter.length !== 0) {
     const $inner = $('.shop-filter__inner', $filter);
     const $toggle = $('.shop-filter__toggle', $inner);
     const $list = $('.shop-filter__list', $inner);
@@ -33,8 +24,4 @@ export function initBlock() {
         }
     });
     filter.activate();
-
-    return true;
 }
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

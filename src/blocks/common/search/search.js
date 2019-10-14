@@ -6,33 +6,22 @@
 /* global focusTrap */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-let $search;
-let popupFocusTrap;
+
+const $search = $('.search');
+const $close = $search.find('.search__close');
+
+const popupFocusTrap = focusTrap($search.get(0), {
+    clickOutsideDeactivates: true,
+    escapeDeactivates: true,
+    
+    onDeactivate: function handleSearchDeactivate() {
+        $search.removeClass('search_visible');
+    },
+});
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 // --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the search block.
- * @return true
- */
-export function initBlock() {
-    $search = $('.search');
-    const $close = $search.find('.search__close');
-
-    popupFocusTrap = focusTrap($search.get(0), {
-        clickOutsideDeactivates: true,
-        escapeDeactivates: true,
-        
-        onDeactivate: function handleSearchDeactivate() {
-            $search.removeClass('search_visible');
-        },
-    });
-
-    $close.click(hide);
-
-    return true;
-}
 
 /**
  * Show the search modal
@@ -55,3 +44,5 @@ export function hide() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+$close.click(hide);
