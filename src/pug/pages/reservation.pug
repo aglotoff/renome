@@ -5,3 +5,6 @@ include ../../blocks/reservation/reservation/reservation.pug
 block append page
     +section(data.content.online)
     +reservation(data.content.reservation)
+
+block append scripts
+    script(src='js/reservation.js')

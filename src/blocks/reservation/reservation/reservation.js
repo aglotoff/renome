@@ -3,7 +3,8 @@
  * @author Andrey Glotov
  */
 
-/* global Pikaday, moment */
+import moment from 'moment';
+import Pikaday from 'pikaday';
 
 import Select from '../../common/select/select';
 

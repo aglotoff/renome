@@ -30,9 +30,6 @@ import '../blocks/menu/menu/menu';
 import '../blocks/portfolio/portfolio/portfolio';
 import '../blocks/portfolio/project-carousel/project-carousel';
 
-// Reservation page blocks
-import '../blocks/reservation/reservation/reservation';
-
 // Shop blocks
 import '../blocks/shop/checkout/checkout';
 import '../blocks/shop/payments/payments';
