@@ -3,16 +3,44 @@
  * @author Andrey Glotov
  */
 
-const $payments = $('.payments');
-if ($payments.length !== 0) {
-    const $radios = $('.payments__radio', $payments);
-    const $desc   = $('.payments__desc', $payments);
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'payments';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    RADIO: `.${BLOCK}__radio`,
+    DESC: `.${BLOCK}__desc`,
+    METHOD: `.${BLOCK}__method`,
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
+
+/**
+ * Initialize the payments block.
+ */
+function initBlock() {
+    const $payments = $(SELECTORS.BLOCK);
+    if ($payments.length == 0) {
+        return;
+    }
+
+    const $radios = $(SELECTORS.RADIO, $payments);
+    const $desc   = $(SELECTORS.DESC, $payments);
     $radios.change(function handleRadioChange() {
         $desc.slideUp();
 
         $(this)
-            .closest('.payments__method')
-            .find('.payments__desc')
+            .closest(SELECTORS.METHOD)
+            .find(SELECTORS.DESC)
             .slideDown();
     });
 }
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

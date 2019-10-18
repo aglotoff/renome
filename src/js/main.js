@@ -14,8 +14,8 @@ import '../blocks/common/tabs/tabs';
 import '../blocks/about/accordion-gallery/accordion-gallery';
 
 // Blog Blocks
-import '../blocks/blog/blog-carousel/blog-carousel';
 import '../blocks/blog/comment-form/comment-form';
+import '../blocks/blog/post-gallery/post-gallery';
 import '../blocks/blog/share/share';
 import '../blocks/blog/video/video';
 

@@ -5,17 +5,43 @@
 
 import Select from '../../common/select/select';
 
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'checkout';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    SELECT: `.${BLOCK}__select`,
+    CHECKBOX: `.${BLOCK}__checkbox`,
+    INPUT_HIDDEN: '.form__input:hidden',
+    PAYMENTS: `.${BLOCK}__payments`,
+};
+
+// Element class names
+const CLASSES = {
+    ERROR: 'error form__error',
+    INPUT: 'input',
+    INPUT_INVALID: 'input_invalid',
+    TEXTAREA: 'text-area',
+    TEXTAREA_INVALID: 'text-area_invalid',
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
 // ------------------------- BEGIN UTILITY FUNCTIONS --------------------------
 
 /**
  * Given the input element, get a classname containing the invalid modifier
+ * 
  * @param {JQuery} $element The input element
  */
 function getInvalidClassName($element) {
-    if ($element.hasClass('input')) {
-        return 'input_invalid';
-    } else if ($element.hasClass('text-area')) {
-        return 'text-area_invalid';
+    if ($element.hasClass(CLASSES.INPUT)) {
+        return CLASSES.INPUT_INVALID;
+    } else if ($element.hasClass(CLASSES.TEXTAREA)) {
+        return CLASSES.TEXTAREA_INVALID;
     }
 }
 
@@ -34,19 +60,28 @@ const handleCheckboxChange = function() {
 
 // ---------------------------- END EVENT HANDLERS ----------------------------
 
-const $form = $('.checkout');
-if ($form.length !== 0) {
-    $('.checkout__select', $form).each(function() {
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
+
+/**
+ * Initialize the checkout block.
+ */
+function initBlock() {
+    const $form = $(SELECTORS.BLOCK);
+    if ($form.length == 0) {
+        return;
+    }
+
+    $(SELECTORS.SELECT, $form).each(function() {
         new Select($(this), { theme: 'checkout' });
     });
 
     $('#shipping-fields', $form).hide();
 
-    $('.checkout__checkbox', $form).change(handleCheckboxChange);
+    $(SELECTORS.CHECKBOX, $form).change(handleCheckboxChange);
 
     $form.validate({
-        errorClass: 'error form__error',
-        ignore: '.form__input:hidden',
+        errorClass: CLASSES.ERROR,
+        ignore: SELECTORS.INPUT_HIDDEN,
     
         highlight(element) {
             $(element).addClass(getInvalidClassName($(element)));
@@ -59,7 +94,7 @@ if ($form.length !== 0) {
         errorPlacement($error, $element) {
             if ($element.attr('name') === 'payment') {
                 $element
-                    .closest('.checkout__payments')
+                    .closest(SELECTORS.PAYMENTS)
                     .prepend($error);
             } else {
                 $error.insertAfter($element);
@@ -71,3 +106,7 @@ if ($form.length !== 0) {
         },
     });
 }
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

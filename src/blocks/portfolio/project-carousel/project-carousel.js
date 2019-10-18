@@ -3,15 +3,35 @@
  * @author Andrey Glotov
  */
 
-$('.project-carousel__container').slick({
-    rows: 0,
-    slide: '.project-carousel__slide',
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-    prevArrow: '.project-carousel__arrow_dir_prev',
-    nextArrow: '.project-carousel__arrow_dir_next',
+// Block name
+const BLOCK = 'project-carousel';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    CONTAINER: `.${BLOCK}__container`,
+    SLIDE: `.${BLOCK}__slide`,
+    ARROW_PREV: `.${BLOCK}__arrow_dir_prev`,
+    ARROW_NEXT: `.${BLOCK}__arrow_dir_next`,
+};
+
+// Animation speed
+const SLIDE_SPEED = 250;
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// Initialize the project carousel block
+$(SELECTORS.CONTAINER).slick({
+    rows: 0,
+    slide: SELECTORS.SLIDE,
+
+    prevArrow: SELECTORS.ARROW_PREV,
+    nextArrow: SELECTORS.ARROW_NEXT,
     dots: true,
 
     cssEase: 'linear',
-    speed: 250,
+    speed: SLIDE_SPEED,
     zIndex: 1,
 });

@@ -3,16 +3,40 @@
  * @author Andrey Glotov
  */
 
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'menu';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    PRODUCT_LINK: '.menu-product__link',
+};
+
+// Element class names
+const CLASSES = {
+    LIGHTBOX: 'lightbox',
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// -------------------------- BEGIN CLASS DEFINITION -------------------------- 
+
+/**
+ * Product menu with product image gallery
+ */
 class Menu {
+
     /**
-     * Crate a menu block
+     * Initialize the menu block
      * 
      * @param {JQuery} $root The root element
      */
     constructor($root) {
         $root.magnificPopup({
-            delegate: '.menu-product__link',
-            mainClass: 'lightbox',
+            delegate: SELECTORS.PRODUCT_LINK,
+            mainClass: CLASSES.LIGHTBOX,
             type: 'image',
     
             closeMarkup: `
@@ -23,7 +47,7 @@ class Menu {
     
             callbacks: {
                 beforeOpen() {
-                    // for web accessibility purposes
+                    // Add role and label attributes for accessibility purposes
                     this.wrap.attr({
                         'role': 'dialog',
                         'aria-label': 'View image',
@@ -33,22 +57,13 @@ class Menu {
         });
     }
 
-    // ------------------------- BEGIN PUBLIC METHODS -------------------------
-
-    /**
-     * Initialize all menu blocks on the page.
-     */
-    static initAll() {
-        $('.menu').each(function() {
-            new Menu($(this));
-        });
-        
-        return true;
-    }
-
-    // -------------------------- END PUBLIC METHODS --------------------------
 }
 
-Menu.initAll();
+// --------------------------- END CLASS DEFINITION --------------------------- 
+
+// Initialize all menu blocks on the page
+$(SELECTORS.BLOCK).each(function() {
+    new Menu($(this));
+});
 
 export default Menu;

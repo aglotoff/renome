@@ -3,6 +3,29 @@
  * @author Andrey Glotov
  */
 
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'gallery';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    THUMB_LINK: `.${BLOCK}__thumb-link`,
+};
+
+// Element class names
+const CLASSES = {
+    LIGHTBOX: 'lightbox',
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// -------------------------- BEGIN CLASS DEFINITION -------------------------- 
+
+/**
+ * Lighbox image gallery
+ */
 class Gallery {
     
     /**
@@ -12,8 +35,9 @@ class Gallery {
      */
     constructor($root) {
         $root.magnificPopup({
-            delegate: '.gallery__thumb-link',
-            mainClass: 'lightbox',
+            delegate: SELECTORS.THUMB_LINK,
+            mainClass: CLASSES.LIGHTBOX,
+
             type: 'image',
 
             gallery: {
@@ -37,7 +61,7 @@ class Gallery {
 
             callbacks: {
                 beforeOpen() {
-                    // For web accessibility
+                    // Add role and label attributes for accessibility purposes
                     this.wrap.attr({
                         'role': 'dialog',
                         'aria-label': 'Gallery',
@@ -47,20 +71,13 @@ class Gallery {
         });
     }
 
-    // ------------------------- BEGIN PUBLIC METHODS -------------------------
-
-    /**
-     * Initialize all gallery blocks on the page.
-     */
-    static initAll() {
-        $('.gallery').each(function() {
-            new Gallery($(this));
-        });
-    }
-
-    // -------------------------- END PUBLIC METHODS --------------------------
 }
 
-Gallery.initAll();
+// --------------------------- END CLASS DEFINITION --------------------------- 
+
+// Initialize all gallery blocks on the page.
+$(SELECTORS.BLOCK).each(function() {
+    new Gallery($(this));
+});
 
 export default Gallery;

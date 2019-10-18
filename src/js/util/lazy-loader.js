@@ -79,11 +79,11 @@ export function scanImages() {
     });
 }
 
+// ---------------------------- END PUBLIC METHODS ----------------------------
+
 window.addEventListener(
     'scroll',
     throttle(scanImages, SCROLL_INTERVAL)
 );
 
 scanImages();
-
-// ---------------------------- END PUBLIC METHODS ----------------------------

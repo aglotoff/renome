@@ -5,11 +5,18 @@
 
 /* global Popper */
 
-// ----------------------------- BEGIN CONSTANTS ------------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
+// Block name
 const BLOCK = 'select';
 
-const ClassNames = {
+// Element selectors
+const SELECTORS = {
+    OPTION: `.${BLOCK}__option`,
+};
+
+// Element class names
+const CLASSES = {
     ORIGIN: `${BLOCK}__origin`,
     BUTTON: `${BLOCK}__button`,
     LIST: `${BLOCK}__list`,
@@ -19,11 +26,8 @@ const ClassNames = {
     ERROR: `${BLOCK}_error`,
 };
 
-const Selectors = {
-    OPTION: `.${BLOCK}__option`,
-};
-
-const Keys = {
+// Key codes
+const KEYS = {
     TAB: 9,
     ENTER: 13,
     ESC: 27,
@@ -34,14 +38,20 @@ const Keys = {
     DOWN: 40,
 };
 
-const Themes = {
+// Select block theme modifiers
+const THEMES = {
     'default': `${BLOCK}_theme_default`,
     'small': `${BLOCK}_theme_small`,
     'checkout': `${BLOCK}_theme_checkout`,
 };
 
-// ------------------------------ END CONSTANTS -------------------------------
+// --------------------------- END MODULE VARIABLES ---------------------------
 
+// -------------------------- BEGIN CLASS DEFINITION -------------------------- 
+
+/**
+ * Collapsible dropdown select box
+ */
 class Select {
   
     /**
@@ -53,9 +63,9 @@ class Select {
         const id = $origin.attr('id');
         const labelledBy = $origin.attr('aria-labelledby');
         
-        const themeClass = (theme && (theme in Themes))
-            ? Themes[theme]
-            : Themes['default'];
+        const themeClass = (theme && (theme in THEMES))
+            ? THEMES[theme]
+            : THEMES['default'];
 
         // Create the root node
         const $root = $('<div>').addClass(`${BLOCK} ${themeClass}`);
@@ -68,7 +78,7 @@ class Select {
         $origin
             .attr('tabindex', -1)
             .removeClass()
-            .addClass(ClassNames.ORIGIN)
+            .addClass(CLASSES.ORIGIN)
             .removeAttr('id');
 
         // Create the button
@@ -78,7 +88,7 @@ class Select {
             'aria-haspopup': 'listbox',
             'aria-labelledby': labelledBy,
             'aria-expanded': 'false',
-        }).addClass(ClassNames.BUTTON).appendTo($root);
+        }).addClass(CLASSES.BUTTON).appendTo($root);
         
         // Create the options list
         const $list = $('<ul></ul>', {
@@ -86,16 +96,16 @@ class Select {
             role: 'listbox',
             'aria-labelledby': labelledBy,
             'aria-orientation': 'horizontal',
-        }).addClass(ClassNames.LIST).appendTo($root);
+        }).addClass(CLASSES.LIST).appendTo($root);
 
-        this._elements = {
+        this.elements = {
             $root,
             $origin,
             $button,
             $list,
         };
         
-        this._state = {
+        this.state = {
             expanded: false,
             selectedIndex: -1,
             highlightedIndex: -1,
@@ -108,20 +118,20 @@ class Select {
 
         this.update();
         
-        this._handleOptionClick = this._handleOptionClick.bind(this);
-        this._handleButtonClick = this._handleButtonClick.bind(this);
-        this._handleOutsideClick = this._handleOutsideClick.bind(this);
-        this._handleListKeyDown = this._handleListKeyDown.bind(this);
-        this._handleKeyPress = this._handleKeyPress.bind(this);
-        this._handleOptionMouseOver = this._handleOptionMouseOver.bind(this);
+        this.handleOptionClick = this.handleOptionClick.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleOutsideClick = this.handleOutsideClick.bind(this);
+        this.handleListKeyDown = this.handleListKeyDown.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleOptionMouseOver = this.handleOptionMouseOver.bind(this);
 
-        $root.keypress(this._handleKeyPress);
-        $list.keydown(this._handleListKeyDown);
+        $root.keypress(this.handleKeyPress);
+        $list.keydown(this.handleListKeyDown);
         $list.on({
-            mouseover: this._handleOptionMouseOver,
-            click: this._handleOptionClick
-        }, Selectors.OPTION);
-        $button.click(this._handleButtonClick);
+            mouseover: this.handleOptionMouseOver,
+            click: this.handleOptionClick
+        }, SELECTORS.OPTION);
+        $button.click(this.handleButtonClick);
     }
 
     // ------------------------- BEGIN PRIVATE METHODS ------------------------
@@ -129,9 +139,9 @@ class Select {
     /**
      * Update the list scroll position to show the highlighted option.
      */
-    _scrollToHighlighted() {
-        const { $list, $options } = this._elements;
-        const { highlightedIndex } = this._state;
+    scrollToHighlighted() {
+        const { $list, $options } = this.elements;
+        const { highlightedIndex } = this.state;
 
         if  (highlightedIndex !== -1) {
             const offsetTop = $options.eq(highlightedIndex).position().top;
@@ -153,22 +163,22 @@ class Select {
      * 
      * @param {number} i Index of the option to highlight
      */
-    _highlightOption(i) {
-        const { $options } = this._elements;
-        const { highlightedIndex } = this._state;
+    highlightOption(i) {
+        const { $options } = this.elements;
+        const { highlightedIndex } = this.state;
         
         if (highlightedIndex === i) {
             return;
         }
         
         $options.eq(highlightedIndex)
-            .removeClass(ClassNames.OPTION_HIGHLIGHTED);
+            .removeClass(CLASSES.OPTION_HIGHLIGHTED);
         
-        $options.eq(i).addClass(ClassNames.OPTION_HIGHLIGHTED);
+        $options.eq(i).addClass(CLASSES.OPTION_HIGHLIGHTED);
         
-        this._state.highlightedIndex = i;
+        this.state.highlightedIndex = i;
         
-        this._scrollToHighlighted();
+        this.scrollToHighlighted();
     }
 
     /**
@@ -176,9 +186,9 @@ class Select {
      * 
      * @param {string} str The search string
      */
-    _findOption(str) {
-        const { selectedIndex } = this._state;
-        const { $options } = this._elements;
+    findOption(str) {
+        const { selectedIndex } = this.state;
+        const { $options } = this.elements;
 
         if (selectedIndex === -1) {
             for (let i = 0; i < $options.length; i++) {
@@ -208,22 +218,22 @@ class Select {
      * 
      * @param {string} c The next character to search
      */
-    _search(c) {
-        const { searchString, expanded } = this._state;
+    search(c) {
+        const { searchString, expanded } = this.state;
         let nextIndex = null;
 
-        if (~(nextIndex = this._findOption(searchString + c))) {
-            this._state.searchString += c;
+        if (~(nextIndex = this.findOption(searchString + c))) {
+            this.state.searchString += c;
         } else if (~(nextIndex = this._findOption(c))) {
-            this._state.searchString = c;
+            this.state.searchString = c;
         } else {
-            this._state.searchString = '';
+            this.state.searchString = '';
             return;
         }
 
         this.selectOption(nextIndex);
         if (expanded) {
-            this._highlightOption(nextIndex);
+            this.highlightOption(nextIndex);
         }
     }
 
@@ -236,8 +246,8 @@ class Select {
      * 
      * @param {JQuery} e The dispatched event
      */
-    _handleKeyPress(e) {
-        this._search(String.fromCharCode(e.which));
+    handleKeyPress(e) {
+        this.search(String.fromCharCode(e.which));
         return false;
     }
 
@@ -246,8 +256,8 @@ class Select {
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleOptionMouseOver(e) {
-        const { $options } = this._elements;
+    handleOptionMouseOver(e) {
+        const { $options } = this.elements;
         
         const $highlightedOption = $(e.currentTarget);
         
@@ -256,14 +266,14 @@ class Select {
             return;
         }
         
-        const { highlightedIndex } = this._state;
+        const { highlightedIndex } = this.state;
         
         $options.eq(highlightedIndex)
-            .removeClass(ClassNames.OPTION_HIGHLIGHTED);
+            .removeClass(CLASSES.OPTION_HIGHLIGHTED);
 
-        $options.eq(newIndex).addClass(ClassNames.OPTION_HIGHLIGHTED);
+        $options.eq(newIndex).addClass(CLASSES.OPTION_HIGHLIGHTED);
         
-        this._state.highlightedIndex = newIndex;
+        this.state.highlightedIndex = newIndex;
     }
   
     /**
@@ -271,8 +281,8 @@ class Select {
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleOptionClick(e) {
-        const { $options, $button } = this._elements;
+    handleOptionClick(e) {
+        const { $options, $button } = this.elements;
         
         const $selectedOption = $(e.currentTarget);
         const newIndex = $options.index($selectedOption);
@@ -288,8 +298,8 @@ class Select {
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleButtonClick() {
-        if (!this._state.expanded) {
+    handleButtonClick() {
+        if (!this.state.expanded) {
             this.expand();
         } else {
             this.collapse();
@@ -301,8 +311,8 @@ class Select {
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleOutsideClick(e) {
-        const { $root } = this._elements;
+    handleOutsideClick(e) {
+        const { $root } = this.elements;
 
         if (!$.contains($root.get(0), e.target)) {
             this.collapse();
@@ -314,48 +324,48 @@ class Select {
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleListKeyDown(e) {
+    handleListKeyDown(e) {
         const { which } = e;
-        const { $button, $options } = this._elements;
-        const { highlightedIndex } = this._state;
+        const { $button, $options } = this.elements;
+        const { highlightedIndex } = this.state;
 
         switch (which) {
-        case Keys.TAB:
+        case KEYS.TAB:
             this.collapse();
             break;
             
-        case Keys.ENTER:
+        case KEYS.ENTER:
             this.selectOption(highlightedIndex);
             this.collapse();
             $button.focus();
             return false;
             
-        case Keys.ESC:
+        case KEYS.ESC:
             this.collapse();
             $button.focus();
             return false;
             
-        case Keys.UP:
+        case KEYS.UP:
             if (highlightedIndex > 0) {
-                this._highlightOption(highlightedIndex - 1);
+                this.highlightOption(highlightedIndex - 1);
                 this.selectOption(highlightedIndex - 1);
             }
             return false;
             
-        case Keys.DOWN:
+        case KEYS.DOWN:
             if (highlightedIndex < $options.length - 1) {
-                this._highlightOption(highlightedIndex + 1);
+                this.highlightOption(highlightedIndex + 1);
                 this.selectOption(highlightedIndex + 1);
             }
             return false;
             
-        case Keys.HOME:
-            this._highlightOption(0);
+        case KEYS.HOME:
+            this.highlightOption(0);
             this.selectOption(0);
             return false;
             
-        case Keys.END:
-            this._highlightOption($options.length - 1);
+        case KEYS.END:
+            this.highlightOption($options.length - 1);
             this.selectOption($options.length - 1);
             return false;
         }
@@ -371,8 +381,8 @@ class Select {
      * @param {number} i Index of the option to be selected
      */
     selectOption(i) {
-        const { $origin, $options, $list, $button } = this._elements;
-        const { selectedIndex } = this._state;
+        const { $origin, $options, $list, $button } = this.elements;
+        const { selectedIndex } = this.state;
         
         if ((i < 0) || (i > $options.length) || (i === selectedIndex)) {
             return;
@@ -385,7 +395,7 @@ class Select {
         $button.text($options.eq(i).text());
         $origin.val($options.eq(i).data('value')).change();
         
-        this._state.selectedIndex = i;
+        this.state.selectedIndex = i;
     }
 
     /**
@@ -393,7 +403,7 @@ class Select {
      * Call this method after you added/removed options manually.
      */
     update() {
-        const { $button, $origin, $list } = this._elements;
+        const { $button, $origin, $list } = this.elements;
 
         $list.empty();
 
@@ -410,7 +420,7 @@ class Select {
             })
                 .text($originalOption.text())
                 .data('value', $originalOption.val())
-                .addClass(ClassNames.OPTION);
+                .addClass(CLASSES.OPTION);
 
             if (selectedIndex === i) {
                 $option.attr('aria-selected', 'true');
@@ -423,66 +433,66 @@ class Select {
             return $option;
         });
 
-        this._elements.$options = $('li', $list);
+        this.elements.$options = $('li', $list);
         
-        this._state.selectedIndex = selectedIndex;
-        this._state.popper.update();
+        this.state.selectedIndex = selectedIndex;
+        this.state.popper.update();
     }
   
     /**
      * Collapse the options list.
      */
     collapse() {
-        const { $button, $list, $options } = this._elements;
-        const { highlightedIndex, expanded } = this._state;
+        const { $button, $list, $options } = this.elements;
+        const { highlightedIndex, expanded } = this.state;
         
         if (!expanded) {
             return;
         }
 
-        $list.removeClass(ClassNames.LIST_EXPANDED);
+        $list.removeClass(CLASSES.LIST_EXPANDED);
         $button.attr('aria-expanded', 'false');
         
         if (highlightedIndex !== -1) {
             $options.eq(highlightedIndex)
-                .removeClass(ClassNames.OPTION_HIGHLIGHTED);
-            this._state.highlightedIndex = -1;
+                .removeClass(CLASSES.OPTION_HIGHLIGHTED);
+            this.state.highlightedIndex = -1;
         }
         
-        this._state.expanded = false;
+        this.state.expanded = false;
         
-        $(document).off('click', this._handleOutsideClick);
+        $(document).off('click', this.handleOutsideClick);
     }
   
     /**
      * Expand the options list.
      */
     expand() {
-        const { $button, $list, $options } = this._elements;
-        const { selectedIndex, expanded } = this._state;
+        const { $button, $list, $options } = this.elements;
+        const { selectedIndex, expanded } = this.state;
         
         if (expanded) {
             return;
         }
 
-        $list.addClass(ClassNames.LIST_EXPANDED);
+        $list.addClass(CLASSES.LIST_EXPANDED);
 
         $button.attr('aria-expanded', 'true');
         $list.scrollTop(0);
 
         if (selectedIndex !== -1) {
-            $options.eq(selectedIndex).addClass(ClassNames.OPTION_HIGHLIGHTED);
-            this._state.highlightedIndex = selectedIndex;
+            $options.eq(selectedIndex).addClass(CLASSES.OPTION_HIGHLIGHTED);
+            this.state.highlightedIndex = selectedIndex;
         }
         
-        this._scrollToHighlighted();
+        this.scrollToHighlighted();
         
-        this._state.expanded = true;
+        this.state.expanded = true;
         
-        this._state.popper.update();
+        this.state.popper.update();
         $list.focus();
 
-        $(document).on('click', this._handleOutsideClick);
+        $(document).on('click', this.handleOutsideClick);
     }
 
     /**
@@ -491,10 +501,12 @@ class Select {
      * @param {boolean} error true if the select's value is invalid
      */
     setError(error) {
-        this._elements.$root.toggleClass(ClassNames.ERROR, error);
+        this.elements.$root.toggleClass(CLASSES.ERROR, error);
     }
 
     // --------------------------- END PUBLIC METHODS -------------------------
 }
+
+// --------------------------- END CLASS DEFINITION --------------------------- 
 
 export default Select;

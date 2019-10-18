@@ -9,36 +9,52 @@ import { getEmSize } from '../../../js/util/index';
 
 const BLOCK = 'product-gallery';
 
-const Selectors = {
-    ROOT: `.${BLOCK}`,
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
     CONTAINER: `.${BLOCK}__container`,
     NAV: `.${BLOCK}__nav`,
     SLIDE: `.${BLOCK}__slide`,
     THUMB: `.${BLOCK}__thumb`,
+    PAGE: '.page',
 };
+
+const SLIDE_SPEED = 400;        // Sliding speed (in ms)
+const MOBILE_BREAKPOINT = 30;   // Max mobile screen size (in ems)
+const TABLET_BREAKPOINT = 48;   // Max tablet screen size (in ems)
+const LAPTOP_BREAKPOINT = 62;   // Max laptop screen size (in ems)
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-const $gallery = $('.product-gallery');
-if ($gallery.length !== 0) {
-    const pageEmSize = getEmSize($('.page'));
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
 
-    const $container = $(Selectors.CONTAINER, $gallery);
-    const $nav = $(Selectors.NAV, $gallery);
+/**
+ * Initialize the product gallery block.
+ */
+function initBlock() {
+    const $gallery = $(SELECTORS.BLOCK);
+    if ($gallery.length == 0) { 
+        return;
+    }
 
+    const pageEmSize = getEmSize($(SELECTORS.PAGE));
+
+    const $container = $(SELECTORS.CONTAINER, $gallery);
+    const $nav = $(SELECTORS.NAV, $gallery);
+
+    // Initialize the main photo slider 
     $container.slick({
         rows: 0,
-        slide: Selectors.SLIDE,
+        slide: SELECTORS.SLIDE,
 
         arrows: false,
         dots: false,
 
         fade: true,
-        speed: 400,
+        speed: SLIDE_SPEED,
         zIndex: 1,
 
         responsive: [{
-            breakpoint: 30 * pageEmSize,
+            breakpoint: MOBILE_BREAKPOINT * pageEmSize,
             settings: {
                 dots: true
             }
@@ -47,9 +63,10 @@ if ($gallery.length !== 0) {
         asNavFor: $nav,
     });
 
+    // Initialize the thumb slider
     $nav.slick({
         rows: 0,
-        slide: Selectors.THUMB,
+        slide: SELECTORS.THUMB,
 
         focusOnSelect: true,
         slidesToShow: 4,
@@ -63,17 +80,17 @@ if ($gallery.length !== 0) {
         dots: false,
 
         responsive: [{
-            breakpoint: 62 * pageEmSize,
+            breakpoint: LAPTOP_BREAKPOINT * pageEmSize,
             settings: {
                 slidesToShow: 3,
             }
         }, {
-            breakpoint: 48 * pageEmSize,
+            breakpoint: TABLET_BREAKPOINT * pageEmSize,
             settings: {
                 slidesToShow: 4,
             }
         }, {
-            breakpoint: 30 * pageEmSize,
+            breakpoint: MOBILE_BREAKPOINT * pageEmSize,
             settings: {
                 slidesToShow: 3,
             }
@@ -82,3 +99,7 @@ if ($gallery.length !== 0) {
         asNavFor: $container,
     });
 }
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

@@ -7,58 +7,71 @@ import { getEmSize, debounce } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES -------------------------- 
 
+// Block name
 const BLOCK = 'accordion-gallery';
 
-const Selectors = {
-    ROOT: `.${BLOCK}`,
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
     THUMB: `.${BLOCK}__thumb`,
     IMAGE: `.${BLOCK}__thumb-img`,
 };
 
-const MOBILE_BREAKPOINT = 48;   // Mobile breakpoint (in ems)
-const THUMB_HEIGHT = 100;
-const RESIZE_INTERVAL = 200;
+// Element class names
+const CLASSES = {
+    LIGHTBOX: 'lightbox',
+};
 
-let isMobile = true;
-const sliders = [];
+const MOBILE_BREAKPOINT = 48;   // Mobile breakpoint (in ems)
+const THUMB_MIN_HEIGHT = 100;   // Collapsed thumbnail height (in pixels)
+const RESIZE_INTERVAL = 200;    // Resize event debounce interval
+
+let isMobile = true;        // Is mobile layout active?
+const allGalleries = [];    // All galleries on the page
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
+// -------------------------- BEGIN CLASS DEFINITION -------------------------- 
+
 /**
- * Accordion gallery.
+ * Interactive image gallery that auto expands on mouse hover and focus just
+ * like an accordion.
  */
 class AccordionGallery {
 
     /**
-     * Create an accordion gallery
+     * Initialize the accordion gallery
      * 
      * @param {JQuery} $root The root element
      */
     constructor($root) {
-        const $thumbs = $(Selectors.THUMB, $root);
+        const $thumbs = $(SELECTORS.THUMB, $root);
 
-        this._elements = { $root, $thumbs };
+        this.elements = { $root, $thumbs };
 
-        this._collapsedThumbWidth = `${100 / $thumbs.length}%`;
-        this._collapsedThumbHeight = THUMB_HEIGHT;
+        this.config = {
+            collapsedThumbWidth: `${100 / $thumbs.length}%`,
+            collapsedThumbHeight: THUMB_MIN_HEIGHT,
+        };
 
-        this._isVertical = true;
+        this.state = {
+            isVertical: true,
+        };
 
-        this._handleThumbExpand = this._handleThumbExpand.bind(this);
-        this._handleThumbCollapse = this._handleThumbCollapse.bind(this);
+        this.handleThumbActivate = this.handleThumbActivate.bind(this);
+        this.handleThumbDeactivate = this.handleThumbDeactivate.bind(this);
 
-        $root.on('mouseenter', Selectors.THUMB, this._handleThumbExpand);
-        $root.on('focus', Selectors.THUMB, this._handleThumbExpand);
-        $root.on('mouseleave', Selectors.THUMB, this._handleThumbCollapse);
-        $root.on('blur', Selectors.THUMB, this._handleThumbCollapse);
+        $root.on('mouseenter', SELECTORS.THUMB, this.handleThumbActivate);
+        $root.on('focus', SELECTORS.THUMB, this.handleThumbActivate);
+        $root.on('mouseleave', SELECTORS.THUMB, this.handleThumbDeactivate);
+        $root.on('blur', SELECTORS.THUMB, this.handleThumbDeactivate);
 
-        /**
-         * Each image acts as a thumbnail for gallery managed by the
-         * magnific-popup jQuery plugin
-         */
+        // Each image acts as a thumbnail for gallery managed by the
+        // magnific-popup jQuery plugin
         $root.magnificPopup({
-            delegate: Selectors.THUMB,
-            mainClass: 'lightbox',
+            delegate: SELECTORS.THUMB,
+            mainClass: CLASSES.LIGHTBOX,
+
             gallery: {
                 enabled: true,
                 tCounter: '',
@@ -80,7 +93,7 @@ class AccordionGallery {
 
             callbacks: {
                 beforeOpen() {
-                    // For web accessibility
+                    // Add role and label attributes for accessibility purposes
                     this.wrap.attr({
                         'role': 'dialog',
                         'aria-label': 'Gallery',
@@ -88,20 +101,25 @@ class AccordionGallery {
                 },
             },
         });
+
+        // Keep track of all gallery objects to use a single window resize
+        // event handler for them all
+        allGalleries.push(this);
     }
 
     // -------------------------- BEGIN EVENT HANDLERS ------------------------
 
     /**
-     * Handle the thumbnail expand event
+     * Handle the thumbnail activate event
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleThumbExpand(e) {
+    handleThumbActivate(e) {
         const $thumb = $(e.currentTarget);
-        const $image = $(Selectors.IMAGE, $thumb);
+        const $image = $(SELECTORS.IMAGE, $thumb);
 
-        if (this._isVertical) {
+        // Expand the thumb to show the full image
+        if (this.state.isVertical) {
             $thumb.height($image.height());
         } else {
             $thumb.width($image.width());
@@ -109,47 +127,19 @@ class AccordionGallery {
     }
 
     /**
-     * Handle the thumbnail collapse event
+     * Handle the thumbnail deactivate event
      * 
      * @param {jQuery.Event} e The event object
      */
-    _handleThumbCollapse(e) {
+    handleThumbDeactivate(e) {
         const $thumb = $(e.currentTarget);
 
-        if (this._isVertical) {
-            $thumb.height(this._collapsedThumbHeight);
+        // Restore thumb dimensions
+        if (this.state.isVertical) {
+            $thumb.height(this.config.collapsedThumbHeight);
         } else {
-            $thumb.width(this._collapsedThumbWidth);
+            $thumb.width(this.config.collapsedThumbWidth);
         }
-    }
-
-    // --------------------------- END EVENT HANDLERS -------------------------
-
-    // -------------------------- BEGIN PUBLIC METHODS ------------------------
-
-    /**
-     * Switch slider orientation.
-     * 
-     * @param {boolean} vertical
-     *      true for vertical orientation, false for horizontal
-     */
-    setVertical(vertical) {
-        this._isVertical = vertical;
-
-        if (vertical) {
-            this._elements.$thumbs.width('').height(this._collapsedThumbHeight);
-        } else {
-            this._elements.$thumbs.width(this._collapsedThumbWidth).height('');
-        }
-    }
-
-    /**
-     * Initialize all accordion sliders on the page.
-     */
-    static initAll() {
-        $(Selectors.ROOT).map(function() {
-            sliders.push(new AccordionGallery($(this)));
-        });
     }
 
     /**
@@ -158,26 +148,54 @@ class AccordionGallery {
      * Switch between vertical orientation on mobile devices and horizontal
      * orientation on larger screens.
      */
-    static handleResize() {
-        const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
+    static handleWindowResize() {
+        const screenWidthEms = $(window).outerWidth() / getEmSize($('.page'));
 
-        if (!isMobile && (screenWidth < MOBILE_BREAKPOINT)) {
+        if (!isMobile && (screenWidthEms < MOBILE_BREAKPOINT)) {
             isMobile = true;
     
-            sliders.forEach((slider) => slider.setVertical(true));
-        } else if (isMobile && (screenWidth >= MOBILE_BREAKPOINT)) {
+            allGalleries.forEach((gallery) => gallery.setVertical(true));
+        } else if (isMobile && (screenWidthEms >= MOBILE_BREAKPOINT)) {
             isMobile = false;
     
-            sliders.forEach((slider) => slider.setVertical(false));
+            allGalleries.forEach((gallery) => gallery.setVertical(false));
         }
+    }
+
+    // --------------------------- END EVENT HANDLERS -------------------------
+
+    // -------------------------- BEGIN PUBLIC METHODS ------------------------
+
+    /**
+     * Switch gallery orientation.
+     * 
+     * @param {boolean} vertical
+     *      true for vertical orientation, false for horizontal orientation
+     */
+    setVertical(vertical) {
+        this.state.isVertical = vertical;
+
+        this.elements.$thumbs
+            .height(vertical ? this.config.collapsedThumbHeight : '')
+            .width(vertical ? '' : this.config.collapsedThumbWidth);
     }
 
     // --------------------------- END PUBLIC METHODS -------------------------
 }
 
-AccordionGallery.initAll();
-AccordionGallery.handleResize();
+// --------------------------- END CLASS DEFINITION --------------------------- 
 
-$(window).resize(debounce(AccordionGallery.handleResize, RESIZE_INTERVAL));
+// Initialize all accordion galleries on the page
+$(SELECTORS.BLOCK).map(function() {
+    new AccordionGallery($(this));
+});
+
+$(window).resize(debounce(
+    AccordionGallery.handleWindowResize,
+    RESIZE_INTERVAL
+));
+
+// Process initial window size
+AccordionGallery.handleWindowResize();
 
 export default AccordionGallery;

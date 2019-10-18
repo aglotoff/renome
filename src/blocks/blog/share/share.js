@@ -1,25 +1,60 @@
 /**
- * Implementation of the share block
+ * Implementation of the share dropdown menu block
  * @author Andrey Glotov
  */
 
 import DropdownStrategy from '../../../js/util/dropdown-strategy';
 
-const $share = $('.share');
-const $trigger = $('.share__trigger', $share);
-const $drawer = $('.share__drawer', $share);
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const share = new DropdownStrategy({
-    $root: $share,
-    $trigger,
-    $drawer,
+// Block name
+const BLOCK = 'share';
 
-    onExpand() {
-        $drawer.addClass('share__drawer_expanded');
-    },
-    onCollapse() {
-        $drawer.removeClass('share__drawer_expanded');
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    TRIGGER: `.${BLOCK}__trigger`,
+    DRAWER: `.${BLOCK}__drawer`,
+};
+
+// Element class names
+const CLASSES = {
+    DRAWER_EXPANDED: `${BLOCK}__drawer_expanded`,
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// -------------------------- BEGIN PRIVATE METHODS ---------------------------
+
+/**
+ * Initialize the share dropdown menu block.
+ */
+function initBlock() {
+    const $share = $(SELECTORS.BLOCK);
+    if ($share.length === 0) {
+        return;
     }
-});
 
-share.activate();
+    const $trigger = $(SELECTORS.TRIGGER, $share);
+    const $drawer = $(SELECTORS.DRAWER, $share);
+
+    const dropdown = new DropdownStrategy({
+        $root: $share,
+        $trigger,
+        $drawer,
+
+        onExpand() {
+            $drawer.addClass(CLASSES.DRAWER_EXPANDED);
+        },
+
+        onCollapse() {
+            $drawer.removeClass(CLASSES.DRAWER_EXPANDED);
+        }
+    });
+
+    dropdown.activate();
+}
+
+// --------------------------- END PRIVATE METHODS ----------------------------
+
+initBlock();

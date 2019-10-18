@@ -1,16 +1,16 @@
 //-
-    name: blog-carousel
-    description: Markup for the post carousel block
+    name: post-gallery
+    description: Markup for the post gallery block
     arguments:
         - {object} props - block options
         - {object[]} props.slides - slides
         - {string} props.slides[].src - slide image
         - {string} props.slides[].alt - slide alt text
 
-mixin blog-carousel(props)
-    .blog-carousel&attributes(attributes)
-        .blog-carousel__inner
-            .blog-carousel__container
+mixin post-gallery(props)
+    .post-gallery&attributes(attributes)
+        .post-gallery__inner
+            .post-gallery__container
                 each image in props.slides
                     -
                         const jpegSrcSet =
@@ -24,7 +24,7 @@ mixin blog-carousel(props)
                             image.src + '-large.webp 1152w, ' +
                             image.src + '-xlarge.webp 1536w';
                         const sizes = '(min-width: 992px) 700px, calc(100vw - 20px)';
-                    .blog-carousel__slide
+                    .post-gallery__slide
                         picture
                             source(
                                 srcset=webpSrcSet
@@ -39,12 +39,12 @@ mixin blog-carousel(props)
                             img(
                                 src=`${image.src}-medium.jpg`
                                 alt=image.alt
-                            ).blog-carousel__img
+                            ).post-gallery__img
 
-            .blog-carousel__arrows
+            .post-gallery__arrows
                 button(
                     type="button"
-                ).blog-carousel__arrow.blog-carousel__arrow_dir_prev Previous
+                ).post-gallery__arrow.post-gallery__arrow_dir_prev Previous
                 button(
                     type="button"
-                ).blog-carousel__arrow.blog-carousel__arrow_dir_next Next
+                ).post-gallery__arrow.post-gallery__arrow_dir_next Next

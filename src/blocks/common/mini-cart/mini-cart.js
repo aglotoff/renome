@@ -5,21 +5,51 @@
 
 import DropdownStrategy from '../../../js/util/dropdown-strategy';
 
-const $minicart = $('.mini-cart');
-const $trigger = $('.mini-cart__trigger', $minicart);
-const $drawer = $('.mini-cart__drawer', $minicart);
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const minicart = new DropdownStrategy({
-    $root: $minicart,
-    $trigger,
-    $drawer,
+// Block name
+const BLOCK = 'mini-cart';
 
-    onExpand() {
-        $drawer.addClass('mini-cart__drawer_expanded');
-    },
-    onCollapse() {
-        $drawer.removeClass('mini-cart__drawer_expanded');
-    }
-});
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    TRIGGER: `.${BLOCK}__trigger`,
+    DRAWER: `.${BLOCK}__drawer`,
+};
 
-minicart.activate();
+// Element class names
+const CLASSES = {
+    DRAWER_EXPANDED: `${BLOCK}__drawer_expanded`,
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
+
+/**
+ * Initialize the mini cart block
+ */
+function initBlock() {
+    const $minicart = $(SELECTORS.BLOCK);
+    const $trigger = $(SELECTORS.TRIGGER, $minicart);
+    const $drawer = $(SELECTORS.DRAWER, $minicart);
+
+    const dropdown = new DropdownStrategy({
+        $root: $minicart,
+        $trigger,
+        $drawer,
+
+        onExpand() {
+            $drawer.addClass(CLASSES.DRAWER_EXPANDED);
+        },
+        onCollapse() {
+            $drawer.removeClass(CLASSES.DRAWER_EXPANDED);
+        }
+    });
+
+    dropdown.activate();
+}
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();
