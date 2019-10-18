@@ -15,6 +15,7 @@ mixin related-posts(props = {})
                 article.related-posts__item
                     a(
                         href=post.link
+                        rel="bookmark"
                         aria-hidden="true"
                         tabindex="-1"
                     ).related-posts__item-thumb
@@ -48,6 +49,9 @@ mixin related-posts(props = {})
                     
                     .related-posts__item-body
                         h3.related-posts__item-title
-                            a(href=post.link).related-posts__item-link= post.title
+                            a(
+                                href=post.link
+                                rel="bookmark"
+                            ).related-posts__item-link= post.title
                         time.related-posts__item-date(datetime=post.date)
                             = moment(post.date).format('MMMM D, YYYY')

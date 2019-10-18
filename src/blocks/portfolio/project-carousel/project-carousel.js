@@ -3,24 +3,35 @@
  * @author Andrey Glotov
  */
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-/**
- * Initialize the project carousel block.
- */
-export function initBlock() {
-    $('.project-carousel__container').slick({
-        rows: 0,
-        slide: '.project-carousel__slide',
+// Block name
+const BLOCK = 'project-carousel';
 
-        prevArrow: '.project-carousel__arrow_dir_prev',
-        nextArrow: '.project-carousel__arrow_dir_next',
-        dots: true,
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    CONTAINER: `.${BLOCK}__container`,
+    SLIDE: `.${BLOCK}__slide`,
+    ARROW_PREV: `.${BLOCK}__arrow_dir_prev`,
+    ARROW_NEXT: `.${BLOCK}__arrow_dir_next`,
+};
 
-        cssEase: 'linear',
-        speed: 250,
-        zIndex: 1,
-    });
-}
+// Animation speed
+const SLIDE_SPEED = 250;
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// Initialize the project carousel block
+$(SELECTORS.CONTAINER).slick({
+    rows: 0,
+    slide: SELECTORS.SLIDE,
+
+    prevArrow: SELECTORS.ARROW_PREV,
+    nextArrow: SELECTORS.ARROW_NEXT,
+    dots: true,
+
+    cssEase: 'linear',
+    speed: SLIDE_SPEED,
+    zIndex: 1,
+});

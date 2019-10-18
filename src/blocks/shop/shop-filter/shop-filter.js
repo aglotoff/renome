@@ -3,38 +3,58 @@
  * @author Andrey Glotov
  */
 
-import DropdownStrategy from '../../../js/utils/dropdown-strategy';
+import DropdownStrategy from '../../../js/util/dropdown-strategy';
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'shop-filter';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    INNER: `.${BLOCK}__inner`,
+    TOGGLE: `.${BLOCK}__toggle`,
+    LIST: `.${BLOCK}__list`,
+};
+
+// Element class names
+const CLASSES = {
+    LIST_VISIBLE: `${BLOCK}__list_visible`,
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
 
 /**
  * Initialize the shop filter block.
  */
-export function initBlock() {
-    const $filter = $('.shop-filter');
-    if ($filter.length === 0) {
+function initBlock() {
+    const $filter = $(SELECTORS.BLOCK);
+    if ($filter.length == 0) {
         return;
     }
 
-    const $inner = $('.shop-filter__inner', $filter);
-    const $toggle = $('.shop-filter__toggle', $inner);
-    const $list = $('.shop-filter__list', $inner);
+    const $inner = $(SELECTORS.INNER, $filter);
+    const $toggle = $(SELECTORS.TOGGLE, $inner);
+    const $list = $(SELECTORS.LIST, $inner);
 
-    const filter = new DropdownStrategy({
+    const dropdown = new DropdownStrategy({
         $root: $inner,
         $trigger: $toggle,
         $drawer: $list,
 
         onExpand() {
-            $list.addClass('shop-filter__list_visible');
+            $list.addClass(CLASSES.LIST_VISIBLE);
         },
         onCollapse() {
-            $list.removeClass('shop-filter__list_visible');
+            $list.removeClass(CLASSES.LIST_VISIBLE);
         }
     });
-    filter.activate();
-
-    return true;
+    dropdown.activate();
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

@@ -3,21 +3,52 @@
  * @author Andrey Glotov
  */
 
-import DropdownStrategy from '../../../js/utils/dropdown-strategy';
-import DrilldownStrategy from '../../../js/utils/drilldown-strategy';
+import DropdownStrategy from '../../../js/util/dropdown-strategy';
+import DrilldownStrategy from '../../../js/util/drilldown-strategy';
 
-import getEmSize from '../../../js/utils/get-em-size';
+import { debounce, getEmSize } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'nav';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    TOGGLE: `.${BLOCK}__toggle`,
+    MENU: `.${BLOCK}__menu`,
+    SUBMENU: `.${BLOCK}__submenu`,
+    ITEM: `.${BLOCK}__item`,
+    LINK: `.${BLOCK}__link`,
+    INTERNAL_LINK: `.${BLOCK}__link[href^="#"]`,
+    LINK_BACK: `.${BLOCK}__link_back`,
+    SCROLLPANE: `.${BLOCK}__scrollpane`,
+    PAGE: '.page',
+};
+
+// Element class names
+const CLASSES = {
+    MENU_VISIBLE: `${BLOCK}__menu_visible`,
+    SUBMENU_VISIBLE: `${BLOCK}__submenu_visible`,
+    PAGE_MENU_EXPANDED: 'page_menu-expanded',
+    HAMBURGER_OPEN: 'hamburger_open',
+};
+
 const DESKTOP_BREAKPOINT = 62;  // Minimum desktop screen width (in ems)
+const RESIZE_INTERVAL = 200;    // Resize event debounce interval (in ms)
+const SCROLL_BUFFER = 6.25;     // Offset from window top to scroll target
+const SCROLL_SPEED = 1000;      // Scroll speed (in ms)
 
-const SCROLL_BUFFER = 6.25;  // Offset from window top to scroll target
-const SCROLL_SPEED = 1000;
+// List of submenu objects
+let submenus = [];
 
-let submenus;
+// Mobile menu dropdown
 let mobileMenu;
 
+// Is the desktop menu active?
 let isDesktop = false;
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
 /**
@@ -27,34 +58,36 @@ let isDesktop = false;
  * and dropdown menu for larger screens.
  */
 class NavSubmenu {
+
     /**
      * Initialize submenu.
      * 
      * @param {JQuery} $root Submenu root element
      */
     constructor($root) {
-        this._elements = {
+        this.elements = {
             $root,
-            $parentLink: $root.prev('.nav__link'),
-            $parentItem: $root.closest('.nav__item'),
-            $scrollpane: $('.nav__scrollpane', $root).first(),
-            $backLink: $('.nav__link_back', $root).first(),
-            $firstLink: $('.nav__link', $root).not('.nav__link_back').first(),
+            $parentLink: $root.prev(SELECTORS.LINK),
+            $parentItem: $root.closest(SELECTORS.ITEM),
+            $scrollpane: $(SELECTORS.SCROLLPANE, $root).first(),
+            $backLink: $(SELECTORS.LINK_BACK, $root).first(),
+            $firstLink: $(SELECTORS.LINK, $root)
+                .not(SELECTORS.LINK_BACK).first(),
         };
 
         this.drilldownStrategy = new DrilldownStrategy({
-            $trigger: this._elements.$parentLink,
-            $drawer: this._elements.$root,
-            $initialFocus:  this._elements.$firstLink,
+            $trigger: this.elements.$parentLink,
+            $drawer: this.elements.$root,
+            $initialFocus:  this.elements.$firstLink,
 
             onCollapse: this.collapse.bind(this), 
             onExpand: this.expand.bind(this),
         });
 
         this.dropdownStrategy = new DropdownStrategy({
-            $root: this._elements.$parentItem,
-            $trigger: this._elements.$parentLink,
-            $drawer: this._elements.$root,
+            $root: this.elements.$parentItem,
+            $trigger: this.elements.$parentLink,
+            $drawer: this.elements.$root,
 
             onCollapse: this.collapse.bind(this), 
             onExpand: this.expand.bind(this),
@@ -63,22 +96,29 @@ class NavSubmenu {
         // Mobile by default
         this.drilldownStrategy.activate();
 
-        this._elements.$backLink.click(() => this.drilldownStrategy.collapse());
+        this.elements.$backLink.click(() => this.drilldownStrategy.collapse());
     }
 
+    /**
+     * Collapse the submenu
+     */
     collapse() {
-        const { $root } = this._elements;
-
-        $root.removeClass('nav__submenu_visible');
+        this.elements.$root.removeClass(CLASSES.SUBMENU_VISIBLE);
     }
 
+    /**
+     * Expand the submenu
+     */
     expand() {
-        const { $root, $scrollpane } = this._elements;
+        const { $root, $scrollpane } = this.elements;
 
         $scrollpane.scrollTop(0);   // Reset submenu scroll position
-        $root.addClass('nav__submenu_visible');
+        $root.addClass(CLASSES.SUBMENU_VISIBLE);
     }
+
 }
+
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
 
 // --------------------------- BEGIN EVENT HANDLERS ---------------------------
 
@@ -111,57 +151,13 @@ function handleInternalLinkClick() {
     return false;
 }
 
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// ---------------------------- BEGIN PUBLIC METHODS --------------------------
-
-/**
- * Initialize the navigation block.
- * @return true
- */
-export function initBlock() {
-    const $nav = $('.nav');
-    const $menuToggle = $('.nav__toggle', $nav);
-    const $menu = $('.nav__menu', $nav);
-    const $scrollpane = $('.nav__scrollpane', $nav);
-
-    mobileMenu = new DrilldownStrategy({
-        $trigger: $menuToggle,
-        $drawer: $nav,
-
-        onCollapse() {
-            $menu.removeClass('nav__menu_visible');
-            $menuToggle.removeClass('hamburger_open');
-
-            $('.page').removeClass('page_menu-expanded');
-        },
-
-        onExpand() {
-            $menu.addClass('nav__menu_visible');
-            $scrollpane.scrollTop(0);
-            $menuToggle.addClass('hamburger_open');
-
-            $('.page').addClass('page_menu-expanded');
-        },
-    });
-    mobileMenu.activate();
-
-    submenus = $('.nav__submenu', $nav)
-        .map(function() {
-            return new NavSubmenu($(this));
-        })
-        .toArray();
-
-    $nav.on('click', '.nav__link[href^="#"]', handleInternalLinkClick);
-}
-
 /**
  * Respond to window resize event.
  * 
  * Switch between drilldown behavior for submenus on mobile and dropdown 
  * behavior on desktop.
  */
-export function handleResize() {
+function handleWindowResize() {
     const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
 
     if (isDesktop && (screenWidth < DESKTOP_BREAKPOINT)) {
@@ -183,4 +179,55 @@ export function handleResize() {
     }
 }
 
-// ----------------------------- END PUBLIC METHODS ---------------------------
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
+
+/**
+ * Initialize the nav menu block
+ */
+function initBlock() {
+    const $nav = $(SELECTORS.BLOCK);
+    const $menuToggle = $(SELECTORS.TOGGLE, $nav);
+    const $menu = $(SELECTORS.MENU, $nav);
+    const $scrollpane = $(SELECTORS.SCROLLPANE, $nav);
+
+    mobileMenu = new DrilldownStrategy({
+        $trigger: $menuToggle,
+        $drawer: $nav,
+
+        onCollapse() {
+            $menu.removeClass(CLASSES.MENU_VISIBLE);
+            $menuToggle.removeClass(CLASSES.HAMBURGER_OPEN);
+
+            $(SELECTORS.PAGE).removeClass(CLASSES.PAGE_MENU_EXPANDED);
+        },
+
+        onExpand() {
+            $menu.addClass(CLASSES.MENU_VISIBLE);
+            $scrollpane.scrollTop(0);
+            $menuToggle.addClass(CLASSES.HAMBURGER_OPEN);
+
+            $(SELECTORS.PAGE).addClass(CLASSES.PAGE_MENU_EXPANDED);
+        },
+    });
+
+    mobileMenu.activate();
+
+    submenus = $(SELECTORS.SUBMENU, $nav)
+        .map(function() {
+            return new NavSubmenu($(this));
+        })
+        .toArray();
+
+    $nav.on('click', SELECTORS.INTERNAL_LINK, handleInternalLinkClick);
+    
+    $(window).resize(debounce(handleWindowResize, RESIZE_INTERVAL));
+    
+    // Process the initial screen size
+    handleWindowResize();
+}
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

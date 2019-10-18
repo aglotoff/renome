@@ -6,39 +6,58 @@
 /* global focusTrap */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
-let $search;
+
+// Block name
+const BLOCK = 'search';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    CLOSE: `.${BLOCK}__close`,
+};
+
+// Element class names
+const CLASSES = {
+    BLOCK_VISIBLE: `${BLOCK}_visible`,
+};
+
+const elements = {};
 let popupFocusTrap;
+
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
 
 /**
- * Initialize the search block.
- * @return true
+ * Initialize the search block
  */
-export function initBlock() {
-    $search = $('.search');
-    const $close = $search.find('.search__close');
+function initBlock() {
+    const $search = $(SELECTORS.BLOCK);
+    const $close = $(SELECTORS.CLOSE, $search);
+
+    elements.$search = $search;
 
     popupFocusTrap = focusTrap($search.get(0), {
         clickOutsideDeactivates: true,
         escapeDeactivates: true,
         
         onDeactivate: function handleSearchDeactivate() {
-            $search.removeClass('search_visible');
+            $search.removeClass(CLASSES.BLOCK_VISIBLE);
         },
     });
 
     $close.click(hide);
-
-    return true;
 }
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+// --------------------------- BEGIN PUBLIC METHODS ---------------------------
 
 /**
  * Show the search modal
  */
 export function show() {
-    $search.addClass('search_visible');
+    elements.$search.addClass(CLASSES.BLOCK_VISIBLE);
 
     // Need to wait 100ms for autofocus to work
     // TODO: why?
@@ -55,3 +74,5 @@ export function hide() {
 }
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
+
+initBlock();

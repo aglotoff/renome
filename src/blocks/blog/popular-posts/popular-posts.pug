@@ -15,6 +15,7 @@ mixin popular-posts(props = {})
                 article.popular-posts__item
                     a(
                         href=post.link
+                        rel="bookmark"
                         aria-hidden="true"
                         tabindex="-1"
                     ).popular-posts__item-thumb
@@ -35,7 +36,10 @@ mixin popular-posts(props = {})
                     
                     .popular-posts__item-body
                         h3.popular-posts__item-title
-                            a(href=post.link).popular-posts__item-link
+                            a(
+                                href=post.link
+                                rel="bookmark"
+                            ).popular-posts__item-link
                                 | #{post.title}
                         time.popular-posts__item-pubdate(datetime=post.date)
                             = moment(post.date).format('MMMM D, YYYY')

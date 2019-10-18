@@ -5,15 +5,26 @@
 
 /* global L */
 
-// ------------------------------ BEGIN CONSTANTS -----------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'location-map';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    CONTAINER: `.${BLOCK}__container`,
+};
 
 const markerIcon = L.icon({
     iconUrl: 'img/map-marker.svg',
-    iconSize: [35, 53], 
-    iconAnchor: [18, 53],
+    iconSize: [ 35, 53 ], 
+    iconAnchor: [ 18, 53 ],
 });
 
-// ------------------------------- END CONSTANTS ------------------------------
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// -------------------------- BEGIN CLASS DEFINITION -------------------------- 
 
 /**
  * Location Map block implementation.
@@ -28,7 +39,7 @@ class LocationMap {
     constructor($root) {
         const { latlng, zoom } = $root.data('map');
 
-        const $container = $('.location-map__container', $root);
+        const $container = $(SELECTORS.CONTAINER, $root);
 
         const map = L.map($container.get(0), {
             scrollWheelZoom: false,
@@ -44,36 +55,36 @@ class LocationMap {
             icon: markerIcon
         }).addTo(map);
 
-        map.on('focus', this._handleMapFocus.bind(this));
-        map.on('blur', this._handleMapBlur.bind(this));
+        map.on('focus', this.handleMapFocus.bind(this));
+        map.on('blur', this.handleMapBlur.bind(this));
 
-        this._map = map;
+        this.map = map;
     }
 
     // -------------------------- BEGIN EVENT HANDLERS ------------------------
 
-    _handleMapFocus() {
-        this._map.scrollWheelZoom.enable();
+    /**
+     * Handle map focus event
+     */
+    handleMapFocus() {
+        this.map.scrollWheelZoom.enable();
     }
 
-    _handleMapBlur() {
-        this._map.scrollWheelZoom.disable();
+    /**
+     * Handle map blur event
+     */
+    handleMapBlur() {
+        this.map.scrollWheelZoom.disable();
     }
 
     // --------------------------- END EVENT HANDLERS -------------------------
-
-    // -------------------------- BEGIN PUBLIC METHODS ------------------------
-
-    /**
-     * Initialize all location map blocks on the page.
-     */
-    static initAll() {
-        $('.location-map').each(function() {
-            new LocationMap($(this));
-        });
-    }
-
-    // --------------------------- END PUBLIC METHODS -------------------------
 }
+
+// --------------------------- END CLASS DEFINITION --------------------------- 
+
+// Initialize all location map blocks on the page
+$(SELECTORS.BLOCK).each(function() {
+    new LocationMap($(this));
+});
 
 export default LocationMap;

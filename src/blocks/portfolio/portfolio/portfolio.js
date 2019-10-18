@@ -6,32 +6,39 @@
 import * as PortfolioFilter from '../portfolio-filter/portfolio-filter';
 import * as PortfolioGrid   from '../portfolio-grid/portfolio-grid';
 
-import getEmSize from '../../../js/utils/get-em-size';
+import { debounce, getEmSize } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const MEDIUM_BREAKPOINT = 48;   // Mobile breakpoint in ems
-const FAKE_LOAD_TIME = 1000;
+const RESIZE_INTERVAL = 200;    // Debounce interval for window resize event
+const MEDIUM_BREAKPOINT = 48;   // Mobile breakpoint (in ems)
+const FAKE_LOAD_TIME = 1000;    // Fake items load time (in ms)
 
+// Block name
 const BLOCK = 'portfolio';
 
-const Selectors = {
-    ROOT: `.${BLOCK}`,
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
     GRID: `.${BLOCK}__grid`,
     MORE: `.${BLOCK}__more-btn`,
 };
 
-const ClassNames = {
+// Element class names
+const CLASSES = {
     LOADER: `loader loader_size_l ${BLOCK}__loader`,
     ERROR: `error ${BLOCK}__error`,
     MORE_HIDDEN: `${BLOCK}__more-btn_hidden`,
 };
 
+// Set of elements
 const elements = {};
 
-let activeFilter = 'all';
-let isMobile = true;
+let activeFilter = 'all';   // Active filter
+let isMobile = true;        // Is mobile layout active?
 
+// Fake portfolio items
+// The real data would be fetched from the server
 const fakeItems = [{
     title: 'Apple pie',
     images: {
@@ -166,11 +173,11 @@ function handleMoreBtnClick() {
 
     // Show a loader
     const $loader = $('<div></div>')
-        .addClass(ClassNames.LOADER)
+        .addClass(CLASSES.LOADER)
         .insertAfter($moreBtn);
 
     // Hide the button
-    $moreBtn.addClass(ClassNames.MORE_HIDDEN);
+    $moreBtn.addClass(CLASSES.MORE_HIDDEN);
 
     loadFakeItems()
         .then((data) => {
@@ -178,13 +185,13 @@ function handleMoreBtnClick() {
 
             // If there are more items available, show the button again
             if (data.more) {
-                $moreBtn.removeClass(ClassNames.MORE_HIDDEN);
+                $moreBtn.removeClass(CLASSES.MORE_HIDDEN);
             }
         })
         .fail(() => {
             // Display an error message
             $('<div></div>')
-                .addClass(ClassNames.ERROR)
+                .addClass(CLASSES.ERROR)
                 .text('An error occured')
                 .insertAfter($loader);
         })
@@ -193,37 +200,11 @@ function handleMoreBtnClick() {
             $loader.remove();
         });
 }
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
-/**
- * Initialize the portfolio block.
- */
-export function initBlock() {
-    const $portfolio = $(Selectors.ROOT);
-    if ($portfolio.length === 0) {
-        return;
-    }
-
-    elements.$portfolio = $portfolio;
-    elements.$grid = $(Selectors.GRID, $portfolio);
-    elements.$moreBtn = $(Selectors.MORE, $portfolio);
-
-    PortfolioFilter.initBlock({ onChange: handleFilterChange });
-    PortfolioGrid.initBlock({ onCatLinkClick: handleFilterChange });
-
-    elements.$moreBtn.click(handleMoreBtnClick);
-}
 
 /**
  * Respond to window resize event.
  */
-export function handleResize() {
-    if (!('$portfolio' in elements)) {
-        return;
-    }
-
+function handleWindowResize() {
     const screenWidth = $(window).outerWidth() / getEmSize($('.page'));
     
     // Switch listbox orientation to vertical on mobile and to horizontal on
@@ -239,4 +220,35 @@ export function handleResize() {
     }
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// ---------------------------- END EVENT HANDLERS ----------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
+
+/**
+ * Initialize the portfolio block.
+ */
+function initBlock() {
+    const $portfolio = $(SELECTORS.BLOCK);
+    if ($portfolio.length == 0) {
+        return;
+    }
+
+    elements.$portfolio = $portfolio;
+    elements.$grid = $(SELECTORS.GRID, $portfolio);
+    elements.$moreBtn = $(SELECTORS.MORE, $portfolio);
+
+    // Initialize child blocks
+    PortfolioFilter.initBlock({ onChange: handleFilterChange });
+    PortfolioGrid.initBlock({ onCatLinkClick: handleFilterChange });
+
+    elements.$moreBtn.click(handleMoreBtnClick);
+
+    $(window).resize(debounce(handleWindowResize, RESIZE_INTERVAL));
+
+    // Process initial window size
+    handleWindowResize();
+}
+
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

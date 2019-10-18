@@ -1,8 +1,6 @@
 import focusTrap from 'focus-trap';
 import jQuery from 'jquery';
 import L from 'leaflet';
-import moment from 'moment';
-import Pikaday from 'pikaday';
 import Popper from 'popper.js';
 import Shuffle from 'shufflejs';
 import svg4everybody from 'svg4everybody';
@@ -14,17 +12,10 @@ import 'slick-carousel';
 
 // Expose libraries to the global Window object
 window.$ = window.jQuery = jQuery;
-
 window.focusTrap = focusTrap;
 window.L = L;
-window.moment = moment;
-window.Pikaday = Pikaday;
 window.Popper = Popper;
 window.Shuffle = Shuffle;
 
 // Manually initialize libraries
 svg4everybody();
-
-jQuery.validator.addMethod('validDate', function(value, element) {
-    return this.optional(element) || moment(value,'DD/MM/YYYY').isValid();
-}, 'Please enter a valid date in the format DD/MM/YYYY');

@@ -5,22 +5,26 @@
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
+// Block name
 const BLOCK = 'portfolio-filter';
 
-const ClassNames = {
-    LIST_VISIBLE: `${BLOCK}__list_visible`,
-    OPTION_HIGHLIGHTED: `${BLOCK}__option_highlighted`,
-};
-
-const Selectors = {
-    ROOT: `.${BLOCK}`,
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
     INNER: `.${BLOCK}__inner`,
     TOGGLE: `.${BLOCK}__toggle`,
     LIST: `.${BLOCK}__list`,
     OPTION: `.${BLOCK}__option`,
 };
 
-const Keys = {
+// Element class names
+const CLASSES = {
+    LIST_VISIBLE: `${BLOCK}__list_visible`,
+    OPTION_HIGHLIGHTED: `${BLOCK}__option_highlighted`,
+};
+
+// Key codes
+const KEYS = {
     TAB: 9,
     ENTER: 13,
     ESC: 27,
@@ -56,7 +60,7 @@ function expandList() {
     $toggle.attr('aria-expanded', 'true');
 
     $list
-        .addClass(ClassNames.LIST_VISIBLE)
+        .addClass(CLASSES.LIST_VISIBLE)
         .focus();
 
     highlightOption(state.selectedIndex);
@@ -72,7 +76,7 @@ function expandList() {
 function collapseList() {
     const { $toggle, $list } = elements;
 
-    $list.removeClass(ClassNames.LIST_VISIBLE);
+    $list.removeClass(CLASSES.LIST_VISIBLE);
 
     $toggle.attr('aria-expanded', 'false');
 
@@ -94,8 +98,8 @@ function highlightOption(i) {
         return;
     }
     
-    $options.eq(highlightedIndex).removeClass(ClassNames.OPTION_HIGHLIGHTED);
-    $options.eq(i).addClass(ClassNames.OPTION_HIGHLIGHTED);
+    $options.eq(highlightedIndex).removeClass(CLASSES.OPTION_HIGHLIGHTED);
+    $options.eq(i).addClass(CLASSES.OPTION_HIGHLIGHTED);
 
     state.highlightedIndex = i;
 }
@@ -120,7 +124,9 @@ function selectOption(i) {
 
     highlightOption(i);
 
-    config.onChange($options.eq(i).data('filter'));
+    if (config.onChange) {
+        config.onChange($options.eq(i).data('filter'));
+    }
 }
 
 // ---------------------------- END PRIVATE METHODS ---------------------------
@@ -181,13 +187,13 @@ function handleListKeyDown(e) {
     const { highlightedIndex, isDropdown, isExpanded } = state;
 
     switch (which) {
-    case Keys.TAB:
+    case KEYS.TAB:
         if (isExpanded) {
             collapseList();
         }
         break;
 
-    case Keys.ENTER:
+    case KEYS.ENTER:
         selectOption(highlightedIndex);
         if (isExpanded) {
             collapseList();
@@ -195,42 +201,42 @@ function handleListKeyDown(e) {
         }
         return false;
 
-    case Keys.ESC:
+    case KEYS.ESC:
         if (isExpanded) {
             collapseList();
             $toggle.focus();
         }
         return false;
     
-    case Keys.LEFT:
+    case KEYS.LEFT:
         if (!isDropdown && (highlightedIndex > 0)) {
             highlightOption(highlightedIndex - 1);
         }
         return false;
 
-    case Keys.UP:
+    case KEYS.UP:
         if (isDropdown && (highlightedIndex > 0)) {
             highlightOption(highlightedIndex - 1);
         }
         return false;
         
-    case Keys.RIGHT:
+    case KEYS.RIGHT:
         if (!isDropdown && (highlightedIndex < $options.length - 1)) {
             highlightOption(highlightedIndex + 1);
         }
         return false;
 
-    case Keys.DOWN:
+    case KEYS.DOWN:
         if (isDropdown && (highlightedIndex < $options.length - 1)) {
             highlightOption(highlightedIndex + 1);
         }
         return false;
         
-    case Keys.HOME:
+    case KEYS.HOME:
         highlightOption(0);
         return false;
         
-    case Keys.END:
+    case KEYS.END:
         highlightOption($options.length - 1);
         return false;
     }
@@ -242,23 +248,27 @@ function handleListKeyDown(e) {
 
 /**
  * Initialize the portfolio filter block.
+ * 
+ * @param {function} props.onChange Change event handler
  */
 export function initBlock({ onChange }) {
-    const $root = $(Selectors.ROOT);
-    const $inner = $(Selectors.INNER, $root);
-    const $toggle = $(Selectors.TOGGLE, $inner);
-    const $list = $(Selectors.LIST, $inner);
-    const $options = $(Selectors.OPTION, $list);
+    const $root = $(SELECTORS.BLOCK);
+    const $inner = $(SELECTORS.INNER, $root);
+    const $toggle = $(SELECTORS.TOGGLE, $inner);
+    const $list = $(SELECTORS.LIST, $inner);
+    const $options = $(SELECTORS.OPTION, $list);
 
-    config.onChange = onChange;
-
+    if (onChange) {
+        config.onChange = onChange;
+    }
+    
     elements.$inner = $inner;
     elements.$toggle = $toggle;
     elements.$list = $list;
     elements.$options = $options;
 
     $list.keydown(handleListKeyDown);
-    $list.on('click', Selectors.OPTION, handleOptionClick);
+    $list.on('click', SELECTORS.OPTION, handleOptionClick);
     $toggle.click(handleToggleClick);
 }
 
@@ -284,7 +294,7 @@ export function setDropdownMode(dropdown) {
  * @param {string} filter - The filter to be applied
  */
 export function setFilter(filter) {
-    const sel = `${Selectors.OPTION}[data-filter="${filter}"]`;
+    const sel = `${SELECTORS.OPTION}[data-filter="${filter}"]`;
     selectOption(elements.$options.index($(sel)));
 }
 

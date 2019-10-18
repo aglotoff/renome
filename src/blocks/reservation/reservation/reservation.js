@@ -3,27 +3,33 @@
  * @author Andrey Glotov
  */
 
-/* global Pikaday, moment */
+import moment from 'moment';
+import Pikaday from 'pikaday';
 
 import Select from '../../common/select/select';
 
 // ------------------------------ BEGIN CONSTANTS -----------------------------
 
+// Block name
 const BLOCK = 'reservation';
 
-const Selectors = {
-    ROOT: `.${BLOCK}`,
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
     DATE: `.${BLOCK}__input[name="date"]`,
     TIME: `.${BLOCK}__input[name="time"]`,
     PARTY: `.${BLOCK}__input[name="party"]`,
 };
 
-const Classes = {
+// Element class names
+const CLASSES = {
     ERROR: 'error reservation__error',
     INPUT_INVALID: 'input_invalid',
 };
 
 // ------------------------------- END CONSTANTS ------------------------------
+
+// -------------------------- BEGIN CLASS DEFINITION -------------------------- 
 
 /**
  * Implementation of the reservation form
@@ -36,11 +42,11 @@ class Reservation {
      * @param {JQuery} $root The root of the block
      */
     constructor($root) {
-        const $date = $(Selectors.DATE, $root);
-        const $time = $(Selectors.TIME, $root);
-        const $party = $(Selectors.PARTY, $root);
+        const $date = $(SELECTORS.DATE, $root);
+        const $time = $(SELECTORS.TIME, $root);
+        const $party = $(SELECTORS.PARTY, $root);
 
-        this._elements = {
+        this.elements = {
             $root,
             $date,
             $time,
@@ -48,13 +54,13 @@ class Reservation {
         };
 
         // Create custom select menus
-        this._timeSelect = new Select($time);
-        this._partySelect = new Select($party);
+        this.timeSelect = new Select($time);
+        this.partySelect = new Select($party);
 
-        const startDate = this._getStartDate();
+        const startDate = this.getStartDate();
 
         // Create the date picker
-        this._datePicker = new Pikaday({
+        this.datePicker = new Pikaday({
             field: $date.get(0),
 
             defaultDate: startDate.toDate(),
@@ -67,11 +73,11 @@ class Reservation {
             format: 'DD/MM/YYYY',
             theme: 'date-picker',
     
-            onSelect: this._updateTimeOptions.bind(this),
+            onSelect: this.updateTimeOptions.bind(this),
         });
 
         // Generate initial time options
-        this._updateTimeOptions();
+        this.updateTimeOptions();
 
         // Form validation
         $root.validate({
@@ -82,18 +88,21 @@ class Reservation {
                 }
             },
             
-            errorClass: Classes.ERROR,
+            // Element class names
+            errorClass: CLASSES.ERROR,
     
             highlight(element) {
-                $(element).addClass(Classes.INPUT_INVALID);
+                // Element class names
+                $(element).addClass(CLASSES.INPUT_INVALID);
             },
 
             unhighlight(element) {
-                $(element).removeClass(Classes.INPUT_INVALID);
+                // Element class names
+                $(element).removeClass(CLASSES.INPUT_INVALID);
             },
         });
 
-        $root.submit(this._handleSubmit.bind(this));
+        $root.submit(this.handleSubmit.bind(this));
     }
 
     // ------------------------ BEGIN PRIVATE METHODS -------------------------
@@ -102,10 +111,10 @@ class Reservation {
      * Update options in the reservation time menu based on the currently
      * selected date.
      */
-    _updateTimeOptions() {
-        const { $time } = this._elements;
+    updateTimeOptions() {
+        const { $time } = this.elements;
 
-        const $options = this._getAvailableTime().reduce(($options, time) => {
+        const $options = this.getAvailableTime().reduce(($options, time) => {
             return $options.add($('<option></option>')
                 .val(time)
                 .text(time)
@@ -114,13 +123,13 @@ class Reservation {
 
         $time.empty().append($options);
 
-        this._timeSelect.update();
+        this.timeSelect.update();
     }
 
     /**
      * Return the first date that could be selected for reservation
      */
-    _getStartDate() {
+    getStartDate() {
         const currentMoment = moment();
 
         // The latest allowed reservation time is 11.30 PM. After that moment,
@@ -139,12 +148,12 @@ class Reservation {
     /**
      * Get the list of available reservation times based on the selected date
      */
-    _getAvailableTime() {
+    getAvailableTime() {
         const time = [];
 
         // If today is selected, make sure the resulting array contains only
         // times after the current moment
-        const startMoment = moment.max(this._datePicker.getMoment(), moment());
+        const startMoment = moment.max(this.datePicker.getMoment(), moment());
 
         // Start from the nearest half hour
         if ((startMoment.minutes() % 30) !== 0) {
@@ -169,7 +178,7 @@ class Reservation {
     /**
      * Handle the submit event
      */
-    _handleSubmit() {
+    handleSubmit() {
         // TODO: send the form data to the server or to some third-party service
         // e.g. OpenTable
 
@@ -177,19 +186,13 @@ class Reservation {
     }
 
     // -------------------------- END EVENT HANDLERS --------------------------
-
-    // ------------------------- BEGIN PUBLIC METHODS -------------------------
-
-    /**
-     * Initialize all reservation blocks on the page
-     */
-    static initAll() {
-        $(Selectors.ROOT).each(function() {
-            new Reservation($(this));
-        });
-    }
-
-    // -------------------------- END PUBLIC METHODS --------------------------
 }
+
+// --------------------------- END CLASS DEFINITION --------------------------- 
+
+// Initialize all reservation blocks on the page
+$(SELECTORS.BLOCK).each(function() {
+    new Reservation($(this));
+});
 
 export default Reservation;

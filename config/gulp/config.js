@@ -5,7 +5,7 @@ const minimist = require('minimist');
 /**
  * Read in an environment flag
  */
-const {env} = minimist(process.argv.slice(2), {
+const { env } = minimist(process.argv.slice(2), {
     string: 'env',
     default: { 
         env: process.env.NODE_ENV || 'development'
@@ -70,7 +70,7 @@ module.exports = {
             clean: `${DIST}/img/*.{gif,jpg,jpeg,ico,png,svg,webp}`,
         },
         js: {
-            src: [ `${SRC}/js/vendor.js`, `${SRC}/js/main.js` ],
+            src: `${SRC}/js/*.js`,
             dest: `${DIST}/js`,
             lint: `${SRC}/**/*.js`,
             watch: `${SRC}/**/*.js`,
