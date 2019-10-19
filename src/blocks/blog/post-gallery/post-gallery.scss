@@ -1,7 +1,7 @@
 /**
- * Styles for the blog carousel block
+ * Styles for the post gallery block
  */
-.blog-carousel {
+.post-gallery {
     // Selector styles
     // TODO: add code
 
@@ -55,11 +55,6 @@
     // BEM elements
     &__inner {
         position: relative;
-    }
-
-    &__container {
-        margin: 0 auto;
-        max-width: 73.75em;
     }
 
     &__img {

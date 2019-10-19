@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = ({mode = 'development'}) => ({
     output: {
@@ -13,8 +14,8 @@ module.exports = ({mode = 'development'}) => ({
                 loader: 'eslint-loader',
                 options: {
                     configFile: (mode === 'production')
-                        ? path.resolve('./.eslintrc.json')
-                        : path.resolve('./.eslintrc.dev.json'),
+                        ? path.join(__dirname, '.eslintrc.json')
+                        : path.join(__dirname, '.eslintrc.dev.json'),
                     emitWarning: true,
                 }
             }
@@ -22,10 +23,19 @@ module.exports = ({mode = 'development'}) => ({
             test: /\.js$/,
             exclude: /node_modules/,
             use: {
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                options: {
+                    configFile: path.join(__dirname, 'babel.config.js')
+                }
             }
         }],
     },
     mode,
     devtool: 'source-map',
+    plugins: [
+        new webpack.ContextReplacementPlugin(
+            /moment[\/\\]locale$/,
+            /ru|en/
+        ),
+    ],
 });

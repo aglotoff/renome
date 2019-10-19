@@ -3,109 +3,123 @@
  * @author Andrey Glotov
  */
 
-import * as Search from '../search/search';
-import * as MiniCart from '../mini-cart/mini-cart';
-
-import forceReflow from '../../../js/utils/force-reflow';
-import getEmSize from '../../../js/utils/get-em-size';
+import { show as showSearch } from '../search/search';
+import { getEmSize, forceReflow, throttle } from '../../../js/util/index';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
-const STICKY_HEADER_OFFSET  = 6;    // Scroll offset to make the header "sticky"
+// Block name
+const BLOCK = 'header';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    SEARCH_TOGGLE: `.${BLOCK}__search-toggle`,
+};
+
+// Element class names
+const CLASSES = {
+    BLOCK_TRANSPARENT: `${BLOCK}_transparent`,
+    BLOCK_HIDDEN: `${BLOCK}_hidden`,
+    BLOCK_ANIMATED: `${BLOCK}_animated`,
+    BLOCK_SCROLL: `${BLOCK}_scroll`,
+};
+
+const STICKY_HEADER_OFFSET = 6;     // Scroll offset to make the header "sticky"
 const VISIBLE_HEADER_OFFSET = 32;   // Scroll offset to show the "sticky" header
+const SCROLL_INTERVAL= 200;         // Scroll throttling interval
 
+// Possible header states
+const HEADER_STATES = {
+    NORMAL: 0,
+    STICKY: 1,
+    VISIBLE: 2,
+};
+
+// jQuery elements map
 const elements = {};
-let isTransparent;
 
-const HeaderStates = { NORMAL: 0, STICKY: 1, VISIBLE: 2 };
-let headerState = HeaderStates.NORMAL;
+// Is header initially transparent?
+let isTransparent = false;
+
+// Default header state
+let headerState = HEADER_STATES.NORMAL;
 
 // --------------------------- END MODULE VARIABLES ---------------------------
 
-// ---------------------------- BEGIN DOM METHODS -----------------------------
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
 
 /**
  * Add or remove header classes basd on the current scroll offset to create an
  * animated sticky header effect.
  */
 function updateHeaderStyles() {
-    const currentOffset = $(window).scrollTop() / getEmSize($('.page'));
+    const currentOffsetEm = $(window).scrollTop() / getEmSize($('.page'));
 
     let newState = null;
-    if (currentOffset < STICKY_HEADER_OFFSET) {
-        newState = HeaderStates.NORMAL;
-    } else if (currentOffset < VISIBLE_HEADER_OFFSET) {
-        newState = HeaderStates.STICKY;
+    if (currentOffsetEm < STICKY_HEADER_OFFSET) {
+        newState = HEADER_STATES.NORMAL;
+    } else if (currentOffsetEm < VISIBLE_HEADER_OFFSET) {
+        newState = HEADER_STATES.STICKY;
     } else {
-        newState = HeaderStates.VISIBLE;
+        newState = HEADER_STATES.VISIBLE;
     }
 
     if (newState !== headerState) {
         const { $header } = elements;
 
-        if (newState === HeaderStates.NORMAL) {
+        if (newState === HEADER_STATES.NORMAL) {
             $header
-                .removeClass('header_scroll header_hidden header_animated')
-                .toggleClass('header_transparent', isTransparent);
-        } else if (newState === HeaderStates.STICKY) {
+                .removeClass(CLASSES.BLOCK_SCROLL)
+                .removeClass(CLASSES.BLOCK_HIDDEN)
+                .removeClass(CLASSES.BLOCK_ANIMATED)
+                .toggleClass(CLASSES.BLOCK_TRANSPARENT, isTransparent);
+        } else if (newState === HEADER_STATES.STICKY) {
             $header
-                .addClass('header_scroll header_hidden')
-                .removeClass('header_transparent');
+                .addClass(CLASSES.BLOCK_SCROLL)
+                .addClass(CLASSES.BLOCK_HIDDEN)
+                .removeClass(CLASSES.BLOCK_TRANSPARENT);
                 
             forceReflow($header);
 
-            $header.addClass('header_animated');
-        } else {    // HeaderStates.VISIBLE
-            if (headerState === HeaderStates.NORMAL) {
+            $header.addClass(CLASSES.BLOCK_ANIMATED);
+        } else {    // HEADER_STATES.VISIBLE
+            if (headerState === HEADER_STATES.NORMAL) {
                 // Make sure the animation is played
                 $header
-                    .addClass('header_scroll header_hidden')
-                    .removeClass('header_transparent');
+                    .addClass(CLASSES.BLOCK_SCROLL)
+                    .addClass(CLASSES.BLOCK_HIDDEN)
+                    .removeClass(CLASSES.BLOCK_TRANSPARENT);
 
                 forceReflow($header);
 
-                $header.addClass('header_animated');
+                $header.addClass(CLASSES.BLOCK_ANIMATED);
             }
             
-            $header.removeClass('header_hidden');
+            $header.removeClass(CLASSES.BLOCK_HIDDEN);
         }
 
         headerState = newState;
     }
 }
 
-// ----------------------------- END DOM METHODS ------------------------------
-
-// --------------------------- BEGIN EVENT HANDLERS ---------------------------
-
-function handleSearchToggle() {
-    Search.show();
-}
-
-// ---------------------------- END EVENT HANDLERS ----------------------------
-
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
-
 /**
- * Initialize the header module.
+ * Initialize the header block
  */
-export function initBlock() {
-    elements.$header = $('.header');
-    elements.$searchToggle = $('.header__search-toggle', elements.$header);
+function initBlock() {
+    elements.$header = $(SELECTORS.BLOCK);
+    elements.$searchToggle = $(SELECTORS.SEARCH_TOGGLE, elements.$header);
 
-    isTransparent = elements.$header.hasClass('header_transparent');
+    isTransparent = elements.$header.hasClass(CLASSES.BLOCK_TRANSPARENT);
 
-    Search.initBlock();
-    MiniCart.initBlock();
+    elements.$searchToggle.click(showSearch);
 
-    elements.$searchToggle.click(handleSearchToggle);
-}
+    $(window).scroll(throttle(updateHeaderStyles, SCROLL_INTERVAL));
 
-/**
- * Respond to window scroll event.
- */
-export function handleScroll() {
+    // Process initial scroll position
     updateHeaderStyles();
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

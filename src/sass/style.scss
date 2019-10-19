@@ -90,10 +90,8 @@
 
 @import "../blocks/blog/blog-layout/blog-layout";
 @import "../blocks/blog/article/article";
-@import "../blocks/blog/video/video";
-@import "../blocks/blog/blog-carousel/blog-carousel";
 @import "../blocks/blog/article-tags/article-tags";
-@import "../blocks/blog/share/share";
+@import "../blocks/blog/blog-cats/blog-cats";
 @import "../blocks/blog/article-author/article-author";
 @import "../blocks/blog/related-posts/related-posts";
 @import "../blocks/blog/comments/comments";
@@ -101,8 +99,10 @@
 @import "../blocks/blog/comment-form/comment-form";
 @import "../blocks/blog/blog-search/blog-search";
 @import "../blocks/blog/sidebar-widget/sidebar-widget";
-@import "../blocks/blog/blog-cats/blog-cats";
 @import "../blocks/blog/popular-posts/popular-posts";
+@import "../blocks/blog/post-gallery/post-gallery";
+@import "../blocks/blog/share/share";
+@import "../blocks/blog/video/video";
 
 /*
  * ----------------------------------------------------------------------------

@@ -5,29 +5,54 @@
 
 import Select from '../../common/select/select';
 
-import forceReflow from '../../../js/utils/force-reflow';
+import { forceReflow } from '../../../js/util/index';
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'shipping-calc';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    TOGGLE: `.${BLOCK}__toggle`,
+    FORM: `.${BLOCK}__form`,
+    COUNTRY: `.${BLOCK}__country`,
+    FIELD: `.${BLOCK}__field`,
+};
+
+// Element class names
+const CLASSES = {
+    FORM_ANIMATED: `${BLOCK}__form_animated`,
+    FORM_EXPANDED: `${BLOCK}__form_expanded`,
+    ERROR: `error ${BLOCK}__error`,
+    INPUT: 'input',
+    INPUT_INVALID: 'input_invalid',
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// --------------------------- BEGIN PRIVATE METHODS --------------------------
 
 /**
- * Initialize the shipping calculator module.
+ * Initialize the shipping calculator block.
  */
-export function initBlock() {
-    const $calc = $('.shipping-calc');
-    if ($calc.length === 0) {
-        return false;
+function initBlock() {
+    const $calc = $(SELECTORS.BLOCK);
+    if ($calc.length == 0) {
+        return;
     }
 
-    const $toggle = $('.shipping-calc__toggle', $calc);
-    const $form = $('.shipping-calc__form', $calc);
-    const $country = $('.shipping-calc__country', $calc);
+    const $toggle = $(SELECTORS.TOGGLE, $calc);
+    const $form = $(SELECTORS.FORM, $calc);
+    const $country = $(SELECTORS.COUNTRY, $calc);
 
     let formExpanded = false;
     $toggle.click(function handleShippingCalcToggle() {
         formExpanded = !formExpanded;
 
         if (!formExpanded) {
-            $form.addClass('shipping-calc__form_animated');
+            $form.addClass(CLASSES.FORM_ANIMATED);
 
             const startHeight = $form.innerHeight();
             $form.css('height', startHeight);
@@ -37,13 +62,13 @@ export function initBlock() {
             setTimeout(() => {
                 $form
                     .css('height', '')
-                    .removeClass('shipping-calc__form_animated')
-                    .removeClass('shipping-calc__form_expanded');
+                    .removeClass(CLASSES.FORM_ANIMATED)
+                    .removeClass(CLASSES.FORM_EXPANDED);
             }, 250);
         } else {
             $form
-                .addClass('shipping-calc__form_expanded')
-                .addClass('shipping-calc__form_animated');
+                .addClass(CLASSES.FORM_ANIMATED)
+                .addClass(CLASSES.FORM_EXPANDED);
             
             const targetHeight = $form.innerHeight();
             $form.css('height', 0);
@@ -53,7 +78,7 @@ export function initBlock() {
             setTimeout(() => {
                 $form
                     .css('height', '')
-                    .removeClass('shipping-calc__form_animated');
+                    .removeClass(CLASSES.FORM_ANIMATED);
             }, 250);
         }
 
@@ -63,7 +88,7 @@ export function initBlock() {
     const countrySelect = new Select($country, { theme: 'small' });
 
     $form.validate({
-        errorClass: 'error shipping-calc__error',
+        errorClass: CLASSES.ERROR,
 
         rules: {
             calc_shipping_country: {
@@ -72,20 +97,20 @@ export function initBlock() {
         },
 
         errorPlacement($error, $element) {
-            $error.appendTo($element.closest('.shipping-calc__field'));
+            $error.appendTo($element.closest(SELECTORS.FIELD));
         },
     
         highlight(element) {
-            if ($(element).hasClass('input')) {
-                $(element).addClass('input_invalid');
+            if ($(element).hasClass(CLASSES.INPUT)) {
+                $(element).addClass(CLASSES.INPUT_INVALID);
             } else if ($(element).is($country)) {
                 countrySelect.setError(true);
             }
         },
     
         unhighlight(element) {
-            if ($(element).hasClass('input')) {
-                $(element).removeClass('input_invalid');
+            if ($(element).hasClass(CLASSES.INPUT)) {
+                $(element).removeClass(CLASSES.INPUT_INVALID);
             } else if ($(element).is($country)) {
                 countrySelect.setError(false);
             }
@@ -97,4 +122,6 @@ export function initBlock() {
     });
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// ---------------------------- END PRIVATE METHODS ---------------------------
+
+initBlock();

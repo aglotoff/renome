@@ -7,13 +7,7 @@
 
     // @media queries
     @include breakpoint-up(lg) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        @include breakpoint-up(xl) {
-            justify-content: center;
-        }
+        display: grid;
     }
 
     // Pseudo-classes and pseudo-elements
@@ -27,12 +21,9 @@
         padding: 4em 0;
 
         @include breakpoint-up(lg) {
+            grid-area: a;
+            overflow: hidden;
             padding: 6em 0.625em;
-            width: 60%;
-        }
-
-        @include breakpoint-up(xl) {
-            max-width: 45em;
         }
     }
 
@@ -46,8 +37,7 @@
 
     &__pagination {
         @include breakpoint-up(lg) {
-            order: 3;
-            width: 100%;
+            grid-area: p;
         }
     }
 
@@ -55,10 +45,9 @@
         padding: 3.75em 0.625em 4.375em;
 
         @include breakpoint-up(lg) {
-            max-width: 25em;
+            grid-area: s;
             padding-bottom: 6.25em;
             padding-top: 5.625em;
-            width: 33.3333%;
         }
     }
 
@@ -68,37 +57,41 @@
 
     // BEM modifiers
     &_sidebar_left {
-        .blog-layout__articles {
-            @include breakpoint-up(lg) {
-                order: 2;
-            }
+        @include breakpoint-up(lg) {
+            grid-template-areas: "s a"
+                                 "p p";
+            grid-template-columns: 4fr 6fr;
+        }
 
-            @include breakpoint-up(xl) {
-                margin-left: 5em;
-            }
+        @include breakpoint-up(xl) {
+            grid-template-areas: ". s a ."
+                                 "p p p p";
+            grid-template-columns: 1fr 30em 45em 1fr;
         }
 
         .blog-layout__sidebar {
             @include breakpoint-up(lg) {
-                order: 1;
+                padding-right: 20%;
             }
         }
     }
 
     &_sidebar_right {
-        .blog-layout__articles {
-            @include breakpoint-up(lg) {
-                order: 1;
-            }
+        @include breakpoint-up(lg) {
+            grid-template-areas: "a s"
+                                 "p p";
+            grid-template-columns: 6fr 4fr;
+        }
+
+        @include breakpoint-up(xl) {
+            grid-template-areas: ". a s ."
+                                 "p p p p";
+            grid-template-columns: 1fr 45em 30em 1fr;
         }
 
         .blog-layout__sidebar {
             @include breakpoint-up(lg) {
-                order: 2;
-            }
-
-            @include breakpoint-up(xl) {
-                margin-left: 5em;
+                padding-left: 20%;
             }
         }
     }

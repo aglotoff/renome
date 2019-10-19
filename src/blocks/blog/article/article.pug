@@ -27,7 +27,10 @@ mixin article(props = {})
 
             h2.article__title
                 if props.link
-                    a(href=props.link).article__title-link= props.title
+                    a(
+                        href=props.link
+                        rel="bookmark"
+                    ).article__title-link= props.title
                 else
                     | #{props.title}
 
@@ -51,6 +54,7 @@ mixin article(props = {})
                 if (props.link)
                     a(
                         href=props.link
+                        rel="bookmark"
                         aria-hidden="true"
                         tabindex="-1"
                     )
@@ -88,12 +92,15 @@ mixin article(props = {})
             else if props.video
                 +video(props.video).article__video
             else if props.carousel
-                +blog-carousel({ slides: props.carousel }).article__carousel
+                +post-gallery({ slides: props.carousel }).article__carousel
 
             .rich-text.article__text !{props.content}
 
             if props.link
-                a(href=props.link).article__link Continue Reading...
+                a(
+                    href=props.link
+                    rel="bookmark"
+                ).article__link Continue Reading...
 
         if props.tags || props.author || props.relatedPosts || props.comments
             footer.article__footer

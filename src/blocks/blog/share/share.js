@@ -1,36 +1,60 @@
 /**
- * Implementation of the share block
+ * Implementation of the share dropdown menu block
  * @author Andrey Glotov
  */
 
-import DropdownStrategy from '../../../js/utils/dropdown-strategy';
+import DropdownStrategy from '../../../js/util/dropdown-strategy';
 
-// --------------------------- BEGIN PUBLIC METHODS ---------------------------
+// -------------------------- BEGIN MODULE VARIABLES --------------------------
+
+// Block name
+const BLOCK = 'share';
+
+// Element selectors
+const SELECTORS = {
+    BLOCK: `.${BLOCK}`,
+    TRIGGER: `.${BLOCK}__trigger`,
+    DRAWER: `.${BLOCK}__drawer`,
+};
+
+// Element class names
+const CLASSES = {
+    DRAWER_EXPANDED: `${BLOCK}__drawer_expanded`,
+};
+
+// --------------------------- END MODULE VARIABLES ---------------------------
+
+// -------------------------- BEGIN PRIVATE METHODS ---------------------------
 
 /**
- * Initialize the share block.
- * @return true
+ * Initialize the share dropdown menu block.
  */
-export function initBlock() {
-    const $share = $('.share');
-    const $trigger = $('.share__trigger', $share);
-    const $drawer = $('.share__drawer', $share);
+function initBlock() {
+    const $share = $(SELECTORS.BLOCK);
+    if ($share.length === 0) {
+        return;
+    }
 
-    const share = new DropdownStrategy({
+    const $trigger = $(SELECTORS.TRIGGER, $share);
+    const $drawer = $(SELECTORS.DRAWER, $share);
+
+    const dropdown = new DropdownStrategy({
         $root: $share,
         $trigger,
         $drawer,
 
         onExpand() {
-            $drawer.addClass('share__drawer_expanded');
+            $drawer.addClass(CLASSES.DRAWER_EXPANDED);
         },
+
         onCollapse() {
-            $drawer.removeClass('share__drawer_expanded');
+            $drawer.removeClass(CLASSES.DRAWER_EXPANDED);
         }
     });
-    share.activate();
 
-    return true;
+    dropdown.activate();
 }
 
-// ---------------------------- END PUBLIC METHODS ----------------------------
+// --------------------------- END PRIVATE METHODS ----------------------------
+
+initBlock();
