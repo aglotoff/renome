@@ -68,5 +68,9 @@
 
     &_invalid {
         border-bottom-color: $color-error;
+
+        &:focus {
+            border-bottom-color: $color-error;
+        }
     }
 }

@@ -33,7 +33,7 @@ const CLASSES = {
  * @param {JQuery} $element The input element
  */
 function getInvalidClassName($element) {
-    if ($element.hasClass(CLASSES.INPUT_INVALID)) {
+    if ($element.hasClass(CLASSES.INPUT)) {
         return CLASSES.INPUT_INVALID;
     } else if ($element.hasClass(CLASSES.TEXTAREA)) {
         return CLASSES.TEXTAREA_INVALID;
