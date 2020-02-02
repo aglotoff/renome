@@ -31,9 +31,12 @@
 
         transition: color 0.25s ease;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-black;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
     }
 

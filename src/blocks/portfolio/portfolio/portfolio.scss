@@ -72,8 +72,8 @@
             color: $color-secondary;
         }
 
-        &:focus {
-            box-shadow: 0 0 0 2px rgba($color-focus, 0.5);
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
 
         &_hidden {

@@ -134,6 +134,16 @@
                 display: none;
             }
         }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.25em rgba($color-focus, 0.5);
+        }
+
+        .focus-utility .header_transparent &:not(&_submenu):focus {
+            @include breakpoint-up(lg) {
+                box-shadow: 0 0 0 0.25em rgba($color-white, 0.5);
+            }
+        }
     }
 
     &__arrow {
@@ -166,8 +176,7 @@
             border-top: 0.175em solid $color-primary;
         }
 
-        .nav__link:hover &,
-        .nav__link:focus & {
+        .nav__link:hover & {
             background: $color-primary;
             border-color: $color-primary;
 

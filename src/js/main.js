@@ -1,4 +1,5 @@
-import './util/lazy-loader';
+import { init as initFocus } from './util/focus';
+import { init as initLazyLoader } from './util/lazy-loader';
 
 // Common Blocks
 import '../blocks/common/gallery/gallery';
@@ -34,6 +35,10 @@ import '../blocks/portfolio/project-carousel/project-carousel';
 import '../blocks/shop/checkout/checkout';
 import '../blocks/shop/payments/payments';
 import '../blocks/shop/product-gallery/product-gallery';
+import '../blocks/shop/product-list/product-list';
 import '../blocks/shop/review-form/review-form';
 import '../blocks/shop/shipping-calc/shipping-calc';
 import '../blocks/shop/shop-filter/shop-filter';
+
+initFocus();
+initLazyLoader();

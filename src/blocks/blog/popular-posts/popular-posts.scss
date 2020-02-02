@@ -43,9 +43,12 @@
 
         transition: color 0.2s linear;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-secondary;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
     }
 

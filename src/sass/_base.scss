@@ -69,3 +69,11 @@ body {
 :root {
     font-size: ($font-size-default / 16px) + em;
 }
+
+a, button {
+    outline: 0;
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}

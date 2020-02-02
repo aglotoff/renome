@@ -10,48 +10,49 @@
 
 mixin related-posts(props = {})
     .related-posts&attributes(attributes)
-        .related-posts__list
-            each post in props.posts
-                article.related-posts__item
-                    a(
-                        href=post.link
-                        rel="bookmark"
-                        aria-hidden="true"
-                        tabindex="-1"
-                    ).related-posts__item-thumb
-                        -
-                            const jpegSrcSet =
-                                post.thumb + '.jpg 320w, ' +
-                                post.thumb + '@2x.jpg 640w';
-                            const webpSrcSet =
-                                post.thumb + '.webp 320w, ' +
-                                post.thumb + '@2x.webp 640w';
-                            const sizes = 
-                                '(min-width: 992px) 220px, ' +
-                                '(min-width: 768px) 33vw, ' +
-                                '(min-width: 480px) 50vw, ' +
-                                '100vw';
-                        picture
-                            source(
-                                srcset=webpSrcSet
-                                type="image/webp"
-                                sizes=sizes
-                            )
-                            source(
-                                srcset=jpegSrcSet
-                                type="image/webp"
-                                sizes=sizes
-                            )
-                            img(
-                                src=`${post.thumb}.jpg`
-                                alt=post.title
-                            ).related-posts__item-img
-                    
-                    .related-posts__item-body
-                        h3.related-posts__item-title
-                            a(
-                                href=post.link
-                                rel="bookmark"
-                            ).related-posts__item-link= post.title
-                        time.related-posts__item-date(datetime=post.date)
-                            = moment(post.date).format('MMMM D, YYYY')
+        .related-posts__inner
+            .related-posts__list
+                each post in props.posts
+                    article.related-posts__item
+                        a(
+                            href=post.link
+                            rel="bookmark"
+                            aria-hidden="true"
+                            tabindex="-1"
+                        ).related-posts__item-thumb
+                            -
+                                const jpegSrcSet =
+                                    post.thumb + '.jpg 320w, ' +
+                                    post.thumb + '@2x.jpg 640w';
+                                const webpSrcSet =
+                                    post.thumb + '.webp 320w, ' +
+                                    post.thumb + '@2x.webp 640w';
+                                const sizes = 
+                                    '(min-width: 992px) 220px, ' +
+                                    '(min-width: 768px) 33vw, ' +
+                                    '(min-width: 480px) 50vw, ' +
+                                    '100vw';
+                            picture
+                                source(
+                                    srcset=webpSrcSet
+                                    type="image/webp"
+                                    sizes=sizes
+                                )
+                                source(
+                                    srcset=jpegSrcSet
+                                    type="image/webp"
+                                    sizes=sizes
+                                )
+                                img(
+                                    src=`${post.thumb}.jpg`
+                                    alt=post.title
+                                ).related-posts__item-img
+                        
+                        .related-posts__item-body
+                            h3.related-posts__item-title
+                                a(
+                                    href=post.link
+                                    rel="bookmark"
+                                ).related-posts__item-link= post.title
+                            time.related-posts__item-date(datetime=post.date)
+                                = moment(post.date).format('MMMM D, YYYY')

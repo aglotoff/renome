@@ -45,12 +45,12 @@
         border-bottom: 1px solid $color-concrete;
         cursor: pointer;
 
-        &:-moz-focusring {
-            outline: 1px dotted;
-        }
-
         @include breakpoint-up(md) {
             display: none;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.25em rgba($color-focus, 0.5);
         }
     }
 
@@ -140,7 +140,6 @@
         }
 
         &:hover,
-        &:focus,
         &_active {
             color: $color-secondary;
         }
@@ -151,6 +150,10 @@
                     opacity: 1;
                 }
             }
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.25em rgba($color-focus, 0.5);
         }
     }
 

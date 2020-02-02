@@ -29,13 +29,12 @@
 
         transition: color 0.2s linear;
 
-        &:-moz-focusring {
-            outline: 1px dotted;
+        &:hover {
+            color: $color-primary;
         }
 
-        &:hover,
-        &:focus {
-            color: $color-primary;
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.25em rgba($color-focus, 0.5);
         }
     }
 

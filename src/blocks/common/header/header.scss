@@ -47,6 +47,14 @@
 
         margin-right: auto;
         padding: 0.625em 0;
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
+        }
+
+        .focus-utility .header_transparent &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-white, 0.5);
+        }
     }
 
     &__logo-img {
@@ -121,6 +129,14 @@
 
             &:hover {
                 color: $color-secondary;
+            }
+
+            .focus-utility &:focus {
+                box-shadow: 0 0 0 0.25em rgba($color-focus, 0.5);
+            }
+    
+            .focus-utility .header_transparent &:focus {
+                box-shadow: 0 0 0 0.25em rgba($color-white, 0.5);
             }
         }
     }
