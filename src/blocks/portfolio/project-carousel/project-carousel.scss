@@ -48,14 +48,17 @@
             margin-left: 1.125em;
         }
 
-        &:hover,
-        &:focus {
+        &:hover {
             background: $color-white;
         }
     }
 
     .slick-dots .slick-active button {
         background: $color-white;
+    }
+
+    .focus-utility & .slick-dots:focus-within .slick-active button {
+        box-shadow: 0 0 0 0.25em rgba($color-white, 0.5);
     }
 
     // BEM elements
@@ -136,8 +139,16 @@
             }
         }
 
-        &:focus {
-            box-shadow: 0 0 0 3px rgba($color-primary, 0.6);
+        &:active {
+            box-shadow: 0 0 0 0.25em rgba($color-secondary, 0.5);
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.25em rgba($color-primary, 0.5);
+
+            &:hover {
+                box-shadow: 0 0 0 0.25em rgba($color-secondary, 0.5);
+            }
         }
 
         &_dir_prev {

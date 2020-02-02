@@ -3,7 +3,7 @@
  */
 .blog-cats {
     // Selector styles
-    overflow: hidden;
+    // TODO: add code
 
     // @media queries
     // TODO: add code
@@ -18,16 +18,16 @@
     &__list {
         display: flex;
         flex-flow: row wrap;
-        margin: 0 -0.3125em;
     }
 
     &__item {
         margin-top: 1.875em;
         width: 50%;
-        padding: 0 0.3125em;
     }
 
     &__link {
+        display: inline-block;
+
         color: $color-primary;
         font-size: 0.8125em;
         letter-spacing: 0.1em;
@@ -35,9 +35,12 @@
 
         transition: color 0.2s linear;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-secondary;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
     }
 

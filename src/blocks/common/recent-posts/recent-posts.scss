@@ -100,7 +100,8 @@
 
         transition: transform 0.2s linear;
 
-        &:hover {
+        &:hover,
+        &:focus-within {
             transform: scale(1.05);
         }
     }
@@ -142,6 +143,10 @@
 
         &:hover {
             color: $color-secondary;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.1em rgba($color-focus, 0.5);
         }
 
         &:before {
