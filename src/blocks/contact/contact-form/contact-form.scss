@@ -6,7 +6,10 @@
     // TODO: add code
 
     // @media queries
-    // TODO: add code
+    @include breakpoint-up(md) {
+        padding-bottom: 0.3em;
+        padding-right: 0.3em;
+    }
 
     // Pseudo-classes and pseudo-elements
     // TODO: add code
