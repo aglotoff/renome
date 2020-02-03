@@ -6,7 +6,9 @@
     // TODO: add code
 
     // @media queries
-    // TODO: add code
+    @include breakpoint-up(md) {
+        padding-bottom: 0.25em;
+    }
 
     // Pseudo-classes and pseudo-elements
     // TODO: add code
@@ -17,7 +19,7 @@
     // BEM elements
     &__submit {
         display: block;
-        margin: 0 auto 0.2em;
+        margin: 0 auto;
         width: 16.325em;
     }
 
