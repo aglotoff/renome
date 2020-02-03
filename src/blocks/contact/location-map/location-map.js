@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-/* global L */
+import L from 'leaflet';
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
