@@ -3,7 +3,7 @@
  */
 .related-posts {
     // Selector styles
-    overflow: hidden;
+    // TODO: add code
 
     // @media queries
     // TODO: add code
@@ -15,16 +15,20 @@
     // TODO: add code
 
     // BEM elements
+    &__inner {
+        margin: 0 -0.625em;
+        overflow: hidden;
+    }
+
     &__list {
         @include breakpoint-up(sm) {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 -0.625em;
         }
 
         @include breakpoint-up(xl) {
-            margin-left: -1em;
-            margin-right: -1em;
+            margin-left: -0.375em;
+            margin-right: -0.375em;
         }
     }
 
@@ -66,14 +70,19 @@
     }
 
     &__item-link {
+        display: block;
+        
         color: $color-black;
         text-decoration: none;
 
         transition: color 0.2s linear;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-secondary;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
     }
 

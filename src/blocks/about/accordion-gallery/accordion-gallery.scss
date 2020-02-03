@@ -72,7 +72,7 @@
         transition: opacity 0.25s ease-out;
 
         .accordion-gallery__thumb:hover &,
-        .accordion-gallery__thumb:focus & {
+        .focus-utility .accordion-gallery__thumb:focus & {
             opacity: 1;
         }
     }

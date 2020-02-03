@@ -53,13 +53,12 @@
         transition: color 0.2s linear;
         transform: translateY(-50%);
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-secondary;
         }
 
-        &:-moz-focusring {
-            outline: 1px dotted;
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
     }
 

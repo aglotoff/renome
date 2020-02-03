@@ -1,5 +1,6 @@
 /**
- * @file Lazy loader for images
+ * @file Lazy loader for images.
+ * @author Andrey Glotov
  */
 
 import { throttle } from './index';
@@ -81,9 +82,18 @@ export function scanImages() {
 
 // ---------------------------- END PUBLIC METHODS ----------------------------
 
-window.addEventListener(
-    'scroll',
-    throttle(scanImages, SCROLL_INTERVAL)
-);
+// ---------------------------- BEGIN PUBLIC METHODS --------------------------
 
-scanImages();
+/**
+ * Initialize the lazy loader.
+ */
+export function init() {
+    window.addEventListener(
+        'scroll',
+        throttle(scanImages, SCROLL_INTERVAL)
+    );
+
+    scanImages();
+}
+
+// ----------------------------- END PUBLIC METHODS ---------------------------

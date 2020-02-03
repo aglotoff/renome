@@ -7,6 +7,8 @@
 
     // @media queries
     @include breakpoint-up(md) {
+        display: flex;
+
         text-align: left;
     }
 
@@ -21,17 +23,16 @@
         max-width: 6.25em;
 
         @include breakpoint-up(md) {
-            float: left;
             margin-right: 1.5em;
             margin-top: 0.4375em;
         }
     }
 
     &__text {
-        margin-top: 0.9375em;       
-
+        margin-top: 0.9375em;     
+        
         @include breakpoint-up(md) {
-            overflow: hidden;
+            margin-top: 0;
         }
     }
 
@@ -53,27 +54,35 @@
     &__social {
         display: flex;
         justify-content: center;
-        margin-top: 0.625em;
+        margin-top: 0.4em;
 
         @include breakpoint-up(md) {
             justify-content: flex-start;
         }
     }
 
-    &__social-item:not(:first-child) {
-        margin-left: 1.25em;
+    &__social-item:first-child {
+        margin-left: -0.6em;
     }
 
     &__social-link {
+        display: block;
+        padding: 0.5em 0.75em;
+        width: 2.75em;
+
         color: $color-silver-sand;
         font-size: 0.75rem;
+        text-align: center;
         text-decoration: none;
 
         transition: color 0.25s ease;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-primary;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-focus, 0.5);
         }
     }
 

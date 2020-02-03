@@ -31,7 +31,8 @@ mixin comment(props = {})
                 = moment(props.date).format('MMM D, h:mm A')
             .comment__author= props.author
             .comment__reply-wrap
-                button(type="button").comment__reply-btn Reply
+                .comment__reply-btn-wrap
+                    button(type="button").comment__reply-btn Reply
 
             .rich-text.comment__body= props.text
 

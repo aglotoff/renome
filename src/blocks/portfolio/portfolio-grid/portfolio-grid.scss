@@ -96,9 +96,21 @@
         &:focus {
             color: $color-athens-gray;
         }
+
+        &:before {
+            content: "";
+
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
     }
 
     &__cats {
+        position: relative;
+
         margin-top: 0.4375em;
     }
 
@@ -119,9 +131,12 @@
 
         transition: color 0.25s ease;
 
-        &:hover,
-        &:focus {
+        &:hover {
             color: $color-secondary;
+        }
+
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-white, 0.5);
         }
     }
 

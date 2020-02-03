@@ -158,12 +158,13 @@
             border-bottom: 0.125em solid $color-white;
         }
 
-        &:hover {
+        &:hover, {
             opacity: 0.6;
         }
 
-        &:focus {
-            box-shadow: 0 0 0 3px rgba($color-white, 0.4);
+        &:active,
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.2em rgba($color-white, 0.5);
         }
 
         &_dir_prev {

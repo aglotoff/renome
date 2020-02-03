@@ -27,8 +27,9 @@ mixin footer(props = {})
                             a(href=props.socials.gplus).footer__social-link
                                 +icon('gplus', 'Follow us on Google Plus')
 
-            a(href="index.html").footer__logo
-                img(src="img/logo.svg" alt="Renome")
+            .footer__logo-wrap
+                a(href="index.html").footer__logo
+                    img(src="img/logo.svg" alt="Renome")
 
             .footer__copyright
                 | Copyright 2015 Renome by Estetiq

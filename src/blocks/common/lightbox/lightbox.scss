@@ -51,15 +51,15 @@
             transform: translateY(-50%) rotate(-45deg);
         }
 
-        &:-moz-focusring {
-            outline: 1px dotted $color-white;
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.15em rgba($color-white, 0.5);
         }
     }
 
     .mfp-arrow-left,
     .mfp-arrow-right {
-        &:-moz-focusring {
-            outline: 1px dotted $color-white;
+        .focus-utility &:focus {
+            box-shadow: 0 0 0 0.25em rgba($color-white, 0.5);
         }
     }
 
