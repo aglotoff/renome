@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = ({mode = 'development'}) => ({
     output: {
@@ -32,10 +31,7 @@ module.exports = ({mode = 'development'}) => ({
     },
     mode,
     devtool: 'source-map',
-    plugins: [
-        new webpack.ContextReplacementPlugin(
-            /moment[\/\\]locale$/,
-            /ru|en/
-        ),
-    ],
+    externals: {
+        moment: 'moment',
+    },
 });

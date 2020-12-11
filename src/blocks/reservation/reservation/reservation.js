@@ -3,7 +3,6 @@
  * @author Andrey Glotov
  */
 
-import moment from 'moment';
 import Pikaday from 'pikaday';
 
 import Select from '../../common/select/select';
@@ -63,15 +62,49 @@ class Reservation {
         this.datePicker = new Pikaday({
             field: $date.get(0),
 
-            defaultDate: startDate.toDate(),
+            defaultDate: startDate,
             setDefaultDate: true,
     
             // Reservations can be made up to 6 months in advance
-            minDate: startDate.toDate(),
-            maxDate: moment(startDate).add(6, 'months').toDate(),
+            minDate: startDate,
+            maxDate: new Date(
+                startDate.getFullYear(),
+                startDate.getMonth() + 6,
+                startDate.getDate(),
+                startDate.getHours(),
+                startDate.getMinutes()
+            ),
     
-            format: 'DD/MM/YYYY',
             theme: 'date-picker',
+
+            toString(date) {
+                const year = date.getFullYear();
+
+                let month = date.getMonth() + 1;
+                if (month < 10) {
+                    month = `0${month}`;
+                }
+
+                let day = date.getDate();
+                if (day < 10) {
+                    day = `0${day}`;
+                }
+
+                return `${day}/${month}/${year}`;
+            },
+
+            parse(dateString) {
+                const match = /(\d{2})\/(\d{2})\/(\d{4})/.exec(dateString);
+                if (match == null) {
+                    return null;
+                }
+
+                const day = +match[1];
+                const month = +match[2];
+                const year = +match[3];
+
+                return new Date(year, month - 1, day);
+            },
     
             onSelect: this.updateTimeOptions.bind(this),
         });
@@ -130,19 +163,23 @@ class Reservation {
      * Return the first date that could be selected for reservation
      */
     getStartDate() {
-        const currentMoment = moment();
+        const now = new Date();
 
         // The latest allowed reservation time is 11.30 PM. After that moment,
         // only the next day could be selected
-        if ((currentMoment.hour() === 23) && (currentMoment.minutes() >= 30)) {
-            currentMoment.add(1, 'days');
+        if ((now.getHours() === 23) && (now.getMinutes() >= 30)) {
+            return new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate() + 1
+            );
         }
 
-        return moment({
-            year: currentMoment.year(),
-            month: currentMoment.month(),
-            date: currentMoment.date(),
-        });
+        return new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate()
+        );
     }
 
     /**
@@ -153,20 +190,39 @@ class Reservation {
 
         // If today is selected, make sure the resulting array contains only
         // times after the current moment
-        const startMoment = moment.max(this.datePicker.getMoment(), moment());
+        const pickerDate = this.datePicker.getDate();
+        const currentDate = new Date();
+
+        let startDate = pickerDate.getTime() > currentDate.getTime()
+            ? pickerDate
+            : currentDate;
 
         // Start from the nearest half hour
-        if ((startMoment.minutes() % 30) !== 0) {
-            startMoment.add(30 - (startMoment.minutes() % 30), 'minutes');
+        if ((startDate.getMinutes() % 30) !== 0) {
+            startDate = new Date(
+                startDate.getFullYear(),
+                startDate.getMonth(),
+                startDate.getDate(),
+                startDate.getHours(),
+                startDate.getMinutes() + 30 - (startDate.getMinutes() % 30)
+            );
         }
 
-        for (
-            const m = moment(startMoment);
-            m.day() === startMoment.day();
-            m.add(30, 'minutes')
-        ) {
-            time.push(m.format('h:mm A'));
-        }
+        let d = startDate;
+        do {
+            time.push(d.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+            }));
+
+            d = new Date(
+                d.getFullYear(),
+                d.getMonth(),
+                d.getDate(),
+                d.getHours(),
+                d.getMinutes() + 30
+            );
+        } while (d.getDate() === startDate.getDate());
 
         return time;
     }
