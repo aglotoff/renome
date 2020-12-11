@@ -2,6 +2,7 @@ import focusTrap from 'focus-trap';
 import jQuery from 'jquery';
 import Pikaday from 'pikaday';
 import Popper from 'popper.js';
+import Shuffle from 'shufflejs';
 import svg4everybody from 'svg4everybody';
 
 // Import jQuery plugins
@@ -14,6 +15,7 @@ window.$ = window.jQuery = jQuery;
 window.focusTrap = focusTrap;
 window.Pikaday = Pikaday;
 window.Popper = Popper;
+window.Shuffle = Shuffle;
 
 // Manually initialize libraries
 svg4everybody();

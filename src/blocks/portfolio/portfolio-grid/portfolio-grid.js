@@ -3,7 +3,7 @@
  * @author Andrey Glotov
  */
 
-import Shuffle from 'shufflejs';
+/* global Shuffle */
 
 // -------------------------- BEGIN MODULE VARIABLES --------------------------
 
