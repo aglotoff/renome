@@ -9,6 +9,15 @@
         - {string} props.posts[].date - post publication date
 
 mixin related-posts(props = {})
+    -
+        const formatDate = (dateString) => {
+            const date = new Date(dateString);
+            const year = date.toLocaleDateString('en-US', { year: 'numeric' });
+            const month = date.toLocaleDateString('en-US', { month: 'long' });
+            const day = date.toLocaleDateString('en-US', { day: '2-digit' });
+            return `${month} ${day}, ${year}`;
+        };
+
     .related-posts&attributes(attributes)
         .related-posts__inner
             .related-posts__list
@@ -55,4 +64,4 @@ mixin related-posts(props = {})
                                     rel="bookmark"
                                 ).related-posts__item-link= post.title
                             time.related-posts__item-date(datetime=post.date)
-                                = moment(post.date).format('MMMM D, YYYY')
+                                = formatDate(post.date)

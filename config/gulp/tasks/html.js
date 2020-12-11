@@ -12,7 +12,6 @@ const pug = require('gulp-pug');
 const pugInheritance = require('gulp-pug-inheritance');
 const tap = require('gulp-tap');
 const lazypipe = require('lazypipe');
-const moment = require('moment');
 
 const config = require('../config');
 
@@ -30,7 +29,6 @@ const htmlTasks = lazypipe()
             data: fs.existsSync(dataFile)
                 ? {...globalData, ...JSON.parse(fs.readFileSync(dataFile))}
                 : globalData,
-            moment,
         };
     })
     .pipe(pug, config.plugins.pug)

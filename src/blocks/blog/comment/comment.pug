@@ -10,6 +10,18 @@
         - {object[]} props.replies - comment replies
 
 mixin comment(props = {})
+    -
+        const formatDate = (dateString) => {
+            const date = new Date(dateString);
+            const month = date.toLocaleDateString('en-US', { month: 'short' });
+            const day = date.toLocaleDateString('en-US', { day: '2-digit' });
+            const time = date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+            });
+            return `${month} ${day}, ${time}`;
+        };
+
     li.comment(data-id=props.id)&attributes(attributes)
         .comment__content
             .comment__avatar
@@ -28,7 +40,7 @@ mixin comment(props = {})
                         alt=props.author
                     ).comment__img
             time.comment__date(datetime=props.date)
-                = moment(props.date).format('MMM D, h:mm A')
+                = formatDate(props.date)
             .comment__author= props.author
             .comment__reply-wrap
                 .comment__reply-btn-wrap

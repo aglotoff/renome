@@ -9,6 +9,18 @@
         - {string} props.text - review text
 
 mixin review(props)
+    -
+        const formatDate = (dateString) => {
+            const date = new Date(dateString);
+            const month = date.toLocaleDateString('en-US', { month: 'short' });
+            const day = date.toLocaleDateString('en-US', { day: '2-digit' });
+            const time = date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+            });
+            return `${month} ${day}, ${time}`;
+        };
+
     li.review&attributes(attributes)
         .review__header
             -
@@ -32,7 +44,7 @@ mixin review(props)
                     +rating({ value: props.rating })
         
         time.review__time(datetime=props.date)
-            = moment(props.date).format('MMM D, h:mm A')
+            = formatDate(props.date)
 
         .review__body
             .rich-text.review__text !{props.text}
