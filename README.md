@@ -3,7 +3,7 @@ Renome Restaurant HTML Template
 
 HTML restaurant template based on [this free PSD template by Veaceslav Burian](https://www.behance.net/gallery/35481315/Renome-Free-PSD-Restaurant-Template).
 
-Watch demo: [https://aglotoff.github.io/demos/renome/](https://aglotoff.github.io/demos/renome/)
+Watch demo: [https://andrey-glotov.github.io/demos/renome/](https://andrey-glotov.github.io/demos/renome/)
 
 Features
 --------
@@ -40,5 +40,5 @@ Fonts
 Usage
 -----
 
-See the documentation for the [starter template](https://github.com/aglotoff/frontend-template)
+See the documentation for the [starter template](https://github.com/andrey-glotov/static-site-template)
 this project is based on.
