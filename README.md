@@ -1,8 +1,9 @@
-Renome Restaurant HTML Template
-===============================
+Renome - Restaurant HTML5 Template
+==================================
 
-HTML restaurant template based on [this free PSD template by Veaceslav Burian](https://www.behance.net/gallery/35481315/Renome-Free-PSD-Restaurant-Template).
+HTML5 restaurant template based on [this free PSD template by Veaceslav Burian](https://www.behance.net/gallery/35481315/Renome-Free-PSD-Restaurant-Template).
 
+Download: [https://github.com/andrey-glotov/renome/releases/](https://github.com/andrey-glotov/renome/releases/)
 Watch demo: [https://andrey-glotov.github.io/demos/renome/](https://andrey-glotov.github.io/demos/renome/)
 
 Features
@@ -37,8 +38,8 @@ Fonts
 * [Montserrat](https://fonts.google.com/specimen/Montserrat)
 * [Streetwear](https://www.1001fonts.com/streetwear-font.html)
 
-Usage
------
+Working with Source Code
+------------------------
 
 See the documentation for the [starter template](https://github.com/andrey-glotov/static-site-template)
 this project is based on.
